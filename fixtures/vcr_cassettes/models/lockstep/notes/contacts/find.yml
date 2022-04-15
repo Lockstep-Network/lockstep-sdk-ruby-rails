@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api/v1/Contacts/query?filter=contactId%20eq%20%27331ef2fb-2af4-4bfb-a15d-3964b99cedc3%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Authorization:
+      - Bearer "<BEARER>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '601'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ARRAffinity=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Api-Supported-Versions:
+      - '1.0'
+      Serverduration:
+      - '5'
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 0UhECYgAAAABhikOhm0D+SKeR5ysdK11JRFhCMzBFREdFMDIwOQBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Tue, 08 Feb 2022 06:44:33 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"records":[{"contactId":"331ef2fb-2af4-4bfb-a15d-3964b99cedc3","companyId":"23b986a7-a1be-4fe4-bff8-b8b16c526121","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","erpKey":"Contact-Customer-23","contactName":"Shara
+        Barnett","emailAddress":"Design@intuit.com","phone":"(650) 557-1289","address1":"19
+        Main St.","city":"Middlefield","stateRegion":"CA","postalCode":"94303","isActive":true,"created":"2021-08-27T00:22:41","createdUserId":"6d4777a8-8b3f-44a9-a624-353c7869e11a","modified":"2021-09-01T18:16:52","modifiedUserId":"6d4777a8-8b3f-44a9-a624-353c7869e11a","appEnrollmentId":"17d2062a-90f0-471c-bbb4-54bc48fbf88e"}],"totalCount":1,"pageSize":10000}'
+  recorded_at: Tue, 08 Feb 2022 06:44:34 GMT
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api/v1/Notes/query?filter=(objectKey%20eq%20%27331ef2fb-2af4-4bfb-a15d-3964b99cedc3%27)%20AND%20(tableKey%20eq%20%27Contact%27)
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Authorization:
+      - Bearer "<BEARER>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '447'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ARRAffinity=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Api-Supported-Versions:
+      - '1.0'
+      Serverduration:
+      - '7'
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 0UhECYgAAAADr9WcHlHTyQID0ScwVH1/IRFhCMzBFREdFMDIwNgBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Tue, 08 Feb 2022 06:44:34 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"records":[{"noteId":"04573db7-580c-4b11-94bc-5d41840b17f2","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","tableKey":"Contact","objectKey":"331ef2fb-2af4-4bfb-a15d-3964b99cedc3","noteText":"tested
+        for edit and delete","noteType":"note","isArchived":false,"created":"2022-01-28T09:44:04.54","createdUserId":"d4ae7dde-4a59-4440-950d-b8c340f30488","createdUserName":"Mithraa
+        R"}],"totalCount":1,"pageSize":10000}'
+  recorded_at: Tue, 08 Feb 2022 06:44:34 GMT
+recorded_with: VCR 6.0.0

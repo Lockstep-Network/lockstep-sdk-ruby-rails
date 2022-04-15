@@ -1,0 +1,11 @@
+default: &default
+  base_url: 'https://api.dev.lockstep.io/api'
+
+development:
+  <<: *default
+
+staging:
+  <<: *default
+
+test:
+  <<: *default

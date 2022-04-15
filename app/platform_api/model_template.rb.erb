@@ -1,0 +1,27 @@
+class Schema::<%= class_name %> < Lockstep::ApiRecord
+
+# ApiRecord will crash unless `id_ref` is defined
+def self.id_ref
+  nil
+end
+
+<% fields.each do |field_name, config| -%>
+  <%= config["description"].nil? ? nil : "# #{config['description'].gsub("\n", "\n  # ")}"%>
+<% if !config["type"].nil? -%>
+  # @type: <%= config["type"] %>
+<%end -%>
+<% if !config["format"].nil? -%>
+  # @format: <%= config["format"] %>
+<%end -%>
+  field :<%= field_name %><%= config["value_type"].nil? ? nil : ", #{config["value_type"]}"  %>
+
+<%end -%>
+<% belongs_to_relations.each do |relation, config| -%>
+  belongs_to :<%= relation %>, <%= config %>
+<%end -%>
+
+<% has_many_relations.each do |relation, config| -%>
+  has_many :<%= relation %>, <%= config %>
+<%end -%>
+
+end

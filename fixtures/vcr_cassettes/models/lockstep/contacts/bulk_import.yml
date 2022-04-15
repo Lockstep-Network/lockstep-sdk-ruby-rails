@@ -1,0 +1,174 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.dev.lockstep.io/api/v1/Contacts/
+    body:
+      encoding: UTF-8
+      string: '[{"emailAddress":"a@b.com"},{"emailAddress":"a2@b.com"}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Authorization:
+      - Bearer "<BEARER>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '433'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ARRAffinity=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Api-Supported-Versions:
+      - '1.0'
+      Serverduration:
+      - '19'
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 0SxECYgAAAAB2jQJecUToRbosogEuc5/oRFhCMzBFREdFMDIxMABmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Tue, 08 Feb 2022 06:44:27 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"contactId":"fe2496e6-e11a-422b-8b09-c7b7f2db237e","companyId":"00000000-0000-0000-0000-000000000000","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","emailAddress":"a@b.com","isActive":true,"created":"2022-02-08T06:44:27.7240971Z","createdUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","modified":"2022-02-08T06:44:27.7240971Z","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b"},{"contactId":"18b13015-72fd-4fde-93ba-4adfee685ad4","companyId":"00000000-0000-0000-0000-000000000000","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","emailAddress":"a2@b.com","isActive":true,"created":"2022-02-08T06:44:27.7240975Z","createdUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","modified":"2022-02-08T06:44:27.7240975Z","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b"}]'
+  recorded_at: Tue, 08 Feb 2022 06:44:27 GMT
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api/v1/Contacts/query?filter=contactId%20eq%20%27fe2496e6-e11a-422b-8b09-c7b7f2db237e%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Authorization:
+      - Bearer "<BEARER>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '399'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ARRAffinity=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Api-Supported-Versions:
+      - '1.0'
+      Serverduration:
+      - '14'
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 0TBECYgAAAAC4Ek8vfe96Q55tJCRFIQxtRFhCMzBFREdFMDIxMQBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Tue, 08 Feb 2022 06:44:28 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"records":[{"contactId":"fe2496e6-e11a-422b-8b09-c7b7f2db237e","companyId":"00000000-0000-0000-0000-000000000000","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","emailAddress":"a@b.com","isActive":true,"created":"2022-02-08T06:44:27.72","createdUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","modified":"2022-02-08T06:44:27.72","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b"}],"totalCount":1,"pageSize":10000}'
+  recorded_at: Tue, 08 Feb 2022 06:44:28 GMT
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api/v1/Contacts/query?filter=contactId%20eq%20%2718b13015-72fd-4fde-93ba-4adfee685ad4%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Authorization:
+      - Bearer "<BEARER>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '399'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ARRAffinity=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Api-Supported-Versions:
+      - '1.0'
+      Serverduration:
+      - '4'
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 0TRECYgAAAABrYIt6oCYXRpefM4mugEeRRFhCMzBFREdFMDIxOQBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Tue, 08 Feb 2022 06:44:29 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"records":[{"contactId":"18b13015-72fd-4fde-93ba-4adfee685ad4","companyId":"00000000-0000-0000-0000-000000000000","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","emailAddress":"a2@b.com","isActive":true,"created":"2022-02-08T06:44:27.72","createdUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","modified":"2022-02-08T06:44:27.72","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b"}],"totalCount":1,"pageSize":10000}'
+  recorded_at: Tue, 08 Feb 2022 06:44:29 GMT
+recorded_with: VCR 6.0.0

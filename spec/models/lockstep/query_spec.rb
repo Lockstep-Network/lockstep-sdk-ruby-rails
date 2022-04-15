@@ -1,0 +1,21 @@
+require 'rails_helper'
+
+RSpec.describe 'Lockstep::Query' do
+
+  context 'when generating' do
+    it 'should build with the correct params' do
+      params =  Lockstep::Query.new(Lockstep::ApiRecord)
+                                        .where(domain_not_eq: 'lockstep.io', name: "test")
+                                        .where(count_gteq: 20).where("email not_eq 'a@b.com'")
+                                        .include_object(:contacts).limit(10)
+                                        .page(2).order(name: :asc).build_params
+      expect(params[:filter]).to eq("(((domain NE 'lockstep.io') AND (name eq 'test')) AND (count GE 20)) AND (email not_eq 'a@b.com')")
+      expect(params[:pageSize]).to eq(10)
+      expect(params[:pageNumber]).to eq(2)
+      expect(params[:include]).to eq("contacts")
+      expect(params[:order]).to eq("NAME asc")
+    end
+  end
+
+
+end

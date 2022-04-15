@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api/v1/Contacts/query?filter=companyId%20eq%20%2717544da8-7be8-4ee2-8c62-cbd81428c68b%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Api-Key:
+      - "<API_KEY>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '1647'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ARRAffinity=aac07ba7dd5c68c1e84340e2ab9868de44ccb72bc55d43945b6902c6f5c7910e;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=aac07ba7dd5c68c1e84340e2ab9868de44ccb72bc55d43945b6902c6f5c7910e;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Api-Supported-Versions:
+      - '1.0'
+      Serverduration:
+      - '219'
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 0ntMoYgAAAAC9T6cAi1WvS7pTfvxt1KxRRFhCMzBFREdFMDIxMABmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Wed, 09 Mar 2022 16:19:42 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"records":[{"contactId":"af674f20-ce79-4a4d-988b-92aea2e25f7a","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"","roleCode":"Other","emailAddress":"accounts@1password.com","isActive":false,"created":"2022-01-13T00:28:20.01","createdUserId":"257b71c8-3aa4-4715-8c5a-4e8d71f96bcb","modified":"2022-01-28T09:13:53.63","modifiedUserId":"d4ae7dde-4a59-4440-950d-b8c340f30488"},{"contactId":"879a6934-3c75-45df-bdb1-4afbda413ec6","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"1Password
+        Business Support","emailAddress":"businesssupport@1password.com","isActive":true,"created":"2022-02-07T18:43:44.14","createdUserId":"101e9a6f-b5e5-4a63-8dd0-cb3ffe83b2ff","modified":"2022-03-04T12:03:04.77","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b"},{"contactId":"adbfa44a-d196-4a65-9cac-27411bb37784","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"1Password
+        Business Support","emailAddress":"support@1password.com","isActive":true,"created":"2022-02-04T20:20:39.55","createdUserId":"257b71c8-3aa4-4715-8c5a-4e8d71f96bcb","modified":"2022-02-04T20:20:39.55","modifiedUserId":"257b71c8-3aa4-4715-8c5a-4e8d71f96bcb"},{"contactId":"11260269-3309-4d02-98af-3a2e2cedbb68","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"jnew_test","emailAddress":"jnew_test@1password.com","isActive":true,"created":"2022-02-08T20:14:09.9","createdUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d","modified":"2022-02-08T20:14:09.9","modifiedUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d"},{"contactId":"594f31ef-1fa4-4510-b385-6d01707f8130","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"jtest","emailAddress":"jtest@1password.com","isActive":true,"created":"2022-02-07T18:15:03.55","createdUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d","modified":"2022-02-07T18:15:03.55","modifiedUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d"},{"contactId":"f6d0a9d6-07c1-4f93-8781-da20b45cbf67","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"jtest","emailAddress":"jtest@1password.com","isActive":true,"created":"2022-02-07T17:36:04.4","createdUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d","modified":"2022-02-07T17:36:04.4","modifiedUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d"},{"contactId":"96bb33ca-c2b5-44ac-af98-3d57996b8777","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"jtest","emailAddress":"jtest@1password.com","isActive":true,"created":"2022-02-07T18:15:23.73","createdUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d","modified":"2022-02-07T18:15:23.73","modifiedUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d"},{"contactId":"5a9a56a0-2f30-4c4c-866a-064104db9246","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"jtest","emailAddress":"jtest@1password.com","isActive":true,"created":"2022-02-07T18:17:15.42","createdUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d","modified":"2022-02-07T18:17:15.42","modifiedUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d"},{"contactId":"6a270e73-39f3-4144-8ac8-3d3cd6fd9b18","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"jtest","emailAddress":"jtest@1password.com","isActive":true,"created":"2022-02-07T17:35:40.53","createdUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d","modified":"2022-02-07T17:35:40.53","modifiedUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d"},{"contactId":"873450a3-31b3-4e80-833d-206b736d0a5d","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"jtest","emailAddress":"jtest@1password.com","isActive":true,"created":"2022-02-07T17:34:22.09","createdUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d","modified":"2022-02-07T17:34:22.09","modifiedUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d"},{"contactId":"f18a4bab-4988-44e0-a81b-50895d7daeba","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"jtest","emailAddress":"jtest@1password.com","isActive":true,"created":"2022-02-07T18:15:58.53","createdUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d","modified":"2022-02-07T18:15:58.53","modifiedUserId":"3f7d8c97-0273-4335-a275-2f4d37dbe97d"},{"contactId":"51627b45-109b-470f-a425-4fad9d78c552","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"test1","roleCode":"AP
+        Manager","emailAddress":"test@lockstep.io","phone":"","isActive":false,"created":"2022-01-17T15:54:26.3","createdUserId":"3dc23e2f-333a-4961-929e-3bce3ef1c9fe","modified":"2022-01-17T15:54:46.43","modifiedUserId":"3dc23e2f-333a-4961-929e-3bce3ef1c9fe"},{"contactId":"781050e2-35bd-436c-b0cd-cef297a7d961","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"test12","roleCode":"AP
+        Manager","emailAddress":"test@lockstep.com","phone":"1","isActive":false,"created":"2022-01-17T15:51:30.25","createdUserId":"3dc23e2f-333a-4961-929e-3bce3ef1c9fe","modified":"2022-01-17T15:53:43.3","modifiedUserId":"3dc23e2f-333a-4961-929e-3bce3ef1c9fe"},{"contactId":"ad280abd-4e41-4205-8679-2e9686e0db7c","companyId":"17544da8-7be8-4ee2-8c62-cbd81428c68b","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","contactName":"test2","roleCode":"AP
+        Specialist","emailAddress":"test2@lockstep.io","phone":"","isActive":false,"created":"2022-01-17T15:54:40.8","createdUserId":"3dc23e2f-333a-4961-929e-3bce3ef1c9fe","modified":"2022-01-17T15:54:46.43","modifiedUserId":"3dc23e2f-333a-4961-929e-3bce3ef1c9fe"}],"totalCount":14,"pageSize":10000}'
+  recorded_at: Wed, 09 Mar 2022 16:19:43 GMT
+recorded_with: VCR 6.0.0
