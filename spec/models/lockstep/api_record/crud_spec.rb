@@ -99,7 +99,6 @@ RSpec.describe "Lockstep::ApiRecord CRUD Test" do
   describe "#bulk_import" do
     it "should return false and have error messages attached if the request is invalid" do
       VCR.use_cassette("models/lockstep/contacts/bulk_import_invalid") do
-        Lockstep::Client.set_api_key('LSPK-PC/Ywx1A0tJz4QKmbuu5SRj5W0PLxRy4ZDQZriNM/kIG93Ci2u7MBjomzIktix4joPn4zkERt2ctazNULLWopw==')
         obj1 = Lockstep::Connection.new email_address: "a@b.com" # Valid object
         obj2 = Lockstep::Contact.new email_address: "$$$$a", is_active: 2  # Invalid object
         expect { Lockstep::Contact.bulk_import([obj1, obj2]) } .to raise_error(Lockstep::Exceptions::BadRequestError)
