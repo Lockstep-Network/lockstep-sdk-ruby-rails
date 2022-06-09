@@ -225,11 +225,15 @@ class Lockstep::Query
     # TODO handle non 200 response code. Throwing an exception for now
     raise StandardError.new("#{resp.code} error while fetching: #{resp.body}") unless %w(201 200).include?(resp.code.to_s)
 
+    parsed_response = JSON.parse(resp.body)
+
     if criteria[:count]
-      results = JSON.parse(resp.body)["totalCount"]
+      raise StandardError.new("Count is not supported for #{@klass}") if parsed_response.is_a?(Array)
+
+      results = parsed_response["totalCount"]
       return results.to_i
     else
-      results = JSON.parse(resp.body)["records"]
+      results = parsed_response.is_a?(Array) ? parsed_response : parsed_response["records"]
       results = results[0..(criteria[:limit] - 1)] if criteria[:limit]
       get_relation_objects results.map { |r|
         # Convert camelcase to snake-case

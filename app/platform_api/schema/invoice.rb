@@ -1,13 +1,13 @@
 class Schema::Invoice < Lockstep::ApiRecord
 
-  # ApiRecord will crash unless `id_ref` is defined
-  def self.id_ref
-    nil
-  end
+# ApiRecord will crash unless `id_ref` is defined
+def self.id_ref
+  nil
+end
 
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  #
+  #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid
@@ -15,7 +15,7 @@ class Schema::Invoice < Lockstep::ApiRecord
 
   # The unique ID of this record, automatically assigned by Lockstep when this record is
   # added to the Lockstep platform.
-  #
+  #             
   # For the ID of this record in its originating financial system, see `ErpKey`.
   # @type: string
   # @format: uuid
@@ -32,11 +32,11 @@ class Schema::Invoice < Lockstep::ApiRecord
   field :customer_id
 
   # The unique ID of this record as it was known in its originating financial system.
-  #
+  #             
   # If this company record was imported from a financial system, it will have the value `ErpKey`
   # set to the original primary key number of the record as it was known in the originating financial
   # system.  If this record was not imported, this value will be `null`.
-  #
+  #             
   # For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
   # @type: string
   field :erp_key
@@ -61,7 +61,7 @@ class Schema::Invoice < Lockstep::ApiRecord
   field :salesperson_name
 
   # A code identifying the type of this invoice.
-  #
+  #             
   # Recognized Invoice types are:
   # * `Invoice` - Represents an invoice sent by Company to the Customer
   # * `AP Invoice` - Represents an invoice sent by Customer to the Company
@@ -70,7 +70,7 @@ class Schema::Invoice < Lockstep::ApiRecord
   field :invoice_type_code
 
   # A code identifying the status of this invoice.
-  #
+  #             
   # Recognized Invoice status codes are:
   # * `Open` - Represents an invoice that is considered open and needs more work to complete
   # * `Closed` - Represents an invoice that is considered closed and resolved
@@ -208,19 +208,20 @@ class Schema::Invoice < Lockstep::ApiRecord
   # To retrieve this item, specify `Customer` in the "Include" parameter for your query.
   field :customer_primary_contact
 
-  belongs_to :company, { :class_name => "Lockstep::Account", :primary_key => :company_id, :foreign_key => "company_id" }
-  belongs_to :account, { :class_name => "Lockstep::Account", :primary_key => :company_id, :foreign_key => "company_id" }
-  belongs_to :customer, { :class_name => "Lockstep::Connection", :primary_key => :company_id, :foreign_key => "customer_id" }
-  belongs_to :connection, { :class_name => "Lockstep::Connection", :primary_key => :company_id, :foreign_key => "customer_id" }
-  belongs_to :created_user, { :class_name => "Lockstep::User", :primary_key => :user_id, :foreign_key => "created_user_id" }
-  belongs_to :modified_user, { :class_name => "Lockstep::User", :primary_key => :user_id, :foreign_key => "modified_user_id" }
+  belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
+  belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
+  belongs_to :customer, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}
+  belongs_to :connection, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}
+  belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
+  belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
-  has_many :addresses, { :class_name => "Schema::InvoiceAddress", :included => true }
-  has_many :lines, { :class_name => "Schema::InvoiceLine", :included => true }
-  has_many :payments, { :class_name => "Schema::InvoicePaymentDetail", :included => true }
-  has_many :notes, { :class_name => "Lockstep::Note", :included => true, :foreign_key => :object_key, :polymorphic => { :table_key => "Invoice" } }
-  has_many :attachments, { :class_name => "Schema::Attachment", :included => true }
-  has_many :credit_memos, { :class_name => "Schema::CreditMemoInvoice", :included => true }
-  has_many :custom_field_values, { :class_name => "Schema::CustomFieldValue", :included => true }
-  has_many :custom_field_definitions, { :class_name => "Schema::CustomFieldDefinition", :included => true }
+  has_many :addresses, {:class_name=>"Schema::InvoiceAddress", :included=>true}
+  has_many :lines, {:class_name=>"Schema::InvoiceLine", :included=>true}
+  has_many :payments, {:class_name=>"Schema::InvoicePaymentDetail", :included=>true}
+  has_many :notes, {:class_name=>"Lockstep::Note", :included=>true, :foreign_key=>:object_key, :polymorphic=>{:table_key=>"Invoice"}}
+  has_many :attachments, {:class_name=>"Schema::Attachment", :included=>true}
+  has_many :credit_memos, {:class_name=>"Schema::CreditMemoInvoice", :included=>true}
+  has_many :custom_field_values, {:class_name=>"Schema::CustomFieldValue", :included=>true}
+  has_many :custom_field_definitions, {:class_name=>"Schema::CustomFieldDefinition", :included=>true}
+
 end

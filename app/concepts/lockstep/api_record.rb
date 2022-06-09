@@ -1,15 +1,16 @@
-require "rubygems"
-require "bundler/setup"
-require "active_model"
-require "erb"
-require "dry-types"
-require "json"
-require "active_support/hash_with_indifferent_access"
-require "lockstep/query"
-require "lockstep/query_methods"
-require "lockstep/error"
-require "lockstep/exceptions"
-require "lockstep/relation_array"
+require 'rubygems'
+require 'bundler/setup'
+require 'active_model'
+require 'erb'
+require 'dry-types'
+require 'json'
+require 'active_support/hash_with_indifferent_access'
+require 'lockstep/query'
+require 'lockstep/query_methods'
+require 'lockstep/error'
+require 'lockstep/exceptions'
+require 'lockstep/relation_array'
+require 'pry'
 
 module Lockstep
   class ApiRecord
@@ -42,7 +43,7 @@ module Lockstep
     # @params [Hash], [Boolean] a `Hash` of attributes and a `Boolean` that should be false only if the object already exists
     # @return [Lockstep::ApiRecord] an object that subclasses `Parseresource::Base`
     def initialize(attributes = {}, new = true)
-      #attributes = HashWithIndifferentAccess.new(attributes)
+      # attributes = HashWithIndifferentAccess.new(attributes)
 
       if new
         @unsaved_attributes = attributes
@@ -85,7 +86,7 @@ module Lockstep
       fname = fname.to_sym
       class_eval do
         define_method(fname) do
-          val = get_attribute("#{fname}")
+          val = get_attribute(fname.to_s)
 
           # If enum, substitute with the enum key
           if val.present? && (enum = enum_config[fname]).present?
@@ -95,10 +96,10 @@ module Lockstep
           val
         end
       end
-      unless self.respond_to? "#{fname}="
+      unless respond_to? "#{fname}="
         class_eval do
           define_method("#{fname}=") do |val|
-            set_attribute("#{fname}", val)
+            set_attribute(fname.to_s, val)
 
             val
           end
@@ -125,7 +126,7 @@ module Lockstep
     def self.belongs_to(parent, config = {})
       config = config.with_indifferent_access
       class_name = config[:class_name]
-      raise "Class name cannot be empty in #{parent}: #{self.name}" if class_name.blank?
+      raise "Class name cannot be empty in #{parent}: #{name}" if class_name.blank?
 
       included = config[:included] || false
       primary_key = config[:primary_key]
@@ -139,7 +140,7 @@ module Lockstep
       belongs_to_relations[parent] = {
         name: parent, class_name: class_name,
         included: included, primary_key: primary_key, foreign_key: foreign_key,
-        loader: loader, polymorphic: polymorphic,
+        loader: loader, polymorphic: polymorphic
       }
 
       # define_method("build_#{parent}") do |attributes_hash|
@@ -156,7 +157,7 @@ module Lockstep
     def self.has_many(parent, config = {})
       config = config.with_indifferent_access
       class_name = config[:class_name]
-      raise "Class name cannot be empty in #{parent}: #{self.name}" if class_name.blank?
+      raise "Class name cannot be empty in #{parent}: #{name}" if class_name.blank?
 
       included = config[:included] || false
       primary_key = config[:primary_key]
@@ -164,13 +165,13 @@ module Lockstep
       polymorphic = config[:polymorphic]
       loader = config[:loader]
 
-      primary_key ||= self.id_ref
-      foreign_key ||= self.id_ref
+      primary_key ||= id_ref
+      foreign_key ||= id_ref
       field(parent)
       has_many_relations[parent] = {
         name: parent, class_name: class_name, included: included,
         primary_key: primary_key, foreign_key: foreign_key, polymorphic: polymorphic,
-        loader: loader,
+        loader: loader
       }
     end
 
@@ -182,46 +183,48 @@ module Lockstep
       schema.belongs_to_relations.each do |relation, config|
         params = {}
         config.except(:name).each { |k, v| params[k.to_sym] = v }
-        self.belongs_to(relation, params)
+        belongs_to(relation, params)
       end
 
       schema.has_many_relations.each do |relation, config|
         params = {}
         config.except(:name).each { |k, v| params[k.to_sym] = v }
-        self.has_many(relation, params)
+        has_many(relation, params)
       end
     end
 
     def to_pointer
       klass_name = self.class.model_name.to_s
-      { "__type" => "Pointer", "className" => klass_name.to_s, self.id_ref => self.id }
+      { '__type' => 'Pointer', 'className' => klass_name.to_s, id_ref => id }
     end
 
     def self.to_date_object(date)
       date = date.to_time if date.respond_to?(:to_time)
-      { "__type" => "Date", "iso" => date.getutc.iso8601 } if date && (date.is_a?(Date) || date.is_a?(DateTime) || date.is_a?(Time))
+      if date && (date.is_a?(Date) || date.is_a?(DateTime) || date.is_a?(Time))
+       date.getutc.iso8601(fraction_digits = 3)
+      end
     end
 
     # Creates setter methods for model fields
-    def create_setters!(k, v)
-      unless self.respond_to? "#{k}="
+    def create_setters!(k, _v)
+      unless respond_to? "#{k}="
         self.class.send(:define_method, "#{k}=") do |val|
-          set_attribute("#{k}", val)
+          set_attribute(k.to_s, val)
 
           val
         end
       end
     end
 
-    def method_missing(method, *args, &block)
-      raise StandardError.new("#{method} has not been defined for #{self.class.name}")
+    def method_missing(method, *_args)
+      raise StandardError, "#{method} has not been defined for #{self.class.name}"
       # super
     end
 
     def self.method_missing(method_name, *args)
       method_name = method_name.to_s
-      if method_name.start_with?("find_by_")
-        attrib = method_name.gsub(/^find_by_/, "")
+      if method_name.start_with?('find_by_')
+        attrib = method_name.gsub(/^find_by_/, '')
         finder_name = "find_all_by_#{attrib}"
 
         define_singleton_method(finder_name) do |target_value|
@@ -229,8 +232,8 @@ module Lockstep
         end
 
         send(finder_name, args[0])
-      elsif method_name.start_with?("find_all_by_")
-        attrib = method_name.gsub(/^find_all_by_/, "")
+      elsif method_name.start_with?('find_all_by_')
+        attrib = method_name.gsub(/^find_all_by_/, '')
         finder_name = "find_all_by_#{attrib}"
 
         define_singleton_method(finder_name) do |target_value|
@@ -244,10 +247,10 @@ module Lockstep
     end
 
     # Creates getter methods for model fields
-    def create_getters!(k, v)
-      unless self.respond_to? "#{k}"
-        self.class.send(:define_method, "#{k}") do
-          get_attribute("#{k}")
+    def create_getters!(k, _v)
+      unless respond_to? k.to_s
+        self.class.send(:define_method, k.to_s) do
+          get_attribute(k.to_s)
         end
       end
     end
@@ -283,19 +286,19 @@ module Lockstep
     #   end
     # end
 
-    def self.id_ref=(val)
-      @id_ref = val
+    class << self
+      attr_writer :id_ref
     end
 
     def self.id_ref
-      raise StandardError.new("id_ref has not been defined for #{self.name}") if @id_ref.blank?
+      raise StandardError, "id_ref has not been defined for #{name}" if @id_ref.blank?
 
       @id_ref
     end
 
     # Alias for id_ref. Used by polymorphic association
     def self.primary_key
-      self.id_ref
+      id_ref
     end
 
     def id_ref
@@ -308,8 +311,8 @@ module Lockstep
       @model_name_uri
     end
 
-    def self.model_name_uri
-      @model_name_uri
+    class << self
+      attr_reader :model_name_uri
     end
 
     def self.config
@@ -318,13 +321,16 @@ module Lockstep
 
     # Gets the current class's Lockstep.io base_uri
     def self.model_base_uri
-      raise StandardError.new("Cannot establish connection for auto-generated Schema. Create a new model if you want to retrieve data from Lockstep Platform") if self.name.starts_with?("Schema::")
-      raise StandardError.new("URL Path is not defined for #{self.name}") if model_name_uri.blank?
+      if name.starts_with?('Schema::')
+        raise StandardError,
+              'Cannot establish connection for auto-generated Schema. Create a new model if you want to retrieve data from Lockstep Platform'
+      end
+      raise StandardError, "URL Path is not defined for #{name}" if model_name_uri.blank?
 
       base_url = config[:base_url]
-      base_url += "/" unless base_url.ends_with?("/")
+      base_url += '/' unless base_url.ends_with?('/')
       base_url += model_name_uri
-      base_url += "/" unless base_url.ends_with?("/")
+      base_url += '/' unless base_url.ends_with?('/')
       base_url
     end
 
@@ -339,19 +345,19 @@ module Lockstep
     def self.resource
       # load_settings
 
-      #refactor to settings['app_id'] etc
+      # refactor to settings['app_id'] etc
       # app_id     = @@settings['app_id']
       # master_key = @@settings['master_key']
       # RestClient::Resource.new(self.model_base_uri, app_id, master_key)
-      Lockstep::Client.new(self.model_base_uri)
+      Lockstep::Client.new(model_base_uri)
     end
 
-    def self.query_path=(value)
-      @query_path = value
+    class << self
+      attr_writer :query_path
     end
 
     def self.query_path
-      @query_path || "query"
+      @query_path || 'query'
     end
 
     # Batch requests
@@ -396,6 +402,7 @@ module Lockstep
     def self.merge_all_attributes(objects, response)
       objects.each_with_index do |item, index|
         next unless response[index]
+
         new_attributes = response[index].transform_keys { |key| key.underscore }
         item.merge_attributes(new_attributes)
       end
@@ -417,7 +424,7 @@ module Lockstep
     # end
 
     def self.bulk_import(new_objects, slice_size = 20)
-      return true if new_objects.blank?
+      return [] if new_objects.blank?
 
       # Batch saves seem to fail if they're too big. We'll slice it up into multiple posts if they are.
       new_objects.each_slice(slice_size) do |objects|
@@ -425,46 +432,41 @@ module Lockstep
         batch_json = []
 
         objects.each do |item|
-          raise StandardError.new("Bulk Import cannot only create records at the moment. It cannot update records") unless item.new?
+          unless item.new?
+            raise StandardError,
+                  'Bulk Import cannot only create records at the moment. It cannot update records'
+          end
 
           batch_json << item.attributes_for_saving.transform_keys { |key| key.camelize(:lower) }
         end
 
-        resp = self.resource.post("", body: batch_json)
-        # TODO attach errors if resp code is 400
-
-        if resp.code.to_s == "400"
+        resp = resource.post('', body: batch_json)
+        # TODO: attach errors if resp code is 400
+        if resp.code != '200'
           # Error format in JSON
           #   "errors": {
           #     "[0].EmailAddress": [
           #       "The EmailAddress field is not a valid e-mail address."
           #     ]
           #   }
-          error_response = JSON.parse(resp.body)
-          errors = error_response["errors"]
-          errors.each do |key, messages|
-            splits = key.split(".")
-            attribute = splits.last&.underscore
-            # Remove the [] from the first split to get the position in integer
-            position = splits.first[1..(splits.first.size - 2)].to_i
-            messages.each do |message|
-              new_objects[position].errors.add attribute, ": #{message}"
-            end
+          if resp.code == '401'
+            raise Lockstep::Exceptions::UnauthorizedError, 'Unauthorized: Check your App ID & Master Key'
+          elsif resp.code == '400'
+            raise Lockstep::Exceptions::BadRequestError, JSON.parse(resp.body)
+          elsif resp.code == '404'
+            raise Lockstep::Exceptions::RecordNotFound, 'Resource not found in the Platfrom'
           end
-          return false
-        elsif resp.code.to_s != "200"
-          return false
         end
 
         response = JSON.parse(resp.body)
-        if response && response.is_a?(Array) && response.length == objects.length
-          # return response.map { |item|
-          #   Lockstep::Contact.new(item.transform_keys { |key| key.underscore }, false)
-          # }
-          merge_all_attributes(objects, response)
-        end
+        next unless response && response.is_a?(Array) && response.length == objects.length
+
+        # return response.map { |item|
+        #   Lockstep::Contact.new(item.transform_keys { |key| key.underscore }, false)
+        # }
+        merge_all_attributes(objects, response)
       end
-      true
+      new_objects
     end
 
     # def self.load_settings
@@ -516,8 +518,10 @@ module Lockstep
     # @return [Lockstep::ApiRecord] an object that subclasses Lockstep::ApiRecord.
     def self.find(id)
       raise Lockstep::Exceptions::RecordNotFound, "Couldn't find #{name} without an ID" if id.blank?
-      record = where(self.id_ref => id).first
+
+      record = where(id_ref => id).first
       raise Lockstep::Exceptions::RecordNotFound, "Couldn't find #{name} with id: #{id}" if record.blank?
+
       record
     end
 
@@ -525,13 +529,13 @@ module Lockstep
     #
     def self.find_by(*args)
       raise Lockstep::Exceptions::RecordNotFound, "Couldn't find an object without arguments" if args.blank?
+
       key, value = args.first.first
       unless valid_attribute?(key, raise_exception: true)
-        raise StandardError.new("Attribute '#{key}' has not been defined for #{self.name}")
+        raise StandardError, "Attribute '#{key}' has not been defined for #{name}"
       end
 
-      record = where(key => value).first
-      record
+      where(key => value).first
     end
 
     # Find a Lockstep::ApiRecord object by chaining #where method calls.
@@ -576,19 +580,17 @@ module Lockstep
       # Valid only if the record is not an API record.
       # Default scopes build queries using ApiRecord to avoid conflicts. In this case, the query results in an
       # exception as the fields wouldn't have been defined in the ApiRecord
-      return true if self.name == "Lockstep::ApiRecord"
+      return true if name == 'Lockstep::ApiRecord'
 
       attr = key.to_s
       Lockstep::Query::PREDICATES.keys.each do |predicate|
         if attr.end_with?(predicate)
-          attr = attr.gsub(predicate, "")
+          attr = attr.gsub(predicate, '')
           break
         end
       end
       valid = schema.has_key?(attr)
-      if raise_exception && !valid
-        raise StandardError.new("Attribute '#{attr}' has not been defined for #{self.name}")
-      end
+      raise StandardError, "Attribute '#{attr}' has not been defined for #{name}" if raise_exception && !valid
 
       valid
     end
@@ -613,19 +615,19 @@ module Lockstep
     # create RESTful resource for the specific Parse object
     # sends requests to [base_uri]/[classname]/[objectId]
     def instance_resource
-      self.class.resource["#{self.id}"]
+      self.class.resource[id.to_s]
     end
 
     def pointerize(hash)
       new_hash = {}
       hash.each do |k, v|
-        if v.respond_to?(:to_pointer)
-          new_hash[k] = v.to_pointer
-        elsif v.is_a?(Date) || v.is_a?(Time) || v.is_a?(DateTime)
-          new_hash[k] = self.class.to_date_object(v)
-        else
-          new_hash[k] = v
-        end
+        new_hash[k] = if v.respond_to?(:to_pointer)
+                        v.to_pointer
+                      elsif v.is_a?(Date) || v.is_a?(Time) || v.is_a?(DateTime)
+                        self.class.to_date_object(v)
+                      else
+                        v
+                      end
       end
       new_hash
     end
@@ -642,13 +644,13 @@ module Lockstep
       else
         false
       end
-    rescue
+    rescue StandardError
       false
     end
 
     def create
       attrs = attributes_for_saving.transform_keys { |key| key.camelize(:lower) }
-      resp = self.resource.post("", body: [attrs])
+      resp = resource.post('', body: [attrs])
       result = post_result(resp)
     end
 
@@ -659,7 +661,7 @@ module Lockstep
       # put_attrs = attributes_for_saving.to_json
 
       attrs = attributes_for_saving.transform_keys { |key| key.camelize(:lower) }
-      resp = self.resource.patch(self.id, body: attrs)
+      resp = resource.patch(id, body: attrs)
       result = post_result(resp)
     end
 
@@ -681,40 +683,40 @@ module Lockstep
       # the object nor the relations it contains. Make another request here.
       # TODO: @@has_many_relations structure has been changed from array to hash, need to evaluate the impact here
       if has_many_relations.keys.map { |relation| relation.to_s.to_sym }
-        #todo: make this a little smarter by checking if there are any Pointer objects in the objects attributes.
+        # TODO: make this a little smarter by checking if there are any Pointer objects in the objects attributes.
         # @attributes = self.class.to_s.constantize.where(:objectId => @attributes[self.id_ref]).first.attributes
-        @attributes = self.class.to_s.constantize.where(self.id_ref => @attributes[self.id_ref]).first.attributes
+        @attributes = self.class.to_s.constantize.where(id_ref => @attributes[id_ref]).first.attributes
       end
     end
 
     def post_result(resp)
-      if resp.code.to_s == "200" || resp.code.to_s == "201"
+      if resp.code.to_s == '200' || resp.code.to_s == '201'
         body = JSON.parse(resp.body)
         # Create method always responds with an array, whereas update responds with the object
         body = body.first if body.is_a?(Array)
 
         merge_attributes(body)
 
-        return true
-      elsif resp.code.to_s == "400"
+        true
+      elsif resp.code.to_s == '400'
         error_response = JSON.parse(resp.body)
-        errors = error_response["errors"]
+        errors = error_response['errors']
         errors.each do |key, messages|
-          attribute = key.split(".").last&.underscore
+          attribute = key.split('.').last&.underscore
           messages.each do |message|
             self.errors.add attribute, ": #{message}"
           end
         end
       else
         error_response = JSON.parse(resp.body)
-        if error_response["error"]
-          pe = LockstepError.new(error_response["code"], error_response["error"])
-        else
-          pe = LockstepError.new(resp.code.to_s)
-        end
+        pe = if error_response['error']
+               LockstepError.new(error_response['code'], error_response['error'])
+             else
+               LockstepError.new(resp.code.to_s)
+             end
         self.errors.add(pe.code.to_s.to_sym, pe.msg)
-        self.error_instances << pe
-        return false
+        error_instances << pe
+        false
       end
     end
 
@@ -724,9 +726,9 @@ module Lockstep
 
       put_attrs = relations_for_saving(put_attrs)
 
-      put_attrs.delete(self.id_ref)
-      put_attrs.delete("created")
-      put_attrs.delete("modified")
+      put_attrs.delete(id_ref)
+      put_attrs.delete('created')
+      put_attrs.delete('modified')
       put_attrs
     end
 
@@ -734,25 +736,28 @@ module Lockstep
       all_add_item_queries = {}
       all_remove_item_queries = {}
       @unsaved_attributes.each_pair do |key, value|
-        next if !value.is_a? Array
+        next unless value.is_a? Array
 
         # Go through the array in unsaved and check if they are in array in attributes (saved stuff)
         add_item_ops = []
         @unsaved_attributes[key].each do |item|
           found_item_in_saved = false
           @attributes[key].each do |item_in_saved|
-            if !!(defined? item.attributes) && item.attributes[self.id_ref] == item_in_saved.attributes[self.id_ref]
+            if !!(defined? item.attributes) && item.attributes[id_ref] == item_in_saved.attributes[id_ref]
               found_item_in_saved = true
             end
           end
 
-          if !found_item_in_saved && !!(defined? item.id)
-            # need to send additem operation to parse
-            put_attrs.delete(key) # arrays should not be sent along with REST to parse api
-            add_item_ops << { "__type" => "Pointer", "className" => item.class.to_s, self.id_ref => item.id }
-          end
+          next unless !found_item_in_saved && !!(defined? item.id)
+
+          # need to send additem operation to parse
+          put_attrs.delete(key) # arrays should not be sent along with REST to parse api
+          add_item_ops << { '__type' => 'Pointer', 'className' => item.class.to_s, id_ref => item.id }
         end
-        all_add_item_queries.merge!({ key => { "__op" => "Add", "objects" => add_item_ops } }) if !add_item_ops.empty?
+        unless add_item_ops.empty?
+          all_add_item_queries.merge!({ key => { '__op' => 'Add',
+                                                 'objects' => add_item_ops } })
+        end
 
         # Go through saved and if it isn't in unsaved perform a removeitem operation
         remove_item_ops = []
@@ -760,28 +765,31 @@ module Lockstep
           @attributes[key].each do |item|
             found_item_in_unsaved = false
             @unsaved_attributes[key].each do |item_in_unsaved|
-              if !!(defined? item.attributes) && item.attributes[self.id_ref] == item_in_unsaved.attributes[self.id_ref]
+              if !!(defined? item.attributes) && item.attributes[id_ref] == item_in_unsaved.attributes[id_ref]
                 found_item_in_unsaved = true
               end
             end
 
             if !found_item_in_unsaved && !!(defined? item.id)
               # need to send removeitem operation to parse
-              remove_item_ops << { "__type" => "Pointer", "className" => item.class.to_s, self.id_ref => item.id }
+              remove_item_ops << { '__type' => 'Pointer', 'className' => item.class.to_s, id_ref => item.id }
             end
           end
         end
-        all_remove_item_queries.merge!({ key => { "__op" => "Remove", "objects" => remove_item_ops } }) if !remove_item_ops.empty?
+        unless remove_item_ops.empty?
+          all_remove_item_queries.merge!({ key => { '__op' => 'Remove',
+                                                    'objects' => remove_item_ops } })
+        end
       end
 
-      # TODO figure out a more elegant way to get this working. the remove_item merge overwrites the add.
+      # TODO: figure out a more elegant way to get this working. the remove_item merge overwrites the add.
       # Use a seperate query to add objects to the relation.
-      #if !all_add_item_queries.empty?
+      # if !all_add_item_queries.empty?
       #  #result = self.instance_resource.put(all_add_item_queries.to_json, {:content_type => "application/json"}) do |resp, req, res, &block|
       #  #  return puts(resp, req, res, false, &block)
       #  #end
       #  puts result
-      #end
+      # end
 
       put_attrs.merge!(all_add_item_queries) unless all_add_item_queries.empty?
       put_attrs.merge!(all_remove_item_queries) unless all_remove_item_queries.empty?
@@ -789,17 +797,17 @@ module Lockstep
     end
 
     def update_attributes(attributes = {})
-      self.update(attributes)
+      update(attributes)
     end
 
     def update_attribute(key, value)
-      send(key.to_s + "=", value)
+      send(key.to_s + '=', value)
       update
     end
 
     def destroy
-      resp = self.resource.delete(self.id)
-      if resp.code.to_s == "200"
+      resp = resource.delete(id)
+      if resp.code.to_s == '200'
         @attributes = {}
         @unsaved_attributes = {}
         return true
@@ -812,7 +820,7 @@ module Lockstep
 
       fresh_object = self.class.find(id)
       @attributes = {}
-      @attributes.update(fresh_object.instance_variable_get("@attributes"))
+      @attributes.update(fresh_object.instance_variable_get('@attributes'))
       @unsaved_attributes = {}
 
       self
@@ -845,27 +853,30 @@ module Lockstep
       attrs = @unsaved_attributes[k.to_s] ? @unsaved_attributes : @attributes
       case attrs[k]
       when Hash
-        klass_name = attrs[k]["className"]
-        klass_name = "User" if klass_name == "_User"
-        case attrs[k]["__type"]
-        when "Pointer"
-          result = klass_name.to_s.constantize.find(attrs[k][self.id_ref])
-        when "Object"
+        klass_name = attrs[k]['className']
+        klass_name = 'User' if klass_name == '_User'
+        case attrs[k]['__type']
+        when 'Pointer'
+          result = klass_name.to_s.constantize.find(attrs[k][id_ref])
+        when 'Object'
           result = klass_name.to_s.constantize.new(attrs[k], false)
-        when "Date"
-          result = DateTime.parse(attrs[k]["iso"]).in_time_zone
-        when "File"
-          result = attrs[k]["url"]
-        when "Relation"
-          objects_related_to_self = klass_name.constantize.where("$relatedTo" => { "object" => { "__type" => "Pointer", "className" => self.class.to_s, self.id_ref => self.id }, "key" => k }).all
+        when 'Date'
+          result = DateTime.parse(attrs[k]['iso']).in_time_zone
+        when 'File'
+          result = attrs[k]['url']
+        when 'Relation'
+          objects_related_to_self = klass_name.constantize.where('$relatedTo' => {
+            'object' => { '__type' => 'Pointer',
+                          'className' => self.class.to_s, id_ref => id }, 'key' => k
+          }).all
           attrs[k] = Lockstep::RelationArray.new self, objects_related_to_self, k, klass_name
           @unsaved_attributes[k] = Lockstep::RelationArray.new self, objects_related_to_self, k, klass_name
           result = @unsaved_attributes[k]
         end
       else
-        # TODO changed from @@has_many_relations to @@has_many_relations.keys as we have changed the has_many_relations
+        # TODO: changed from @@has_many_relations to @@has_many_relations.keys as we have changed the has_many_relations
         #     from array to hash to capture more data points. Not sure of the impact of this.
-        #relation will assign itself if an array, this will add to unsave_attributes
+        # relation will assign itself if an array, this will add to unsave_attributes
         if has_many_relations.keys.index(k.to_s)
           if attrs[k].nil?
             # result = nil
@@ -883,7 +894,7 @@ module Lockstep
             result = @unsaved_attributes[k]
           end
         else
-          result = attrs["#{k}"]
+          result = attrs[k.to_s]
         end
       end
       result
@@ -938,24 +949,28 @@ module Lockstep
     end
 
     def primary_key
-      self.id_ref
+      id_ref
     end
 
     # aliasing for idiomatic Ruby
     def id
-      get_attribute(self.id_ref) rescue nil
+      get_attribute(id_ref)
+    rescue StandardError
+      nil
     end
 
     def objectId
-      get_attribute(self.id_ref) rescue nil
+      get_attribute(id_ref)
+    rescue StandardError
+      nil
     end
 
     def created_at
-      get_attribute("created")
+      get_attribute('created')
     end
 
     def updated_at
-      get_attribute("modified")
+      get_attribute('modified')
     end
 
     def self.included(base)
@@ -965,10 +980,10 @@ module Lockstep
     module ClassMethods
     end
 
-    #if we are comparing objects, use id if they are both Lockstep::ApiRecord objects
-    def ==(another_object)
-      if another_object.class <= Lockstep::ApiRecord
-        self.id == another_object.id
+    # if we are comparing objects, use id if they are both Lockstep::ApiRecord objects
+    def ==(other)
+      if other.class <= Lockstep::ApiRecord
+        id == other.id
       else
         super
       end
@@ -989,12 +1004,14 @@ module Lockstep
           val = relation_config[:loader].call(self)
         else
           return val unless relation_config[:foreign_key].present? and relation_config[:primary_key].present?
+
           relation_klass = relation_config[:class_name].constantize
           return val unless relation_klass.model_name_uri.present?
 
-          query = { relation_config[:foreign_key] => self.send(relation_config[:primary_key]) }
+          query = { relation_config[:foreign_key] => send(relation_config[:primary_key]) }
           if relation_config[:polymorphic]
-            polymorphic_config = Lockstep::RelationArray.has_many_polymorphic_attributes(self, relation_config[:polymorphic])
+            polymorphic_config = Lockstep::RelationArray.has_many_polymorphic_attributes(self,
+                                                                                         relation_config[:polymorphic])
             query.merge!(polymorphic_config)
           end
           related_objects = relation_klass.send(:where, query).execute
@@ -1005,7 +1022,8 @@ module Lockstep
         if relation_config[:loader].present?
           val = relation_config[:loader].call(self)
         else
-          val = relation_config[:class_name].constantize.send(:find_by, relation_config[:primary_key] => self.send(relation_config[:foreign_key]))
+          val = relation_config[:class_name].constantize.send(:find_by,
+                                                              relation_config[:primary_key] => send(relation_config[:foreign_key]))
         end
       end
 
@@ -1060,7 +1078,7 @@ module Lockstep
         elsif values.is_a?(Hash)
           value_map = values.with_indifferent_access
         else
-          raise StandardError.new("Invalid values for enum #{attribute}")
+          raise StandardError, "Invalid values for enum #{attribute}"
         end
 
         # Convert values to string if the value is symbol
@@ -1089,9 +1107,21 @@ module Lockstep
         value = get_attribute(attribute)
         next if value.nil?
 
-        unless values_map.values.include?(value)
-          errors.add attribute, "has an invalid value"
-        end
+        errors.add attribute, 'has an invalid value' unless values_map.values.include?(value)
+      end
+    end
+
+    def self.single_record!
+      define_singleton_method :record do
+        resp = resource.get('')
+
+        return [] if %w(404).include?(resp.code.to_s)
+        # TODO handle non 200 response code. Throwing an exception for now
+        raise StandardError.new("#{resp.code} error while fetching: #{resp.body}") unless %w(201 200).include?(resp.code.to_s)
+
+        result = JSON.parse(resp.body)
+        r = result.transform_keys { |key| key.underscore }
+        model_name.to_s.constantize.new(r, false)
       end
     end
 
@@ -1111,7 +1141,7 @@ module Lockstep
       as_json(options).to_json
     end
 
-    def as_json(options = {})
+    def as_json(_options = {})
       @attributes.merge(@unsaved_attributes).as_json
     end
   end
