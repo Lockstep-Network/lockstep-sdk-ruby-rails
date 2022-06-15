@@ -37,7 +37,4 @@ end
   # @type: integer
   # @format: int32
   field :total_bills_count
-
-
-
 end

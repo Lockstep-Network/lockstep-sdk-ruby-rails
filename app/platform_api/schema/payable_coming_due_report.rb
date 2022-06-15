@@ -22,7 +22,4 @@ end
   # @type: number
   # @format: double
   field :amountDue
-
-
-
 end

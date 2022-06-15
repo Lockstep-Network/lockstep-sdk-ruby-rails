@@ -19,7 +19,4 @@ end
   # @type: number
   # @format: double
   field :daily_payable_sales_outstanding
-
-
-
 end

@@ -56,7 +56,4 @@ end
   # @type: number
   # @format: double
   field :percentage_of_total_ap
-
-
-
 end
