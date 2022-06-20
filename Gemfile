@@ -17,6 +17,7 @@ gem 'lockstep_sdk'
 gem 'dry-types'
 gem 'request_store'
 gem 'request_store-sidekiq'
+gem 'simplecov', require: false, group: :test
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
