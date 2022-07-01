@@ -1,4 +1,4 @@
-class Schema::PayableComingDueReport < Lockstep::ApiRecord
+class Schema::PayableComingDueSummaryReport < Lockstep::ApiRecord
 
 # ApiRecord will crash unless `id_ref` is defined
 def self.id_ref
