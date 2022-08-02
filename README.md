@@ -59,6 +59,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 * Lockstep::ReportPayableComingDue
 * Lockstep::ReportPayableSummary
 * Lockstep::ReportPayablesComingDueSummary
+* Lockstep::UserRole
 
 ## ActiveModel Interfaces
 
