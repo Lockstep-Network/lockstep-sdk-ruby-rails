@@ -3,5 +3,6 @@ class Lockstep::ApHeaderInfo < Lockstep::ApiRecord
   self.id_ref = "group_key"
   self.query_path=""
   load_schema(Schema::ApHeaderInfo)
+  single_record!
 
 end
