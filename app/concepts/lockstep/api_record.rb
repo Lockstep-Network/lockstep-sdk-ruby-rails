@@ -685,7 +685,7 @@ module Lockstep
       if has_many_relations.keys.map { |relation| relation.to_s.to_sym }
         # TODO: make this a little smarter by checking if there are any Pointer objects in the objects attributes.
         # @attributes = self.class.to_s.constantize.where(:objectId => @attributes[self.id_ref]).first.attributes
-        @attributes = self.class.to_s.constantize.where(id_ref => @attributes[id_ref]).first.attributes.merge(@attributes)
+        @attributes = self.class.to_s.constantize.where(id_ref => @attributes[id_ref]).first.attributes
       end
     end
 

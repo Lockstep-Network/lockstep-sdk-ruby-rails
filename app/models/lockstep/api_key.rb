@@ -11,4 +11,6 @@ class Lockstep::ApiKey < Lockstep::ApiRecord
     resp = resource.post('', body: attrs, params: nil)
     result = post_result(resp)
   end
+
+  def merge_relations; end
 end
