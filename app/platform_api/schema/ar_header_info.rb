@@ -16,7 +16,13 @@ end
   # The date of the report
   # @type: string
   # @format: date
-  field :report_period
+  field :report_date
+
+  # The date of the report
+  # @type: string
+  # @format: uuid
+  field :company_id
+
 
   # The total number of customers.
   # @type: integer
