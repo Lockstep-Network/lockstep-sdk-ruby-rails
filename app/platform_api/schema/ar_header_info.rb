@@ -23,7 +23,6 @@ end
   # @format: uuid
   field :company_id
 
-
   # The total number of customers.
   # @type: integer
   # @format: int32
