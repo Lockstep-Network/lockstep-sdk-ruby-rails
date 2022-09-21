@@ -9,7 +9,9 @@ end
 class Lockstep::Query
   def build_params
     params = {}
-    params.merge!({ :reportDate => criteria[:conditions].first[:report_date]})
+    criteria[:conditions].first.each do |key|
+      params.merge!({ :"#{key[0].to_s.camelize(:lower)}" => key[1] })
+    end
     return params
   end
 
