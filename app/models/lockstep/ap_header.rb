@@ -7,6 +7,7 @@ class Lockstep::ApHeader < Lockstep::ApiRecord
 end
 
 class Lockstep::Query
+  # Overriding the build_params method to just add attributes in params without filter option
   def build_params
     params = {}
     criteria[:conditions].first.each do |key|
@@ -15,6 +16,7 @@ class Lockstep::Query
     return params
   end
 
+  # Overrinding the get_results method to parse the single object coming from v1.
   def get_results(params = {})
   resp = @klass.resource.get(@klass.query_path, :params => params)
 
