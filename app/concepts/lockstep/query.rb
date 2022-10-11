@@ -51,9 +51,9 @@ class Lockstep::Query
     end
   end
 
-  def with_report_date(report_date)
+  def with_additional_filter(args)
     with_clone do
-      criteria[:conditions] << { report_date: report_date }
+      criteria[:additional_attributes] ||= args
     end
   end
 
@@ -195,6 +195,7 @@ class Lockstep::Query
     "#{key.camelize(:lower)} #{predicate} #{value}"
   end
 
+
   def build_params
     params = {}
     params.merge!({ :filter => build_filter }) if criteria[:conditions]
@@ -204,6 +205,7 @@ class Lockstep::Query
     params.merge!({ :include => criteria[:include].join(",") }) if criteria[:include]
     params.merge!({ :order => criteria[:order].join(",") }) if criteria[:order]
     params.merge!({ :pageSize => 2 }) if criteria[:count]
+    params.merge!(criteria[:additional_attributes]) if criteria[:additional_attributes]
     params.reject! { |k, v| v.blank? }
     params
   end
@@ -225,6 +227,7 @@ class Lockstep::Query
   end
 
   def get_results(params = {})
+    debugger
     resp = @klass.resource.get(@klass.query_path, :params => params)
 
     return [] if %w(404).include?(resp.code.to_s)
