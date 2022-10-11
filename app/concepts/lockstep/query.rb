@@ -51,7 +51,7 @@ class Lockstep::Query
     end
   end
 
-  def with_additional_filter(args)
+  def additional_query_params(args)
     with_clone do
       criteria[:additional_attributes] ||= args
     end

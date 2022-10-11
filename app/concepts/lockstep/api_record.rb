@@ -544,8 +544,8 @@ module Lockstep
       query_builder.where(*args)
     end
 
-    def self.with_additional_filter(*args)
-      query_builder.with_additional_filter(*args)
+    def self.additional_query_params(args)
+      query_builder.additional_query_params(args)
     end
 
     def self.execute
