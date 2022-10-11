@@ -51,6 +51,12 @@ class Lockstep::Query
     end
   end
 
+  def with_report_date(report_date)
+    with_clone do
+      criteria[:conditions] << { report_date: report_date }
+    end
+  end
+
   def convert_arg(arg)
     return arg.to_pointer if arg.is_a?(Lockstep::ApiRecord)
     return Lockstep::ApiRecord.to_date_object(arg) if arg.is_a?(Time) || arg.is_a?(Date)
