@@ -195,7 +195,6 @@ class Lockstep::Query
     "#{key.camelize(:lower)} #{predicate} #{value}"
   end
 
-
   def build_params
     params = {}
     params.merge!({ :filter => build_filter }) if criteria[:conditions]
@@ -227,7 +226,6 @@ class Lockstep::Query
   end
 
   def get_results(params = {})
-    debugger
     resp = @klass.resource.get(@klass.query_path, :params => params)
 
     return [] if %w(404).include?(resp.code.to_s)
