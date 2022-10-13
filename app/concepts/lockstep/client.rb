@@ -29,6 +29,13 @@ module Lockstep
       RequestStore.store[:lockstep_api_key]
     end
 
+    def self.set_magic_link_secret(key)
+      RequestStore.store[:magic_link_secret] = key
+    end
+
+    def magic_link_secret
+      RequestStore.store[:magic_link_secret]
+    end
 
     ##
     # Construct a new Lockstep API client targeting the specified server.
@@ -115,6 +122,7 @@ module Lockstep
       request["SdkType"] = 'Ruby'
       request["SdkVersion"] = '2022.4.32.0'
       request["MachineName"] = Socket.gethostname
+      request["LS-InternalService"] = magic_link_secret if magic_link_call?
       body = body.to_json unless body.is_a?(String)
       request.body = body
 
@@ -153,6 +161,15 @@ module Lockstep
 
     def delete(path)
       request(:delete, path, {}, {})
+    end
+
+    def post_magic_link(path, body: {}, params: {})
+      @magic_link_call = true
+      request(:post, path, body, params)
+    end
+
+    def magic_link_call?
+      !!@magic_link_call
     end
 
     def with_logger(&block)
