@@ -4,6 +4,7 @@ class Lockstep::CustomerSummary < Lockstep::ApiRecord
   self.query_path = ""
   load_schema(Schema::CustomerSummary)
 
+
 	def self.with_report_date(report_date)
   	additional_query_params({"reportDate": report_date})
   end
