@@ -53,7 +53,7 @@ class Lockstep::Query
 
   def additional_query_params(args)
     with_clone do
-      criteria[:additional_attributes] ||= args
+      criteria[:additional_query_params] ||= args
     end
   end
 
@@ -204,7 +204,7 @@ class Lockstep::Query
     params.merge!({ :include => criteria[:include].join(",") }) if criteria[:include]
     params.merge!({ :order => criteria[:order].join(",") }) if criteria[:order]
     params.merge!({ :pageSize => 2 }) if criteria[:count]
-    params.merge!(criteria[:additional_attributes]) if criteria[:additional_attributes]
+    params.merge!(criteria[:additional_query_params]) if criteria[:additional_query_params]
     params.reject! { |k, v| v.blank? }
     params
   end
