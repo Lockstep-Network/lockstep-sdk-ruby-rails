@@ -544,8 +544,8 @@ module Lockstep
       query_builder.where(*args)
     end
 
-    def self.with_report_date(report_date)
-      query_builder.with_report_date(report_date)
+    def self.additional_query_params(args)
+      query_builder.additional_query_params(args)
     end
 
     def self.execute
