@@ -29,12 +29,12 @@ module Lockstep
       RequestStore.store[:lockstep_api_key]
     end
 
-    def self.set_magic_link_secret(key)
-      RequestStore.store[:magic_link_secret] = key
+    def self.set_internal_service_key(key)
+      RequestStore.store[:internal_service_key] = key
     end
 
-    def magic_link_secret
-      RequestStore.store[:magic_link_secret]
+    def internal_service_key
+      RequestStore.store[:internal_service_key]
     end
 
     ##
@@ -122,7 +122,7 @@ module Lockstep
       request["SdkType"] = 'Ruby'
       request["SdkVersion"] = '2022.4.32.0'
       request["MachineName"] = Socket.gethostname
-      request["LS-InternalService"] = magic_link_secret if magic_link_call?
+      request["LS-InternalService"] = internal_service_key if magic_link_call?
       body = body.to_json unless body.is_a?(String)
       request.body = body
 
