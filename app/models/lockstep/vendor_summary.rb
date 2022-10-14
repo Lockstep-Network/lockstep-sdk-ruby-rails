@@ -7,5 +7,5 @@ class Lockstep::VendorSummary < Lockstep::ApiRecord
   def self.with_report_date(report_date)
   	additional_query_params({"reportDate": report_date})
   end
-  
+
 end
