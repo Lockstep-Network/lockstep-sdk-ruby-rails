@@ -51,6 +51,12 @@ class Lockstep::Query
     end
   end
 
+  def additional_query_params(args)
+    with_clone do
+      criteria[:additional_query_params] ||= args
+    end
+  end
+
   def convert_arg(arg)
     return arg.to_pointer if arg.is_a?(Lockstep::ApiRecord)
     return Lockstep::ApiRecord.to_date_object(arg) if arg.is_a?(Time) || arg.is_a?(Date)
@@ -198,6 +204,7 @@ class Lockstep::Query
     params.merge!({ :include => criteria[:include].join(",") }) if criteria[:include]
     params.merge!({ :order => criteria[:order].join(",") }) if criteria[:order]
     params.merge!({ :pageSize => 2 }) if criteria[:count]
+    params.merge!(criteria[:additional_query_params]) if criteria[:additional_query_params]
     params.reject! { |k, v| v.blank? }
     params
   end
