@@ -44,13 +44,13 @@ http_interactions:
       X-Cache:
       - CONFIG_NOCACHE
       X-Azure-Ref:
-      - 01HVOYwAAAABGivN48uXZSI+wlv8EX7hFTUFBMDFFREdFMTYxOQBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      - 0TYVOYwAAAABxwI9WxlWZSJBheWPZqn1WTUFBMDFFREdFMTYxOABmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
       Date:
-      - Tue, 18 Oct 2022 09:45:57 GMT
+      - Tue, 18 Oct 2022 10:51:58 GMT
       Content-Length:
       - '0'
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Tue, 18 Oct 2022 09:45:57 GMT
+  recorded_at: Tue, 18 Oct 2022 10:51:58 GMT
 recorded_with: VCR 6.1.0

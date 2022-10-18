@@ -24,9 +24,9 @@ http_interactions:
       Machinename:
       - "<MACHINE_NAME>"
       Ls-Internalservice:
-      - e9f955ce83b64a2793a46cf0bc3bbcce
+      - "<LS-INTERNALSERVICE>"
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ikc5MVJYYkhEODNkcHFNRWZkeTJ1Y2NXRDNKclptcG9zaVI2ZHRpN2JQTEkifQ.eyJpc3MiOiJodHRwczovL2xvZ2luLmRldi5sb2Nrc3RlcC5pby9hNDhmZDBmNS0zOGFkLTQwNmMtYThhZS1lYzAxZWQyNWVmY2YvdjIuMC8iLCJleHAiOjE2NjYwODc2MTAsIm5iZiI6MTY2NjA4NjcxMCwiYXVkIjoiNWJjODhjNjUtN2ExMi00N2VlLWJhYjgtNjBkMzdlNDhkODM1Iiwic3ViIjoiMjMwZWJjNmQtNWZjMC00NDA5LWE3ZDctMTUzZDMyMDAxZTVhIiwib2lkIjoiMjMwZWJjNmQtNWZjMC00NDA5LWE3ZDctMTUzZDMyMDAxZTVhIiwiZW1haWxzIjpbInZpdmVrLmFAbG9ja3N0ZXAuaW8iXSwidGlkIjoiYTQ4ZmQwZjUtMzhhZC00MDZjLWE4YWUtZWMwMWVkMjVlZmNmIiwiYXpwIjoiNWJjODhjNjUtN2ExMi00N2VlLWJhYjgtNjBkMzdlNDhkODM1IiwidmVyIjoiMS4wIiwiaWF0IjoxNjY2MDg2NzEwfQ.jOXnptu4Vo8MSDEhF10rP7aNCpYehfZUf1Vay7o6-H53DPSBM6FmpJ-DUyzKxn6Tvsy6TXEjUmTSB63Y7_IkcUq_EQ1YqLaPrr50tRs4NMKEjZZ_InxD17BodvUF7spS87hg7EFOEnJGvKA8w1nyHVn7Zb8gGuItrilWRnOl2pqC9q1RXnE5IvTFH-568HB1h648TH196myRWnGMel9jmUkEDCJYvBJd7e0TK99gYwn033wJ5dYYZZHTinRXrZ7M8jGY2i0FFaz9-4YWAfWIyair44Qv2qSmo8daB9B3U2DMbZO_zI3evbXMXP7ath3K3M039poaMc1zAiPa_76vnA
+      - "<Authorization>"
   response:
     status:
       code: 200
@@ -48,17 +48,17 @@ http_interactions:
       Api-Supported-Versions:
       - '1.0'
       Serverduration:
-      - '123'
+      - '106'
       X-Powered-By:
       - ASP.NET
       X-Cache:
       - CONFIG_NOCACHE
       X-Azure-Ref:
-      - 0s3dOYwAAAADQZG6m2mu/TrJa0gXmXCiuTUFBMDFFREdFMTYwOABmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      - 0UIVOYwAAAAA5xq+65DiuSaZ3phRc2QsETUFBMDFFREdFMTYxMgBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
       Date:
-      - Tue, 18 Oct 2022 09:53:56 GMT
+      - Tue, 18 Oct 2022 10:52:01 GMT
     body:
       encoding: ASCII-8BIT
-      string: '{"magicLinkId":"f0c74f3f-fccf-49f0-b898-dd7e3d48b20b","groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","userId":"e6f52a30-4433-46e8-ae46-660ea732e73b","userRole":"00000000-0000-0000-0000-000000000003","applicationId":"00000000-0000-0000-0003-000000000001","expires":"2022-10-18T21:53:57.0115984Z","created":"2022-10-18T09:53:57.011598Z","createdUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","modified":"2022-10-18T09:53:57.0115983Z","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","magicLinkUrl":"https://app.dev.lockstep.io/magic-link?code=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpdmVrLmFAbG9ja3N0ZXAuaW8iLCJtYWdpY0xpbmtJZCI6ImYwYzc0ZjNmLWZjY2YtNDlmMC1iODk4LWRkN2UzZDQ4YjIwYiIsIm1hZ2ljTGlua05vbmNlIjoiOTU0Y2E4ZWUtMzM2NC00ZmVjLThkNjQtZDk4ODQ4NWMxNzMyIiwibWFnaWNMaW5rVmVyc2lvbiI6MSwibmJmIjoxNjY2MDg2ODM3LCJleHAiOjE2NjYxMzAwMzcsImlzcyI6Imh0dHBzOi8vbG9naW4uZGV2LmxvY2tzdGVwLmlvL2E0OGZkMGY1LTM4YWQtNDA2Yy1hOGFlLWVjMDFlZDI1ZWZjZi92Mi4wLyIsImF1ZCI6IjA0OWYwZjVmLTQzZjUtNDRmNS05NDgwLTQ5YzM0OTQ2OWM4MyJ9.NMs1MWjjEBW7E6x7ijBNajQAkIoJ5FUNqOTiiyXnOpo"}'
-  recorded_at: Tue, 18 Oct 2022 09:53:57 GMT
+      string: '{"magicLinkId":"7cfe492f-ac65-490c-ac42-d385b7350754","groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","userId":"e6f52a30-4433-46e8-ae46-660ea732e73b","userRole":"00000000-0000-0000-0000-000000000003","applicationId":"00000000-0000-0000-0003-000000000001","expires":"2022-10-18T22:52:01.3021494Z","created":"2022-10-18T10:52:01.302149Z","createdUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","modified":"2022-10-18T10:52:01.3021493Z","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","magicLinkUrl":"https://app.dev.lockstep.io/magic-link?code=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpdmVrLmFAbG9ja3N0ZXAuaW8iLCJtYWdpY0xpbmtJZCI6IjdjZmU0OTJmLWFjNjUtNDkwYy1hYzQyLWQzODViNzM1MDc1NCIsIm1hZ2ljTGlua05vbmNlIjoiZTY0Njg4ZTQtMzkxYy00NGY4LThjNzgtOWVkZDdjMmQyOWI5IiwibWFnaWNMaW5rVmVyc2lvbiI6MSwibmJmIjoxNjY2MDkwMzIxLCJleHAiOjE2NjYxMzM1MjEsImlzcyI6Imh0dHBzOi8vbG9naW4uZGV2LmxvY2tzdGVwLmlvL2E0OGZkMGY1LTM4YWQtNDA2Yy1hOGFlLWVjMDFlZDI1ZWZjZi92Mi4wLyIsImF1ZCI6IjA0OWYwZjVmLTQzZjUtNDRmNS05NDgwLTQ5YzM0OTQ2OWM4MyJ9.LqdB5_RtrIW9Jn_WzUTzVKJPGgDLHmKzywqFkIX0bdo"}'
+  recorded_at: Tue, 18 Oct 2022 10:52:01 GMT
 recorded_with: VCR 6.1.0

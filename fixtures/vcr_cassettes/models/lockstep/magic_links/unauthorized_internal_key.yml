@@ -24,7 +24,7 @@ http_interactions:
       Machinename:
       - "<MACHINE_NAME>"
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ikc5MVJYYkhEODNkcHFNRWZkeTJ1Y2NXRDNKclptcG9zaVI2ZHRpN2JQTEkifQ.eyJpc3MiOiJodHRwczovL2xvZ2luLmRldi5sb2Nrc3RlcC5pby9hNDhmZDBmNS0zOGFkLTQwNmMtYThhZS1lYzAxZWQyNWVmY2YvdjIuMC8iLCJleHAiOjE2NjYwODc2MTAsIm5iZiI6MTY2NjA4NjcxMCwiYXVkIjoiNWJjODhjNjUtN2ExMi00N2VlLWJhYjgtNjBkMzdlNDhkODM1Iiwic3ViIjoiMjMwZWJjNmQtNWZjMC00NDA5LWE3ZDctMTUzZDMyMDAxZTVhIiwib2lkIjoiMjMwZWJjNmQtNWZjMC00NDA5LWE3ZDctMTUzZDMyMDAxZTVhIiwiZW1haWxzIjpbInZpdmVrLmFAbG9ja3N0ZXAuaW8iXSwidGlkIjoiYTQ4ZmQwZjUtMzhhZC00MDZjLWE4YWUtZWMwMWVkMjVlZmNmIiwiYXpwIjoiNWJjODhjNjUtN2ExMi00N2VlLWJhYjgtNjBkMzdlNDhkODM1IiwidmVyIjoiMS4wIiwiaWF0IjoxNjY2MDg2NzEwfQ.jOXnptu4Vo8MSDEhF10rP7aNCpYehfZUf1Vay7o6-H53DPSBM6FmpJ-DUyzKxn6Tvsy6TXEjUmTSB63Y7_IkcUq_EQ1YqLaPrr50tRs4NMKEjZZ_InxD17BodvUF7spS87hg7EFOEnJGvKA8w1nyHVn7Zb8gGuItrilWRnOl2pqC9q1RXnE5IvTFH-568HB1h648TH196myRWnGMel9jmUkEDCJYvBJd7e0TK99gYwn033wJ5dYYZZHTinRXrZ7M8jGY2i0FFaz9-4YWAfWIyair44Qv2qSmo8daB9B3U2DMbZO_zI3evbXMXP7ath3K3M039poaMc1zAiPa_76vnA
+      - "<Authorization>"
   response:
     status:
       code: 404
@@ -42,18 +42,18 @@ http_interactions:
       Request-Context:
       - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
       Serverduration:
-      - '163'
+      - '117'
       X-Powered-By:
       - ASP.NET
       X-Cache:
       - CONFIG_NOCACHE
       X-Azure-Ref:
-      - 0sndOYwAAAAAgAlw1WkbcQ5C6d15VuZXqTUFBMDFFREdFMTYwNgBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      - 0ToVOYwAAAAB/fLKAsrRYT4HqblTK+196TUFBMDFFREdFMTYxMQBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
       Date:
-      - Tue, 18 Oct 2022 09:53:54 GMT
+      - Tue, 18 Oct 2022 10:51:59 GMT
     body:
       encoding: UTF-8
       string: '{"type":"https://tools.ietf.org/html/rfc7231#section-6.5.4","title":"Not
-        Found","status":404,"traceId":"00-51016bb1fef2c0e85728436779002d30-ac4057ebc9e6b8b6-00"}'
-  recorded_at: Tue, 18 Oct 2022 09:53:55 GMT
+        Found","status":404,"traceId":"00-52e5da9b88821518271cb7ad3742b61c-09bd841d0fdaaad7-00"}'
+  recorded_at: Tue, 18 Oct 2022 10:52:00 GMT
 recorded_with: VCR 6.1.0

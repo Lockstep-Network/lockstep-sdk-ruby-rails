@@ -68,4 +68,10 @@ VCR.configure do |config|
   config.filter_sensitive_data("<BEARER>") do |interaction|
     interaction.request.headers["Bearer"].first.to_s if interaction.request.headers["Bearer"].present?
   end
+  config.filter_sensitive_data("<LS-INTERNALSERVICE>") do |interaction|
+    interaction.request.headers["Ls-Internalservice"].first.to_s if interaction.request.headers["Ls-Internalservice"].present?
+  end
+  config.filter_sensitive_data("<Authorization>") do |interaction|
+    interaction.request.headers["Authorization"].first.to_s if interaction.request.headers["Authorization"].present?
+  end
 end
