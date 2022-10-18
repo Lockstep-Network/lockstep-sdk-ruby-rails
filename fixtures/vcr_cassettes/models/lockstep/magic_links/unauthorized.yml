@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.dev.lockstep.io/api/v1/useraccounts/magic-links/
     body:
       encoding: UTF-8
-      string: '{"email":"vivek.a@lockstep.io","expiresInMinutes":720,"applicationId":"00000000-0000-0000-0003-000000000001","userRole":"00000000-0000-0000-0000-000000000003"}'
+      string: '{"email":"user@email.com","expiresInMinutes":720,"applicationId":"00000000-0000-0000-0003-000000000001","userRole":"00000000-0000-0000-0000-000000000003"}'
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
