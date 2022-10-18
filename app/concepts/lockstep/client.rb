@@ -29,6 +29,13 @@ module Lockstep
       RequestStore.store[:lockstep_api_key]
     end
 
+    def self.set_internal_service_key(key)
+      RequestStore.store[:internal_service_key] = key
+    end
+
+    def internal_service_key
+      RequestStore.store[:internal_service_key]
+    end
 
     ##
     # Construct a new Lockstep API client targeting the specified server.
@@ -115,6 +122,7 @@ module Lockstep
       request["SdkType"] = 'Ruby'
       request["SdkVersion"] = '2022.4.32.0'
       request["MachineName"] = Socket.gethostname
+      request["LS-InternalService"] = internal_service_key if internal_service_key_set?
       body = body.to_json unless body.is_a?(String)
       request.body = body
 
@@ -153,6 +161,14 @@ module Lockstep
 
     def delete(path)
       request(:delete, path, {}, {})
+    end
+
+    def post_magic_link(path, body: {}, params: {})
+      request(:post, path, body, params)
+    end
+
+    def internal_service_key_set?
+      !!internal_service_key
     end
 
     def with_logger(&block)
