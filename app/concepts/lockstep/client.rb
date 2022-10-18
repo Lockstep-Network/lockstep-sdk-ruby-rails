@@ -122,7 +122,7 @@ module Lockstep
       request["SdkType"] = 'Ruby'
       request["SdkVersion"] = '2022.4.32.0'
       request["MachineName"] = Socket.gethostname
-      request["LS-InternalService"] = internal_service_key if internal_call?
+      request["LS-InternalService"] = internal_service_key if internal_service_key_set?
       body = body.to_json unless body.is_a?(String)
       request.body = body
 
@@ -164,12 +164,11 @@ module Lockstep
     end
 
     def post_magic_link(path, body: {}, params: {})
-      @internal_call = true
       request(:post, path, body, params)
     end
 
-    def internal_call?
-      !!internal_call
+    def internal_service_key_set?
+      !!internal_service_key
     end
 
     def with_logger(&block)
