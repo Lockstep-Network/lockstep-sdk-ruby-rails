@@ -7,7 +7,7 @@ end
 
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  # 
+  #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid
@@ -26,6 +26,21 @@ end
   # @type: integer
   # @format: int32
   field :total_invoices_outstanding
+
+  # The total amount outstanding on invoices.
+  # @type: number
+  # @format: double
+  field :total_invoice_outstanding_amount
+
+  # The total amount outstanding on credit memos.
+  # @type: number
+  # @format: double
+  field :total_credit_memo_outstanding_amount
+
+  # The total amount of unapplied payments.
+  # @type: number
+  # @format: double
+  field :total_unapplied_payment_amount
 
   # The total amount outstanding.
   # @type: number

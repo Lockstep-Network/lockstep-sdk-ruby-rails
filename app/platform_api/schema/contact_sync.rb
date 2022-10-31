@@ -12,6 +12,12 @@ end
   # Example: If you store your contact records in a database, whatever the primary key for the contact table is
   # in the database should be the "ErpKey".
   #             
+  # As some ERP systems don't maintain a unique key for Contacts, we also support syncing Contacts with ERP keys
+  # of the form {prefix}|{index}, for example ContactPrefix|1, ContactPrefix|2 and so on.
+  #             
+  # For this reason, please ensure that your Contact ERP keys don't otherwise contain the '|' symbol or that it
+  # is replaced by an alternate symbol if they do.
+  #             
   # For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
   # @type: string
   field :erp_key
@@ -74,7 +80,7 @@ end
   # @type: string
   field :postal_code
 
-  # The mailing address information for this contact. This will be validated by the /api/v1/countries data set
+  # The mailing address information for this contact.
   # @type: string
   field :country_code
 

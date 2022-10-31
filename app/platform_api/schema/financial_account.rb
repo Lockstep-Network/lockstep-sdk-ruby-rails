@@ -51,7 +51,7 @@ end
   field :description
 
   # The classification for the Financial Account. Possible values are Asset, Equity,
-  # Expense, Liability or Revenue.
+  # Expense, Liability or Income.
   # @type: string
   field :classification
 

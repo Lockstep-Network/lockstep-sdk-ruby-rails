@@ -7,7 +7,7 @@ end
 
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  # 
+  #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid
@@ -17,6 +17,11 @@ end
   # @type: string
   # @format: date-time
   field :report_period, Types::Params::DateTime
+
+  # The month the risk rate was calculated for
+  # @type: string
+  # @format: date-time
+  field :report_date, Types::Params::DateTime
 
   # The string name of the month the risk rate was calculated for
   # @type: string

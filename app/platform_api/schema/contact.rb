@@ -89,7 +89,7 @@ end
   # @type: string
   field :postal_code
 
-  # The two character country code of the address. This will be validated by the /api/v1/countries data set
+  # The two character country code of the address. This will be validated by the /api/v1/definitions/countries data set
   # @type: string
   field :country_code
 

@@ -36,11 +36,11 @@ end
   # @type: string
   field :erp_key
 
-  # The type of payment, cash or check.
+  # The type of payment, AR Payment or AP Payment.
   #             
   # Recognized PaymentType values are:
-  # * `Cash` - A cash payment or other direct transfer.
-  # * `Check` - A check payment.
+  # * `AR Payment` - A payment made by a Customer to the Company
+  # * `AP Payment` - A payment made by the Company to a Vendor
   # @type: string
   field :payment_type
 
@@ -51,6 +51,7 @@ end
   # * `Check` - A check payment.
   # * `Credit Card` - A payment made via a credit card.
   # * `Wire Transfer` - A payment made via wire transfer from another financial institution.
+  # * `Other` - A payment made via another method not listed above.
   # @type: string
   field :tender_type
 
@@ -89,7 +90,7 @@ end
 
   # The ISO 4217 currency code for this payment.
   #             
-  # For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
+  # For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/definitions/currencies data set
   # @type: string
   field :currency_code
 

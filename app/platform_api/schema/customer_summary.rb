@@ -7,7 +7,7 @@ end
 
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  # 
+  #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid
@@ -25,6 +25,11 @@ end
   # The name of the primary contact.
   # @type: string
   field :primary_contact
+
+  # The app enrollment ID this Customer is associated with
+  # @type: string
+  # @format: uuid
+  field :app_enrollment_id
 
   # The number of outstanding invoices for this customer.
   # @type: integer
@@ -46,15 +51,40 @@ end
   # @format: int32
   field :closed_invoices
 
+  # The number of closed invoices for this customer in the past thirty days.
+  # @type: integer
+  # @format: int32
+  field :closed_invoices_past_thirty_days
+
   # The total from collected payments.
   # @type: number
   # @format: double
   field :amount_collected
 
+  # The total from collected payments in the past thirty days.
+  # @type: number
+  # @format: double
+  field :amount_collected_past_thirty_days
+
   # The total balance of outstanding invoices.
   # @type: number
   # @format: double
   field :outstanding_amount
+
+  # The total amount invoiced in the past thirty days.
+  # @type: number
+  # @format: double
+  field :invoiced_amount_past_thirty_days
+
+  # The total amount outstanding from the invoices invoiced in the past thirty days.
+  # @type: number
+  # @format: double
+  field :outstanding_amount_past_thirty_days
+
+  # The number of invoices invoiced in the past thirty days.
+  # @type: integer
+  # @format: int32
+  field :invoices_past_thirty_days
 
   # The total amount past due for this customer.
   # @type: number
@@ -65,6 +95,11 @@ end
   # @type: number
   # @format: double
   field :unapplied_payments
+
+  # The total value of unapplied Payments for this Customer in the past thirty days.
+  # @type: number
+  # @format: double
+  field :unapplied_amount_past_thirty_days
 
   # Portion of Total AR for this Customer that is Past due. (TotalPastDue / Total AR).
   # @type: number

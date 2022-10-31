@@ -7,7 +7,7 @@ end
 
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  # 
+  #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid
@@ -53,9 +53,24 @@ end
   # @format: double
   field :unapplied_amount
 
-  # The type of payment, Payment or AP Payment.
+  # The type of payment, AR Payment or AP Payment.
+  #             
+  # Recognized PaymentType values are:
+  # * `AR Payment` - A payment made by a Customer to the Company
+  # * `AP Payment` - A payment made by the Company to a Vendor
   # @type: string
   field :payment_type
+
+  # Cash, check, credit card, wire transfer.
+  #             
+  # Recognized TenderType values are:
+  # * `Cash` - A cash payment or other direct transfer.
+  # * `Check` - A check payment.
+  # * `Credit Card` - A payment made via a credit card.
+  # * `Wire Transfer` - A payment made via wire transfer from another financial institution.
+  # * `Other` - A payment made via another method not listed above.
+  # @type: string
+  field :tender_type
 
   # The date of this Payment.
   # @type: string

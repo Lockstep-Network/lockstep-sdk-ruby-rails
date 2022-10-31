@@ -24,6 +24,18 @@ end
   # @format: uuid
   field :record_key
 
+  # Table to which this definition belongs
+  # @type: string
+  field :table_key
+
+  # Text to display in-application for custom field
+  # @type: string
+  field :custom_field_label
+
+  # Data type of this definition
+  # @type: string
+  field :data_type
+
   # String of data for field
   # @type: string
   field :string_value

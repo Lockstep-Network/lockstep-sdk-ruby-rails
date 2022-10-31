@@ -36,6 +36,11 @@ end
   # @type: string
   field :process_result_message
 
+  # A boolean indicating whether a sync from an ERP system should process all the data from the ERP
+  # as opposed to just the delta of changes since the previous sync run
+  # @type: string
+  field :run_full_sync
+
   # The AppEnrollmentId of the AppEnrollment object that executed this sync request
   # @type: string
   # @format: uuid

@@ -5,6 +5,10 @@ def self.id_ref
   nil
 end
 
+  #  For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).
+  # @type: array
+  field :records
+
   
   # @type: integer
   # @format: int32
@@ -19,10 +23,6 @@ end
   # @type: integer
   # @format: int32
   field :page_number
-
-  #  For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).
-  # @type: array
-  field :records
 
 
 

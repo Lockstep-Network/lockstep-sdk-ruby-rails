@@ -62,11 +62,21 @@ end
   # @type: string
   field :version
 
+  # If authentication is successful, contains the onboarding session status of the logged-in user's group account.
+  # @type: boolean
+  field :onboarding_scheduled
+
+  # The id of the Magic link used to authenticate.
+  # @type: string
+  # @format: uuid
+  field :magic_link_id
+
   # Statuses for the dependencies of this api.
   # OK if the dependency is working.
   # @type: object
   field :dependencies
 
 
+  has_many :user_groups, {:class_name=>"Schema::UserGroup", :included=>true}
 
 end

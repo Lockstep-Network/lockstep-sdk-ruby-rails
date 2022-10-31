@@ -7,7 +7,7 @@ end
 
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  # 
+  #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid
@@ -32,6 +32,12 @@ end
   # @type: string
   # @format: date
   field :invoice_date
+
+  # The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
+  # services.
+  # @type: string
+  # @format: date
+  field :invoice_closed_date
 
   # The name of the counterparty for the invoice, for example, a customer or vendor.
   # @type: string

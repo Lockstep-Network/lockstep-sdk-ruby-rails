@@ -5,6 +5,9 @@ def self.id_ref
   nil
 end
 
+  # Indicates what action to take when a sync model has been found during the sync process.
+  field :on_match_action
+
   # This is the primary key of the Company record. For this field, you should use whatever the company's unique
   # identifying number is in the originating system. Search for a unique, non-changing number within the
   # originating financial system for this record.
@@ -56,7 +59,7 @@ end
   field :is_active
 
   # The default currency code for transactions related to this company.  For a list of currency codes, see
-  # [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
+  # [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies).
   # @type: string
   field :default_currency_code
 
@@ -93,7 +96,7 @@ end
   # @type: string
   field :postal_code
 
-  # The company's primary mailing address information This will be validated by the /api/v1/countries data set
+  # The company's primary mailing address information
   # @type: string
   field :country
 
@@ -136,6 +139,18 @@ end
   # address where you would send questions to the company if you owed this company money.
   # @type: string
   field :ar_email_address
+
+  # Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
+  # @type: string
+  field :preferred_delivery_method
+
+  # The company email address.
+  # @type: string
+  field :email_address
+
+  # An external reference that identifies the Company from the originating ERP system, separate from the ErpKey.
+  # @type: string
+  field :external_reference
 
 
 

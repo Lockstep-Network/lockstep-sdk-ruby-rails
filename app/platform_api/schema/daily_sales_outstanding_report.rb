@@ -10,11 +10,6 @@ end
   # @format: date-time
   field :timeframe, Types::Params::DateTime
 
-  # Number of invoices the average daily sales outstanding is calculated on
-  # @type: integer
-  # @format: int32
-  field :invoice_count
-
   # Time (in days) between an invoice was completed paid off and when the invoice was issued
   # @type: number
   # @format: double

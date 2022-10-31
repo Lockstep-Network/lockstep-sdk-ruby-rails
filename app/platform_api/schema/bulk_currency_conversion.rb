@@ -10,7 +10,7 @@ end
   # @format: date
   field :date
 
-  # The currency code This will be validated by the /api/v1/currencies data set
+  # The currency code This will be validated by the /api/v1/definitions/currencies data set
   # @type: string
   field :source_currency
 
