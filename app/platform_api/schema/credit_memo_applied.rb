@@ -93,6 +93,12 @@ end
   # @format: uuid
   field :app_enrollment_id
 
+  # The credit memo invoice associated with this applied credit memo
+  field :credit_memo_invoice
+
+  # The invoice associated with this applied credit memo
+  field :invoice
+
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 

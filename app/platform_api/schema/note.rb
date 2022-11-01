@@ -19,16 +19,30 @@ end
   # @format: uuid
   field :group_key
 
-  # The name of the table the note is associated with
+  # A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+  # `ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of
+  # `Invoice` and an `ObjectKey` value of `12345`.
+  #             
+  # The `TableKey` value contains the name of the table within the Lockstep Platform to which this metadata
+  # is connected.
+  #             
+  # For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
   # @type: string
   field :table_key
 
-  # The ID of the object the note is associated with
+  # A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+  # `ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of
+  # `Invoice` and an `ObjectKey` value of `12345`.
+  #             
+  # The `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this
+  # metadata is connected.
+  #             
+  # For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
   # @type: string
   # @format: uuid
   field :object_key
 
-  # The text of the note
+  # The full text of the note
   # @type: string
   field :note_text
 
@@ -36,7 +50,11 @@ end
   # @type: string
   field :note_type
 
-  # Flag indicating if the note has been archived
+  # A flag indicating whether this Note is archived (also known as hidden or deleted).  When you call
+  # [ArchiveNote](https://developer.lockstep.io/reference/delete_api-v1-notes-id) this field will
+  # be set to true.
+  #             
+  # You should avoid displaying Notes with the IsArchived field set to true in your user interface.
   # @type: boolean
   field :is_archived
 
@@ -45,7 +63,8 @@ end
   # @format: date-time
   field :created, Types::Params::DateTime
 
-  # The ID of the user who created the note
+  # The unique ID of the [UserAccount](https://developer.lockstep.io/docs/useraccountmodel) of the user
+  # who created this Note.
   # @type: string
   # @format: uuid
   field :created_user_id

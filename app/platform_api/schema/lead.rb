@@ -21,6 +21,7 @@ end
 
   # Email of lead
   # @type: string
+  # @format: email
   field :email
 
   # Requested ERP of lead

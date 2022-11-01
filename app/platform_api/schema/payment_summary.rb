@@ -7,7 +7,7 @@ end
 
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  # 
+  #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid
@@ -26,7 +26,11 @@ end
   # @type: string
   field :reference_code
 
-  # The type of payment, Payment or AP Payment.
+  # The tender type of payment (Cash, Check, etc.)
+  # @type: string
+  field :tender_type
+
+  # The type of payment, AR Payment or AP Payment.
   # @type: string
   field :payment_type
 
@@ -44,6 +48,11 @@ end
   # @type: number
   # @format: double
   field :unapplied_amount
+
+  # True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
+  # value is true, the field `UnappliedAmount` will be nonzero.
+  # @type: boolean
+  field :is_open
 
   # The number of invoices associated to this payment.
   # @type: integer
@@ -63,17 +72,31 @@ end
   # @type: array
   field :invoice_id_list
 
-  # The name of the customer for this payment.
-  # @type: string
-  field :customer_name
-
-  # The id of the customer for this payment.
+  # The id of the company for this payment.
   # @type: string
   # @format: uuid
-  field :customer_id
+  field :payment_company_id
 
-  belongs_to :customer, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}
-  belongs_to :connection, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}
+  # The name of the company for this payment.
+  # @type: string
+  field :payment_company_name
+
+  # The ids of the customer for the associated invoices.
+  # @type: array
+  field :customer_ids
+
+  # The names of the customer for the associated invoices.
+  # @type: array
+  field :customer_names
+
+  # The ids of the company for the associated invoices.
+  # @type: array
+  field :company_ids
+
+  # The names of the company for the associated invoices.
+  # @type: array
+  field :company_names
+
 
 
 end

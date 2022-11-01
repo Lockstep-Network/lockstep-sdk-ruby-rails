@@ -72,9 +72,6 @@ end
   # Data about the last successful sync associated with this enrollment
   field :last_successful_sync
 
-  # Use `ConnectorInfo` instead.
-  field :erp_info
-
   # Optional data necessary to create an app enrollment for a supported connector.
   # Only enter relevant fields for the given connector.
   field :connector_info

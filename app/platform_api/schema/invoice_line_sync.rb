@@ -99,7 +99,7 @@ end
   # @type: string
   field :origin_address_postal_code
 
-  # Origination address for this invoice line, if this line item was originated from a different address This will be validated by the /api/v1/countries data set
+  # Origination address for this invoice line, if this line item was originated from a different address
   # @type: string
   field :origin_address_country
 
@@ -137,7 +137,7 @@ end
   # @type: string
   field :bill_to_address_postal_code
 
-  # Billing address for this invoice line, if this line item is to be billed to a different address This will be validated by the /api/v1/countries data set
+  # Billing address for this invoice line, if this line item is to be billed to a different address
   # @type: string
   field :bill_to_address_country
 
@@ -175,7 +175,7 @@ end
   # @type: string
   field :ship_to_address_postal_code
 
-  # Shipping address for this invoice line, if this line item is to be shipped to a different address This will be validated by the /api/v1/countries data set
+  # Shipping address for this invoice line, if this line item is to be shipped to a different address
   # @type: string
   field :ship_to_address_country
 

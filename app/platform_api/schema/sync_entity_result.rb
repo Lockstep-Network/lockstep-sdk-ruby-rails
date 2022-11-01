@@ -15,6 +15,11 @@ end
   # @format: int32
   field :update_count
 
+  # The number of entities deleted
+  # @type: integer
+  # @format: int32
+  field :delete_count
+
   # The number of entities skipped
   # @type: integer
   # @format: int32

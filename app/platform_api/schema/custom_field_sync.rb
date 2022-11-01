@@ -9,7 +9,7 @@ end
   # identifying number as it is stored in the originating financial system. Search for a unique, non-changing
   # number within the originating financial system for this record.
   #             
-  # Custom Fields are identified by the `EntityType` and `ErpKey` values together.
+  # Custom Fields are identified by the `TableKey` and `ErpKey` values together.
   #             
   # Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
   # invoice named "ApprovalStatusCode".  For the `ErpKey` field, specify the value `100047878`.
@@ -18,10 +18,10 @@ end
   # @type: string
   field :erp_key
 
-  # Custom Fields are identified by the `EntityType` and `ErpKey` values together.
+  # Custom Fields are identified by the `TableKey` and `ErpKey` values together.
   #             
   # Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
-  # invoice named "ApprovalStatusCode".  For the `EntityType` field, specify the value `Invoice`.
+  # invoice named "ApprovalStatusCode".  For the `TableKey` field, specify the value `Invoice`.
   #             
   # Recognized types include:
   # * `Company` - Link this custom field to a CompanySyncModel
@@ -30,7 +30,7 @@ end
   # * `InvoiceLine` - Link this custom field to an InvoiceLineSyncModel
   # * `Payment` - Link this custom field to a PaymentSyncModel
   # @type: string
-  field :entity_type
+  field :table_key
 
   # A label that uniquely identifies this custom field within your software.
   #             

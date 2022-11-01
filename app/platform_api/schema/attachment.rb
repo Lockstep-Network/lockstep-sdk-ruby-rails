@@ -19,33 +19,53 @@ end
   # @format: uuid
   field :group_key
 
-  # The name of the table the attachment is associated with
+  # An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+  # `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
+  # `Invoice` and an `ObjectKey` value of `12345`.
+  #             
+  # The `TableKey` value contains the name of the table within the Lockstep Platform to which this Attachment
+  # is connected.
+  #             
+  # For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
   # @type: string
   field :table_key
 
-  # The ID of the object the attachment is associated with
+  # An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+  # `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
+  # `Invoice` and an `ObjectKey` value of `12345`.
+  #             
+  # The `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this
+  # Attachment is connected.
+  #             
+  # For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
   # @type: string
   # @format: uuid
   field :object_key
 
-  # Name of the file
+  # An Attachment represents a file that was uploaded to the Lockstep Platform.  This field contains the original
+  # name of the file on disk, without its extension.
   # @type: string
   field :file_name
 
-  # Extension type of the file
+  # An Attachment represents a file that was uploaded to the Lockstep Platform.  This field contains the original
+  # extension name of the file on disk.
   # @type: string
   field :file_ext
 
-  # Corresponding AttachmentType object to describe this attachment
+  # DEPRECATED: This field is replaced by `AttachmentType`.
   # @type: string
   # @format: uuid
   field :attachment_type_id
 
-  # Flag indicating the attachment was archived
+  # A flag indicating whether this Attachment is archived (also known as hidden or deleted).  When you call
+  # [ArchiveAttachment](https://developer.lockstep.io/reference/delete_api-v1-attachments-id) this field will
+  # be set to true.
+  #             
+  # You should avoid displaying Attachments with the IsArchived field set to true in your user interface.
   # @type: boolean
   field :is_archived
 
-  # Tracks the original record for this attachment, not currently used.
+  # DEPRECATED - Do not use
   # @type: string
   # @format: uuid
   field :origin_attachment_id
@@ -76,15 +96,20 @@ end
   # @format: uuid
   field :app_enrollment_id
 
-  # The date the attachment was created
+  # The date the attachment was created.
   # @type: string
   # @format: date-time
   field :created, Types::Params::DateTime
 
-  # Id of the user who made the file
+  # The unique ID of the [UserAccount](https://developer.lockstep.io/docs/useraccountmodel) of the user
+  # who created this Attachment.
   # @type: string
   # @format: uuid
   field :created_user_id
+
+  # A text string describing the type of this Attachment.
+  # @type: string
+  field :attachment_type
 
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
 

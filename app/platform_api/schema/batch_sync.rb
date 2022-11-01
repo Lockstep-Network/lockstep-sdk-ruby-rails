@@ -14,5 +14,8 @@ end
   has_many :custom_fields, {:class_name=>"Schema::CustomFieldSync", :included=>true}
   has_many :payments, {:class_name=>"Schema::PaymentSync", :included=>true}
   has_many :payment_applications, {:class_name=>"Schema::PaymentAppliedSync", :included=>true}
+  has_many :financial_year_settings, {:class_name=>"Schema::FinancialYearSettingSync", :included=>true}
+  has_many :financial_accounts, {:class_name=>"Schema::FinancialAccountSync", :included=>true}
+  has_many :financial_account_balance_histories, {:class_name=>"Schema::FinancialAccountBalanceHistorySync", :included=>true}
 
 end

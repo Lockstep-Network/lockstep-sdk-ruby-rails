@@ -59,6 +59,18 @@ end
   # @format: date-time
   field :timestamp, Types::Params::DateTime
 
+  # The records sent with the webhook.
+  # @type: string
+  field :records
+
+  # The request message sent with the webhook.
+  # @type: string
+  field :request_message
+
+  # The response received back from the webhook.
+  # @type: string
+  field :response_message
+
 
 
 end

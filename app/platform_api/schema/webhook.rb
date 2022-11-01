@@ -36,7 +36,7 @@ end
   # @type: string
   field :client_secret
 
-  # The format of the content to be returned in the webhook notifications. Options TBD.
+  # The format of the content to be returned in the webhook notifications. Current options are 'Full' or 'Id'.
   # @type: string
   field :request_content_type
 
@@ -60,7 +60,10 @@ end
   # @format: date-time
   field :expiration_date, Types::Params::DateTime
 
-  # The amount of times a notification should be retried before marking the webhook as errored.
+  # The amount of consecutive failed notifications, not including the current attempt, before marking the webhook as
+  # errored (i.e. if the value is set to 0, the webhook will be marked errored on the first failure, if the value
+  # is set to 1 the webhook will be marked errored on the second failure, and so on). Use -1 to never mark the webhook
+  # as errored due to failures.
   # @type: integer
   # @format: int32
   field :retry_count
@@ -92,5 +95,6 @@ end
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
+  has_many :webhook_rules, {:class_name=>"Schema::WebhookRule", :included=>true}
 
 end

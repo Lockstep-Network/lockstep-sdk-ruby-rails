@@ -114,9 +114,13 @@ end
   # @type: string
   field :postal_code
 
-  # Country for this User This will be validated by the /api/v1/countries data set
+  # Country for this User This will be validated by the /api/v1/definitions/countries data set
   # @type: string
   field :country
+
+  # Time zone for this user
+  # @type: string
+  field :time_zone
 
   # Image URL for this User
   # @type: string
@@ -134,7 +138,7 @@ end
   # The default currency code used by this user entity.  This value can be overridden
   # for invoices in a different currency code.
   #             
-  # For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/currencies data set
+  # For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/definitions/currencies data set
   # @type: string
   field :default_currency_code
 

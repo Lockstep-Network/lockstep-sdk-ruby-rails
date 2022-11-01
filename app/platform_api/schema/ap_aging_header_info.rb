@@ -7,7 +7,7 @@ end
 
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  # 
+  #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid
@@ -17,43 +17,46 @@ end
   # @type: string
   field :report_bucket
 
-  # The total number of customers.
+  # The total number of vendors.
   # @type: integer
   # @format: int32
   field :total_vendors
 
-  # The total number of invoices outstanding.
+  # The total number of bills outstanding.
   # @type: integer
   # @format: int32
   field :total_bills_outstanding
 
-  # The total amount outstanding.
+  # The total amount outstanding on bills.
   # @type: number
   # @format: double
   field :total_bills_outstanding_amount
 
-  # The total credit memo amount outstanding.
+  # The total amount outstanding on credit memos.
   # @type: number
   # @format: double
   field :total_credit_memo_outstanding_amount
 
-  # The total advance payment amount.
+  # The total amount of advance payments.
   # @type: number
   # @format: double
   field :total_advance_payment_amount
 
-  # The total outstanding amount
+  # The total amount outstanding.
   # @type: number
   # @format: double
   field :total_outstanding_amount
 
-  # The total amount for AR.
+  # The total amount for AP.
   # @type: number
   # @format: double
   field :total_ap_amount
 
-  # Portion of Total AR this data represents.
+  # Portion of Total AP this data represents.
   # @type: number
   # @format: double
   field :percentage_of_total_ap
+
+
+
 end

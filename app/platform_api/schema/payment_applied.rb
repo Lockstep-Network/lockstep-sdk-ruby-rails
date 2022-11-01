@@ -85,6 +85,9 @@ end
   # @format: uuid
   field :app_enrollment_id
 
+  # The payment associated with this applied payment
+  field :payment
+
   # The invoice associated with this applied payment.
   field :invoice
 

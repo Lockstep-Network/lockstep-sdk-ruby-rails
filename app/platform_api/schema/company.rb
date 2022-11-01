@@ -101,30 +101,6 @@ end
   # @type: string
   field :address3
 
-  # Corporate Address info
-  # @type: string
-  field :corp_city
-
-  # Corporate Address info
-  # @type: string
-  field :corp_state
-
-  # Corporate Address info
-  # @type: string
-  field :corp_postal_code
-
-  # Corporate Address info
-  # @type: string
-  field :corp_country
-
-  # Corporate phone number
-  # @type: string
-  field :corp_phone
-
-  # Corporate fax number
-  # @type: string
-  field :corp_fax
-
   # Address info
   # @type: string
   field :city
@@ -140,6 +116,10 @@ end
   # Address info
   # @type: string
   field :country
+
+  # Time zone
+  # @type: string
+  field :time_zone
 
   # Phone number
   # @type: string
@@ -191,6 +171,10 @@ end
   # @format: email
   field :ar_email_address
 
+  # Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
+  # @type: string
+  field :preferred_delivery_method
+
   # For companies that use a custom domain name for their email system, this is
   # the domain name used by this company.  If this value is known, new emails that
   # come in from this domain will be connected to this company.
@@ -217,6 +201,15 @@ end
   # @type: string
   # @format: uuid
   field :app_enrollment_id
+
+  # Company Email Address
+  # @type: string
+  # @format: email
+  field :email_address
+
+  # The public url slug for the Company.
+  # @type: string
+  field :public_url_slug
 
   # All invoices attached to this company.
   #             

@@ -78,6 +78,11 @@ end
   # @format: uuid
   field :group_key
 
+  # The B2C Client ID of the application
+  # @type: string
+  # @format: uuid
+  field :b2_c_client_id
+
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
