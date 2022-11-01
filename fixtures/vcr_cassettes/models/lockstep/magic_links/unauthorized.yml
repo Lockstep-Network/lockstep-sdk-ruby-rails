@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.dev.lockstep.io/api/v1/useraccounts/magic-links/
+    body:
+      encoding: UTF-8
+      string: '{"email":"user@email.com","expiresInMinutes":720,"applicationId":"00000000-0000-0000-0003-000000000001","userRole":"00000000-0000-0000-0000-000000000003"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Cache-Control:
+      - no-store, no-cache
+      Set-Cookie:
+      - ARRAffinity=932e74540a23c627f0dfb40cbee1fa17c087e1806af44546f8bf27c06e52270d;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=932e74540a23c627f0dfb40cbee1fa17c087e1806af44546f8bf27c06e52270d;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Www-Authenticate:
+      - Bearer
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Serverduration:
+      - '0'
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 0TYVOYwAAAABxwI9WxlWZSJBheWPZqn1WTUFBMDFFREdFMTYxOABmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Tue, 18 Oct 2022 10:51:58 GMT
+      Content-Length:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Tue, 18 Oct 2022 10:51:58 GMT
+recorded_with: VCR 6.1.0
