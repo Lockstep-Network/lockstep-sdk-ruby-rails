@@ -76,6 +76,16 @@ end
   # @format: int32
   field :days_past_due
 
+  # The number of payments associated to this invoice.
+  # @type: integer
+  # @format: int32
+  field :payment_count
+
+  # Specific invoices have support for pdf retrieval from their respective erp. When this flag is true, an additional
+  # call to Invoices/{id}/pdf can be made to retrieve a pdf directly from the erp.
+  # @type: boolean
+  field :supports_erp_pdf_retrieval
+
   # The memo text of the payments associated to this invoice.
   # @type: array
   field :payment_numbers
@@ -83,6 +93,11 @@ end
   # The ids of the payments associated to this invoice.
   # @type: array
   field :payment_ids
+
+  # The modified date of the invoice.
+  # @type: string
+  # @format: date-time
+  field :modified, Types::Params::DateTime
 
   belongs_to :customer, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}
   belongs_to :connection, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}

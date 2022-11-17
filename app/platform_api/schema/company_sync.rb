@@ -41,10 +41,6 @@ end
   # @type: string
   field :company_type
 
-  # An optional field including status codes.  Defined status codes are `Active` and `Inactive`.
-  # @type: string
-  field :company_status
-
   # If this company has a parent company, identify the parent company's `ErpKey` value here. This value should
   # be the original primary key or unique ID of the parent company to this company belongs. This value should
   # match the original ErpKey field on the parent company.

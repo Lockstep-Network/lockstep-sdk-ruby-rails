@@ -81,6 +81,11 @@ end
   # @type: string
   field :payment_company_name
 
+  # Specific payments have support for pdf retrieval from their respective erp. When this flag is true, an additional
+  # call to Payments/{id}/pdf can be made to retrieve a pdf directly from the erp.
+  # @type: boolean
+  field :supports_erp_pdf_retrieval
+
   # The ids of the customer for the associated invoices.
   # @type: array
   field :customer_ids
@@ -96,6 +101,11 @@ end
   # The names of the company for the associated invoices.
   # @type: array
   field :company_names
+
+  # The modified date of the payment
+  # @type: string
+  # @format: date-time
+  field :modified, Types::Params::DateTime
 
 
 
