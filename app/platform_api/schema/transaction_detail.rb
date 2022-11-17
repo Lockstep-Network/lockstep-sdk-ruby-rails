@@ -53,6 +53,11 @@ end
   # @format: date-time
   field :transaction_date, Types::Params::DateTime
 
+  # The date of the invoice associated to the transaction detail record.
+  # @type: string
+  # @format: date-time
+  field :transaction_invoice_date, Types::Params::DateTime
+
   # The total value of this transaction detail, inclusive or all taxes and line items.
   # @type: number
   # @format: double

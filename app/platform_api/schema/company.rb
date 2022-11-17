@@ -40,12 +40,6 @@ end
   # @type: string
   field :company_type
 
-  # The status of the company.  Companies can be either `Active` or `Inactive`.  When matched to a
-  # Lockstep corporate profile, this value will change to reflect that this record will be kept
-  # in sync with that company's identity.
-  # @type: string
-  field :company_status
-
   # If this business entity is part of an organization, this value is non-null and it is set
   # to the `CompanyId` value of the parent company of this business entity.
   #             
@@ -210,6 +204,9 @@ end
   # The public url slug for the Company.
   # @type: string
   field :public_url_slug
+
+  # View box settings for the company logo.
+  field :view_box_settings
 
   # All invoices attached to this company.
   #             

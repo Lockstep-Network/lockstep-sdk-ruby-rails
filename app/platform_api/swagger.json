@@ -5,571 +5,6 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/v1/Activities/{id}": {
-      "get": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "Retrieve Activity",
-        "description": "Retrieves the Activity specified by this unique identifier, optionally including nested data sets.\r\n\r\nAn Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Activity",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections:  Company, Attachments, CustomFields, Notes, References, and UserAssignedToName",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      },
-      "patch": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "Update Activity",
-        "description": "Updates an activity that matches the specified id with the requested information.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nAn Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of the Activity to update",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "A list of changes to apply to this Activity",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
-            }
-          }
-        },
-        "responses": {
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityModel"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "Delete Activity",
-        "description": "Delete the Activity referred to by this unique identifier.\r\n\r\nAn Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of the Activity to delete",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/Activities": {
-      "post": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "Create Activities",
-        "description": "Creates one or more activities from a given model.\r\n\r\nAn Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "requestBody": {
-          "description": "The Activities to create",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/ActivityModel"
-                }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/ActivityModel"
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/ActivityModel"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ActivityModel"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ActivityModel"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/Activities/query": {
-      "get": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "Query Activities",
-        "description": "Queries Activities for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\r\n\r\nAn Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "query",
-            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\n             Available collections: Company, Attachments, CustomFields, Notes, References, and UserAssignedToName",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityModelFetchResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityModelFetchResult"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/Activities/{id}/stream": {
-      "get": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "Retrieve Activity Stream",
-        "description": "Retrieves a list of items representing the activity stream for the supplied activity id.\r\n\r\nAn Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Activity",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ActivityStreamItemModel"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ActivityStreamItemModel"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/Activities/{activityId}/forward/{userId}": {
-      "post": {
-        "tags": [
-          "Activities"
-        ],
-        "summary": "Forward Activity",
-        "description": "Forwards an activity by creating a new activity with all child references and assigning the new activity to a new user.\r\n\r\nAn Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "parameters": [
-          {
-            "name": "activityId",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActivityModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
     "/api/v1/ApiKeys/{id}": {
       "get": {
         "tags": [
@@ -657,12 +92,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiKeyModel"
+                  "$ref": "#/components/schemas/ActionResultModel"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiKeyModel"
+                  "$ref": "#/components/schemas/ActionResultModel"
                 }
               }
             }
@@ -3502,7 +2937,7 @@
           "Companies"
         ],
         "summary": "Set Company Logo",
-        "description": "Sets the logo for specified company. The logo will be stored in the Lockstep Platform and will be **publicly accessible**.\r\n\r\n.jpg, .jpeg, and .png are supported. 2MB maximum. If no logo is uploaded, the existing logo will be deleted.\r\n\r\nA Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.\r\n\r\nSee [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Sets the logo for specified company. The logo will be stored in the Lockstep Platform and will be **publicly accessible**.\r\n\r\n.jpg, .jpeg, .png, and .webp are supported. 2MB maximum. If no logo is uploaded, the existing logo will be deleted.\r\n\r\nA Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.\r\n\r\nOptional view box meta data for the provided logo may be supplied using the following query parameters. Please note that you must supply either all of the values or none of the values. <ul><li>min_x</li><li>min_y</li><li>width</li><li>height</li></ul>\r\n\r\nSee [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "parameters": [
           {
             "name": "id",
@@ -3512,6 +2947,42 @@
             "schema": {
               "type": "string",
               "format": "uuid"
+            }
+          },
+          {
+            "name": "min_x",
+            "in": "query",
+            "description": "ViewBox minX setting for this Company's logo.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "min_y",
+            "in": "query",
+            "description": "ViewBox minY setting for this Company's logo.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "width",
+            "in": "query",
+            "description": "ViewBox width setting for this Company's logo.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "height",
+            "in": "query",
+            "description": "ViewBox height setting for this Company's logo.",
+            "schema": {
+              "type": "number",
+              "format": "double"
             }
           }
         ],
@@ -3531,6 +3002,96 @@
                 "file": {
                   "style": "form"
                 }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Companies/{id}/logo-settings": {
+      "patch": {
+        "tags": [
+          "Companies"
+        ],
+        "summary": "Update logo view box settings",
+        "description": "Update view box meta data for the given Company id.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The `ViewBoxSettingsModel` containing meta data value updates",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ViewBoxSettingsModel"
+                  }
+                ],
+                "description": "Optional meta data for image view box settings."
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ViewBoxSettingsModel"
+                  }
+                ],
+                "description": "Optional meta data for image view box settings."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ViewBoxSettingsModel"
+                  }
+                ],
+                "description": "Optional meta data for image view box settings."
               }
             }
           }
@@ -4072,6 +3633,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": [ ]
@@ -4178,6 +3740,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": [ ]
@@ -4214,12 +3777,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
+                  "$ref": "#/components/schemas/ActionResultModel"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
+                  "$ref": "#/components/schemas/ActionResultModel"
                 }
               }
             }
@@ -4246,6 +3809,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": [ ]
@@ -4339,6 +3903,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": [ ]
@@ -4359,6 +3924,440 @@
         ],
         "summary": "Query Credit Memo Applications",
         "description": "Queries Credit Memo Applications for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\r\n\r\nCredit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds. Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice, Lockstep creates a Credit Memo Application record to track the amount from the Credit Memo that was applied as payment to the Invoice. You can examine Credit Memo Application records to track which Invoices were paid using this Credit.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Attachments, CustomFields, Notes",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditMemoAppliedModelFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditMemoAppliedModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": true,
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/credit-memos-applied/{id}": {
+      "get": {
+        "tags": [
+          "CreditMemosApplied"
+        ],
+        "summary": "Retrieve Credit Memo Applied",
+        "description": "Retrieves the Credit Memo Applied specified by this unique identifier, optionally including nested data sets.\r\n\r\nCredit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds. Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice, Lockstep creates a Credit Memo Applied record to track the amount from the Credit Memo that was applied as payment to the Invoice. You can examine Credit Memo Applied records to track which Invoices were paid using this Credit.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of this Credit Memo Applied; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Attachments, CustomFields, Notes, Invoice, CreditMemoInvoice",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "CreditMemosApplied"
+        ],
+        "summary": "Update Credit Memos Applied",
+        "description": "Updates an existing Credit Memo Applied with the information supplied to this PATCH call.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nCredit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds. Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice, Lockstep creates a Credit Memo Applied record to track the amount from the Credit Memo that was applied as payment to the Invoice. You can examine Credit Memo Applied records to track which Invoices were paid using this Credit.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of the Credit Memo Applied to update; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of changes to apply to this Credit Memo Applied",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "CreditMemosApplied"
+        ],
+        "summary": "Delete Credit Memo Applied",
+        "description": "Deletes the Credit Memo Applied referred to by this unique identifier.\r\n\r\nCredit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds. Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice, Lockstep creates a Credit Memo Applied record to track the amount from the Credit Memo that was applied as payment to the Invoice. You can examine Credit Memo Applied records to track which Invoices were paid using this Credit.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of the Credit Memo Applied to delete; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/credit-memos-applied": {
+      "post": {
+        "tags": [
+          "CreditMemosApplied"
+        ],
+        "summary": "Create Credit Memos Applied",
+        "description": "Creates one or more Credit Memos Applied within this account and returns the records as created.\r\n\r\nCredit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds. Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice, Lockstep creates a Credit Memo Applied record to track the amount from the Credit Memo that was applied as payment to the Invoice. You can examine Credit Memo Applied records to track which Invoices were paid using this Credit.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "requestBody": {
+          "description": "The Credit Memos Applied to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditMemoAppliedModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreditMemoAppliedModel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/credit-memos-applied/query": {
+      "get": {
+        "tags": [
+          "CreditMemosApplied"
+        ],
+        "summary": "Query Credit Memos Applied",
+        "description": "Queries Credit Memos Applied for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\r\n\r\nCredit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds. Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice, Lockstep creates a Credit Memo Applied record to track the amount from the Credit Memo that was applied as payment to the Invoice. You can examine Credit Memo Applied records to track which Invoices were paid using this Credit.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "parameters": [
           {
             "name": "filter",
@@ -4868,12 +4867,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CustomFieldDefinitionModel"
+                  "$ref": "#/components/schemas/ActionResultModel"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CustomFieldDefinitionModel"
+                  "$ref": "#/components/schemas/ActionResultModel"
                 }
               }
             }
@@ -5834,493 +5833,6 @@
             }
           }
         }
-      }
-    },
-    "/api/v1/Emails/{id}": {
-      "get": {
-        "tags": [
-          "Emails"
-        ],
-        "summary": "Retrieve Email",
-        "description": "Retrieves the email with the specified email identifier.\r\n\r\nAn Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique ID number of the Email to retrieve.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Attachments, CustomFields, Notes, ResponseOrigin",
-            "schema": {
-              "type": "string",
-              "default": ""
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EmailModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EmailModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      },
-      "patch": {
-        "tags": [
-          "Emails"
-        ],
-        "summary": "Update Email",
-        "description": "Updates an existing Email with the information supplied to this PATCH call.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nAn Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of the email to update",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "A list of changes to apply to this Email",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
-            }
-          }
-        },
-        "responses": {
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EmailModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EmailModel"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Emails"
-        ],
-        "summary": "Delete Email",
-        "description": "Deletes the Email referred to by this unique identifier.\r\n\r\nAn Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of the Email to delete",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/Emails/{emailId}/logo/{nonce}": {
-      "get": {
-        "tags": [
-          "Emails"
-        ],
-        "summary": "Retrieve Email Logo",
-        "description": "Retrieves a signature logo for the email with the specified identifier and increments 'ViewCount'.\r\n\r\nAn Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.",
-        "parameters": [
-          {
-            "name": "emailId",
-            "in": "path",
-            "description": "The unique ID number of the Email to retrieve.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "nonce",
-            "in": "path",
-            "description": "The random nonce applied at time of url creation.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/File"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/File"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true
-      }
-    },
-    "/api/v1/Emails": {
-      "post": {
-        "tags": [
-          "Emails"
-        ],
-        "summary": "Create Emails",
-        "description": "Creates one or more emails from the specified array of Email Models\r\n\r\nAn Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "requestBody": {
-          "description": "The array of emails to be created",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/EmailModel"
-                }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/EmailModel"
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/EmailModel"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EmailModel"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EmailModel"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/Emails/query": {
-      "get": {
-        "tags": [
-          "Emails"
-        ],
-        "summary": "Query Emails",
-        "description": "Queries Emails on the Lockstep Platform using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\r\n\r\nAn Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "query",
-            "description": "The filter to use to select from the list of available applications, in the [Searchlight query syntax](https://github.com/tspence/csharp-searchlight).",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Attachments, CustomFields, Notes, ResponseOrigin",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "description": "The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EmailModelFetchResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EmailModelFetchResult"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
       }
     },
     "/api/v1/feature-flags": {
@@ -7805,6 +7317,441 @@
         ]
       }
     },
+    "/api/v1/invoice-addresses/{id}": {
+      "get": {
+        "tags": [
+          "InvoiceAddresses"
+        ],
+        "summary": "Retrieve Invoice Address",
+        "description": "Retrieves the invoice address specified by this unique identifier, optionally including nested data sets.\r\n\r\nAn Invoice Address contains address information about an invoice. You can use Invoice Addresses to track information about locations important to an invoice such as: where a company's goods are shipped from, where a company's goods are shipped to or billing addresses to name a few.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID number of this invoice address",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceAddressModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceAddressModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "InvoiceAddresses"
+        ],
+        "summary": "Delete Invoice Address",
+        "description": "Deletes the Invoice Address by this unique identifier.\r\n\r\nAn Invoice Address contains address information about an invoice. You can use Invoice Addresses to track information about locations important to an invoice such as: where a company's goods are shipped from, where a company's goods are shipped to or billing addresses to name a few.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the Invoice Address to delete",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "InvoiceAddresses"
+        ],
+        "summary": "Update Invoice Address",
+        "description": "Updates an existing Invoice Address with the information supplied to this PATCH call.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone. As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged. This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nAn Invoice Address contains address information about an invoice. You can use Invoice Addresses to track information about locations important to an invoice such as: where a company's goods are shipped from, where a company's goods are shipped to or billing addresses to name a few.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID number of the Invoice Address to update",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of changes to apply to this Invoice Address",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceAddressModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceAddressModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/invoice-addresses": {
+      "post": {
+        "tags": [
+          "InvoiceAddresses"
+        ],
+        "summary": "Create Invoice Address",
+        "description": "Creates one or more Invoice Addresses within this account and returns the records as created.\r\n\r\nAn Invoice Address contains address information about an invoice. You can use Invoice Addresses to track information about locations important to an invoice such as: where a company's goods are shipped from, where a company's goods are shipped to or billing addresses to name a few.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "requestBody": {
+          "description": "The Invoice Address to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvoiceAddressModel"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvoiceAddressModel"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvoiceAddressModel"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceAddressModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceAddressModel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/invoice-addresses/query": {
+      "get": {
+        "tags": [
+          "InvoiceAddresses"
+        ],
+        "summary": "Query Invoice Addresses",
+        "description": "Queries Invoice Addresses for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nNo collections are currently available but may be offered in the future",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceAddressModelFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceAddressModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
     "/api/v1/InvoiceHistory/{id}": {
       "get": {
         "tags": [
@@ -7923,6 +7870,429 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/InvoiceHistoryModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/invoice-lines": {
+      "post": {
+        "tags": [
+          "InvoiceLines"
+        ],
+        "summary": "Create InvoiceLine",
+        "description": "Creates one or more invoice lines within this account and returns the created records\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvoiceLineModel"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvoiceLineModel"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InvoiceLineModel"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceLineModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceLineModel"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/invoice-lines/{invoiceLineId}": {
+      "get": {
+        "tags": [
+          "InvoiceLines"
+        ],
+        "summary": "Retrieves Invoice Line",
+        "description": "\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "invoiceLineId",
+            "in": "path",
+            "description": "Unique id of the the InvoiceLine",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceLineModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceLineModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "InvoiceLines"
+        ],
+        "summary": "Update Invoice Line",
+        "description": "Updates an existing Invoice Line with the information supplied to this PATCH call.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone. As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged. This allows you to ensure that you are only updating the specific fields desired.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "invoiceLineId",
+            "in": "path",
+            "description": "Unique id of the the InvoiceLine",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of changes to apply to this Invoice Line",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceLineModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceLineModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "InvoiceLines"
+        ],
+        "summary": "Deletes Invoice Line",
+        "description": "\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "invoiceLineId",
+            "in": "path",
+            "description": "Unique id of the the InvoiceLine",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/invoice-lines/query": {
+      "get": {
+        "tags": [
+          "InvoiceLines"
+        ],
+        "summary": "Query Invoice Lines",
+        "description": "Queries Invoice Lines for the account using specified filtering More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query.\r\nSee [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for the results, in the [Searchlight order syntax]",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 200, maximum of 10,000)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceLineModelFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceLineModelFetchResult"
                 }
               }
             }
@@ -8692,7 +9062,7 @@
           "MagicLinks"
         ],
         "summary": "Retrieve Magic Link",
-        "description": "**This API endpoint is under maintenance and may not function properly.**  Retrieves the Magic Link specified by this unique identifier, optionally including nested data sets.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Retrieves the Magic Link specified by this unique identifier, optionally including nested data sets.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "parameters": [
           {
             "name": "id",
@@ -8768,7 +9138,7 @@
           "MagicLinks"
         ],
         "summary": "Revoke Magic Link",
-        "description": "**This API endpoint is under maintenance and may not function properly.**  Revokes the magic link with the specified id so it cannot be used to call the API.\r\n\r\nRevocation will be received by all servers within five minutes of revocation. API calls made using this magic link after the revocation will fail. A revoked magic link cannot be un-revoked.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Revokes the magic link with the specified id so it cannot be used to call the API.\r\n\r\nRevocation will be received by all servers within five minutes of revocation. API calls made using this magic link after the revocation will fail. A revoked magic link cannot be un-revoked.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "parameters": [
           {
             "name": "id",
@@ -8838,7 +9208,7 @@
           "MagicLinks"
         ],
         "summary": "Query Magic Links",
-        "description": "**This API endpoint is under maintenance and may not function properly.**  Queries Magic Links for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Queries Magic Links for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "parameters": [
           {
             "name": "filter",
@@ -9312,6 +9682,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": [ ]
@@ -9418,6 +9789,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": [ ]
@@ -9486,6 +9858,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": [ ]
@@ -9579,6 +9952,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": [ ]
@@ -9666,6 +10040,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": [ ]
@@ -10396,6 +10771,439 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PaymentDetailModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/payments-applied/{id}": {
+      "get": {
+        "tags": [
+          "PaymentsApplied"
+        ],
+        "summary": "Retrieve Payment Applied",
+        "description": "Retrieves the Payment Applied specified by this unique identifier, optionally including nested data sets.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of this Payment Applied; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Invoice, Payment",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAppliedModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAppliedModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "PaymentsApplied"
+        ],
+        "summary": "Update Payment Applied",
+        "description": "Updates an existing Payment Applied with the information supplied to this PATCH call.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of the Payment Applied to update; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of changes to apply to this Payment Applied",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAppliedModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAppliedModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "PaymentsApplied"
+        ],
+        "summary": "Delete Payment Applied",
+        "description": "Deletes the Payment Applied referred to by this unique identifier.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of the Payment Applied to delete; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/payments-applied": {
+      "post": {
+        "tags": [
+          "PaymentsApplied"
+        ],
+        "summary": "Create Payments Applied",
+        "description": "Creates one or more Payments Applied within this account and returns the records as created.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "requestBody": {
+          "description": "The Payments Applied to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PaymentAppliedModel"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PaymentAppliedModel"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PaymentAppliedModel"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentAppliedModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentAppliedModel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/payments-applied/query": {
+      "get": {
+        "tags": [
+          "PaymentsApplied"
+        ],
+        "summary": "Query Payments Applied",
+        "description": "Queries Payments Applied for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Invoice",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAppliedModelFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAppliedModelFetchResult"
                 }
               }
             }
@@ -12103,18 +12911,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DpoSummaryModel"
-                  }
+                  "$ref": "#/components/schemas/DpoSummaryModelFetchResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DpoSummaryModel"
-                  }
+                  "$ref": "#/components/schemas/DpoSummaryModelFetchResult"
                 }
               }
             }
@@ -12164,18 +12966,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DpoSummaryGroupTotalModel"
-                  }
+                  "$ref": "#/components/schemas/DpoSummaryGroupTotalModel"
                 }
               },
               "text/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DpoSummaryGroupTotalModel"
-                  }
+                  "$ref": "#/components/schemas/DpoSummaryGroupTotalModel"
                 }
               }
             }
@@ -13056,6 +13852,21 @@
               }
             }
           },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "401": {
             "description": "Unauthorized"
           },
@@ -13705,6 +14516,93 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UserAccountModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/UserAccounts/user-data": {
+      "get": {
+        "tags": [
+          "UserAccounts"
+        ],
+        "summary": "Get User Data",
+        "description": "Retrieves the user data for the current user. This allows for retrieving extended user data such as UTM parameters.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "include",
+            "in": "query",
+            "description": "The set of data to retrieve. To avoid any casing confusion, these values are converted to upper case in storage.\r\n            <br>Possible values are: UTM",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDataResponseModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDataResponseModel"
                 }
               }
             }
@@ -15113,324 +16011,6 @@
         "additionalProperties": false,
         "description": "Represents the result of an action.\r\n\r\nIn the Lockstep API, an Action is returned when an API call does not produce any data\r\nbut does produce messages that can be useful in understanding what work was performed.\r\nYou may use the messages text to display user visible error messages or the results of\r\nvarious operations."
       },
-      "ActivityModel": {
-        "required": [
-          "activityName",
-          "activityTypeCode",
-          "priority"
-        ],
-        "type": "object",
-        "properties": {
-          "activityId": {
-            "type": "string",
-            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Lockstep platform.",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "groupKey": {
-            "type": "string",
-            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "companyId": {
-            "type": "string",
-            "description": "The ID of the company to which this activity belongs.",
-            "format": "uuid"
-          },
-          "activityTypeCode": {
-            "maxLength": 20,
-            "minLength": 1,
-            "type": "string",
-            "description": "The type code of the activity"
-          },
-          "activityName": {
-            "maxLength": 100,
-            "minLength": 1,
-            "type": "string",
-            "description": "The name of the activity.  The name is a short name provided by the\r\nperson who created the activity that can be displayed in a list."
-          },
-          "activityDescription": {
-            "type": "string",
-            "description": "A description of the activity.  This field contains more detailed text about the\r\nactivity and can be lengthy.",
-            "nullable": true
-          },
-          "activityStatus": {
-            "maxLength": 40,
-            "minLength": 0,
-            "type": "string",
-            "description": "The status of the activity.",
-            "nullable": true
-          },
-          "isOpen": {
-            "type": "boolean",
-            "description": "True if this activity is currently \"open\", which indicates that the activity is\r\ncurrently in progress."
-          },
-          "priority": {
-            "maxLength": 25,
-            "minLength": 1,
-            "type": "string",
-            "description": "The priority of the activity."
-          },
-          "userAssignedTo": {
-            "type": "string",
-            "description": "The ID of the user the activity is assigned to.",
-            "format": "uuid",
-            "nullable": true
-          },
-          "dateAssigned": {
-            "type": "string",
-            "description": "The date the activity was assigned.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "dateClosed": {
-            "type": "string",
-            "description": "The date the activity was closed.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "snoozeUntilDate": {
-            "type": "string",
-            "description": "If this activity has been \"snoozed\", this field will be non-null and will contain\r\nthe date when the activity will be displayed.  Until that date arrives, the activity\r\nwill remain hidden.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "created": {
-            "type": "string",
-            "description": "The date on which this activity was created.",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "createdUserId": {
-            "type": "string",
-            "description": "The ID of the user who created this activity.",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "modified": {
-            "type": "string",
-            "description": "The date on which this activity was last modified.",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "modifiedUserId": {
-            "type": "string",
-            "description": "The ID of the user who last modified this activity.",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "amountCollected": {
-            "type": "number",
-            "description": "Amount collected (if any) for the activity.",
-            "format": "double",
-            "nullable": true
-          },
-          "amountPaid": {
-            "type": "number",
-            "description": "Amount paid (if any) for the activity.",
-            "format": "double",
-            "nullable": true
-          },
-          "creditGiven": {
-            "type": "number",
-            "description": "Credit given (if any) for the activity.",
-            "format": "double",
-            "nullable": true
-          },
-          "isUnread": {
-            "type": "boolean",
-            "description": "True if this activity is to be shown in an \"unread\" state.  When an activity\r\nis read by a person it is assigned to, this flag is set to false."
-          },
-          "isArchived": {
-            "type": "boolean",
-            "description": "Activities may be archived when they should be hidden from the user.  When\r\nthis flag is true, this activity should be hidden."
-          },
-          "company": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CompanyModel"
-              }
-            ],
-            "description": "The company associated with the activity\r\n            \r\nTo retrieve this collection, specify `Company` in the \"Include\" parameter for your query.",
-            "nullable": true,
-            "readOnly": true
-          },
-          "userAssignedToName": {
-            "type": "string",
-            "description": "The name of the user the activity is assigned to",
-            "nullable": true,
-            "readOnly": true
-          },
-          "attachments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AttachmentModel"
-            },
-            "description": "A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in\r\nthe `include` parameter when retrieving data.\r\n            \r\nTo create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)\r\nendpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
-            "nullable": true,
-            "readOnly": true
-          },
-          "notes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NoteModel"
-            },
-            "description": "A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the\r\n`include` parameter when retrieving data.\r\n            \r\nTo create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)\r\nendpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
-            "nullable": true,
-            "readOnly": true
-          },
-          "customFieldDefinitions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomFieldDefinitionModel"
-            },
-            "description": "A collection of custom fields linked to this record.  To retrieve this collection, specify\r\n`CustomFieldDefinitions` in the `include` parameter when retrieving data.\r\n            \r\nTo create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)\r\nendpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
-            "nullable": true,
-            "readOnly": true
-          },
-          "customFieldValues": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomFieldValueModel"
-            },
-            "description": "A collection of custom fields linked to this record.  To retrieve this collection, specify\r\n`CustomFieldValues` in the `include` parameter when retrieving data.\r\n            \r\nTo create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)\r\nendpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
-            "nullable": true,
-            "readOnly": true
-          },
-          "references": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ActivityXRefModel"
-            },
-            "description": "All references attached to this applied activity.\r\n            \r\nTo retrieve this collection, specify `References` in the \"Include\" parameter for your query.",
-            "nullable": true,
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "An Activity contains information about work being done on a specific accounting task.\r\nYou can use Activities to track information about who has been assigned a specific task,\r\nthe current status of the task, the name and description given for the particular task,\r\nthe priority of the task, and any amounts collected, paid, or credited for the task."
-      },
-      "ActivityModelFetchResult": {
-        "type": "object",
-        "properties": {
-          "totalCount": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "pageNumber": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ActivityModel"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "ActivityStreamItemModel": {
-        "type": "object",
-        "properties": {
-          "objectKey": {
-            "type": "string",
-            "description": "The object key of the activity stream item.",
-            "format": "uuid"
-          },
-          "activityStreamType": {
-            "type": "string",
-            "description": "The type code of the activity stream item.",
-            "nullable": true
-          },
-          "textValue": {
-            "type": "string",
-            "description": "The text body description for this Activity Stream Item.",
-            "nullable": true
-          },
-          "created": {
-            "type": "string",
-            "description": "The date on which this activity stream item was created.",
-            "format": "date-time"
-          },
-          "createdUserId": {
-            "type": "string",
-            "description": "The ID of the user who created this activity.",
-            "format": "uuid"
-          },
-          "groupKey": {
-            "type": "string",
-            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
-            "format": "uuid"
-          },
-          "fromEmailAddress": {
-            "type": "string",
-            "description": "The sender's email address if activity stream item is an Email.",
-            "nullable": true
-          },
-          "toEmailAddress": {
-            "type": "string",
-            "description": "The recipient's email address if activity stream item is an Email.",
-            "nullable": true
-          },
-          "fromContactName": {
-            "type": "string",
-            "description": "The name of the contact sending the activity otherwise null.",
-            "nullable": true
-          },
-          "toContactName": {
-            "type": "string",
-            "description": "The name of the contact sending the activity otherwise null.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Represents an item belonging to the activity stream."
-      },
-      "ActivityXRefModel": {
-        "type": "object",
-        "properties": {
-          "activityXRefId": {
-            "type": "string",
-            "description": "The unique ID of this record, automatically assigned by Lockstep when this is\r\nadded to the Lockstep platform.",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "activityId": {
-            "type": "string",
-            "description": "The ID of the activity to which this reference belongs.",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "groupKey": {
-            "type": "string",
-            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "tableKey": {
-            "type": "string",
-            "description": "The name of the table the activity reference is associated with",
-            "nullable": true
-          },
-          "objectKey": {
-            "type": "string",
-            "description": "The ID of the object the activity reference is associated with",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Represents links between an Activity and another record."
-      },
       "AgingModel": {
         "type": "object",
         "properties": {
@@ -16715,6 +17295,13 @@
       "AttachmentModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachmentModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -16728,13 +17315,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AttachmentModel"
-            },
             "nullable": true
           }
         },
@@ -17180,14 +17760,6 @@
             "description": "This field indicates the type of company.  It can be one of a limited number of values:\r\nCompany, Customer, Group, Vendor, or Third Party.  A company that represents both a customer and a vendor\r\nis identified as a CustomerVendor.\r\n            \r\n* `Company` - This record represents a company that is part of the organization of the account holder.\r\n* `Customer` - This record represents a business entity that purchases things from the account holder.\r\n* `Group` - Only one record of type `GROUP` exists in each account.  Contains your account profile.\r\n* `Vendor` - This record represents a business entity that sells things to the account holder.\r\n* `Third Party` - This record represents a business entity that is neither a customer nor vendor.\r\n* `CustomerVendor` - Both a customer and a vendor.",
             "nullable": true
           },
-          "companyStatus": {
-            "maxLength": 20,
-            "minLength": 0,
-            "type": "string",
-            "description": "The status of the company.  Companies can be either `Active` or `Inactive`.  When matched to a\r\nLockstep corporate profile, this value will change to reflect that this record will be kept\r\nin sync with that company's identity.",
-            "nullable": true,
-            "deprecated": true
-          },
           "parentCompanyId": {
             "type": "string",
             "description": "If this business entity is part of an organization, this value is non-null and it is set\r\nto the `CompanyId` value of the parent company of this business entity.\r\n            \r\nIf this value is null, this business entity is a standalone.",
@@ -17418,6 +17990,16 @@
             "description": "The public url slug for the Company.",
             "nullable": true
           },
+          "viewBoxSettings": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ViewBoxSettingsModel"
+              }
+            ],
+            "description": "View box settings for the company logo.",
+            "nullable": true,
+            "readOnly": true
+          },
           "notes": {
             "type": "array",
             "items": {
@@ -17540,12 +18122,6 @@
           "companyType": {
             "type": "string",
             "description": "This field indicates the type of company. It can be one of a limited number of values: `Company`,\r\n`Customer`, `Group`, `Vendor`, or `Third Party`. A company that represents both a customer and a vendor is\r\nidentified as a `CustomerVendor`.\r\n            \r\nWhen loading data into Lockstep, you should focus on the distinction between a company that is part of\r\nyour own enterprise, or a company that is external to your enterprise.\r\n            \r\nFor a company that is within your enterprise, you should set this value to be `Company`.\r\n            \r\nFor a company that is external to your enterprise, you should set this value to either `Customer`,\r\n`Vendor`, `Third Party`, or `CustomerVendor`.  If you don't know what value to choose, select\r\n`CustomerVendor`."
-          },
-          "companyStatus": {
-            "type": "string",
-            "description": "An optional field including status codes.  Defined status codes are `Active` and `Inactive`.",
-            "nullable": true,
-            "deprecated": true
           },
           "parentCompanyErpKey": {
             "type": "string",
@@ -18356,6 +18932,13 @@
       "CreditMemoAppliedModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditMemoAppliedModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -18369,13 +18952,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CreditMemoAppliedModel"
-            },
             "nullable": true
           }
         },
@@ -18694,6 +19270,13 @@
       "CustomFieldDefinitionModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldDefinitionModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -18707,13 +19290,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomFieldDefinitionModel"
-            },
             "nullable": true
           }
         },
@@ -18776,7 +19352,6 @@
       "CustomFieldValueModel": {
         "required": [
           "customFieldLabel",
-          "dataType",
           "tableKey"
         ],
         "type": "object",
@@ -18812,10 +19387,11 @@
           },
           "dataType": {
             "maxLength": 10,
-            "minLength": 1,
+            "minLength": 0,
             "type": "string",
             "description": "Data type of this definition",
-            "default": "String"
+            "default": "String",
+            "nullable": true
           },
           "stringValue": {
             "maxLength": 2048,
@@ -18886,6 +19462,13 @@
       "CustomFieldValueModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldValueModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -18899,13 +19482,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomFieldValueModel"
-            },
             "nullable": true
           }
         },
@@ -19041,6 +19617,11 @@
             "description": "The date stamp for the newest Activity on this Customer.",
             "format": "date",
             "nullable": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The modified date of the customer.",
+            "format": "date-time"
           }
         },
         "additionalProperties": false,
@@ -19233,226 +19814,7 @@
         "additionalProperties": false,
         "description": "Represents a summary of outstanding amounts for bills to vendors and their associated daily payable outstanding value."
       },
-      "EmailModel": {
-        "type": "object",
-        "properties": {
-          "emailId": {
-            "type": "string",
-            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Lockstep platform.",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "threadId": {
-            "type": "string",
-            "description": "The unique ID number of this email's conversation thread.",
-            "format": "uuid"
-          },
-          "groupKey": {
-            "type": "string",
-            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "companyId": {
-            "type": "string",
-            "description": "The ID number of the company that created this email.",
-            "format": "uuid",
-            "nullable": true
-          },
-          "emailFrom": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string",
-            "description": "The email address for the sender of this email.",
-            "nullable": true
-          },
-          "emailTo": {
-            "maxLength": 1000,
-            "minLength": 0,
-            "type": "string",
-            "description": "The email address for the recipient(s) of this email.",
-            "nullable": true
-          },
-          "emailCC": {
-            "maxLength": 1000,
-            "minLength": 0,
-            "type": "string",
-            "description": "The email address for the CC recipient(s) of this email",
-            "nullable": true
-          },
-          "emailSubject": {
-            "maxLength": 998,
-            "minLength": 0,
-            "type": "string",
-            "description": "The subject line of this email.",
-            "nullable": true
-          },
-          "emailBody": {
-            "type": "string",
-            "description": "The body content of this email.",
-            "nullable": true
-          },
-          "sentDate": {
-            "type": "string",
-            "description": "The date on which this email was sent.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "isUnread": {
-            "type": "boolean",
-            "description": "A status flag indicating if this email is unread."
-          },
-          "isPriority": {
-            "type": "boolean",
-            "description": "A status flag indicating if this email is priority status."
-          },
-          "isSpam": {
-            "type": "boolean",
-            "description": "A status flag indicating if this email is marked as spam."
-          },
-          "created": {
-            "type": "string",
-            "description": "The date on which this email was created.",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "createdUserId": {
-            "type": "string",
-            "description": "The ID number of the user who created this email.",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "toBeSent": {
-            "type": "boolean",
-            "description": "A status flag indicating if this email is to be sent."
-          },
-          "customerId": {
-            "type": "string",
-            "description": "The ID number of the customer that sent this email.",
-            "format": "uuid",
-            "nullable": true
-          },
-          "receivedTimeStamp": {
-            "type": "string",
-            "description": "The date on which this email was received.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "openedTimestamp": {
-            "type": "string",
-            "description": "The date on which this email was opened.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "viewCount": {
-            "type": "integer",
-            "description": "The number of times this email was viewed.",
-            "format": "int32"
-          },
-          "appEnrollmentId": {
-            "type": "string",
-            "description": "The AppEnrollmentId of the application that imported this record.  For accounts\r\nwith more than one financial system connected, this field identifies the originating\r\nfinancial system that produced this record.  This value is null if this record\r\nwas not loaded from an external ERP or financial system.",
-            "format": "uuid",
-            "nullable": true,
-            "readOnly": true
-          },
-          "externalEmailId": {
-            "maxLength": 250,
-            "minLength": 0,
-            "type": "string",
-            "description": "The id of the email in an external system if imported.",
-            "nullable": true
-          },
-          "externalThreadId": {
-            "maxLength": 250,
-            "minLength": 0,
-            "type": "string",
-            "description": "The id of the email thread in an external system if imported.",
-            "nullable": true
-          },
-          "emailBcc": {
-            "maxLength": 1000,
-            "minLength": 0,
-            "type": "string",
-            "description": "The email address(es) for the BCC recipient(s) of this email",
-            "nullable": true
-          },
-          "sendType": {
-            "maxLength": 7,
-            "minLength": 0,
-            "type": "string",
-            "description": "The type message being sent (New, Reply, Forward) or null for messages not being sent.",
-            "nullable": true
-          },
-          "modified": {
-            "type": "string",
-            "description": "The date on which this email was modified.\r\nEmail modification should only be done by internal services.",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "modifiedUserId": {
-            "type": "string",
-            "description": "The ID of the user who modified this email.\r\nEmail modification should only be done by internal services.",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "responseOriginId": {
-            "type": "string",
-            "description": "If the message being sent is a reply or a forward, the id of the the email being replied to or forwarded.\r\nOtherwise null.",
-            "format": "uuid",
-            "nullable": true
-          },
-          "responseOrigin": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EmailModel"
-              }
-            ],
-            "description": "The email object associated with the response origin id.",
-            "nullable": true,
-            "readOnly": true
-          },
-          "notes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NoteModel"
-            },
-            "description": "A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the\r\n`include` parameter when retrieving data.\r\n            \r\nTo create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)\r\nendpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
-            "nullable": true,
-            "readOnly": true
-          },
-          "attachments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AttachmentModel"
-            },
-            "description": "A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in\r\nthe `include` parameter when retrieving data.\r\n            \r\nTo create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)\r\nendpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
-            "nullable": true,
-            "readOnly": true
-          },
-          "customFieldDefinitions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomFieldDefinitionModel"
-            },
-            "description": "A collection of custom fields linked to this record.  To retrieve this collection, specify\r\n`CustomFieldDefinitions` in the `include` parameter when retrieving data.\r\n            \r\nTo create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)\r\nendpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
-            "nullable": true,
-            "readOnly": true
-          },
-          "customFieldValues": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomFieldValueModel"
-            },
-            "description": "A collection of custom fields linked to this record.  To retrieve this collection, specify\r\n`CustomFieldValues` in the `include` parameter when retrieving data.\r\n            \r\nTo create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)\r\nendpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
-            "nullable": true,
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "An Email represents a communication sent from one company to another.  The creator of the email is identified\r\nby the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field.\r\nThe Email Model represents an email and a number of different metadata attributes related to the creation,\r\nstorage, and ownership of the email."
-      },
-      "EmailModelFetchResult": {
+      "DpoSummaryModelFetchResult": {
         "type": "object",
         "properties": {
           "totalCount": {
@@ -19473,7 +19835,7 @@
           "records": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/EmailModel"
+              "$ref": "#/components/schemas/DpoSummaryModel"
             },
             "nullable": true
           }
@@ -19562,10 +19924,6 @@
         },
         "additionalProperties": false,
         "description": "Response information for Feature Flags"
-      },
-      "File": {
-        "type": "object",
-        "additionalProperties": false
       },
       "FinancialAccountBalanceHistoryModel": {
         "type": "object",
@@ -19854,6 +20212,13 @@
       "FinancialAccountModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FinancialAccountModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -19867,13 +20232,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FinancialAccountModel"
-            },
             "nullable": true
           }
         },
@@ -20400,6 +20758,34 @@
         "additionalProperties": false,
         "description": "Represents a single address for an invoice"
       },
+      "InvoiceAddressModelFetchResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceAddressModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "InvoiceHistoryModel": {
         "type": "object",
         "properties": {
@@ -20614,6 +21000,13 @@
       "InvoiceHistoryModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceHistoryModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -20628,18 +21021,14 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceHistoryModel"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
       },
       "InvoiceLineModel": {
+        "required": [
+          "invoiceId"
+        ],
         "type": "object",
         "properties": {
           "invoiceLineId": {
@@ -20805,6 +21194,34 @@
         },
         "additionalProperties": false,
         "description": "Represents a line in an invoice"
+      },
+      "InvoiceLineModelFetchResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceLineModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "InvoiceLineSyncModel": {
         "required": [
@@ -21542,6 +21959,15 @@
             "format": "int32",
             "nullable": true
           },
+          "paymentCount": {
+            "type": "integer",
+            "description": "The number of payments associated to this invoice.",
+            "format": "int32"
+          },
+          "supportsErpPdfRetrieval": {
+            "type": "boolean",
+            "description": "Specific invoices have support for pdf retrieval from their respective erp. When this flag is true, an additional\r\ncall to Invoices/{id}/pdf can be made to retrieve a pdf directly from the erp."
+          },
           "paymentNumbers": {
             "type": "array",
             "items": {
@@ -21558,6 +21984,11 @@
             },
             "description": "The ids of the payments associated to this invoice.",
             "nullable": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The modified date of the invoice.",
+            "format": "date-time"
           }
         },
         "additionalProperties": false,
@@ -22719,13 +23150,6 @@
       "PaymentDetailModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentDetailModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22739,6 +23163,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentDetailModel"
+            },
             "nullable": true
           }
         },
@@ -22935,6 +23366,13 @@
       "PaymentModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22948,13 +23386,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentModel"
-            },
             "nullable": true
           }
         },
@@ -23053,6 +23484,10 @@
             "description": "The name of the company for this payment.",
             "nullable": true
           },
+          "supportsErpPdfRetrieval": {
+            "type": "boolean",
+            "description": "Specific payments have support for pdf retrieval from their respective erp. When this flag is true, an additional\r\ncall to Payments/{id}/pdf can be made to retrieve a pdf directly from the erp."
+          },
           "customerIds": {
             "type": "array",
             "items": {
@@ -23086,6 +23521,11 @@
             },
             "description": "The names of the company for the associated invoices.",
             "nullable": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The modified date of the payment",
+            "format": "date-time"
           }
         },
         "additionalProperties": false,
@@ -23805,6 +24245,11 @@
             "format": "date-time",
             "nullable": true
           },
+          "transactionInvoiceDate": {
+            "type": "string",
+            "description": "The date of the invoice associated to the transaction detail record.",
+            "format": "date-time"
+          },
           "transactionAmount": {
             "type": "number",
             "description": "The total value of this transaction detail, inclusive or all taxes and line items.",
@@ -23901,6 +24346,13 @@
       "TransactionModelTransactionSummaryTotalModelSummaryFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -23914,13 +24366,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransactionModel"
-            },
             "nullable": true
           },
           "summary": {
@@ -24306,6 +24751,28 @@
         },
         "additionalProperties": false
       },
+      "UserDataResponseModel": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": { },
+              "nullable": true
+            },
+            "description": "Data about the user, the properties returned will depend on the requested information.",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "description": "The Lockstep Platform ID of the user",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains data about the current user."
+      },
       "UserGroupModel": {
         "type": "object",
         "properties": {
@@ -24561,6 +25028,11 @@
             "description": "The days payabale outstanding.",
             "format": "double",
             "nullable": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The modified date of the Vendor",
+            "format": "date-time"
           }
         },
         "additionalProperties": false,
@@ -24593,6 +25065,37 @@
           }
         },
         "additionalProperties": false
+      },
+      "ViewBoxSettingsModel": {
+        "type": "object",
+        "properties": {
+          "logoViewBoxMinX": {
+            "type": "number",
+            "description": "ViewBox minX setting for this Company's logo.",
+            "format": "double",
+            "nullable": true
+          },
+          "logoViewBoxMinY": {
+            "type": "number",
+            "description": "ViewBox minY setting for this Company's logo.",
+            "format": "double",
+            "nullable": true
+          },
+          "logoViewBoxWidth": {
+            "type": "number",
+            "description": "ViewBox width setting for this Company's logo.",
+            "format": "double",
+            "nullable": true
+          },
+          "logoViewBoxHeight": {
+            "type": "number",
+            "description": "ViewBox height setting for this Company's logo.",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Optional meta data for image view box settings."
       },
       "WebhookHistoryTableStorageModel": {
         "type": "object",
@@ -24820,13 +25323,6 @@
       "WebhookModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/WebhookModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24840,6 +25336,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WebhookModel"
+            },
             "nullable": true
           }
         },
@@ -24949,9 +25452,9 @@
         "description": "Azure B2C OAuth Authentication",
         "flows": {
           "implicit": {
-            "authorizationUrl": "https://login.lockstep.io/login.lockstep.io/B2C_1A_PLATFORMSIGNUP_SIGNIN/oauth2/v2.0/authorize",
+            "authorizationUrl": "https://login.dev.lockstep.io/login.dev.lockstep.io/B2C_1A_PLATFORMSIGNUP_SIGNIN/oauth2/v2.0/authorize",
             "scopes": {
-              "https://login.lockstep.io/platform-api/api.call": "Call the Platform API"
+              "https://login.dev.lockstep.io/platform-api/api.call": "Call the Platform API"
             }
           }
         }

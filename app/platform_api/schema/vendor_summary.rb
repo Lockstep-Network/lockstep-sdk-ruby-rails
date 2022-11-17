@@ -126,6 +126,11 @@ end
   # @format: double
   field :dpo
 
+  # The modified date of the Vendor
+  # @type: string
+  # @format: date-time
+  field :modified, Types::Params::DateTime
+
 
 
 end
