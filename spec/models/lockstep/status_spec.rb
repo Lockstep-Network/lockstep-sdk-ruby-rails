@@ -35,10 +35,10 @@ RSpec.describe Lockstep::Status do
       it 'returns valid status hash' do
         VCR.use_cassette('models/lockstep/status/read_only_status') do
           expect(result).to be_present
-          expect(result['user_name']).to eq 'Tejas Shetty'
-          expect(result['roles']).to eq ['Read-Only']
-          expect(result['logged_in']).to be true
-          expect(result['error_message']).to be_nil
+          expect(result[:user_name]).to eq 'Tejas Shetty'
+          expect(result[:roles]).to eq ['Read-Only']
+          expect(result[:logged_in]).to be true
+          expect(result[:error_message]).to be_nil
           expect(result.keys.all? { |k| k.downcase == k }).to be true
         end
       end
@@ -48,10 +48,10 @@ RSpec.describe Lockstep::Status do
       it 'returns valid status hash' do
         VCR.use_cassette('models/lockstep/status/member_status') do
           expect(result).to be_present
-          expect(result['user_name']).to eq 'Tejas Shetty'
-          expect(result['roles']).to eq ['Member']
-          expect(result['logged_in']).to be true
-          expect(result['error_message']).to be_nil
+          expect(result[:user_name]).to eq 'Tejas Shetty'
+          expect(result[:roles]).to eq ['Member']
+          expect(result[:logged_in]).to be true
+          expect(result[:error_message]).to be_nil
           expect(result.keys.all? { |k| k.downcase == k }).to be true
         end
       end
@@ -90,10 +90,10 @@ RSpec.describe Lockstep::Status do
       it 'returns valid status hash' do
         VCR.use_cassette('models/lockstep/status/read_only_ak_status') do
           expect(result).to be_present
-          expect(result['user_name']).to eq 'Tejas Shetty'
-          expect(result['roles']).to eq ['Read-Only']
-          expect(result['logged_in']).to be true
-          expect(result['error_message']).to be_nil
+          expect(result[:user_name]).to eq 'Tejas Shetty'
+          expect(result[:roles]).to eq ['Read-Only']
+          expect(result[:logged_in]).to be true
+          expect(result[:error_message]).to be_nil
           expect(result.keys.all? { |k| k.downcase == k }).to be true
         end
       end
@@ -103,10 +103,10 @@ RSpec.describe Lockstep::Status do
       it 'returns valid status hash' do
         VCR.use_cassette('models/lockstep/status/member_ak_status') do
           expect(result).to be_present
-          expect(result['user_name']).to eq 'Tejas Shetty'
-          expect(result['roles']).to eq ['Member']
-          expect(result['logged_in']).to be true
-          expect(result['error_message']).to be_nil
+          expect(result[:user_name]).to eq 'Tejas Shetty'
+          expect(result[:roles]).to eq ['Member']
+          expect(result[:logged_in]).to be true
+          expect(result[:error_message]).to be_nil
           expect(result.keys.all? { |k| k.downcase == k }).to be true
         end
       end
