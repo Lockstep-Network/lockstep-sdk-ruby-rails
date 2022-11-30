@@ -58,7 +58,7 @@ RSpec.describe Lockstep::Status do
     end
   end
 
-  context 'getting status via api key' do
+  context 'when getting status via api key' do
     describe 'when no api key is present' do
       it 'throws Lockstep::Exceptions::UnauthorizedError' do
         VCR.use_cassette('models/lockstep/status/no_api_key') do
@@ -109,6 +109,37 @@ RSpec.describe Lockstep::Status do
           expect(result[:error_message]).to be_nil
           expect(result.keys.all? { |k| k.downcase == k }).to be true
         end
+      end
+    end
+  end
+
+  context "when getting multiple user's status" do
+    it 'should return proper statuses for the given bearer token / api key' do
+      VCR.use_cassette('models/lockstep/status/multiple_run_test') do
+        # Api Key changed to account where role is "Member" and name is "Testing Around"
+        result = described_class.ping
+        expect(result[:account_name]).to eq 'Testing Around'
+        expect(result[:roles]).to eq ['Member']
+
+        # Bearer token changed to account where role is "Read-Only"
+        result = described_class.ping
+        expect(result[:account_name]).to eq 'APAC Dev Company'
+        expect(result[:roles]).to eq ['Read-Only']
+
+        # Bearer token changed to account where role is "Member"
+        result = described_class.ping
+        expect(result[:account_name]).to eq 'Testing Around'
+        expect(result[:roles]).to eq ['Member']
+
+        # Api Key changed to account where role is "Read Only" and name is "APAC Dev Company"
+        result = described_class.ping
+        expect(result[:account_name]).to eq 'APAC Dev Company'
+        expect(result[:roles]).to eq ['Read-Only']
+
+        # Bearer token changed to account where role is "Group Owner"
+        result = described_class.ping
+        expect(result[:account_name]).to eq 'Testing Around'
+        expect(result[:roles]).to eq ['Group Owner']
       end
     end
   end
