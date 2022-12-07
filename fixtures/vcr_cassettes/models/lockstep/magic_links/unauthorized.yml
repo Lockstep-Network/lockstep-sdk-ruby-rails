@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.dev.lockstep.io/api/v1/useraccounts/magic-links/
     body:
       encoding: UTF-8
-      string: '{"email":"user@email.com","expiresInMinutes":720,"applicationId":"00000000-0000-0000-0003-000000000001","userRole":"00000000-0000-0000-0000-000000000003"}'
+      string: '{"email":"user@email.com","expiresInMinutes":43200,"applicationId":"00000000-0000-0000-0003-000000000001","userRole":"00000000-0000-0000-0000-000000000003","companyId":"e7683208-89c3-4499-94fc-28ee0de06b02"}'
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -29,28 +29,32 @@ http_interactions:
       message: Unauthorized
     headers:
       Cache-Control:
-      - no-store, no-cache
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/problem+json; charset=utf-8
+      Expires:
+      - '0'
       Set-Cookie:
-      - ARRAffinity=932e74540a23c627f0dfb40cbee1fa17c087e1806af44546f8bf27c06e52270d;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
-      - ARRAffinitySameSite=932e74540a23c627f0dfb40cbee1fa17c087e1806af44546f8bf27c06e52270d;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinity=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
       Www-Authenticate:
       - Bearer
-      Request-Context:
-      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
-      Serverduration:
+      Server-Duration:
       - '0'
       X-Powered-By:
       - ASP.NET
       X-Cache:
       - CONFIG_NOCACHE
       X-Azure-Ref:
-      - 0TYVOYwAAAABxwI9WxlWZSJBheWPZqn1WTUFBMDFFREdFMTYxOABmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      - 0DuOOYwAAAAD7dRxnS7mISoO49Qdwgi24Qk9NMDFFREdFMDUxNgBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
       Date:
-      - Tue, 18 Oct 2022 10:51:58 GMT
-      Content-Length:
-      - '0'
+      - Tue, 06 Dec 2022 06:37:02 GMT
     body:
       encoding: UTF-8
-      string: ''
-  recorded_at: Tue, 18 Oct 2022 10:51:58 GMT
+      string: '{"type":"https://httpstatuses.io/401","title":"Unauthorized","status":401,"traceId":"00-90dca5e537e3a808e7298b6f27730c65-096f6c519823923d-00"}'
+  recorded_at: Tue, 06 Dec 2022 06:37:02 GMT
 recorded_with: VCR 6.1.0
