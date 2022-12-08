@@ -714,9 +714,9 @@ module Lockstep
       else
         error_response = JSON.parse(resp.body)
         pe = if error_response['error']
-               LockstepError.new(error_response['code'], error_response['error'])
+               Lockstep::Error.new(error_response['code'], error_response['error'])
              else
-               LockstepError.new(resp.code.to_s)
+               Lockstep::Error.new(resp.code.to_s)
              end
         self.errors.add(pe.code.to_s.to_sym, pe.msg)
         error_instances << pe
