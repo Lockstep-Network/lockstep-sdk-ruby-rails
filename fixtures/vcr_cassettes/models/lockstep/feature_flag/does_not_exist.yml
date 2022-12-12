@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.dev.lockstep.io/api/v1/useraccounts/magic-links/
+    uri: https://api.dev.lockstep.io/api/v1/feature-flags/
     body:
       encoding: UTF-8
-      string: '{"email":"user@email.com","expiresInMinutes":43200,"applicationId":"00000000-0000-0000-0003-000000000001","userRole":"00000000-0000-0000-0000-000000000003","companyId":"e7683208-89c3-4499-94fc-28ee0de06b02"}'
+      string: '{"names":["Inbox.GlobalSearch1"]}'
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -23,38 +23,40 @@ http_interactions:
       - 2022.4.32.0
       Machinename:
       - "<MACHINE_NAME>"
+      Api-Key:
+      - "<API_KEY>"
   response:
     status:
-      code: 401
-      message: Unauthorized
+      code: 200
+      message: OK
     headers:
       Cache-Control:
-      - no-cache, no-store, must-revalidate
-      Pragma:
-      - no-cache
+      - no-store, no-cache
       Transfer-Encoding:
       - chunked
       Content-Type:
-      - application/problem+json; charset=utf-8
-      Expires:
-      - '0'
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
       Set-Cookie:
       - ARRAffinity=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
       - ARRAffinitySameSite=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
-      Www-Authenticate:
-      - Bearer
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Api-Supported-Versions:
+      - '1.0'
       Server-Duration:
-      - '0'
+      - '336'
       X-Powered-By:
       - ASP.NET
       X-Cache:
       - CONFIG_NOCACHE
       X-Azure-Ref:
-      - 0DuOOYwAAAAD7dRxnS7mISoO49Qdwgi24Qk9NMDFFREdFMDUxNgBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      - 07bGNYwAAAACGOIX0pdQSSbsFAf3iCLhJTUFBMDFFREdFMTYxNABmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
       Date:
-      - Tue, 06 Dec 2022 06:37:02 GMT
+      - Mon, 05 Dec 2022 08:55:10 GMT
     body:
-      encoding: UTF-8
-      string: '{"type":"https://httpstatuses.io/401","title":"Unauthorized","status":401,"traceId":"00-90dca5e537e3a808e7298b6f27730c65-096f6c519823923d-00"}'
-  recorded_at: Tue, 06 Dec 2022 06:37:02 GMT
+      encoding: ASCII-8BIT
+      string: '{"values":{"Inbox.GlobalSearch1":false}}'
+  recorded_at: Mon, 05 Dec 2022 08:55:10 GMT
 recorded_with: VCR 6.1.0
