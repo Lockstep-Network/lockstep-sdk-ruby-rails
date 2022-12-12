@@ -5,7 +5,7 @@ RSpec.describe 'Lockstep::MagicLink' do
   context 'when generating' do
     it 'should return 401 since api key not set' do
       VCR.use_cassette("models/lockstep/magic_links/unauthorized") do
-        response =  Lockstep::MagicLink.generate('user@email.com', 720, "dummy-app-id", "dummy-user-role")
+        response =  Lockstep::MagicLink.generate('user@email.com', 43200, "dummy-app-id", "dummy-user-role", "dummy-company-id")
         expect(response.code).eql?(401)
       end
     end
@@ -13,7 +13,7 @@ RSpec.describe 'Lockstep::MagicLink' do
     it 'should return 404 since internal key not set' do
       VCR.use_cassette("models/lockstep/magic_links/unauthorized_internal_key") do
         Lockstep::Client.set_bearer_token("dummy-token")
-        response =  Lockstep::MagicLink.generate('user@email.com', 720, "dummy-app-id", "dummy-user-role")
+        response =  Lockstep::MagicLink.generate('user@email.com', 43200, "dummy-app-id", "dummy-user-role", "dummy-company-id")
         expect(response.code).eql?(404)
       end
     end
@@ -22,8 +22,9 @@ RSpec.describe 'Lockstep::MagicLink' do
       VCR.use_cassette("models/lockstep/magic_links/magic_link") do
         Lockstep::Client.set_internal_service_key("dummy-internal-service-key")
         Lockstep::Client.set_bearer_token("dummy-token")
-        response =  Lockstep::MagicLink.generate('user@email.com', 720, "dummy-app-id", "dummy-user-role")
+        response =  Lockstep::MagicLink.generate('user@email.com', 43200, "dummy-app-id", "dummy-user-role", "dummy-company-id")
         eval(response.body).has_key?(:magicLinkUrl)
+        eval(response.body).has_key?(:companyId)
         expect(response.code).eql?(200)
       end
     end

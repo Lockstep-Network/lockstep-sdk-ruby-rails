@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.dev.lockstep.io/api/v1/useraccounts/magic-links/
     body:
       encoding: UTF-8
-      string: '{"email":"user@email.com","expiresInMinutes":720,"applicationId":"00000000-0000-0000-0003-000000000001","userRole":"00000000-0000-0000-0000-000000000003"}'
+      string: '{"email":"user@email.com","expiresInMinutes":43200,"applicationId":"00000000-0000-0000-0003-000000000001","userRole":"00000000-0000-0000-0000-000000000003","companyId":"e7683208-89c3-4499-94fc-28ee0de06b02"}'
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -41,24 +41,24 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Set-Cookie:
-      - ARRAffinity=932e74540a23c627f0dfb40cbee1fa17c087e1806af44546f8bf27c06e52270d;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
-      - ARRAffinitySameSite=932e74540a23c627f0dfb40cbee1fa17c087e1806af44546f8bf27c06e52270d;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinity=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
       Request-Context:
       - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
       Api-Supported-Versions:
       - '1.0'
-      Serverduration:
-      - '106'
+      Server-Duration:
+      - '328'
       X-Powered-By:
       - ASP.NET
       X-Cache:
       - CONFIG_NOCACHE
       X-Azure-Ref:
-      - 0UIVOYwAAAAA5xq+65DiuSaZ3phRc2QsETUFBMDFFREdFMTYxMgBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      - 0EOOOYwAAAAAanBiNjQm1SradDXFR6bQoQk9NMDFFREdFMDUxNgBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
       Date:
-      - Tue, 18 Oct 2022 10:52:01 GMT
+      - Tue, 06 Dec 2022 06:37:05 GMT
     body:
       encoding: ASCII-8BIT
-      string: '{"magicLinkId":"7cfe492f-ac65-490c-ac42-d385b7350754","groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","userId":"e6f52a30-4433-46e8-ae46-660ea732e73b","userRole":"00000000-0000-0000-0000-000000000003","applicationId":"00000000-0000-0000-0003-000000000001","expires":"2022-10-18T22:52:01.3021494Z","created":"2022-10-18T10:52:01.302149Z","createdUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","modified":"2022-10-18T10:52:01.3021493Z","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","magicLinkUrl":"https://app.dev.lockstep.io/magic-link?code=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpdmVrLmFAbG9ja3N0ZXAuaW8iLCJtYWdpY0xpbmtJZCI6IjdjZmU0OTJmLWFjNjUtNDkwYy1hYzQyLWQzODViNzM1MDc1NCIsIm1hZ2ljTGlua05vbmNlIjoiZTY0Njg4ZTQtMzkxYy00NGY4LThjNzgtOWVkZDdjMmQyOWI5IiwibWFnaWNMaW5rVmVyc2lvbiI6MSwibmJmIjoxNjY2MDkwMzIxLCJleHAiOjE2NjYxMzM1MjEsImlzcyI6Imh0dHBzOi8vbG9naW4uZGV2LmxvY2tzdGVwLmlvL2E0OGZkMGY1LTM4YWQtNDA2Yy1hOGFlLWVjMDFlZDI1ZWZjZi92Mi4wLyIsImF1ZCI6IjA0OWYwZjVmLTQzZjUtNDRmNS05NDgwLTQ5YzM0OTQ2OWM4MyJ9.LqdB5_RtrIW9Jn_WzUTzVKJPGgDLHmKzywqFkIX0bdo"}'
-  recorded_at: Tue, 18 Oct 2022 10:52:01 GMT
+      string: '{"magicLinkId":"b00eb96e-263e-4503-a4a3-1b7497c45a2a","groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","userId":"17c2b7f5-978f-44bd-97eb-5f9fa416f81c","userRole":"00000000-0000-0000-0000-000000000003","applicationId":"00000000-0000-0000-0003-000000000003","expires":"2023-01-05T06:37:05.3256669Z","created":"2022-12-06T06:37:05.3256667Z","createdUserId":"17c2b7f5-978f-44bd-97eb-5f9fa416f81c","modified":"2022-12-06T06:37:05.3256668Z","modifiedUserId":"17c2b7f5-978f-44bd-97eb-5f9fa416f81c","companyId":"e7683208-89c3-4499-94fc-28ee0de06b02","magicLinkUrl":"https://app.dev.lockstep.io/self-service/customer/magic-link?code=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRha3NoaXRhLmphaW5AbG9ja3N0ZXAuaW8iLCJtYWdpY0xpbmtJZCI6ImIwMGViOTZlLTI2M2UtNDUwMy1hNGEzLTFiNzQ5N2M0NWEyYSIsIm1hZ2ljTGlua05vbmNlIjoiODIxZjI2NDUtNDMzZC00MWEzLTg4NjYtOTE5YTBiNjA5ODFlIiwibWFnaWNMaW5rVmVyc2lvbiI6MSwibmJmIjoxNjcwMzA4NjI1LCJleHAiOjE2NzI5MDA2MjUsImlzcyI6Imh0dHBzOi8vbG9naW4uZGV2LmxvY2tzdGVwLmlvL2E0OGZkMGY1LTM4YWQtNDA2Yy1hOGFlLWVjMDFlZDI1ZWZjZi92Mi4wLyIsImF1ZCI6IjA0OWYwZjVmLTQzZjUtNDRmNS05NDgwLTQ5YzM0OTQ2OWM4MyJ9.dZUflky1XH52ez2uI5pPaOBKmv9mkx27sss4B8l1h8Q"}'
+  recorded_at: Tue, 06 Dec 2022 06:37:05 GMT
 recorded_with: VCR 6.1.0
