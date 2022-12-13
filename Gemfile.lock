@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lockstep_rails (0.3.42)
+    lockstep_rails (0.3.43)
       rails
 
 GEM
@@ -82,6 +82,7 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
+    date (3.3.1)
     diff-lcs (1.5.0)
     docile (1.4.0)
     dry-container (0.10.0)
@@ -119,7 +120,8 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
     minitest (5.16.2)
-    net-imap (0.3.1)
+    net-imap (0.3.2)
+      date
       net-protocol
     net-pop (0.1.2)
       net-protocol

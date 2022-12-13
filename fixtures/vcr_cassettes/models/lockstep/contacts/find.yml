@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.dev.lockstep.io/api/v1/Contacts/query?filter=contactId%20eq%20%27249013e5-3aef-40f7-a99e-009dd64aadef%27
+    uri: https://api.dev.lockstep.io/api/v1/Contacts/query?filter=contactId%20eq%20%276e634a6a-0f5a-490a-818e-b16d4c1ba3e8%27
     body:
       encoding: UTF-8
       string: 'null'
@@ -23,38 +23,44 @@ http_interactions:
       - 2022.4.32.0
       Machinename:
       - "<MACHINE_NAME>"
-      Authorization:
-      - Bearer "<BEARER>"
+      Api-Key:
+      - "<API_KEY>"
   response:
     status:
       code: 200
       message: OK
     headers:
-      Content-Length:
-      - '470'
+      Cache-Control:
+      - no-store, no-cache
+      Transfer-Encoding:
+      - chunked
       Content-Type:
       - application/json; charset=utf-8
-      Vary:
-      - Accept-Encoding
+      Server:
+      - Microsoft-IIS/10.0
       Set-Cookie:
-      - ARRAffinity=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
-      - ARRAffinitySameSite=a96840ff5762b582a3db18f141d944de12e35fbb7b7f62666c483433e2c0e911;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinity=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      X-Cache:
+      - PRIVATE_NOSTORE
       Request-Context:
       - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
       Api-Supported-Versions:
       - '1.0'
-      Serverduration:
-      - '6'
+      Server-Duration:
+      - '199'
       X-Powered-By:
       - ASP.NET
-      X-Cache:
-      - CONFIG_NOCACHE
+      X-Azure-Ref-Originshield:
+      - '09iaXYwAAAAB2c4k+JihGQK4JoQzReCqYTUFBMjAxMDYwNTE3MDM5AGZiYmE2YTk4LTFiMzktNDg0My05M2Q1LTI3YTg1MzlhN2RiMQ=='
       X-Azure-Ref:
-      - 0RRECYgAAAAC2WIIEQVjzSqmonFqJmB3NRFhCMzBFREdFMDIxNgBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      - '09iaXYwAAAAAzYwkZG3AGRYvFeXqZojHyQk9NMDJFREdFMDkxNABmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE='
       Date:
-      - Tue, 08 Feb 2022 06:44:21 GMT
+      - Mon, 12 Dec 2022 13:04:54 GMT
     body:
-      encoding: ASCII-8BIT
-      string: '{"records":[{"contactId":"249013e5-3aef-40f7-a99e-009dd64aadef","companyId":"8c61f615-2424-4bbe-90c8-8e1336b8449f","groupKey":"84b1ebfe-bdf4-4590-92ee-c41f140f9c63","emailAddress":"x@b.com","isActive":true,"created":"2022-01-13T00:27:33.55","createdUserId":"257b71c8-3aa4-4715-8c5a-4e8d71f96bcb","modified":"2022-02-08T05:53:06.22","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b"}],"totalCount":1,"pageSize":10000}'
-  recorded_at: Tue, 08 Feb 2022 06:44:21 GMT
-recorded_with: VCR 6.0.0
+      encoding: UTF-8
+      string: '{"records":[{"contactId":"6e634a6a-0f5a-490a-818e-b16d4c1ba3e8","companyId":"7997eac2-adb2-4c02-89e7-689728313ce2","groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","erpKey":"45C89E6B-FD58-491D-8251-A7DD90CF3238","contactName":"Ahmad","contactCode":"Almighty
+        Almonds 3","title":"TestTitle","roleCode":"TestCode","emailAddress":"DemoTestEmail@lockstep.io","phone":"1-800-444-3333","fax":"1-800-444-4444","address1":"113
+        Cherry Street","address2":"","address3":"","city":"Seattle","stateRegion":"WA","postalCode":"98104-2205","countryCode":"US","isActive":true,"webpageUrl":"https://lockstep.io/","pictureUrl":"https://lockstep.io/wp-content/uploads/2020/12/Lockstep-Registered-Trademark-Website-Logo.png","created":"2022-08-25T06:40:16.4","createdUserId":"95845776-6e85-45a9-9612-39d6ee14813b","modified":"2022-08-25T06:40:16.4","modifiedUserId":"95845776-6e85-45a9-9612-39d6ee14813b","appEnrollmentId":"803cb91a-38f7-46ab-8f0d-7dfdb4b28f91"}],"totalCount":1,"pageSize":250}'
+  recorded_at: Mon, 12 Dec 2022 13:04:55 GMT
+recorded_with: VCR 6.1.0
