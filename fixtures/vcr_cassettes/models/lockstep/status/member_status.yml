@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api/v1/Status/
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Authorization:
+      - "<Authorization>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store, no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ARRAffinity=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Api-Supported-Versions:
+      - '1.0'
+      Serverduration:
+      - '1'
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 0MjmHYwAAAADpiR4m9mMdR4uuemSAyMi/Qk9NMDJFREdFMDkxNABmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Wed, 30 Nov 2022 11:06:27 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"userName":"Tejas Shetty","emailAddress":"burneracc.0612@gmail.com","accountName":"Testing
+        Around","accountCompanyId":"cc997797-0ece-49ec-84a6-83d477a219fa","userId":"873d5a87-3c4b-4a85-9238-2018ec176347","groupKey":"0f38b5ae-59d9-4a16-860b-067eff8d1e9f","loggedIn":true,"roles":["Member"],"userStatus":"Active","environment":"dev","version":"2022.48.13.0","onboardingScheduled":false,"dependencies":{"Cloud
+        Storage":"Healthy","Email":"Healthy","Lockstep Database":"Healthy","Secrets":"Healthy","Cache":"Healthy"},"userGroups":[{"groupKey":"0f38b5ae-59d9-4a16-860b-067eff8d1e9f","userRole":"Member","groupName":"Testing
+        Around","status":"Active"},{"groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","userRole":"Read-Only","groupName":"APAC
+        Dev Company","status":"Active"},{"groupKey":"8bfd51da-b36a-4ca3-95ba-755c59a8faa8","userRole":"Group
+        Owner","groupName":"Testing Around","status":"Active"}]}'
+  recorded_at: Wed, 30 Nov 2022 11:06:27 GMT
+recorded_with: VCR 6.1.0

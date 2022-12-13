@@ -39,30 +39,31 @@ The gem is available as open source under the terms of the [MIT License](https:/
 # Usage
 
 ### Available Records
-* Lockstep::Contact
-* Lockstep::Connection
 * Lockstep::Account
-* Lockstep::User
-* Lockstep::Note
-* Lockstep::Invoice
-* Lockstep::InvoiceSummary
+* Lockstep::ApiKey
+* Lockstep::AppEnrollment
+* Lockstep::Connection
+* Lockstep::Contact
 * Lockstep::CustomerSummary
+* Lockstep::FeatureFlag
+* Lockstep::Invoice
+* Lockstep::InvoiceAtRiskSummary
+* Lockstep::InvoiceSummary
+* Lockstep::MagicLink
+* Lockstep::Note
 * Lockstep::Payments
 * Lockstep::PaymentSummary
-* Lockstep::AppEnrollment
+* Lockstep::ReportApAgingHeader
 * Lockstep::ReportArAgingHeader
 * Lockstep::ReportCashflow
-* Lockstep::ReportDailySalesOutstanding
-* Lockstep::ReportRiskRate
-* Lockstep::ReportApAgingHeader
 * Lockstep::ReportDailyPayableOutstanding
+* Lockstep::ReportDailySalesOutstanding
 * Lockstep::ReportPayableComingDue
-* Lockstep::ReportPayableSummary
 * Lockstep::ReportPayablesComingDueSummary
-* Lockstep::ApiKey
-* Lockstep::InvoiceAtRiskSummary
-* Lockstep::MagicLink
-* Lockstep::FeatureFlag
+* Lockstep::ReportPayableSummary
+* Lockstep::ReportRiskRate
+* Lockstep::Status
+* Lockstep::User
 
 ## ActiveModel Interfaces
 

@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api/v1/Status/
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Api-Key:
+      - "<API_KEY>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store, no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Server:
+      - Microsoft-IIS/10.0
+      Set-Cookie:
+      - ARRAffinity=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=5f449e82b59ca9cbdf6086fc4a07d12e2b9e7b5d5f8452d139d90353ecbbcd75;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      X-Cache:
+      - PRIVATE_NOSTORE
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Api-Supported-Versions:
+      - '1.0'
+      Serverduration:
+      - '9'
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref-Originshield:
+      - '09jyHYwAAAAAnw+EpmKOxQ5Sg8tXR4nukTUFBMjAxMDYwNTE3MDA5AGZiYmE2YTk4LTFiMzktNDg0My05M2Q1LTI3YTg1MzlhN2RiMQ=='
+      X-Azure-Ref:
+      - '09jyHYwAAAAAC5OHFgP3SRL3/ONKSYVOBQk9NMDJFREdFMDgxOABmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE='
+      Date:
+      - Wed, 30 Nov 2022 11:22:30 GMT
+    body:
+      encoding: UTF-8
+      string: '{"loggedIn":false,"errorMessage":"This API key is not valid, it may
+        have been revoked. If you believe this is an error, contact support.","dependencies":{"Cloud
+        Storage":"Healthy","Email":"Healthy","Lockstep Database":"Healthy","Secrets":"Healthy","Cache":"Healthy"}}'
+  recorded_at: Wed, 30 Nov 2022 11:22:31 GMT
+recorded_with: VCR 6.1.0
