@@ -62,6 +62,16 @@ end
   # @format: uuid
   field :modified_user_id
 
+  # The ID of the company associated to this magic link
+  # @type: string
+  # @format: uuid
+  field :company_id
+
+  # The ID of the accounting profile associated to this magic link
+  # @type: string
+  # @format: uuid
+  field :accounting_profile_id
+
   # The created magic link URL. This will only be returned upon creation of the magic link.
   # All other times, this value will be `null`.
   # @type: string
@@ -73,6 +83,8 @@ end
 
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
+  belongs_to :company, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"company_id"}
+  belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
 
 
 end

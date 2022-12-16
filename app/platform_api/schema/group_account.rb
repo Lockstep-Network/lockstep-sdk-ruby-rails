@@ -27,6 +27,10 @@ end
   # @format: uuid
   field :group_company_id
 
+  # Base Currency of the group
+  # @type: string
+  field :base_currency_code
+
   # The active status of the group
   # @type: boolean
   field :is_active

@@ -108,6 +108,11 @@ end
   # @type: boolean
   field :in_dispute
 
+  # The Currency Rate used to get from the account's base currency to the payment amount.
+  # @type: number
+  # @format: double
+  field :currency_rate
+
 
 
 end

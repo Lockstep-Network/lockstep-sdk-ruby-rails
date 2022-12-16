@@ -9,6 +9,10 @@ end
   # @type: string
   field :user_name
 
+  # If authentication is successful, contains the email address of the logged-in user.
+  # @type: string
+  field :email_address
+
   # If authentication is successful, contains subscription account name of logged-in user.
   # @type: string
   field :account_name
@@ -71,10 +75,22 @@ end
   # @format: uuid
   field :magic_link_id
 
+  # The id of the target company for the Magic Link
+  # @type: string
+  # @format: uuid
+  field :magic_link_company_id
+
+  # Magic link information about the user
+  field :magic_link
+
   # Statuses for the dependencies of this api.
   # OK if the dependency is working.
   # @type: object
   field :dependencies
+
+  # Base Currency of the group
+  # @type: string
+  field :base_currency_code
 
 
   has_many :user_groups, {:class_name=>"Schema::UserGroup", :included=>true}
