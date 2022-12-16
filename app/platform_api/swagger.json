@@ -280,7 +280,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -812,6 +812,21 @@
               }
             }
           },
+          "424": {
+            "description": "Client Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "200": {
             "description": "Success",
             "content": {
@@ -888,7 +903,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -1376,7 +1391,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -1961,7 +1976,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200, maximum of 10,000)",
+            "description": "The page size for results (default 250, maximum of 500)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -2057,6 +2072,21 @@
               }
             }
           },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "401": {
             "description": "Unauthorized"
           },
@@ -2112,7 +2142,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -2364,8 +2394,8 @@
         "tags": [
           "Companies"
         ],
-        "summary": "Disable Company",
-        "description": "Disable the Company referred to by this unique identifier.\r\n\r\nA Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.\r\n\r\nSee [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "summary": "Delete Company",
+        "description": "Delete the Company referred to by this unique identifier.\r\n\r\nA Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.\r\n\r\nSee [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "parameters": [
           {
             "name": "id",
@@ -2384,12 +2414,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               }
             }
@@ -2399,12 +2429,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               }
             }
@@ -2414,12 +2444,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               }
             }
@@ -2535,6 +2565,112 @@
             "api_key": [ ]
           }
         ]
+      },
+      "delete": {
+        "tags": [
+          "Companies"
+        ],
+        "summary": "Delete Companies",
+        "description": "Delete the Companies referred to by these unique identifiers.\r\n\r\nA Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.\r\n\r\nSee [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "requestBody": {
+          "description": "The unique Lockstep Platform ID numbers of the Companies to delete; NOT the customer's ERP key",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
       }
     },
     "/api/v1/Companies/query": {
@@ -2572,7 +2708,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200, maximum of 10,000)",
+            "description": "The page size for results (default 250, maximum of 500)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -2674,7 +2810,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200, maximum of 10,000)",
+            "description": "The page size for results (default 250, maximum of 500)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -2785,7 +2921,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200, maximum of 10,000)",
+            "description": "The page size for results (default 250, maximum of 500)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -3320,13 +3456,13 @@
         "tags": [
           "Contacts"
         ],
-        "summary": "Disable Contact",
-        "description": "Disable the Contact referred to by this unique identifier.\r\n\r\nA Contact contains information about a person or role within a Company. You can use Contacts to track information about who is responsible for a specific project, who handles invoices, or information about which role at a particular customer or vendor you should speak with about invoices.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "summary": "Delete Contact",
+        "description": "Delete the Contact referred to by this unique identifier.\r\n\r\nA Contact contains information about a person or role within a Company. You can use Contacts to track information about who is responsible for a specific project, who handles invoices, or information about which role at a particular customer or vendor you should speak with about invoices.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "The unique Lockstep Platform ID number of the Contact to disable; NOT the customer's ERP key",
+            "description": "The unique Lockstep Platform ID number of the Contact to delete; NOT the customer's ERP key",
             "required": true,
             "schema": {
               "type": "string",
@@ -3340,12 +3476,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               }
             }
@@ -3355,12 +3506,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               }
             }
@@ -3478,6 +3629,112 @@
             "api_key": [ ]
           }
         ]
+      },
+      "delete": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Delete Contacts",
+        "description": "Delete the Contacts referred to by these unique identifiers.\r\n\r\nA Contact contains information about a person or role within a Company. You can use Contacts to track information about who is responsible for a specific project, who handles invoices, or information about which role at a particular customer or vendor you should speak with about invoices.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "requestBody": {
+          "description": "The unique Lockstep Platform ID numbers of the Contacts to delete; NOT the customer's ERP keys",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
       }
     },
     "/api/v1/Contacts/query": {
@@ -3515,7 +3772,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -3952,7 +4209,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -4386,7 +4643,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -5040,7 +5297,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -5488,7 +5745,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -5575,7 +5832,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -5645,7 +5902,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -5715,7 +5972,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -5785,7 +6042,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -6294,7 +6551,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -6697,7 +6954,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -7115,7 +7372,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -7842,7 +8099,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -7962,6 +8219,97 @@
                   "items": {
                     "$ref": "#/components/schemas/InvoiceLineModel"
                   }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "InvoiceLines"
+        ],
+        "summary": "Delete Invoice Lines",
+        "description": "\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "requestBody": {
+          "description": "The unique Lockstep Platform ID numbers of the Invoice Lines to delete; NOT the customer's ERP keys",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               }
             }
@@ -8185,12 +8533,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               }
             }
@@ -8200,12 +8548,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               }
             }
@@ -8524,12 +8872,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               }
             }
@@ -8539,12 +8887,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               }
             }
@@ -8606,8 +8954,8 @@
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -8623,6 +8971,112 @@
                   "items": {
                     "$ref": "#/components/schemas/InvoiceModel"
                   }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Delete Invoices",
+        "description": "Delete the Invoices referred to by these unique identifiers.\r\n\r\nAn Invoice represents a bill sent from one company to another.  The creator of the invoice is identified by the `CompanyId` field, and the recipient of the invoice is identified by the `CustomerId` field.  Most invoices are uniquely identified both by a Lockstep Platform ID number and a customer ERP \"key\" that was generated by the system that originated the invoice.  Invoices have a total amount and a due date, and when some payments have been made on the Invoice the `TotalAmount` and the `OutstandingBalanceAmount` may be different.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "requestBody": {
+          "description": "The unique Lockstep Platform ID numbers of the Invoices to delete; NOT the customer's ERP keys",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BulkDeleteRequestModel"
+                  }
+                ],
+                "description": "Represents a bulk delete request in the API"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
                 }
               }
             }
@@ -8682,7 +9136,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -8856,7 +9310,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -8943,7 +9397,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -9237,7 +9691,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200, maximum of 10,000)",
+            "description": "The page size for results (default 250, maximum of 500)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -9564,7 +10018,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200, maximum of 10,000)",
+            "description": "The page size for results (default 250, maximum of 500)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -10001,7 +10455,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -10439,7 +10893,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -10613,7 +11067,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -10743,7 +11197,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -11176,7 +11630,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -11204,6 +11658,871 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PaymentAppliedModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Profiles/accounting/contacts/{id}": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Retrieve Accounting Profile Contact",
+        "description": "Retrieves the Accounting Profile Contact specified by this unique identifier, optionally including nested data sets.\r\n\r\nA Contact has a link to a Contact that is associated with your company's Accounting Profile. These Contacts are secondary contacts to the primary that is on the profile.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of this Accounting Profile Contact",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileContactModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileContactModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Delete Accounting Profile Contact",
+        "description": "Delete the Accounting Profile Contact referred to by this unique identifier.\r\n\r\nA Accounting Profile Contact has a link to a Contact that is associated with your company's Accounting Profile. These Contacts are secondary contacts to the primary that is on the profile.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of the Accounting Profile Contact to delete",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Profiles/accounting/contacts": {
+      "post": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Create Accounting Profile Contacts",
+        "description": "Creates one or more Accounting Profile Contacts from a given model.\r\n\r\nAn Accounting Profile Contact has a link to a Contact that is associated with your company's Accounting Profile. These Contacts are secondary contacts to the primary that is on the profile.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "requestBody": {
+          "description": "The Accounting Profile Contacts to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AccountingProfileContactModel"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AccountingProfileContactModel"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AccountingProfileContactModel"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountingProfileContactModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountingProfileContactModel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Profiles/accounting/contacts/{id}/{contactId}": {
+      "patch": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Update Accounting Profile Contact",
+        "description": "Updates an accounting profile contact that matches the specified id with the requested information.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nAn Accounting Profile Contact has a link to a Contact that is associated with your company's Accounting Profile. These Contacts are secondary contacts to the primary that is on the profile.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of the Accounting Profile Contact to update",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "contactId",
+            "in": "path",
+            "description": "The ID of the contact to link to this Accounting Profile Contact",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileContactModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileContactModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Profiles/accounting/contacts/query": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Query Accounting Profile Contacts",
+        "description": "Queries Accounting Profile Contacts for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\r\n\r\nAn Accounting Profile Contact has a link to a Contact that is associated with your company's Accounting Profile. These Contacts are secondary contacts to the primary that is on the profile.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\n             Available collections: None",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileContactModelFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileContactModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Profiles/accounting/{id}": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Retrieve Accounting Profile",
+        "description": "Retrieves the Accounting Profile specified by this unique identifier, optionally including nested data sets.\r\n\r\nAn Accounting Profile is a child of a Company Profile, and collectively, they comprise the identity and necessary information for an accounting  team to work with trading partners, financial institutions, auditors, and others. You can use Accounting Profiles to define an accounting function by what the function does and how to interface with the function.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of this Accounting Profile",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Attachments, CustomFields, Notes",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Update Accounting Profile",
+        "description": "Updates an accounting profile that matches the specified id with the requested information.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nAn Accounting Profile is a child of a Company Profile, and collectively, they comprise the identity and necessary information for an accounting  team to work with trading partners, financial institutions, auditors, and others. You can use Accounting Profiles to define an accounting function by what the function does and how to interface with the function.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of the Accounting Profile to update",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of changes to apply to this Accounting Profile",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Delete Accounting Profile",
+        "description": "Delete the Accounting Profile referred to by this unique identifier.\r\n\r\nAn Accounting Profile is a child of a Company Profile, and collectively, they comprise the identity and necessary information for an accounting  team to work with trading partners, financial institutions, auditors, and others. You can use Accounting Profiles to define an accounting function by what the function does and how to interface with the function.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of the Accounting Profile to disable",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Profiles/accounting": {
+      "post": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Create Accounting Profiles",
+        "description": "Creates one or more accounting profiles from a given model.\r\n\r\nAn Accounting Profile is a child of a Company Profile, and collectively, they comprise the identity and necessary information for an accounting  team to work with trading partners, financial institutions, auditors, and others. You can use Accounting Profiles to define an accounting function by what the function does and how to interface with the function.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "requestBody": {
+          "description": "The Accounting Profiles to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AccountingProfileModel"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AccountingProfileModel"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AccountingProfileModel"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountingProfileModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountingProfileModel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Profiles/accounting/query": {
+      "get": {
+        "tags": [
+          "Profiles"
+        ],
+        "summary": "Query Accounting Profiles",
+        "description": "Queries Accounting Profiles for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\r\n\r\nAn Accounting Profile is a child of a Company Profile, and collectively, they comprise the identity and necessary information for an accounting  team to work with trading partners, financial institutions, auditors, and others. You can use Accounting Profiles to define an accounting function by what the function does and how to interface with the function.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\n             Available collections: Attachments, CustomFields, Notes",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileModelFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountingProfileModelFetchResult"
                 }
               }
             }
@@ -11306,7 +12625,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200, maximum of 10,000)",
+            "description": "The page size for results (default 250, maximum of 500)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -11782,7 +13101,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200, maximum of 10,000)",
+            "description": "The page size for results (default 250, maximum of 500)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -12889,7 +14208,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200, maximum of 10,000)",
+            "description": "The page size for results (default 250, maximum of 500)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -13599,7 +14918,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -13686,7 +15005,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -13784,6 +15103,418 @@
                   "items": {
                     "$ref": "#/components/schemas/TransactionDetailModel"
                   }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Transcriptions/validate/{id}": {
+      "get": {
+        "tags": [
+          "Transcriptions"
+        ],
+        "summary": "Retrieve Transcription Validation Request",
+        "description": "Retrieves the Transcription Validation Request specified by this unique identifier, optionally including nested data sets.\r\n\r\nA Transcription Validation Request represents a collection of files sent from the client to verify the file type using the machine learning platform Sage AI.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of the transcription validation request",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Items",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TranscriptionValidationRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TranscriptionValidationRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Transcriptions"
+        ],
+        "summary": "Update Transcription Validation Request",
+        "description": "Updates an existing Transcription Validation Request with the information supplied to this PATCH call.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nA Transcription Validation Request represents a collection of files sent from the client to verify the file type using the machine learning platform Sage AI.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of the Transcription Validation Request to update",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of changes to apply to this Transcription Validation Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TranscriptionValidationRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TranscriptionValidationRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Transcriptions"
+        ],
+        "summary": "Delete Transcription Validation Request",
+        "description": "Deletes the Transcription Validation Request and all associated items referred to by this unique identifier.\r\n\r\nA Transcription Validation Request represents a collection of files sent from the client to verify the file type using the machine learning platform Sage AI.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of the transcription validation request to delete",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Transcriptions/validate": {
+      "post": {
+        "tags": [
+          "Transcriptions"
+        ],
+        "summary": "Create Transcription Validation Request",
+        "description": "Creates one Transcription Validation Request with all the associated request items within this account and returns the record as created.\r\n\r\nA Transcription Validation Request represents a collection of files sent from the client to verify the file type using the machine learning platform Sage AI.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "requestBody": {
+          "description": "The files which will be verified",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TranscriptionRequestSubmit"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TranscriptionRequestSubmit"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TranscriptionRequestSubmit"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TranscriptionValidationRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TranscriptionValidationRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Transcriptions/validate/query": {
+      "get": {
+        "tags": [
+          "Transcriptions"
+        ],
+        "summary": "Query Transcription Validation Requests",
+        "description": "Queries transcription validation requests transactions for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Items",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for this query.  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TranscriptionValidationRequestFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TranscriptionValidationRequestFetchResult"
                 }
               }
             }
@@ -14418,7 +16149,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -14771,7 +16502,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -15197,7 +16928,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -15749,7 +17480,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -15846,7 +17577,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "The page size for results (default 200).",
+            "description": "The page size for results (default 250, maximum of 500).",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -15996,6 +17727,282 @@
   },
   "components": {
     "schemas": {
+      "AccountingProfileContactModel": {
+        "type": "object",
+        "properties": {
+          "accountingProfileContactId": {
+            "type": "string",
+            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Lockstep platform.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "accountingProfileId": {
+            "type": "string",
+            "description": "The ID of the profile this contact is belongs to.",
+            "format": "uuid"
+          },
+          "contactId": {
+            "type": "string",
+            "description": "The ID of the contact that is linked to this profile.",
+            "format": "uuid"
+          },
+          "groupKey": {
+            "type": "string",
+            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "created": {
+            "type": "string",
+            "description": "The date on which this record was created.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "createdUserId": {
+            "type": "string",
+            "description": "The ID of the user who created this contact.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The date on which this record was last modified.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "modifiedUserId": {
+            "type": "string",
+            "description": "The ID of the user who last modified this contact.",
+            "format": "uuid",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An Accounting Profile Contact has a link to a Contact that is associated with your company's\r\nAccounting Profile. These Contacts are secondary contacts to the primary that is on the profile."
+      },
+      "AccountingProfileContactModelFetchResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingProfileContactModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountingProfileModel": {
+        "required": [
+          "companyId",
+          "emailAddress",
+          "name",
+          "primaryContactId",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "accountingProfileId": {
+            "type": "string",
+            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Lockstep platform.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "companyId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The ID of the company profile to which this accounting profile belongs.",
+            "format": "uuid"
+          },
+          "groupKey": {
+            "type": "string",
+            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "The name of the accounting profile."
+          },
+          "type": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string",
+            "description": "The type of the accounting profile.\r\nSome examples include 'AR', 'AP', 'AR+AP', 'General Accounting', 'Treasury', 'Payroll', 'Finance'"
+          },
+          "emailAddress": {
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string",
+            "description": "The email address associated with the accounting profile.",
+            "format": "email",
+            "example": "mail@example.com"
+          },
+          "phone": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "The phone number associated with the accounting profile.",
+            "nullable": true
+          },
+          "address1": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The first line of the address.",
+            "nullable": true
+          },
+          "address2": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The second line of the address.",
+            "nullable": true
+          },
+          "address3": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The third line of the address.",
+            "nullable": true
+          },
+          "city": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The city of the address.",
+            "nullable": true
+          },
+          "region": {
+            "maxLength": 20,
+            "type": "string",
+            "description": "The state/region of the address.",
+            "nullable": true
+          },
+          "postalCode": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "The postal/zip code of the address.",
+            "nullable": true
+          },
+          "country": {
+            "maxLength": 2,
+            "minLength": 2,
+            "type": "string",
+            "description": "The two character country code of the address.",
+            "nullable": true
+          },
+          "primaryContactId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The ID of the primary contact with which this accounting profile is associated.",
+            "format": "uuid"
+          },
+          "created": {
+            "type": "string",
+            "description": "The date on which this record was created.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "createdUserId": {
+            "type": "string",
+            "description": "The ID of the user who created this accounting profile.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The date on which this record was last modified.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "modifiedUserId": {
+            "type": "string",
+            "description": "The ID of the user who last modified this accounting profile.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoteModel"
+            },
+            "description": "A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the\r\n`include` parameter when retrieving data.\r\n            \r\nTo create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)\r\nendpoint with the `TableKey` to `AccountingProfile` and the `ObjectKey` set to the `AccountingProfileId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
+            "nullable": true,
+            "readOnly": true
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachmentModel"
+            },
+            "description": "A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in\r\nthe `include` parameter when retrieving data.\r\n            \r\nTo create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)\r\nendpoint with the `TableKey` to `AccountingProfile` and the `ObjectKey` set to the `AccountingProfileId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
+            "nullable": true,
+            "readOnly": true
+          },
+          "customFieldDefinitions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldDefinitionModel"
+            },
+            "description": "A collection of custom fields linked to this record.  To retrieve this collection, specify\r\n`CustomFieldDefinitions` in the `include` parameter when retrieving data.\r\n            \r\nTo create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)\r\nendpoint with the `TableKey` to `AccountingProfile` and the `ObjectKey` set to the `AccountingProfileId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
+            "nullable": true,
+            "readOnly": true
+          },
+          "customFieldValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldValueModel"
+            },
+            "description": "A collection of custom fields linked to this record.  To retrieve this collection, specify\r\n`CustomFieldValues` in the `include` parameter when retrieving data.\r\n            \r\nTo create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)\r\nendpoint with the `TableKey` to `AccountingProfile` and the `ObjectKey` set to the `AccountingProfileId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An Accounting Profile is a child of a Company Profile, and collectively,\r\nthey comprise the identity and necessary information for an accounting  team\r\nto work with trading partners, financial institutions, auditors, and others.\r\nYou can use Accounting Profiles to define an accounting function by what\r\nthe function does and how to interface with the function."
+      },
+      "AccountingProfileModelFetchResult": {
+        "type": "object",
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingProfileModel"
+            },
+            "nullable": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ActionResultModel": {
         "type": "object",
         "properties": {
@@ -16624,6 +18631,11 @@
           "password": {
             "type": "string",
             "description": "The password for the web services account with access permissions.",
+            "nullable": true
+          },
+          "realmId": {
+            "type": "string",
+            "description": "The Realm Id for the app enrollment to reconnect.",
             "nullable": true
           },
           "tokenId": {
@@ -17434,6 +19446,25 @@
         },
         "additionalProperties": false,
         "description": "Input format used for bulk conversion route"
+      },
+      "BulkDeleteRequestModel": {
+        "required": [
+          "idsToDelete"
+        ],
+        "type": "object",
+        "properties": {
+          "idsToDelete": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Represents the IDs to be deleted"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a bulk delete request in the API"
       },
       "CashflowReportModel": {
         "type": "object",
@@ -19694,6 +21725,21 @@
         "additionalProperties": false,
         "description": "Represents the daily sales outstanding report"
       },
+      "DeleteResult": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "If the API call produced messages, this element will contain a list of user-visible\r\ntext strings that contain information about what work occurred in the API.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about result of delete operations"
+      },
       "DeveloperAccountSubmitModel": {
         "required": [
           "companyName",
@@ -20542,6 +22588,12 @@
             "description": "The CompanyId of the Company the group is associated with",
             "format": "uuid"
           },
+          "baseCurrencyCode": {
+            "type": "string",
+            "description": "Base Currency of the group",
+            "nullable": true,
+            "readOnly": true
+          },
           "isActive": {
             "type": "boolean",
             "description": "The active status of the group"
@@ -20992,6 +23044,11 @@
             "format": "uuid",
             "nullable": true,
             "readOnly": true
+          },
+          "currencyRate": {
+            "type": "number",
+            "description": "The Currency Rate used to get from the account's base currency to the invoice amount.",
+            "format": "double"
           }
         },
         "additionalProperties": false,
@@ -21198,6 +23255,13 @@
       "InvoiceLineModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceLineModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -21211,13 +23275,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceLineModel"
-            },
             "nullable": true
           }
         },
@@ -21680,6 +23737,11 @@
             "description": "Indicates the preferred delivery method for this invoice. Examples include Print, Email, Fax",
             "nullable": true
           },
+          "currencyRate": {
+            "type": "number",
+            "description": "The Currency Rate used to get from the account's base currency to the invoice amount.",
+            "format": "double"
+          },
           "addresses": {
             "type": "array",
             "items": {
@@ -22058,6 +24120,7 @@
       "InvoiceSyncModel": {
         "required": [
           "companyErpKey",
+          "currencyRate",
           "customerErpKey",
           "erpKey"
         ],
@@ -22347,6 +24410,11 @@
             "type": "string",
             "description": "Indicates the preferred delivery method for this invoice. Examples include Print, Email, Fax",
             "nullable": true
+          },
+          "currencyRate": {
+            "type": "number",
+            "description": "The Currency Rate used to get from the account's base currency to the invoice amount.",
+            "format": "double"
           }
         },
         "additionalProperties": false,
@@ -22465,6 +24533,20 @@
             "format": "uuid",
             "readOnly": true
           },
+          "companyId": {
+            "type": "string",
+            "description": "The ID of the company associated to this magic link",
+            "format": "uuid",
+            "nullable": true,
+            "readOnly": true
+          },
+          "accountingProfileId": {
+            "type": "string",
+            "description": "The ID of the accounting profile associated to this magic link",
+            "format": "uuid",
+            "nullable": true,
+            "readOnly": true
+          },
           "magicLinkUrl": {
             "type": "string",
             "description": "The created magic link URL. This will only be returned upon creation of the magic link.\r\nAll other times, this value will be `null`.",
@@ -22512,6 +24594,29 @@
           }
         },
         "additionalProperties": false
+      },
+      "MagicLinkStatusModel": {
+        "type": "object",
+        "properties": {
+          "magicLinkId": {
+            "type": "string",
+            "description": "The id of the Magic link used to authenticate.",
+            "format": "uuid"
+          },
+          "companyId": {
+            "type": "string",
+            "description": "The id of the target company for the Magic Link",
+            "format": "uuid"
+          },
+          "accountingProfileId": {
+            "type": "string",
+            "description": "The id of the accounting profile for the Magic Link",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains information about the user's magic link"
       },
       "NoteModel": {
         "required": [
@@ -23314,6 +25419,11 @@
             "type": "boolean",
             "description": "Is the payment in dispute?"
           },
+          "currencyRate": {
+            "type": "number",
+            "description": "The Currency Rate used to get from the account's base currency to the payment amount.",
+            "format": "double"
+          },
           "applications": {
             "type": "array",
             "items": {
@@ -23595,6 +25705,7 @@
       "PaymentSyncModel": {
         "required": [
           "companyErpKey",
+          "currencyRate",
           "erpKey",
           "isOpen",
           "paymentAmount",
@@ -23682,6 +25793,11 @@
             "type": "boolean",
             "description": "True if this payment is in dispute.",
             "nullable": true
+          },
+          "currencyRate": {
+            "type": "number",
+            "description": "The Currency Rate used to get from the account's base currency to the payment amount.",
+            "format": "double"
           }
         },
         "additionalProperties": false,
@@ -23920,6 +26036,11 @@
             "description": "If authentication is successful, contains the username of the logged-in user.",
             "nullable": true
           },
+          "emailAddress": {
+            "type": "string",
+            "description": "If authentication is successful, contains the email address of the logged-in user.",
+            "nullable": true
+          },
           "accountName": {
             "type": "string",
             "description": "If authentication is successful, contains subscription account name of logged-in user.",
@@ -23996,6 +26117,23 @@
             "type": "string",
             "description": "The id of the Magic link used to authenticate.",
             "format": "uuid",
+            "nullable": true,
+            "deprecated": true
+          },
+          "magicLinkCompanyId": {
+            "type": "string",
+            "description": "The id of the target company for the Magic Link",
+            "format": "uuid",
+            "nullable": true,
+            "deprecated": true
+          },
+          "magicLink": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MagicLinkStatusModel"
+              }
+            ],
+            "description": "Magic link information about the user",
             "nullable": true
           },
           "dependencies": {
@@ -24013,6 +26151,11 @@
               "$ref": "#/components/schemas/UserGroupModel"
             },
             "description": "The set of Groups that the user has access to.\r\nYou can use the /api/v1/useraccounts/change-group endpoint to change your active group.",
+            "nullable": true
+          },
+          "baseCurrencyCode": {
+            "type": "string",
+            "description": "Base Currency of the group",
             "nullable": true
           }
         },
@@ -24102,6 +26245,18 @@
             "type": "string",
             "description": "The status of processing for this SyncRequest.  When a SyncRequest is created, it is flagged as `Ready`.\r\nWhen it is picked up for execution, its status moves to `In Progress`.  When it is complete, its status\r\nwill move to `Success` or `Failed`.  If another API call cancels the SyncRequest, its status will move\r\nto `Cancelled`.\r\n            \r\n* Ready\r\n* In Progress\r\n* Cancelled\r\n* Failed\r\n* Success",
             "nullable": true,
+            "readOnly": true
+          },
+          "operationTypeName": {
+            "type": "string",
+            "description": "The name of the OperationType for this SyncRequest",
+            "nullable": true,
+            "readOnly": true
+          },
+          "operationType": {
+            "type": "integer",
+            "description": "The name of the OperationType for this SyncRequest",
+            "format": "int32",
             "readOnly": true
           },
           "processResultMessage": {
@@ -24346,13 +26501,6 @@
       "TransactionModelTransactionSummaryTotalModelSummaryFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransactionModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24366,6 +26514,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionModel"
+            },
             "nullable": true
           },
           "summary": {
@@ -24418,6 +26573,245 @@
         },
         "additionalProperties": false,
         "description": "Represents transaction summary information based on the query request within the group account."
+      },
+      "TranscriptionRequestSubmit": {
+        "type": "object",
+        "properties": {
+          "fileContent": {
+            "type": "string",
+            "description": "The base64 string of document content",
+            "nullable": true
+          },
+          "fileUrl": {
+            "type": "string",
+            "description": "The location of the file provided",
+            "nullable": true,
+            "deprecated": true
+          },
+          "fileContentUrl": {
+            "type": "string",
+            "description": "The location of the file provided",
+            "nullable": true
+          },
+          "fileName": {
+            "maxLength": 200,
+            "type": "string",
+            "description": "The name of the file provided",
+            "nullable": true
+          },
+          "invoiceTypeCode": {
+            "type": "string",
+            "description": "The type of LockstepApi2.Models.TranscriptionRequestSubmit.InvoiceTypeCode requested to transcribe content to.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A request to transcribe the provided file content to a Lockstep Platform object."
+      },
+      "TranscriptionValidationRequest": {
+        "type": "object",
+        "properties": {
+          "transcriptionValidationRequestId": {
+            "type": "string",
+            "description": "The unique identifier of the transcription validation request.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "groupKey": {
+            "type": "string",
+            "description": "Group account transcription validation request is associated with.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "statusCode": {
+            "type": "string",
+            "description": "A code identifying the status of this transcription validation request.\r\n            \r\nRecognized Transcription Validation Request status codes are:\r\n* `New` - Represents a transcription validation request that is considered new and needs work to complete\r\n* `In Progress` - Represents a transcription validation request that is currently being worked on\r\n* `Failed` - Represents a transcription validation request that could not complete the validation process\r\n* `Complete` - Represents a transcription validation request that is considered complete and does not need any further work",
+            "nullable": true,
+            "readOnly": true
+          },
+          "created": {
+            "type": "string",
+            "description": "The date on which this transcription validation request was created.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "createdUserId": {
+            "type": "string",
+            "description": "The ID number of the user who created this transcription validation request.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The date on which this transcription validation request was last modified.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "modifiedUserId": {
+            "type": "string",
+            "description": "The ID number of the user who most recently modified this transcription validation request.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranscriptionValidationRequestItem"
+            },
+            "description": "All items attached to this transcription validation request.\r\nTo retrieve this collection, specify `Items` in the \"Include\" parameter for your query.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a transcription validation request that is used to validate if file is of a specific type."
+      },
+      "TranscriptionValidationRequestFetchResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranscriptionValidationRequest"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TranscriptionValidationRequestItem": {
+        "type": "object",
+        "properties": {
+          "transcriptionValidationRequestItemId": {
+            "type": "string",
+            "description": "The unique identifier of the transcription validation request item.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "transcriptionValidationRequestId": {
+            "type": "string",
+            "description": "The ID number of the transcription validation request this item belongs to.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "groupKey": {
+            "type": "string",
+            "description": "Group account transcription validation request item is associated with.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "fileHash": {
+            "type": "string",
+            "description": "Generated hash of the file being validated.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Original name of the file on disk, without its extension.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "fileExt": {
+            "type": "string",
+            "description": "Original extension name of the file on disk.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "fileLocation": {
+            "type": "string",
+            "description": "Location of file in blob storage to be validated.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "transcriptionResult": {
+            "type": "string",
+            "description": "Transcription result",
+            "nullable": true,
+            "readOnly": true
+          },
+          "processStart": {
+            "type": "string",
+            "description": "Transcription process start date",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "processEnd": {
+            "type": "string",
+            "description": "Transcription process end date",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "retryCount": {
+            "type": "integer",
+            "description": "Amount of times item was processed to retrieve the transcription data",
+            "format": "int32",
+            "readOnly": true
+          },
+          "feedbackResult": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "Feedback result specified by the client when the transcription result is not correct. This feedback result will be sent back to the transcription services to retrain and improve models over time.",
+            "nullable": true
+          },
+          "feedbackSent": {
+            "type": "string",
+            "description": "Date when feedback result was sent back to transcription service.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "statusCode": {
+            "type": "string",
+            "description": "A code identifying the status of this transcription validation request item.\r\n            \r\nRecognized Transcription Validation Request status codes are:\r\n* `New` - Represents a transcription validation request item that is considered new and needs work to complete\r\n* `In Progress` - Represents a transcription validation request item that is currently being worked on\r\n* `Failed` - Represents a transcription validation request item that could not complete the validation process\r\n* `Complete` - Represents a transcription validation request item that is considered complete and does not need any further work",
+            "nullable": true,
+            "readOnly": true
+          },
+          "created": {
+            "type": "string",
+            "description": "The date on which this transcription validation request item was created.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "createdUserId": {
+            "type": "string",
+            "description": "The ID number of the user who created this transcription validation request item.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The date on which this transcription validation request item was last modified.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "modifiedUserId": {
+            "type": "string",
+            "description": "The ID number of the user who most recently modified this transcription validation request item.",
+            "format": "uuid",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a transcription validation request item to be validated."
       },
       "TransferOwnerModel": {
         "type": "object",
@@ -25323,6 +27717,13 @@
       "WebhookModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WebhookModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -25336,13 +27737,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/WebhookModel"
-            },
             "nullable": true
           }
         },

@@ -280,6 +280,11 @@ end
   # @type: string
   field :preferred_delivery_method
 
+  # The Currency Rate used to get from the account's base currency to the invoice amount.
+  # @type: number
+  # @format: double
+  field :currency_rate
+
 
 
 end

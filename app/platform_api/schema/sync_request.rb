@@ -32,6 +32,15 @@ end
   # @type: string
   field :status_code
 
+  # The name of the OperationType for this SyncRequest
+  # @type: string
+  field :operation_type_name
+
+  # The name of the OperationType for this SyncRequest
+  # @type: integer
+  # @format: int32
+  field :operation_type
+
   # Message containing information about the sync request results
   # @type: string
   field :process_result_message

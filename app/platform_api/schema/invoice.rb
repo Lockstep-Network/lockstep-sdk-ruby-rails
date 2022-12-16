@@ -201,6 +201,11 @@ end
   # @type: string
   field :preferred_delivery_method
 
+  # The Currency Rate used to get from the account's base currency to the invoice amount.
+  # @type: number
+  # @format: double
+  field :currency_rate
+
   # The Company associated to this invoice.
   # To retrieve this item, specify `Company` in the "Include" parameter for your query.
   field :company
