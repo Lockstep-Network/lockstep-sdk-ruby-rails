@@ -64,6 +64,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 * Lockstep::ReportRiskRate
 * Lockstep::Status
 * Lockstep::User
+* Lockstep::TranscriptionValidationRequest
 
 ## ActiveModel Interfaces
 
