@@ -299,19 +299,19 @@ class Lockstep::Query
     records = []
     loop do
       params[:pageNumber] = page
-      params[:pageSize] = limit > 0 ? [limit - records.size, criteria[:chunk]].min : criteria[:chunk]
-      break if params[:pageSize] == 0
+      params[:pageSize] = limit.positive? ? [limit - records.size, criteria[:chunk]].min : criteria[:chunk]
+      break if params[:pageSize].zero?
 
       results = get_results(params)
       break unless results.present?
 
       records += results
-      break if limit > 0 and records.size >= limit
+      break if limit.positive? && records.size >= limit
 
       page += 1
     end
 
-    records
+    records.uniq(&:attributes)
   end
 
   def first
