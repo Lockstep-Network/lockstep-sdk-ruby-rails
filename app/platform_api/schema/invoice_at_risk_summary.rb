@@ -70,11 +70,6 @@ end
   # @format: date
   field :newest_activity
 
-  # The number of days this Invoice is past due.
-  # @type: integer
-  # @format: int32
-  field :days_past_due
-
   # The memo text of the payments associated to this invoice.
   # @type: array
   field :payment_numbers
