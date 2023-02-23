@@ -83,6 +83,20 @@ end
   # @type: array
   field :payment_ids
 
+  # The base currency code of the group.
+  # @type: string
+  field :baseCurrencyCode
+
+  # The total amount of the Invoice in the group's currency.
+  # @type: number
+  # @format: double
+  field :baseCurrencyInvoiceAmount
+
+  # The remaining balance value of this invoice in the group's currency.
+  # @type: number
+  # @format: double
+  field :baseCurrencyOutstandingBalance
+
   belongs_to :customer, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}
   belongs_to :connection, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}
 

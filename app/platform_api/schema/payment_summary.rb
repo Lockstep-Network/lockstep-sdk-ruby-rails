@@ -102,6 +102,20 @@ end
   # @type: array
   field :company_names
 
+  # The base currency code of the group.
+  # @type: string
+  field :baseCurrencyCode
+
+  # The payment amount in the group's base currency.
+  # @type: number
+  # @format: double
+  field :baseCurrencyPaymentAmount
+
+  # The unapplied amount in the group's base currency.
+  # @type: number
+  # @format: double
+  field :baseCurrencyUnappliedAmount
+
   # The modified date of the payment
   # @type: string
   # @format: date-time

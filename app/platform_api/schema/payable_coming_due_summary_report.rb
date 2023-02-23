@@ -45,4 +45,8 @@ end
   # @type: string
   # @format: date-time
   field :dueDate, Types::Params::DateTime
+
+  # The base currency code of the group.
+  # @type: string
+  field :baseCurrencyCode
 end
