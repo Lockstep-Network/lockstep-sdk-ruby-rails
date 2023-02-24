@@ -142,12 +142,12 @@ end
   # Total amount of this payment in the group's base currency.
   # @type: number
   # @format: double
-  field :baseCurrencyPaymentAmount
+  field :base_currency_payment_amount
 
   # Unapplied balance of this payment in the group's base currency. If this amount is nonzero, the field IsOpen will be true.
   # @type: number
   # @format: double
-  field :baseCurrencyUnappliedAmount
+  field :base_currency_unapplied_amount
 
 
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
