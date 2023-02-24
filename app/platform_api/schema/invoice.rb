@@ -209,22 +209,22 @@ end
   # The Currency Rate used to get from the account's base currency to the total amount.
   # @type: number
   # @format: double
-  field :baseCurrencyTotalAmount
+  field :base_currency_total_amount
 
   # The sales tax amount in the group's base currency.
   # @type: number
   # @format: double
-  field :baseCurrencySalesTaxAmount
+  field :base_currency_sales_tax_amount
 
   # The discount amount in the group's base currency.
   # @type: number
   # @format: double
-  field :baseCurrencyDiscountAmount
+  field :base_currency_discount_amount
 
   # The outstanding balance amount in the group's base currency.
   # @type: number
   # @format: double
-  field :baseCurrencyOutstandingBalanceAmount
+  field :base_currency_outstanding_balance_amount
 
   # The Company associated to this invoice.
   # To retrieve this item, specify `Company` in the "Include" parameter for your query.
