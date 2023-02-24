@@ -90,7 +90,7 @@ end
   # The total amount of the Invoice in the group's currency.
   # @type: number
   # @format: double
-  field :base_currency_invoic_amount
+  field :base_currency_invoice_amount
 
   # The remaining balance value of this invoice in the group's currency.
   # @type: number

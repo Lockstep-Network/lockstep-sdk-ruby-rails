@@ -96,12 +96,12 @@ end
 
   # The group's base currency code.
   # @type: string
-  field :baseCurrencyCode
+  field :base_currency_code
 
   # The invoice amount in the group's base currency.
   # @type: number
   # @format: double
-  field :base_currency_invoiceA_amount
+  field :base_currency_invoice_amount
 
   # The outstanding balance amount in the group's base currency.
   # @type: number
