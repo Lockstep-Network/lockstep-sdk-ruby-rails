@@ -94,6 +94,10 @@ end
   # @type: array
   field :payment_ids
 
+  # The group's currency code.
+  # @type: string
+  field :currency_code
+
   # The group's base currency code.
   # @type: string
   field :base_currency_code

@@ -102,6 +102,10 @@ end
   # @type: array
   field :company_names
 
+  # The group's currency code.
+  # @type: string
+  field :currency_code
+
   # The base currency code of the group.
   # @type: string
   field :base_currency_code
