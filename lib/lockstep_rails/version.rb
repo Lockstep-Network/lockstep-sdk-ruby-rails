@@ -1,3 +1,3 @@
 module LockstepRails
-  VERSION = '0.3.49'
+  VERSION = '0.3.50'
 end
