@@ -110,7 +110,7 @@ end
   # The outstanding balance amount in the group's base currency.
   # @type: number
   # @format: double
-  field :base_currency_outstanding_balance_amount
+  field :base_currency_outstanding_balance
 
   # The modified date of the invoice.
   # @type: string
