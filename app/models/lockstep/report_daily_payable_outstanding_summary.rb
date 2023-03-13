@@ -4,7 +4,7 @@ class Lockstep::ReportDailyPayableOutstandingSummary < Lockstep::ApiRecord
   load_schema(Schema::DailyPayableOutstandingSummaryReport)
 
   def self.with_report_date(report_date)
-  	additional_query_params({"reportDate": report_date})
+    additional_query_params({"reportDate": report_date})
   end
 
 end
