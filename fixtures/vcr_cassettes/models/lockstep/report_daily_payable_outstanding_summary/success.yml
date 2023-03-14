@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api/v1/Reports/daily-payable-outstanding-summary/?reportDate=03/31/23
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Api-Key:
+      - "<API_KEY>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store, no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Server:
+      - Microsoft-IIS/10.0
+      Set-Cookie:
+      - ARRAffinity=5d8553c5aa5fa9d76298de9b2e7ab15aca50f8fe28897493fc6dca49d6a4ac57;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=5d8553c5aa5fa9d76298de9b2e7ab15aca50f8fe28897493fc6dca49d6a4ac57;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      X-Cache:
+      - PRIVATE_NOSTORE
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Api-Supported-Versions:
+      - '1.0'
+      Server-Duration:
+      - '1138'
+      X-Content-Type-Options:
+      - nosniff
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref-Originshield:
+      - 0e10PZAAAAABVgpNlzC8lSYXzbFv27tx3TUFBMjAxMDYwNTE4MDExAGZiYmE2YTk4LTFiMzktNDg0My05M2Q1LTI3YTg1MzlhN2RiMQ==
+      X-Azure-Ref:
+      - 0e10PZAAAAAB76qBlZXQ9QoiBo57RK9ouTUFBMDFFREdFMTMxNwBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Mon, 13 Mar 2023 17:29:32 GMT
+    body:
+      encoding: UTF-8
+      string: '{"records":[{"groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","vendorId":"09c45f25-70e9-402e-9f1a-815cbedc0691","vendorName":"Computers
+        by Jenni","primaryContact":"Jenni Winslow","bills":1,"baseCurrencyCode":"USD","amountOutstanding":10025.0000000000000000000000,"dpo":0.0000000000000000000000},{"groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","vendorId":"2b4bd5ea-62bb-4b08-98ff-f1ed57b3f652","vendorName":"Norton
+        Lumber and Building Materials","primaryContact":"Julie Norton","bills":1,"baseCurrencyCode":"USD","amountOutstanding":205.0000000000000000000000,"dpo":0.0000000000000000000000},{"groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","vendorId":"73b6f958-3b6e-4481-9722-7c524d40a8ca","vendorName":"Diego''s
+        Road Warrior Bodyshop","primaryContact":"","bills":2,"baseCurrencyCode":"USD","amountOutstanding":1510.0000000000000000000000,"dpo":0.0000000000000000000000},{"groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","vendorId":"73bbe24c-7e56-4a9e-afec-3c3f86d6db9f","vendorName":"Hicks
+        Hardware","primaryContact":"Geoff Hicks","bills":1,"baseCurrencyCode":"USD","amountOutstanding":5000.0000000000000000000000,"dpo":0.0000000000000000000000},{"groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","vendorId":"845a08a7-932a-4a12-a6dd-85de609610f1","vendorName":"Brosnahan
+        Insurance Agency","primaryContact":"Nick Brosnahan","bills":2,"baseCurrencyCode":"USD","amountOutstanding":10241.2300000000000000000000,"dpo":0.0000000000000000000000},{"groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","vendorId":"aca3c082-9ef1-4dea-97cb-80f4a1f36fe8","vendorName":"PG&E","primaryContact":"utilities@noemail.com","bills":1,"baseCurrencyCode":"USD","amountOutstanding":86.4400000000000000000000,"dpo":0.0000000000000000000000},{"groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","vendorId":"c51d9429-c1a8-4182-89f2-a24135670965","vendorName":"Cal
+        Telephone","primaryContact":"Cal Telephone Contact 32","bills":1,"baseCurrencyCode":"USD","amountOutstanding":560.5500000000000000000000,"dpo":0.0000000000000000000000},{"groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","vendorId":"d9372e2e-ecd4-4ca3-a043-d853441a4de4","vendorName":"Robertson
+        & Associates","primaryContact":"Jenny Robertson","bills":1,"baseCurrencyCode":"USD","amountOutstanding":315.0000000000000000000000,"dpo":0.0000000000000000000000},{"groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","vendorId":"f2c9eb72-64eb-481e-be03-69bcef604988","vendorName":"Bob''s
+        Burger Joint","primaryContact":"","bills":1,"baseCurrencyCode":"USD","amountOutstanding":555.0000000000000000000000,"dpo":0.0000000000000000000000}],"totalCount":9,"pageSize":250,"pageNumber":0}'
+  recorded_at: Mon, 13 Mar 2023 17:29:33 GMT
+recorded_with: VCR 6.1.0
