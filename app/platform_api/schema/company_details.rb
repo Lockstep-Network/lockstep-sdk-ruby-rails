@@ -80,12 +80,16 @@ end
   # @format: int32
   field :outstanding_invoices
 
-  # Company total outstanding invoice amount
+  # The group's base currency code.
+  # @type: string
+  field :group_base_currency_code
+
+  # Company total outstanding invoice amount in the group's base currency.
   # @type: number
   # @format: double
   field :outstanding_amount
 
-  # Company total past due amount
+  # Company total past due amount in the group's base currency.
   # @type: number
   # @format: double
   field :amount_past_due

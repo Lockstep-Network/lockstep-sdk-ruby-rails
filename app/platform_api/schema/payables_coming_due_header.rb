@@ -28,7 +28,11 @@ end
   # @format: double
   field :percentage_of_total
 
-  # Total amount due for this time period
+  # The group's base currency code.
+  # @type: string
+  field :base_currency_code
+
+  # Total amount due for this time period in the group's base currency.
   # @type: number
   # @format: double
   field :total_amount_due

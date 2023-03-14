@@ -18,7 +18,11 @@ end
   # @format: int32
   field :timeframe
 
-  # Amount of payments made based in the timeframe
+  # The base currency code of the group.
+  # @type: string
+  field :base_currency_code
+
+  # Amount of payments made based in the timeframe in the group's base currency.
   # @type: number
   # @format: double
   field :total_payments_amount
@@ -28,7 +32,7 @@ end
   # @format: int32
   field :total_payments_count
 
-  # Amount of bills received based in the timeframe
+  # Amount of bills received based in the timeframe in the group's base currency.
   # @type: number
   # @format: double
   field :total_amount_billed

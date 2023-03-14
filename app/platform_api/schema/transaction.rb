@@ -10,6 +10,10 @@ end
   # @format: uuid
   field :group_key
 
+  # The base currency code of the group.
+  # @type: string
+  field :base_currency_code
+
   # An additional reference number that is sometimes used to identify a transaction.
   # The meaning of this field is specific to the ERP or accounting system used by the user.
   # @type: string
@@ -65,6 +69,10 @@ end
   # @format: int32
   field :days_past_due
 
+  # The currency code of the transaction.
+  # @type: string
+  field :currency_code
+
   # The total value of this transaction, inclusive or all taxes and line items.
   # @type: number
   # @format: double
@@ -74,6 +82,16 @@ end
   # @type: number
   # @format: double
   field :outstanding_amount
+
+  # The total value of this transaction, inclusive or all taxes and line items in the group's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_transaction_amount
+
+  # The remaining balance of this transaction in the group's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_outstanding_amount
 
   # The count of items associated to the transaction.
   #             

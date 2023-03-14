@@ -40,6 +40,10 @@ end
   # @type: string
   field :invoice_reference_code
 
+  # The currency code of the invoice the payment is associated with.
+  # @type: string
+  field :invoice_currency_code
+
   # Invoice total amount payment is associated with
   # @type: number
   # @format: double
@@ -49,6 +53,10 @@ end
   # @type: string
   # @format: date-time
   field :payment_date, Types::Params::DateTime
+
+  # The currency code of the payment.
+  # @type: string
+  field :payment_currency_code
 
   # Amount payment was made for
   # @type: number

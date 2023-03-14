@@ -10,6 +10,10 @@ end
   # @format: uuid
   field :group_key
 
+  # The base currency code of the group.
+  # @type: string
+  field :base_currency_code
+
   # An additional reference number that is sometimes used to identify a transaction detail.
   # The meaning of this field is specific to the ERP or accounting system used by the user.
   # @type: string
@@ -58,6 +62,10 @@ end
   # @format: date-time
   field :transaction_invoice_date, Types::Params::DateTime
 
+  # The currency code of the transaction.
+  # @type: string
+  field :currency_code
+
   # The total value of this transaction detail, inclusive or all taxes and line items.
   # @type: number
   # @format: double
@@ -67,6 +75,16 @@ end
   # @type: number
   # @format: double
   field :outstanding_amount
+
+  # The total value of this transaction detail, inclusive or all taxes and line items in the group's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_transaction_amount
+
+  # The remaining balance of this transaction detail in the group's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_outstanding_amount
 
   # Specific transactions have support for pdf retrieval from their respective erp. When this flag is true, an additional
   # call to Invoices/{id}/pdf or Payments/{id}/pdf can be made to retrieve a pdf directly from the erp.

@@ -9,7 +9,7 @@ end
   # @type: string
   field :auth_code
 
-  # The OAuth authentication code.
+  # The username for the web services account with access permissions.
   # @type: string
   field :username
 
@@ -28,6 +28,10 @@ end
   # The access token secret for the connector enrollment.
   # @type: string
   field :token_secret
+
+  # The OAuth redirect uri.
+  # @type: string
+  field :redirect_uri
 
 
 

@@ -5,10 +5,6 @@ def self.id_ref
   nil
 end
 
-  # The name of the developer.
-  # @type: string
-  field :name
-
   # The first name of the person requesting the developer account.
   # @type: string
   field :first_name

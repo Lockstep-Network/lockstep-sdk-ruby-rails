@@ -52,6 +52,10 @@ end
   # @format: date
   field :payment_due_date
 
+  # The currency code for the invoice.
+  # @type: string
+  field :currency_code
+
   # The total amount of the Invoice.
   # @type: number
   # @format: double
@@ -61,6 +65,20 @@ end
   # @type: number
   # @format: double
   field :outstanding_balance
+
+  # The group's base currency code.
+  # @type: string
+  field :base_currency_code
+
+  # The invoice amount in the group's base currency
+  # @type: number
+  # @format: double
+  field :base_currency_invoice_amount
+
+  # The outstanding balance amount in the group's base currency
+  # @type: number
+  # @format: double
+  field :base_currency_outstanding_balance
 
   # A code identifying the type of this Invoice.
   # @type: string
@@ -93,24 +111,6 @@ end
   # The ids of the payments associated to this invoice.
   # @type: array
   field :payment_ids
-
-  # The group's currency code.
-  # @type: string
-  field :currency_code
-
-  # The group's base currency code.
-  # @type: string
-  field :base_currency_code
-
-  # The invoice amount in the group's base currency.
-  # @type: number
-  # @format: double
-  field :base_currency_invoice_amount
-
-  # The outstanding balance amount in the group's base currency.
-  # @type: number
-  # @format: double
-  field :base_currency_outstanding_balance
 
   # The modified date of the invoice.
   # @type: string

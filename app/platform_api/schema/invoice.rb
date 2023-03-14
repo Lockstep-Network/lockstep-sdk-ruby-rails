@@ -91,22 +91,22 @@ end
   # @type: string
   field :currency_code
 
-  # The total value of this invoice, inclusive of all taxes and line items.
+  # The total value of this invoice, inclusive of all taxes and line items in it's tendered currency.
   # @type: number
   # @format: double
   field :total_amount
 
-  # The total sales (or transactional) tax calculated for this invoice.
+  # The total sales (or transactional) tax calculated for this invoice in it's tendered currency.
   # @type: number
   # @format: double
   field :sales_tax_amount
 
-  # The total discounts given by the seller to the buyer on this invoice.
+  # The total discounts given by the seller to the buyer on this invoice in it's tendered currency.
   # @type: number
   # @format: double
   field :discount_amount
 
-  # The remaining balance value of this invoice.
+  # The remaining balance value of this invoice in it's tendered currency.
   # @type: number
   # @format: double
   field :outstanding_balance_amount
@@ -206,22 +206,22 @@ end
   # @format: double
   field :currency_rate
 
-  # The Currency Rate used to get from the account's base currency to the total amount.
+  # The total value of this invoice, inclusive of all taxes and line items in the group's base currency.
   # @type: number
   # @format: double
   field :base_currency_total_amount
 
-  # The sales tax amount in the group's base currency.
+  # The total sales (or transactional) tax calculated for this invoice in the group's base currency.
   # @type: number
   # @format: double
   field :base_currency_sales_tax_amount
 
-  # The discount amount in the group's base currency.
+  # The total discounts given by the seller to the buyer on this invoice in the group's base currency.
   # @type: number
   # @format: double
   field :base_currency_discount_amount
 
-  # The outstanding balance amount in the group's base currency.
+  # The remaining balance value of this invoice in the group's base currency.
   # @type: number
   # @format: double
   field :base_currency_outstanding_balance_amount
