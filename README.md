@@ -57,6 +57,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 * Lockstep::ReportArAgingHeader
 * Lockstep::ReportCashflow
 * Lockstep::ReportDailyPayableOutstanding
+* Lockstep::ReportDailyPayableOutstandingSummary
 * Lockstep::ReportDailySalesOutstanding
 * Lockstep::ReportPayableComingDue
 * Lockstep::ReportPayablesComingDueSummary
