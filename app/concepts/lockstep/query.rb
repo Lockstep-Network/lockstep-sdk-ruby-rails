@@ -241,6 +241,8 @@ class Lockstep::Query
       return results.to_i
     else
       results = parsed_response.is_a?(Array) ? parsed_response : parsed_response["records"]
+      return [] if results.blank?
+
       results = results[0..(criteria[:limit] - 1)] if criteria[:limit]
       get_relation_objects results.map { |r|
         # Convert camelcase to snake-case
