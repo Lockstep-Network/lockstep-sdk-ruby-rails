@@ -13,6 +13,14 @@ end
   # @format: uuid
   field :group_key
 
+  # The base currency code of the group.
+  # @type: string
+  field :base_currency_code
+
+  # The payment's currency code.
+  # @type: string
+  field :currency_code
+
   # The unique identifier of this PaymentApplied record.
   # @type: string
   # @format: uuid
@@ -38,6 +46,11 @@ end
   # @format: double
   field :payment_applied_amount
 
+  # Amount applied to Invoice in the group's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_payment_applied_amount
+
   # An additional reference code that is sometimes used to identify this Payment.
   # The meaning of this field is specific to the ERP or accounting system used by the user.
   # @type: string
@@ -57,6 +70,16 @@ end
   # @type: number
   # @format: double
   field :unapplied_amount
+
+  # The total value of this Payment in the group's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_payment_amount
+
+  # The remaining balance value of this Payment in the group's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_unapplied_amount
 
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}

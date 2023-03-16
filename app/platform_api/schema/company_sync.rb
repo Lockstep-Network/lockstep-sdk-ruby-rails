@@ -5,7 +5,7 @@ def self.id_ref
   nil
 end
 
-  # Indicates what action to take when a sync model has been found during the sync process.
+  # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
   # This is the primary key of the Company record. For this field, you should use whatever the company's unique
@@ -147,6 +147,10 @@ end
   # An external reference that identifies the Company from the originating ERP system, separate from the ErpKey.
   # @type: string
   field :external_reference
+
+  # A unique identification number assigned to the company by the national registration office.
+  # @type: string
+  field :company_registration_number
 
 
 

@@ -5,6 +5,15 @@ def self.id_ref
   nil
 end
 
+  # The optional existing app enrollment to associate with the data in this batch.
+  # @type: string
+  # @format: uuid
+  field :app_enrollment_id
+
+  # True if this is a full sync, false if this is a partial sync. Defaults to false.
+  # @type: boolean
+  field :is_full_sync
+
 
   has_many :companies, {:class_name=>"Schema::CompanySync", :included=>true}
   has_many :contacts, {:class_name=>"Schema::ContactSync", :included=>true}
@@ -17,5 +26,6 @@ end
   has_many :financial_year_settings, {:class_name=>"Schema::FinancialYearSettingSync", :included=>true}
   has_many :financial_accounts, {:class_name=>"Schema::FinancialAccountSync", :included=>true}
   has_many :financial_account_balance_histories, {:class_name=>"Schema::FinancialAccountBalanceHistorySync", :included=>true}
+  has_many :base_currencies, {:class_name=>"Schema::BaseCurrencySync", :included=>true}
 
 end

@@ -43,6 +43,10 @@ end
   # @type: string
   field :email
 
+  # The currency code of the payment.
+  # @type: string
+  field :currency_code
+
   # Total amount of this Payment.
   # @type: number
   # @format: double
@@ -52,6 +56,20 @@ end
   # @type: number
   # @format: double
   field :unapplied_amount
+
+  # The base currency code of the group.
+  # @type: string
+  field :base_currency_code
+
+  # The payment amount in the group's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_payment_amount
+
+  # The payment amount in the group's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_unapplied_amount
 
   # The type of payment, AR Payment or AP Payment.
   #             

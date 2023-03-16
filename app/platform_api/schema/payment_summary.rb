@@ -39,6 +39,10 @@ end
   # @format: date
   field :payment_date
 
+  # The currency code of the payment.
+  # @type: string
+  field :currency_code
+
   # Total amount of this payment.
   # @type: number
   # @format: double
@@ -48,6 +52,20 @@ end
   # @type: number
   # @format: double
   field :unapplied_amount
+
+  # The base currency code of the group.
+  # @type: string
+  field :base_currency_code
+
+  # The payment amount in the group's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_payment_amount
+
+  # The unapplied amount in the group's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_unapplied_amount
 
   # True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
   # value is true, the field `UnappliedAmount` will be nonzero.
@@ -101,24 +119,6 @@ end
   # The names of the company for the associated invoices.
   # @type: array
   field :company_names
-
-  # The group's currency code.
-  # @type: string
-  field :currency_code
-
-  # The base currency code of the group.
-  # @type: string
-  field :base_currency_code
-
-  # The payment amount in the group's base currency.
-  # @type: number
-  # @format: double
-  field :base_currency_payment_amount
-
-  # The unapplied amount in the group's base currency.
-  # @type: number
-  # @format: double
-  field :base_currency_unapplied_amount
 
   # The modified date of the payment
   # @type: string

@@ -31,7 +31,11 @@ end
   # @format: int32
   field :bills
 
-  # The total amount outstanding.
+  # The group's base currency code.
+  # @type: string
+  field :base_currency_code
+
+  # The total amount outstanding at the group's base currency.
   # @type: number
   # @format: double
   field :amount_outstanding

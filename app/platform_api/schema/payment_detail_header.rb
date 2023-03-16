@@ -13,17 +13,21 @@ end
   # @format: uuid
   field :group_key
 
+  # The base currency code of the group.
+  # @type: string
+  field :base_currency_code
+
   # The total number of Customers.
   # @type: integer
   # @format: int32
   field :customer_count
 
-  # The total amount collected.
+  # The total amount collected in the group's base currency.
   # @type: number
   # @format: double
   field :amount_collected
 
-  # The total unapplied amount.
+  # The total unapplied amount in the group's base currency.
   # @type: number
   # @format: double
   field :unapplied_amount

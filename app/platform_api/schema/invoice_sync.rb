@@ -5,6 +5,9 @@ def self.id_ref
   nil
 end
 
+  # Indicates what action to take when an existing object has been found during the sync process.
+  field :on_match_action
+
   # This is the primary key of the Invoice record. For this field, you should use whatever the invoice's unique
   # identifying number is in the originating system. Search for a unique, non-changing number within the
   # originating financial system for this record.
@@ -89,22 +92,22 @@ end
   # @type: string
   field :currency_code
 
-  # The total value of this invoice, inclusive of all taxes and line items.
+  # The total value of this invoice, inclusive of all taxes and line items in the invoice currency.
   # @type: number
   # @format: double
   field :total_amount
 
-  # The total sales (or transactional) tax calculated for this invoice.
+  # The total sales (or transactional) tax calculated for this invoice in the invoice currency.
   # @type: number
   # @format: double
   field :sales_tax_amount
 
-  # The total discounts given by the seller to the buyer on this invoice.
+  # The total discounts given by the seller to the buyer on this invoice in the invoice currency.
   # @type: number
   # @format: double
   field :discount_amount
 
-  # The remaining balance value of this invoice.
+  # The remaining balance value of this invoice in the invoice currency.
   # @type: number
   # @format: double
   field :outstanding_balance_amount
@@ -284,6 +287,26 @@ end
   # @type: number
   # @format: double
   field :currency_rate
+
+  # The total value of this invoice, inclusive of all taxes and line items in the erp's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_total_amount
+
+  # The total sales (or transactional) tax calculated for this invoice in the erp's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_sales_tax_amount
+
+  # The total discounts given by the seller to the buyer on this invoice in the erp's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_discount_amount
+
+  # The remaining balance value of this invoice in the erp's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_outstanding_balance_amount
 
 
 

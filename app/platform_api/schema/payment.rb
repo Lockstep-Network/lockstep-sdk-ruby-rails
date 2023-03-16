@@ -78,19 +78,19 @@ end
   # @format: date
   field :post_date
 
-  # Total amount of this payment.
+  # Total amount of this payment in it's received currency.
   # @type: number
   # @format: double
   field :payment_amount
 
-  # Unapplied balance of this payment.  If this amount is nonzero, the field `IsOpen` will be true.
+  # Unapplied balance of this payment in it's received currency.  If this amount is nonzero, the field `IsOpen` will be true.
   # @type: number
   # @format: double
   field :unapplied_amount
 
   # The ISO 4217 currency code for this payment.
   #             
-  # For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/definitions/currencies data set
+  # For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies).
   # @type: string
   field :currency_code
 
@@ -144,11 +144,15 @@ end
   # @format: double
   field :base_currency_payment_amount
 
-  # Unapplied balance of this payment in the group's base currency. If this amount is nonzero, the field IsOpen will be true.
+  # Unapplied balance of this payment in the group's base currency.  If this amount is nonzero, the field `IsOpen` will be true.
   # @type: number
   # @format: double
   field :base_currency_unapplied_amount
 
+  # The status of this payment within Service Fabric.
+  # "UNAUTHORISED" "PENDING" "PAID" "PAID_OFFLINE" "FAILED" "CANCELLED" "REJECTED" "REFUNDED" "PARTIALLY" "PARTIALLY_REFUNDED"
+  # @type: string
+  field :service_fabric_status
 
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}

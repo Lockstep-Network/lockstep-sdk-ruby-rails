@@ -21,6 +21,10 @@ end
   # @format: uuid
   field :contact_id
 
+  # Determines whether the contact is primary or secondary.
+  # @type: boolean
+  field :is_primary
+
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             

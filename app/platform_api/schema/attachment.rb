@@ -52,11 +52,6 @@ end
   # @type: string
   field :file_ext
 
-  # DEPRECATED: This field is replaced by `AttachmentType`.
-  # @type: string
-  # @format: uuid
-  field :attachment_type_id
-
   # A flag indicating whether this Attachment is archived (also known as hidden or deleted).  When you call
   # [ArchiveAttachment](https://developer.lockstep.io/reference/delete_api-v1-attachments-id) this field will
   # be set to true.
@@ -64,19 +59,6 @@ end
   # You should avoid displaying Attachments with the IsArchived field set to true in your user interface.
   # @type: boolean
   field :is_archived
-
-  # DEPRECATED - Do not use
-  # @type: string
-  # @format: uuid
-  field :origin_attachment_id
-
-  # Flag for if LS clients can see this file
-  # @type: boolean
-  field :view_internal
-
-  # Flag for if Vendors and customers can see this file
-  # @type: boolean
-  field :view_external
 
   # The unique ID of this record as it was known in its originating financial system.
   #             

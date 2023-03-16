@@ -5,6 +5,9 @@ def self.id_ref
   nil
 end
 
+  # Indicates what action to take when an existing object has been found during the sync process.
+  field :on_match_action
+
   # This is the primary key of the Payment record. For this field, you should use whatever the payment's unique
   # identifying number is in the originating system. Search for a unique, non-changing number within the
   # originating financial system for this record.
@@ -64,12 +67,12 @@ end
   # @format: date-time
   field :post_date, Types::Params::DateTime
 
-  # Total amount of this payment.
+  # Total amount of this payment in the payment's currency.
   # @type: number
   # @format: double
   field :payment_amount
 
-  # Unapplied balance of this payment.  If this amount is nonzero, the field `IsOpen` will be true.
+  # Unapplied balance of this payment in the payment's currency.  If this amount is nonzero, the field `IsOpen` will be true.
   # @type: number
   # @format: double
   field :unapplied_amount
@@ -112,6 +115,16 @@ end
   # @type: number
   # @format: double
   field :currency_rate
+
+  # Total amount of this payment in the erp's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_payment_amount
+
+  # Unapplied balance of this payment in the erp's base currency.  If this amount is nonzero, the field `IsOpen` will be true.
+  # @type: number
+  # @format: double
+  field :base_currency_unapplied_amount
 
 
 

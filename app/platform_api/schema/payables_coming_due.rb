@@ -5,6 +5,12 @@ def self.id_ref
   nil
 end
 
+  # This model represents all the payables that are
+  # either already due or due within this date.
+  # @type: string
+  # @format: date-time
+  field :due_date, Types::Params::DateTime
+
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
@@ -13,19 +19,19 @@ end
   # @format: uuid
   field :group_key
 
-  # Number of bills due for this time period
-  # @type: integer
-  # @format: int32
-  field :number_of_bills_due
+  # Name for this company
+  # @type: string
+  field :vendor_name
 
   # The unique Lockstep Id for the Vendor
   # @type: string
   # @format: uuid
   field :vendor_id
 
-  # Name for this company
-  # @type: string
-  field :vendor_name
+  # Number of bills due for this time period
+  # @type: integer
+  # @format: int32
+  field :number_of_bills_due
 
   # Primary Contact for this company
   # @type: string
@@ -36,16 +42,14 @@ end
   # @format: double
   field :percentage_of_total
 
-  # Total amount due for this time period
+  # The base currency code of the group
+  # @type: string
+  field :base_currency_code
+
+  # Total amount due for this time period at the group's base currency
   # @type: number
   # @format: double
   field :total_amount_due
-
-  # This model represents all the payables that are
-  # either already due or due within this date.
-  # @type: string
-  # @format: date-time
-  field :due_date, Types::Params::DateTime
 
 
 

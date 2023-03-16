@@ -5,6 +5,9 @@ def self.id_ref
   nil
 end
 
+  # Indicates what action to take when an existing object has been found during the sync process.
+  field :on_match_action
+
   # This is the primary key of the Invoice Line record. For this field, you should use whatever the contact's unique
   # identifying number is in the originating system. Search for a unique, non-changing number within the
   # originating financial system for this record.
