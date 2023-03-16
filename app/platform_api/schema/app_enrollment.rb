@@ -58,6 +58,10 @@ end
   # @type: boolean
   field :sync_schedule_is_active
 
+  # Flag indicating if the App Enrollment is currently being deleted from the Platform.
+  # @type: boolean
+  field :is_deleted
+
   # The Application to which this AppEnrollment belongs.  Contains general name, description,
   # logo, and other metadata about this application.
   #             

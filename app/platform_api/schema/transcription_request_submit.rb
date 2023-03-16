@@ -21,9 +21,14 @@ end
   # @type: string
   field :file_name
 
-  # The type of LockstepApi2.Models.TranscriptionRequestSubmit.InvoiceTypeCode requested to transcribe content to.
+  # The type of TranscriptionRequestSubmit.InvoiceTypeCode requested to transcribe content to.
   # @type: string
   field :invoice_type_code
+
+  # Group account transcription validation request item is associated with.
+  # @type: string
+  # @format: uuid
+  field :transcription_validation_request_id
 
 
 

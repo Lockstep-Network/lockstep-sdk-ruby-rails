@@ -29,17 +29,11 @@ end
 
   # The URL to visit for more information about this application
   # @type: string
-  # @format: uri
   field :project_url
 
   # The URL for the icon for this application
   # @type: string
-  # @format: uri
   field :icon_url
-
-  # The description of the price for this application
-  # @type: string
-  field :price_terms
 
   # The ID of the user who created this application
   # @type: string
@@ -64,11 +58,6 @@ end
   # Flag indicating if the application is active.
   # @type: boolean
   field :is_active
-
-  # URL to the Wiki for the Application
-  # @type: string
-  # @format: uri
-  field :wiki_url
 
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.

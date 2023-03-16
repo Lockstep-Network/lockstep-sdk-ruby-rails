@@ -205,8 +205,43 @@ end
   # @type: string
   field :public_url_slug
 
+  # State Tax ID
+  # @type: string
+  field :state_tax_id
+
+  # The state where the company was registered.
+  # @type: string
+  field :state_of_incorporation
+
+  # Linkedin Url
+  # @type: string
+  field :linked_in_url_slug
+
+  # This flag indicates whether the company is verified.
+  # @type: boolean
+  field :is_verified
+
+  # The date this company was last verified.
+  # @type: string
+  # @format: date-time
+  field :last_verified_date, Types::Params::DateTime
+
   # View box settings for the company logo.
   field :view_box_settings
+
+  # The unique ID of the Service Fabric organisation to which this record belongs.
+  # @type: string
+  # @format: uuid
+  field :service_fabric_org_id
+
+  # The unique ID of this record within Service Fabric.
+  # @type: string
+  # @format: uuid
+  field :service_fabric_company_id
+
+  # A unique identification number assigned to the company by the national registration office.
+  # @type: string
+  field :company_registration_number
 
   # All invoices attached to this company.
   #             

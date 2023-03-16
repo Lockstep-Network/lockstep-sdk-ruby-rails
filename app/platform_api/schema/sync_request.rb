@@ -36,18 +36,21 @@ end
   # @type: string
   field :operation_type_name
 
-  # The name of the OperationType for this SyncRequest
-  # @type: integer
-  # @format: int32
+  # Possible operation types for a SyncRequest
   field :operation_type
 
   # Message containing information about the sync request results
   # @type: string
   field :process_result_message
 
+  # The number of times this Sync Request has failed
+  # @type: integer
+  # @format: int32
+  field :failure_count
+
   # A boolean indicating whether a sync from an ERP system should process all the data from the ERP
   # as opposed to just the delta of changes since the previous sync run
-  # @type: string
+  # @type: boolean
   field :run_full_sync
 
   # The AppEnrollmentId of the AppEnrollment object that executed this sync request

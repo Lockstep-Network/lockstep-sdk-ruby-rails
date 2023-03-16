@@ -70,6 +70,14 @@ end
   # @type: boolean
   field :onboarding_scheduled
 
+  # Base Currency of the group
+  # @type: string
+  field :base_currency_code
+
+  # Country code of the group
+  # @type: string
+  field :country_code
+
   # The id of the Magic link used to authenticate.
   # @type: string
   # @format: uuid
@@ -83,14 +91,17 @@ end
   # Magic link information about the user
   field :magic_link
 
+  # Information allowing Lockstep to offer direct support to the user
+  field :support_access
+
+  # True if the user is being impersonated by the Lockstep support team.
+  # @type: boolean
+  field :is_impersonated
+
   # Statuses for the dependencies of this api.
   # OK if the dependency is working.
   # @type: object
   field :dependencies
-
-  # Base Currency of the group
-  # @type: string
-  field :base_currency_code
 
 
   has_many :user_groups, {:class_name=>"Schema::UserGroup", :included=>true}

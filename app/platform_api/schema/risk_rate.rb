@@ -13,6 +13,10 @@ end
   # @format: uuid
   field :group_key
 
+  # The base currency code of the group.
+  # @type: string
+  field :base_currency_code
+
   # The month the risk rate was calculated for
   # @type: string
   # @format: date-time
@@ -32,7 +36,7 @@ end
   # @format: int32
   field :total_invoice_count
 
-  # The sum of the total amount for invoices in the calculation month
+  # The sum of the total amount for invoices in the calculation month in the group's base currency.
   # @type: number
   # @format: double
   field :total_invoice_amount
@@ -42,7 +46,7 @@ end
   # @format: int32
   field :at_risk_count
 
-  # The sum of the outstanding balance of open invoices over 90 days from the calculation month
+  # The sum of the outstanding balance of open invoices over 90 days from the calculation month in the group's base currency.
   # @type: number
   # @format: double
   field :at_risk_amount

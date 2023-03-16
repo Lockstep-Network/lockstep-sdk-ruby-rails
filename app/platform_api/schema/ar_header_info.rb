@@ -13,6 +13,10 @@ end
   # @format: uuid
   field :group_key
 
+  # The base currency code of the group account
+  # @type: string
+  field :base_currency_code
+
   # The date of the report
   # @type: string
   # @format: date

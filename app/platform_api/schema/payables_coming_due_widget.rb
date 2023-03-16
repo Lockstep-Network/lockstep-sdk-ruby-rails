@@ -19,7 +19,11 @@ end
   # @format: date-time
   field :date, Types::Params::DateTime
 
-  # Total amount due for this time period
+  # The group's base currency code.
+  # @type: string
+  field :base_currency_code
+
+  # Total amount due for this time period at the group's base currency.
   # @type: number
   # @format: double
   field :amount_due
