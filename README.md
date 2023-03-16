@@ -63,6 +63,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 * Lockstep::ReportPayablesComingDueSummary
 * Lockstep::ReportPayableSummary
 * Lockstep::ReportRiskRate
+* Lockstep::SfPaymentRequest
 * Lockstep::Status
 * Lockstep::TranscriptionValidationRequest
 * Lockstep::User
