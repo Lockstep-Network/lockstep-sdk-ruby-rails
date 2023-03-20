@@ -600,7 +600,9 @@ module Lockstep
     end
 
     def persisted?
-      if id
+      if id && ["Lockstep::ServiceFabricPayment"].include?(self.class.name)
+        false
+      elsif id
         true
       else
         false
