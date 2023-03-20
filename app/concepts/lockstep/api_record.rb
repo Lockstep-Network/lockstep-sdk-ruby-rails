@@ -44,7 +44,6 @@ module Lockstep
     # @return [Lockstep::ApiRecord] an object that subclasses `Parseresource::Base`
     def initialize(attributes = {}, new = true)
       # attributes = HashWithIndifferentAccess.new(attributes)
-
       if new
         @unsaved_attributes = attributes
         @unsaved_attributes.stringify_keys!
@@ -729,8 +728,7 @@ module Lockstep
       put_attrs = @unsaved_attributes
 
       put_attrs = relations_for_saving(put_attrs)
-
-      put_attrs.delete(id_ref)
+      put_attrs.delete('id_ref') unless ["Lockstep::ServiceFabricPayment"].include?(self.class.name)
       put_attrs.delete('created')
       put_attrs.delete('modified')
       put_attrs
