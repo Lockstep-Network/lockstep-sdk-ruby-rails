@@ -900,7 +900,6 @@ module Lockstep
           result = attrs[k.to_s]
         end
       end
-      debugger
       result
     end
 
