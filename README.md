@@ -52,6 +52,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 * Lockstep::MagicLink
 * Lockstep::Note
 * Lockstep::Payments
+* Lockstep::PaymentApplied
 * Lockstep::PaymentSummary
 * Lockstep::ReportApAgingHeader
 * Lockstep::ReportArAgingHeader
