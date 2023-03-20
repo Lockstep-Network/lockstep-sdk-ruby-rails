@@ -600,9 +600,7 @@ module Lockstep
     end
 
     def persisted?
-      if id && ["Lockstep::ServiceFabricPayment"].include?(self.class.name)
-        false
-      elsif id
+      if id
         true
       else
         false
@@ -731,7 +729,7 @@ module Lockstep
       put_attrs = @unsaved_attributes
 
       put_attrs = relations_for_saving(put_attrs)
-      put_attrs.delete(id_ref) unless ["Lockstep::ServiceFabricPayment"].include?(self.class.name)
+      put_attrs.delete(id_ref)
       put_attrs.delete('created')
       put_attrs.delete('modified')
       put_attrs
@@ -902,6 +900,7 @@ module Lockstep
           result = attrs[k.to_s]
         end
       end
+      debugger
       result
     end
 
