@@ -25,5 +25,12 @@ class Lockstep::ServiceFabricPayment < Lockstep::ApiRecord
     put_attrs.delete('modified')
     put_attrs
   end
+  
+  # Overriding This method to not send body inside an Array
+  def create
+    attrs = attributes_for_saving.transform_keys { |key| key.camelize(:lower) }
+    resp = resource.post('', body: attrs)
+    result = post_result(resp)
+  end
 
 end
