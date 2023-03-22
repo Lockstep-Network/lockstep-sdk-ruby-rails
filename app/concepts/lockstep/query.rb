@@ -92,6 +92,12 @@ class Lockstep::Query
     end
   end
 
+  def with_count(value)
+    with_clone do
+      criteria[:with_count] = value
+    end
+  end
+
   # attr: {customer_name: :desc}
   def order(*attr)
     with_clone do
@@ -242,13 +248,21 @@ class Lockstep::Query
     else
       results = parsed_response.is_a?(Array) ? parsed_response : parsed_response["records"]
       return [] if results.blank?
-
       results = results[0..(criteria[:limit] - 1)] if criteria[:limit]
-      get_relation_objects results.map { |r|
+      records = get_relation_objects results.map { |r|
         # Convert camelcase to snake-case
         r = r.transform_keys { |key| key.underscore }
         @klass.model_name.to_s.constantize.new(r, false)
       }
+
+      if criteria[:with_count]
+        {
+        records: records,
+        total_count: parsed_response["totalCount"]
+        }
+      else
+        records
+      end
     end
   end
 
