@@ -729,7 +729,6 @@ module Lockstep
       put_attrs = @unsaved_attributes
 
       put_attrs = relations_for_saving(put_attrs)
-
       put_attrs.delete(id_ref)
       put_attrs.delete('created')
       put_attrs.delete('modified')
