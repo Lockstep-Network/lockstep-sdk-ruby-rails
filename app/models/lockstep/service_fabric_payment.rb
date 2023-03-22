@@ -3,14 +3,6 @@ class Lockstep::ServiceFabricPayment < Lockstep::ApiRecord
   self.id_ref = ""
   self.query_path=""
   load_schema(Schema::SfPaymentRequest)
-  
-  # Returning alwas false becase if id_ref is present in
-  # request body it returns true but in this model id_ref
-  # is required field in request body
-  # TODO: Make it generic 
-  # def persisted?
-  #   false
-  # end
 
   # Preventing deletion of id_ref from puts_attrs because
   # id_ref column is required to send in body in case of
@@ -28,7 +20,6 @@ class Lockstep::ServiceFabricPayment < Lockstep::ApiRecord
 
   # Overriding This method to not send body inside an Array
   def create
-    debugger
     attrs = attributes_for_saving.transform_keys { |key| key.camelize(:lower) }
     resp = resource.post('', body: attrs)
     result = post_result(resp)
