@@ -77,6 +77,16 @@ RSpec.describe "Lockstep::ApiRecord CRUD Test" do
     end
   end
 
+  describe "#with_count" do
+    it "should return RelationArray if records are present" do
+      VCR.use_cassette("models/lockstep/connections/with_count") do
+        records , count = Lockstep::Connection.where(is_active: true).with_count(true).execute
+        expect(count > 0).to be_truthy
+        expect(records.present?).to eq true
+      end
+    end
+  end
+
   describe "#create" do
     it "should have error messages attached if the record is invalid" do
       VCR.use_cassette("models/lockstep/contacts/create_invalid") do
