@@ -178,7 +178,7 @@ Lockstep::Connection.where(status: "Active").count
 ### With Count
 ```ruby
 records , count = Lockstep::Connection.where(status: "active").with_count(true).execute
-# records get the records for the query and the with count if used will return the total nunber of records present for that query.
+# records get the records for the query and the with count if used will return the total number of records present for that query.
 ```
 ### Limit
 You can limit the number of records being fetched by passing `limit`
