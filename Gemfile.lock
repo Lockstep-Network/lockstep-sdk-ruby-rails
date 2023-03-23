@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lockstep_rails (0.3.55)
+    lockstep_rails (0.3.56)
       rails
 
 GEM
