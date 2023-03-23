@@ -256,10 +256,7 @@ class Lockstep::Query
       }
 
       if criteria[:with_count]
-        {
-        records: records,
-        total_count: parsed_response["totalCount"]
-        }
+        [records, parsed_response["totalCount"]]
       else
         records
       end
