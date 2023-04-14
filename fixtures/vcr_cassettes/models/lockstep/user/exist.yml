@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.dev.lockstep.io/api/v1/UserAccounts//invite
+    body:
+      encoding: UTF-8
+      string: '[{"email":"abc@gmail.com"}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Ls-Internalservice:
+      - "<LS-INTERNALSERVICE>"
+      Api-Key:
+      - "<API_KEY>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store, no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ARRAffinity=f9d45100e4e145eefd367848587fd91a9e4ae0df8914d10d94e750a3914a908f;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=f9d45100e4e145eefd367848587fd91a9e4ae0df8914d10d94e750a3914a908f;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Api-Supported-Versions:
+      - '1.0'
+      Server-Duration:
+      - '294'
+      X-Content-Type-Options:
+      - nosniff
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 0tAA5ZAAAAABzZvDRjdZpR69nZAZYw5cITUFBMDFFREdFMTYwOQBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Fri, 14 Apr 2023 07:28:53 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"email":"abc@gmail.com","success":true,"invitedUser":{"userId":"29955a14-41e8-4002-90f2-8c04d7c03550","groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","userName":"abc","email":"abc@gmail.com","status":"Invited","created":"2023-04-14T07:28:53.2564774Z","createdUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","modified":"2023-04-14T07:28:53.2564775Z","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","userRole":"00000000-0000-0000-0000-000000000003","inviteSent":"2023-04-14T07:28:53.2564774Z"}}]'
+  recorded_at: Fri, 14 Apr 2023 07:28:53 GMT
+recorded_with: VCR 6.1.0
