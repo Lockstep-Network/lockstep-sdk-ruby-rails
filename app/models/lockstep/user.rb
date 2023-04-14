@@ -14,11 +14,11 @@ class Lockstep::User < Lockstep::ApiRecord
     parsed_response = JSON.parse(resp.body)
     if resp.code != '200'
       if resp.code == '401'
-        raise Lockstep::Exceptions::UnauthorizedError, 'Unauthorized: Check your App ID & Master Key'
+        raise Lockstep::Exceptions::UnauthorizedError, parsed_response['title']
       elsif resp.code == '400'
-        raise Lockstep::Exceptions::BadRequestError, parsed_response
+        raise Lockstep::Exceptions::BadRequestError, parsed_response['title']
       elsif resp.code == '404'
-        raise Lockstep::Exceptions::RecordNotFound, 'Resource not found in the Platfrom'
+        raise Lockstep::Exceptions::RecordNotFound, parsed_response['title']
       end
     end
 
