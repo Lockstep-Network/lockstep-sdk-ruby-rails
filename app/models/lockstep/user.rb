@@ -6,9 +6,10 @@ class Lockstep::User < Lockstep::ApiRecord
   def self.invite(email_addresses)
     emails = email_addresses.map { |email| { email: email } }
     resp = resource.post('/invite', body: emails, params: {})
-    raise Lockstep::Exceptions::BadRequestError, 'Endpoint not found' if resp.code == '404'
+    parsed_response = JSON.parse(resp.body)
+    raise Lockstep::Exceptions::BadRequestError, parsed_response['title'] unless resp.code == '200'
 
-    result = JSON.parse(resp.body)
+    parsed_response
   end
 
   # # Load the first account
