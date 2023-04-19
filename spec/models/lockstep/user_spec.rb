@@ -5,7 +5,7 @@ RSpec.describe 'Lockstep::User' do
   context 'when calling User Invite to invite a user' do
     it 'should return true as the email is not present already' do
       VCR.use_cassette("models/lockstep/user/exist") do
-        response = Lockstep::User.invite(["abc@gmail.com"])
+        response = Lockstep::User.invite(["abcd@gmail.com"])
         expect(response.first['success']).to eq(true)
       end
     end

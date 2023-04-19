@@ -21,7 +21,13 @@ class Lockstep::User < Lockstep::ApiRecord
         raise Lockstep::Exceptions::RecordNotFound, parsed_response['title']
       end
     end
-
-    parsed_response
+    result = parsed_response&.map do |user|
+      if user['success']
+        user['invitedUser'] = Lockstep::User.find_by(user_id: user['invitedUser']['userId'])
+        user
+      elsif !user['success']
+        user
+      end
+    end
   end
 end

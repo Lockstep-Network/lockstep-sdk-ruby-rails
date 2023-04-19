@@ -39,8 +39,8 @@ http_interactions:
       Expires:
       - '0'
       Set-Cookie:
-      - ARRAffinity=f9d45100e4e145eefd367848587fd91a9e4ae0df8914d10d94e750a3914a908f;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
-      - ARRAffinitySameSite=f9d45100e4e145eefd367848587fd91a9e4ae0df8914d10d94e750a3914a908f;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinity=03d24676606ed55b0f79bbd37f4936db414024d7000968b9012569921e5777f3;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=03d24676606ed55b0f79bbd37f4936db414024d7000968b9012569921e5777f3;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
       Www-Authenticate:
       - Bearer
       Strict-Transport-Security:
@@ -54,11 +54,11 @@ http_interactions:
       X-Cache:
       - CONFIG_NOCACHE
       X-Azure-Ref:
-      - 0IAM5ZAAAAAB8hLmMO/bPTbi1GFthyzYcTUFBMDFFREdFMTYxNABmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      - 0G2lAZAAAAABt2u8/Ut/KS4nyOYsS4TrGTUFBMDFFREdFMTMxNwBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
       Date:
-      - Fri, 14 Apr 2023 07:39:12 GMT
+      - Wed, 19 Apr 2023 22:20:11 GMT
     body:
       encoding: UTF-8
-      string: '{"type":"https://httpstatuses.io/401","title":"Unauthorized","status":401,"traceId":"00-ce93036f8b3b685ca1ae8d4b1ce5c76b-2086ab2373d5c430-00"}'
-  recorded_at: Fri, 14 Apr 2023 07:39:13 GMT
+      string: '{"type":"https://httpstatuses.io/401","title":"Unauthorized","status":401,"traceId":"00-302c9434758d74cc811cbec673bba747-72a850c9bad73699-00"}'
+  recorded_at: Wed, 19 Apr 2023 22:20:12 GMT
 recorded_with: VCR 6.1.0
