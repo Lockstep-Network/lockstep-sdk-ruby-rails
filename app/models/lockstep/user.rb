@@ -23,7 +23,7 @@ class Lockstep::User < Lockstep::ApiRecord
     end
     result = parsed_response&.map do |user|
       if user['success']
-        user['invitedUser'] = Lockstep::User.find_by(user_id: user['invitedUser']['userId'])
+        user['invitedUser'] = Lockstep::User.new(user['invitedUser'])
         user
       elsif !user['success']
         user
