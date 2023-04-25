@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 RSpec.describe 'Lockstep::User' do
 
@@ -8,17 +7,17 @@ RSpec.describe 'Lockstep::User' do
       VCR.use_cassette("models/lockstep/user/exist") do
         response = Lockstep::User.invite(["abcd@gmail.com"])
         expect(response.first.persisted?).to eq(true)
-        expect(response.first.attributes['user_id']).to be_present
-        expect(response.first.attributes['group_key']).to be_present
-        expect(response.first.attributes['user_name']).to be_present
-        expect(response.first.attributes['email']).to be_present
-        expect(response.first.attributes['status']).to be_present
-        expect(response.first.attributes['created']).to be_present
-        expect(response.first.attributes['created_user_id']).to be_present
-        expect(response.first.attributes['modified']).to be_present
-        expect(response.first.attributes['modified_user_id']).to be_present
-        expect(response.first.attributes['user_role']).to be_present
-        expect(response.first.attributes['invite_sent']).to be_present
+        expect(response.first.user_id).to be_present
+        expect(response.first.group_key).to be_present
+        expect(response.first.user_name).to be_present
+        expect(response.first.email).to be_present
+        expect(response.first.status).to be_present
+        expect(response.first.created).to be_present
+        expect(response.first.created_user_id).to be_present
+        expect(response.first.modified).to be_present
+        expect(response.first.modified_user_id).to be_present
+        expect(response.first.user_role).to be_present
+        expect(response.first.invite_sent).to be_present
       end
     end
 
