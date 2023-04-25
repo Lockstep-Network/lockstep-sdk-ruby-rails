@@ -7,6 +7,17 @@ RSpec.describe 'Lockstep::User' do
       VCR.use_cassette("models/lockstep/user/exist") do
         response = Lockstep::User.invite(["abcd@gmail.com"])
         expect(response.first['success']).to eq(true)
+        expect(response.first['invitedUser'].attributes['userId']).to be_present
+        expect(response.first['invitedUser'].attributes['groupKey']).to be_present
+        expect(response.first['invitedUser'].attributes['userName']).to be_present
+        expect(response.first['invitedUser'].attributes['email']).to be_present
+        expect(response.first['invitedUser'].attributes['status']).to be_present
+        expect(response.first['invitedUser'].attributes['created']).to be_present
+        expect(response.first['invitedUser'].attributes['createdUserId']).to be_present
+        expect(response.first['invitedUser'].attributes['modified']).to be_present
+        expect(response.first['invitedUser'].attributes['modifiedUserId']).to be_present
+        expect(response.first['invitedUser'].attributes['userRole']).to be_present
+        expect(response.first['invitedUser'].attributes['inviteSent']).to be_present
       end
     end
 
