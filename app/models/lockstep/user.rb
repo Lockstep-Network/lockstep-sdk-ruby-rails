@@ -24,11 +24,11 @@ class Lockstep::User < Lockstep::ApiRecord
       result = snake_case_parsed_response&.map do |user|
         if user['success']
           invited_user_in_snake_case = user['invited_user'].transform_keys { |key| key.underscore }
-          user['invited_user'] = Lockstep::User.new(invited_user_in_snake_case)
+          Lockstep::User.new(invited_user_in_snake_case)
         else
           invited_user = Lockstep::User.new(email: user['email'])
           invited_user.errors.add "email", "#{user['error_message']}"
-          user['invited_user'] = invited_user
+          invited_user
         end
       end
     else
