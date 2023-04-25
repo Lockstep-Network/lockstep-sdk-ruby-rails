@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'pry'
 
 RSpec.describe 'Lockstep::User' do
 
@@ -6,25 +7,25 @@ RSpec.describe 'Lockstep::User' do
     it 'should return true as the email is not present already' do
       VCR.use_cassette("models/lockstep/user/exist") do
         response = Lockstep::User.invite(["abcd@gmail.com"])
-        expect(response.first['success']).to eq(true)
-        expect(response.first['invitedUser'].attributes['userId']).to be_present
-        expect(response.first['invitedUser'].attributes['groupKey']).to be_present
-        expect(response.first['invitedUser'].attributes['userName']).to be_present
-        expect(response.first['invitedUser'].attributes['email']).to be_present
-        expect(response.first['invitedUser'].attributes['status']).to be_present
-        expect(response.first['invitedUser'].attributes['created']).to be_present
-        expect(response.first['invitedUser'].attributes['createdUserId']).to be_present
-        expect(response.first['invitedUser'].attributes['modified']).to be_present
-        expect(response.first['invitedUser'].attributes['modifiedUserId']).to be_present
-        expect(response.first['invitedUser'].attributes['userRole']).to be_present
-        expect(response.first['invitedUser'].attributes['inviteSent']).to be_present
+        expect(response.first.persisted?).to eq(true)
+        expect(response.first.attributes['user_id']).to be_present
+        expect(response.first.attributes['group_key']).to be_present
+        expect(response.first.attributes['user_name']).to be_present
+        expect(response.first.attributes['email']).to be_present
+        expect(response.first.attributes['status']).to be_present
+        expect(response.first.attributes['created']).to be_present
+        expect(response.first.attributes['created_user_id']).to be_present
+        expect(response.first.attributes['modified']).to be_present
+        expect(response.first.attributes['modified_user_id']).to be_present
+        expect(response.first.attributes['user_role']).to be_present
+        expect(response.first.attributes['invite_sent']).to be_present
       end
     end
 
     it 'should return false as the email is already registered' do
       VCR.use_cassette("models/lockstep/user/does_not_exist") do
         response = Lockstep::User.invite( ["su5mitsourav@gmail.com"] )
-        expect(response.first['success']).to eq(false)
+        expect(response.first.persisted?).to eq(false)
       end
     end
 
