@@ -25,14 +25,14 @@ class Lockstep::User < Lockstep::ApiRecord
         if user['success']
           invited_user_in_snake_case = user['invited_user'].transform_keys { |key| key.underscore }
           user['invited_user'] = Lockstep::User.new(invited_user_in_snake_case)
-        elsif !user['success']
+        else
           invited_user = Lockstep::User.new(email: user['email'])
           invited_user.errors.add "email", "#{user['error_message']}"
           user['invited_user'] = invited_user
         end
       end
     else
-      return false
+      raise Lockstep::Exceptions::BadRequestError, parsed_response
     end
   end
 end
