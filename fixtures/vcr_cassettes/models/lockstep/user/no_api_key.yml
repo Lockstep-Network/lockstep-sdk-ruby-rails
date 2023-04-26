@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.dev.lockstep.io/api/v1/UserAccounts//invite
+    body:
+      encoding: UTF-8
+      string: '[{"email":"su5mitsourav@gmail.com"}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/problem+json; charset=utf-8
+      Expires:
+      - '0'
+      Set-Cookie:
+      - ARRAffinity=03d24676606ed55b0f79bbd37f4936db414024d7000968b9012569921e5777f3;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=03d24676606ed55b0f79bbd37f4936db414024d7000968b9012569921e5777f3;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Www-Authenticate:
+      - Bearer
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Server-Duration:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 0G2lAZAAAAABt2u8/Ut/KS4nyOYsS4TrGTUFBMDFFREdFMTMxNwBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Wed, 19 Apr 2023 22:20:11 GMT
+    body:
+      encoding: UTF-8
+      string: '{"type":"https://httpstatuses.io/401","title":"Unauthorized","status":401,"traceId":"00-302c9434758d74cc811cbec673bba747-72a850c9bad73699-00"}'
+  recorded_at: Wed, 19 Apr 2023 22:20:12 GMT
+recorded_with: VCR 6.1.0

@@ -1,0 +1,130 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.dev.lockstep.io/api/v1/UserAccounts//invite
+    body:
+      encoding: UTF-8
+      string: '[{"email":"abcd@gmail.com"}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Api-Key:
+      - "<API_KEY>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store, no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ARRAffinity=03d24676606ed55b0f79bbd37f4936db414024d7000968b9012569921e5777f3;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=03d24676606ed55b0f79bbd37f4936db414024d7000968b9012569921e5777f3;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Api-Supported-Versions:
+      - '1.0'
+      Server-Duration:
+      - '1624'
+      X-Content-Type-Options:
+      - nosniff
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 00GhAZAAAAADs0Ky2fmXqS4WUvDNNmx5VTUFBMDFFREdFMTYxNQBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Wed, 19 Apr 2023 22:18:58 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"email":"abcd@gmail.com","success":true,"invitedUser":{"userId":"fa92d490-9fc5-4608-b743-c3f6f7d0526c","groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","userName":"abcd","email":"abcd@gmail.com","status":"Invited","created":"2023-04-19T22:18:59.2356388Z","createdUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","modified":"2023-04-19T22:18:59.2356388Z","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","userRole":"00000000-0000-0000-0000-000000000003","inviteSent":"2023-04-19T22:18:59.2356387Z"}}]'
+  recorded_at: Wed, 19 Apr 2023 22:18:59 GMT
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api/v1/UserAccounts/query?filter=userId%20eq%20%27fa92d490-9fc5-4608-b743-c3f6f7d0526c%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Api-Key:
+      - "<API_KEY>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store, no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ARRAffinity=03d24676606ed55b0f79bbd37f4936db414024d7000968b9012569921e5777f3;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=03d24676606ed55b0f79bbd37f4936db414024d7000968b9012569921e5777f3;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Api-Supported-Versions:
+      - '1.0'
+      Server-Duration:
+      - '827'
+      X-Content-Type-Options:
+      - nosniff
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 002hAZAAAAAAFxOigEbI9RLZbbjLWN09bTUFBMDFFREdFMTMwNwBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Wed, 19 Apr 2023 22:19:00 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"records":[{"userId":"fa92d490-9fc5-4608-b743-c3f6f7d0526c","groupKey":"a4429a01-e38e-448d-9fda-754f8f230b4e","userName":"abcd","email":"abcd@gmail.com","status":"Invited","created":"2023-04-19T22:18:59.42","createdUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","modified":"2023-04-19T22:18:59.42","modifiedUserId":"e6f52a30-4433-46e8-ae46-660ea732e73b","modifiedUserName":"Vivek
+        AG","userRole":"00000000-0000-0000-0000-000000000003","inviteSent":"2023-04-19T22:18:59.24"}],"totalCount":1,"pageSize":250}'
+  recorded_at: Wed, 19 Apr 2023 22:19:01 GMT
+recorded_with: VCR 6.1.0
