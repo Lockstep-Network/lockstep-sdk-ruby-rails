@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.dev.lockstep.io/api/v1/UserAccounts//invite
+    body:
+      encoding: UTF-8
+      string: '[{"email":"su5mitsourav@gmail.com"}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Api-Key:
+      - "<API_KEY>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-store, no-cache
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Set-Cookie:
+      - ARRAffinity=03d24676606ed55b0f79bbd37f4936db414024d7000968b9012569921e5777f3;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=03d24676606ed55b0f79bbd37f4936db414024d7000968b9012569921e5777f3;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Request-Context:
+      - appId=cid-v1:940f2e64-2350-4ad1-9dba-058ac7e07745
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Api-Supported-Versions:
+      - '1.0'
+      Server-Duration:
+      - '7'
+      X-Content-Type-Options:
+      - nosniff
+      X-Powered-By:
+      - ASP.NET
+      X-Cache:
+      - CONFIG_NOCACHE
+      X-Azure-Ref:
+      - 01WhAZAAAAADNvUUcTaliQYVp9b1/71myTUFBMDFFREdFMTMwNwBmYmJhNmE5OC0xYjM5LTQ4NDMtOTNkNS0yN2E4NTM5YTdkYjE=
+      Date:
+      - Wed, 19 Apr 2023 22:19:01 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"email":"su5mitsourav@gmail.com","success":false,"errorMessage":"This
+        email su5mitsourav@gmail.com is already registered"}]'
+  recorded_at: Wed, 19 Apr 2023 22:19:02 GMT
+recorded_with: VCR 6.1.0
