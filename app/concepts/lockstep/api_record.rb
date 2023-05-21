@@ -423,8 +423,11 @@ module Lockstep
     #   raise StandardError.new("delete_all doesn't exist. Did you mean destroy_all?")
     # end
 
-    def self.bulk_import(new_objects, slice_size = 20)
+    def self.bulk_import(new_objects, slice_size = nil)
       return [] if new_objects.blank?
+
+      # default slice size to 1000, if its blank or if its 0
+      slice_size = 1000 if slice_size.blank? || slice_size.to_i == 0
 
       # Batch saves seem to fail if they're too big. We'll slice it up into multiple posts if they are.
       new_objects.each_slice(slice_size) do |objects|
