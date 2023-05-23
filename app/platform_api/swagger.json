@@ -2313,6 +2313,21 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "401": {
             "description": "Unauthorized"
           },
@@ -9570,7 +9585,7 @@
           "Invoices"
         ],
         "summary": "Retrieve invoice PDF",
-        "description": "Retrieves a PDF file for this invoice if it is of one of the supported invoice types and has been synced using an app enrollment to one of the supported apps.\r\n\r\nSage Intacct supports AR Invoices.\r\n\r\nQuickbooks Online supports AR Invoices, and AR Credit Memos.\r\n\r\nXero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Retrieves a PDF file for this invoice if it is of one of the supported invoice types and has been synced using an app enrollment to one of the supported apps.\r\n\r\nSage Intacct supports AR Invoices.\r\n\r\nQuickBooks Online supports AR Invoices, and AR Credit Memos.\r\n\r\nXero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Invoices_RetrieveInvoicePdf",
         "parameters": [
           {
@@ -11348,7 +11363,7 @@
           "Payments"
         ],
         "summary": "Retrieve payment PDF",
-        "description": "Retrieves a PDF file for this payment if it has been synced using an app enrollment to one of the supported apps.\r\n\r\nQuickbooks Online supports AR Payments.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Retrieves a PDF file for this payment if it has been synced using an app enrollment to one of the supported apps.\r\n\r\nQuickBooks Online supports AR Payments.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Payments_RetrievePaymentPdf",
         "parameters": [
           {
@@ -16283,6 +16298,97 @@
         ]
       }
     },
+    "/api/v1/service-fabric/events/payments/{groupKey}": {
+      "post": {
+        "tags": [
+          "Service-Fabric"
+        ],
+        "summary": "Payments Hook",
+        "description": "Receives SF webhooks",
+        "operationId": "v1_ServiceFabric_ReceivePaymentWebhook",
+        "parameters": [
+          {
+            "name": "clientState",
+            "in": "header",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupKey",
+            "in": "path",
+            "description": "The GroupKey of the group receiving these notifications",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The SF payload",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SfNotification"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SfNotification"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SfNotification"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/Status": {
       "get": {
         "tags": [
@@ -17934,6 +18040,100 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TranscriptionValidationRequestItemModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Transcriptions/email-reply-suggestions": {
+      "post": {
+        "tags": [
+          "Transcriptions"
+        ],
+        "summary": "Retrieve an EmailReplyGeneratorResponse",
+        "description": "Retrieves the Email Reply Generator Response containing a list of email reply suggestions\r\n\r\nAn Email Reply Generator Request represents an email to be sent for a list of email reply suggestions.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_Transcriptions_GetEmailReplySuggestions",
+        "requestBody": {
+          "description": "The Email Reply Generator Request to be sent",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/EmailReplyGeneratorRequest"
+                  }
+                ],
+                "description": "Represents the request to the SAGE GMS API"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/EmailReplyGeneratorRequest"
+                  }
+                ],
+                "description": "Represents the request to the SAGE GMS API"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/EmailReplyGeneratorRequest"
+                  }
+                ],
+                "description": "Represents the request to the SAGE GMS API"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailReplyGeneratorResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailReplyGeneratorResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -20609,13 +20809,6 @@
       "AccountingProfileContactResultModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccountingProfileContactResultModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -20629,6 +20822,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingProfileContactResultModel"
+            },
             "nullable": true
           }
         },
@@ -20986,6 +21186,10 @@
         },
         "additionalProperties": false,
         "description": "An Accounting Profile is a child of a Company Profile, and collectively,\r\nthey comprise the identity and necessary information for an accounting  team\r\nto work with trading partners, financial institutions, auditors, and others.\r\nYou can use Accounting Profiles to define an accounting function by what\r\nthe function does and how to interface with the function."
+      },
+      "ActionResult": {
+        "type": "object",
+        "additionalProperties": false
       },
       "ActionResultModel": {
         "type": "object",
@@ -22187,7 +22391,8 @@
             "type": "string",
             "description": "The date stamp for the newest Activity on this Invoice.",
             "format": "date",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "daysPastDue": {
             "type": "integer",
@@ -22348,6 +22553,10 @@
         "additionalProperties": false
       },
       "AttachmentModel": {
+        "required": [
+          "objectKey",
+          "tableKey"
+        ],
         "type": "object",
         "properties": {
           "attachmentId": {
@@ -22364,13 +22573,13 @@
           },
           "tableKey": {
             "maxLength": 40,
-            "minLength": 0,
+            "minLength": 1,
             "type": "string",
             "description": "An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and\r\n`ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of\r\n`Invoice` and an `ObjectKey` value of `12345`.\r\n            \r\nThe `TableKey` value contains the name of the table within the Lockstep Platform to which this Attachment\r\nis connected.\r\n            \r\nFor more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
-            "nullable": true,
             "readOnly": true
           },
           "objectKey": {
+            "minLength": 1,
             "type": "string",
             "description": "An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and\r\n`ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of\r\n`Invoice` and an `ObjectKey` value of `12345`.\r\n            \r\nThe `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this\r\nAttachment is connected.\r\n            \r\nFor more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
             "format": "uuid",
@@ -22636,9 +22845,14 @@
             "description": "Timeframe in days the cashflow report is generated on",
             "format": "int32"
           },
+          "baseCurrencyCode": {
+            "type": "string",
+            "description": "The base currency code of the group.",
+            "nullable": true
+          },
           "paymentsCollected": {
             "type": "number",
-            "description": "Amount of payments collected based in the timeframe",
+            "description": "Amount of payments collected based in the timeframe in the group's base currency",
             "format": "double"
           },
           "paymentsCollectedCount": {
@@ -22648,7 +22862,7 @@
           },
           "invoicesBilled": {
             "type": "number",
-            "description": "Amount of invoices billed based in the timeframe",
+            "description": "Amount of invoices billed based in the timeframe in the group's base currency",
             "format": "double"
           },
           "invoicesBilledCount": {
@@ -23107,7 +23321,8 @@
             "type": "string",
             "description": "The name of the user who last modified this company",
             "nullable": true,
-            "readOnly": true
+            "readOnly": true,
+            "deprecated": true
           },
           "taxId": {
             "maxLength": 20,
@@ -23375,7 +23590,7 @@
           },
           "erpKey": {
             "type": "string",
-            "description": "This is the primary key of the Company record. For this field, you should use whatever the company's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\n            \r\nExample: If you store your company records in a database, whatever the primary key for the company table is\r\nin the database should be the `ErpKey`.\r\n            \r\nExample: If you use a financial system such as Quickbooks or Xero, look for the primary ID number of the\r\ncompany record within that financial system.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns)."
+            "description": "This is the primary key of the Company record. For this field, you should use whatever the company's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\n            \r\nExample: If you store your company records in a database, whatever the primary key for the company table is\r\nin the database should be the `ErpKey`.\r\n            \r\nExample: If you use a financial system such as QuickBooks or Xero, look for the primary ID number of the\r\ncompany record within that financial system.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns)."
           },
           "companyName": {
             "type": "string",
@@ -24047,6 +24262,13 @@
       "CountryModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CountryModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24060,13 +24282,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CountryModel"
-            },
             "nullable": true
           }
         },
@@ -24103,6 +24318,21 @@
             "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this company record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
             "nullable": true
           },
+          "erpWriteStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErpWriteStatuses"
+              }
+            ],
+            "description": "Possible statuses for a record that supports ERP write.",
+            "readOnly": true
+          },
+          "erpWriteStatusName": {
+            "type": "string",
+            "description": "The name of the ErpWriteStatus for this credit memo application",
+            "nullable": true,
+            "readOnly": true
+          },
           "entryNumber": {
             "type": "integer",
             "description": "Reference number for the applied credit memo.",
@@ -24114,7 +24344,6 @@
             "format": "date-time"
           },
           "creditMemoAppliedAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "The amount of the credit memo that was applied to the Invoice represented by `InvoiceId`.",
             "format": "double"
@@ -24147,6 +24376,13 @@
             "type": "string",
             "description": "The AppEnrollmentId of the application that imported this record.  For accounts\r\nwith more than one financial system connected, this field identifies the originating\r\nfinancial system that produced this record.  This value is null if this record\r\nwas not loaded from an external ERP or financial system.",
             "format": "uuid",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sourceModifiedDate": {
+            "type": "string",
+            "description": "The date on which this record was last modified in source ERP.",
+            "format": "date-time",
             "nullable": true,
             "readOnly": true
           },
@@ -24975,7 +25211,8 @@
             "type": "string",
             "description": "The date stamp for the newest Activity on this Customer.",
             "format": "date",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "modified": {
             "type": "string",
@@ -25254,13 +25491,6 @@
       "DpoSummaryModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DpoSummaryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -25275,9 +25505,82 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DpoSummaryModel"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
+      },
+      "EmailReplyGeneratorRequest": {
+        "required": [
+          "body",
+          "date",
+          "subject"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The date associated with the email",
+            "format": "date-time"
+          },
+          "body": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The body associated with the email"
+          },
+          "subject": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The subject associated with the email"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the request to the SAGE GMS API"
+      },
+      "EmailReplyGeneratorResponse": {
+        "type": "object",
+        "properties": {
+          "message_id": {
+            "type": "string",
+            "description": "The id for this request in the GMS system",
+            "format": "uuid",
+            "nullable": true
+          },
+          "suggestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmailReplyGeneratorSuggestions"
+            },
+            "description": "A list of suggested email reply responses",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the response from SAGE GMS API"
+      },
+      "EmailReplyGeneratorSuggestions": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "description": "The kind of reply generated by the GMS Api",
+            "nullable": true
+          },
+          "body": {
+            "type": "string",
+            "description": "The body of the reply generated by the GMS Api",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the email reply suggestion from the SAGE GMS API"
       },
       "ErpModel": {
         "type": "object",
@@ -25330,6 +25633,19 @@
         },
         "additionalProperties": false
       },
+      "ErpWriteStatuses": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "description": "Possible statuses for a record that supports ERP write.",
+        "format": "int32"
+      },
       "FeatureFlagsRequestModel": {
         "type": "object",
         "properties": {
@@ -25363,6 +25679,9 @@
         "description": "Response information for Feature Flags"
       },
       "FinancialAccountBalanceHistoryModel": {
+        "required": [
+          "financialAccountId"
+        ],
         "type": "object",
         "properties": {
           "financialAccountBalanceHistoryId": {
@@ -25378,6 +25697,7 @@
             "readOnly": true
           },
           "financialAccountId": {
+            "minLength": 1,
             "type": "string",
             "description": "The id of the Financial Account that this balance history is for.",
             "format": "uuid"
@@ -25395,8 +25715,6 @@
             "format": "int32"
           },
           "periodNumber": {
-            "maximum": 13,
-            "minimum": 1,
             "type": "integer",
             "description": "The period number (1-12 or 1-13) that this balance history is for",
             "format": "int32"
@@ -25412,8 +25730,6 @@
             "format": "date-time"
           },
           "status": {
-            "maxLength": 7,
-            "minLength": 0,
             "type": "string",
             "description": "The status of this period. The status should be Closed if the books for this period have been closed,\r\nif not the status should be Open. The status can also be Deleted if there was a recalculation that needed\r\nto occur, for example due to a change in financial year settings.",
             "nullable": true
@@ -25422,6 +25738,20 @@
             "type": "number",
             "description": "The current or end balance of this period.",
             "format": "double"
+          },
+          "balanceType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FinancialAccountBalanceType"
+              }
+            ],
+            "description": "Financial Account Balance Types"
+          },
+          "balanceTypeName": {
+            "type": "string",
+            "description": "The name of the BalanceType for this record.",
+            "nullable": true,
+            "readOnly": true
           },
           "created": {
             "type": "string",
@@ -25497,7 +25827,7 @@
           },
           "financialAccountErpKey": {
             "type": "string",
-            "description": "This is the primary key of the FinancialAccount record. For this field, you should use whatever the company's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\nExample: If you store your company records in a database, whatever the primary key for the company table is\r\nin the database should be the ErpKey.\r\nExample: If you use a financial system such as Quickbooks or Xero, look for the primary ID number of the\r\ncompany record within that financial system.",
+            "description": "This is the primary key of the FinancialAccount record. For this field, you should use whatever the company's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\nExample: If you store your company records in a database, whatever the primary key for the company table is\r\nin the database should be the ErpKey.\r\nExample: If you use a financial system such as QuickBooks or Xero, look for the primary ID number of the\r\ncompany record within that financial system.",
             "nullable": true
           },
           "financialYear": {
@@ -25528,10 +25858,28 @@
             "type": "number",
             "description": "The current or end balance of this period.",
             "format": "double"
+          },
+          "balanceType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FinancialAccountBalanceType"
+              }
+            ],
+            "description": "The balance type of this period. If left null, the balance type will be determined by the balance.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "The FinancialAccountBalanceHistorySyncModel represents information coming into Lockstep from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe FinancialAccountBalanceHistorySyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep\r\nplatform.\r\n            \r\nIf the FinancialAccountBalanceHistorySyncModels are imported via a connector instead, please ensure that all records are passed in\r\non every sync. Records that are not passed in will be assumed to be deleted.\r\n            \r\nOnce imported, this record will be available in the Lockstep API as a [FinancialAccountBalanceHistoryModel](https://developer.lockstep.io/docs/financialaccountbalancehistorymodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
+      },
+      "FinancialAccountBalanceType": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "Financial Account Balance Types",
+        "format": "int32"
       },
       "FinancialAccountModel": {
         "type": "object",
@@ -26341,7 +26689,6 @@
             "nullable": true
           },
           "unitPrice": {
-            "minimum": 0,
             "type": "number",
             "description": "The price of a single unit for this line.",
             "format": "double"
@@ -26428,6 +26775,28 @@
             "type": "string",
             "description": "The AppEnrollmentId of the application that imported this record.  For accounts\r\nwith more than one financial system connected, this field identifies the originating\r\nfinancial system that produced this record.  This value is null if this record\r\nwas not loaded from an external ERP or financial system.",
             "format": "uuid",
+            "nullable": true,
+            "readOnly": true
+          },
+          "erpWriteStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErpWriteStatuses"
+              }
+            ],
+            "description": "Possible statuses for a record that supports ERP write.",
+            "readOnly": true
+          },
+          "erpWriteStatusName": {
+            "type": "string",
+            "description": "The name of the ErpWriteStatus for this Invoice",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sourceModifiedDate": {
+            "type": "string",
+            "description": "The date on which this record was last modified in source ERP.",
+            "format": "date-time",
             "nullable": true,
             "readOnly": true
           },
@@ -26808,25 +27177,21 @@
             "nullable": true
           },
           "totalAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "The total value of this invoice, inclusive of all taxes and line items in it's tendered currency.",
             "format": "double"
           },
           "salesTaxAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "The total sales (or transactional) tax calculated for this invoice in it's tendered currency.",
             "format": "double"
           },
           "discountAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "The total discounts given by the seller to the buyer on this invoice in it's tendered currency.",
             "format": "double"
           },
           "outstandingBalanceAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "The remaining balance value of this invoice in it's tendered currency.",
             "format": "double"
@@ -26941,28 +27306,46 @@
             "format": "double"
           },
           "baseCurrencyTotalAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "The total value of this invoice, inclusive of all taxes and line items in the group's base currency.",
             "format": "double"
           },
           "baseCurrencySalesTaxAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "The total sales (or transactional) tax calculated for this invoice in the group's base currency.",
             "format": "double"
           },
           "baseCurrencyDiscountAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "The total discounts given by the seller to the buyer on this invoice in the group's base currency.",
             "format": "double"
           },
           "baseCurrencyOutstandingBalanceAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "The remaining balance value of this invoice in the group's base currency.",
             "format": "double"
+          },
+          "erpWriteStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErpWriteStatuses"
+              }
+            ],
+            "description": "Possible statuses for a record that supports ERP write.",
+            "readOnly": true
+          },
+          "erpWriteStatusName": {
+            "type": "string",
+            "description": "The name of the ErpWriteStatus for this Invoice",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sourceModifiedDate": {
+            "type": "string",
+            "description": "The date on which this record was last modified in source ERP.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
           },
           "addresses": {
             "type": "array",
@@ -27293,7 +27676,8 @@
             "type": "string",
             "description": "The date stamp for the newest Activity on this Invoice.",
             "format": "date",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "daysPastDue": {
             "type": "integer",
@@ -28073,6 +28457,43 @@
         },
         "additionalProperties": false
       },
+      "NotificationData": {
+        "type": "object",
+        "properties": {
+          "subscriptionId": {
+            "type": "string",
+            "description": "The id of the subscription due to which this notification has been sent"
+          },
+          "applicationId": {
+            "type": "string",
+            "description": "The client application identifier",
+            "nullable": true
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Application unique identifier for this company",
+            "format": "uuid",
+            "nullable": true
+          },
+          "networkId": {
+            "type": "string",
+            "description": "Unknown"
+          },
+          "expirationDateTime": {
+            "type": "string",
+            "description": "expirationDateTime if the subscription has one",
+            "format": "date-time",
+            "nullable": true
+          },
+          "serviceAttributes": {
+            "type": "object",
+            "additionalProperties": { },
+            "description": "Specific info about this event"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Notification details"
+      },
       "PayablesComingDueHeaderModel": {
         "type": "object",
         "properties": {
@@ -28118,30 +28539,25 @@
       "PayablesComingDueModel": {
         "type": "object",
         "properties": {
-          "dueDate": {
-            "type": "string",
-            "description": "This model represents all the payables that are\r\neither already due or due within this date.",
-            "format": "date-time"
-          },
           "groupKey": {
             "type": "string",
             "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
-            "format": "uuid"
-          },
-          "vendorName": {
-            "type": "string",
-            "description": "Name for this company",
-            "nullable": true
-          },
-          "vendorId": {
-            "type": "string",
-            "description": "The unique Lockstep Id for the Vendor",
             "format": "uuid"
           },
           "numberOfBillsDue": {
             "type": "integer",
             "description": "Number of bills due for this time period",
             "format": "int32"
+          },
+          "vendorId": {
+            "type": "string",
+            "description": "The unique Lockstep Id for the Vendor",
+            "format": "uuid"
+          },
+          "vendorName": {
+            "type": "string",
+            "description": "Name for this company",
+            "nullable": true
           },
           "primaryContact": {
             "type": "string",
@@ -28162,6 +28578,11 @@
             "type": "number",
             "description": "Total amount due for this time period at the group's base currency",
             "format": "double"
+          },
+          "dueDate": {
+            "type": "string",
+            "description": "This model represents all the payables that are\r\neither already due or due within this date.",
+            "format": "date-time"
           }
         },
         "additionalProperties": false,
@@ -28170,13 +28591,6 @@
       "PayablesComingDueModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PayablesComingDueModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -28190,6 +28604,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayablesComingDueModel"
+            },
             "nullable": true
           }
         },
@@ -28265,6 +28686,10 @@
         "description": "Represents the payables summary report based on a timeframe"
       },
       "PaymentAppliedModel": {
+        "required": [
+          "invoiceId",
+          "paymentId"
+        ],
         "type": "object",
         "properties": {
           "groupKey": {
@@ -28280,11 +28705,13 @@
             "readOnly": true
           },
           "invoiceId": {
+            "minLength": 1,
             "type": "string",
             "description": "The Invoice this payment is applied to.",
             "format": "uuid"
           },
           "paymentId": {
+            "minLength": 1,
             "type": "string",
             "description": "The Payment applied to the invoice.",
             "format": "uuid"
@@ -28294,6 +28721,21 @@
             "type": "string",
             "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this company record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
             "nullable": true
+          },
+          "erpWriteStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErpWriteStatuses"
+              }
+            ],
+            "description": "Possible statuses for a record that supports ERP write.",
+            "readOnly": true
+          },
+          "erpWriteStatusName": {
+            "type": "string",
+            "description": "The name of the ErpWriteStatus for this payment application",
+            "nullable": true,
+            "readOnly": true
           },
           "entryNumber": {
             "type": "integer",
@@ -28306,7 +28748,6 @@
             "format": "date-time"
           },
           "paymentAppliedAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "The total amount that was applied to this Invoice from the Payment.",
             "format": "double"
@@ -28339,6 +28780,13 @@
             "type": "string",
             "description": "The AppEnrollmentId of the application that imported this record.  For accounts\r\nwith more than one financial system connected, this field identifies the originating\r\nfinancial system that produced this record.  This value is null if this record\r\nwas not loaded from an external ERP or financial system.",
             "format": "uuid",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sourceModifiedDate": {
+            "type": "string",
+            "description": "The date on which this record was last modified in source ERP.",
+            "format": "date-time",
             "nullable": true,
             "readOnly": true
           },
@@ -28547,6 +28995,21 @@
             "type": "string",
             "description": "The Email address of the Customer.",
             "nullable": true
+          },
+          "erpWriteStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErpWriteStatuses"
+              }
+            ],
+            "description": "Possible statuses for a record that supports ERP write.",
+            "readOnly": true
+          },
+          "erpWriteStatusName": {
+            "type": "string",
+            "description": "The name of the ErpWriteStatus for this payment",
+            "nullable": true,
+            "readOnly": true
           },
           "currencyCode": {
             "maxLength": 3,
@@ -28758,6 +29221,21 @@
             "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this company record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
             "nullable": true
           },
+          "erpWriteStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErpWriteStatuses"
+              }
+            ],
+            "description": "Possible statuses for a record that supports ERP write.",
+            "readOnly": true
+          },
+          "erpWriteStatusName": {
+            "type": "string",
+            "description": "The name of the ErpWriteStatus for this Payment",
+            "nullable": true,
+            "readOnly": true
+          },
           "paymentType": {
             "maxLength": 20,
             "minLength": 1,
@@ -28794,13 +29272,11 @@
             "format": "date"
           },
           "paymentAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "Total amount of this payment in it's received currency.",
             "format": "double"
           },
           "unappliedAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "Unapplied balance of this payment in it's received currency.  If this amount is nonzero, the field `IsOpen` will be true.",
             "format": "double"
@@ -28809,6 +29285,11 @@
             "maxLength": 3,
             "type": "string",
             "description": "The ISO 4217 currency code for this payment.\r\n            \r\nFor a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies).",
+            "nullable": true
+          },
+          "bankAccountId": {
+            "type": "string",
+            "description": "The Bank account id for the company to which this payment belongs.",
             "nullable": true
           },
           "referenceCode": {
@@ -28864,13 +29345,11 @@
             "format": "double"
           },
           "baseCurrencyPaymentAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "Total amount of this payment in the group's base currency.",
             "format": "double"
           },
           "baseCurrencyUnappliedAmount": {
-            "minimum": 0,
             "type": "number",
             "description": "Unapplied balance of this payment in the group's base currency.  If this amount is nonzero, the field `IsOpen` will be true.",
             "format": "double"
@@ -28878,6 +29357,13 @@
           "serviceFabricStatus": {
             "type": "string",
             "description": "The status of this payment within Service Fabric.\r\n\"UNAUTHORISED\" \"PENDING\" \"PAID\" \"PAID_OFFLINE\" \"FAILED\" \"CANCELLED\" \"REJECTED\" \"REFUNDED\" \"PARTIALLY\" \"PARTIALLY_REFUNDED\"",
+            "nullable": true,
+            "readOnly": true
+          },
+          "sourceModifiedDate": {
+            "type": "string",
+            "description": "The date on which this record was last modified in source ERP.",
+            "format": "date-time",
             "nullable": true,
             "readOnly": true
           },
@@ -29463,6 +29949,11 @@
             "type": "number",
             "description": "Unapplied balance of this payment in the erp's base currency.  If this amount is nonzero, the field `IsOpen` will be true.",
             "format": "double"
+          },
+          "bankAccountId": {
+            "type": "string",
+            "description": "Bank account id for the payment.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -29979,6 +30470,7 @@
           },
           "country": {
             "maxLength": 3,
+            "minLength": 3,
             "type": "string",
             "description": "Country (based on 3-char ISO/DI-3166 country code)",
             "nullable": true
@@ -30191,6 +30683,47 @@
         "additionalProperties": false,
         "description": "Service Fabric Enroll Response"
       },
+      "SfNotification": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Notification ID",
+            "format": "uuid"
+          },
+          "source": {
+            "type": "string",
+            "description": "Source of the Notification"
+          },
+          "specVersion": {
+            "type": "string",
+            "description": "Version of Notification"
+          },
+          "type": {
+            "type": "string",
+            "description": "Describes event from Source"
+          },
+          "subject": {
+            "type": "string",
+            "description": "The ID of the type in question (ex. NewPayment type would have the subject be a PaymentId)",
+            "format": "uuid"
+          },
+          "dataContentType": {
+            "type": "string",
+            "description": "RFC 2046 format content type"
+          },
+          "data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NotificationData"
+              }
+            ],
+            "description": "Extra information about the event"
+          }
+        },
+        "additionalProperties": false,
+        "description": "An individual SF notification"
+      },
       "SfOrganisationRequest": {
         "required": [
           "adminEmail",
@@ -30207,16 +30740,19 @@
           },
           "sageCrmId": {
             "maxLength": 255,
+            "minLength": 1,
             "type": "string",
             "description": "This will be your GroupKey"
           },
           "primaryCountry": {
             "maxLength": 3,
+            "minLength": 3,
             "type": "string",
             "description": "Your country in the ISO 3166-1 Alpha-3 format."
           },
           "adminEmail": {
             "maxLength": 255,
+            "minLength": 1,
             "type": "string",
             "description": "Contact email of the app administrator.\r\nMake sure you specify a valid email - you'll need it later.",
             "format": "email"
@@ -30686,6 +31222,7 @@
         "type": "object",
         "properties": {
           "servicerId": {
+            "maxLength": 36,
             "minLength": 1,
             "type": "string",
             "description": "The unique identifier of the servicer to integrate with."
@@ -31078,8 +31615,7 @@
           "errorCount": {
             "type": "integer",
             "description": "The number of errors encountered during sync",
-            "format": "int32",
-            "readOnly": true
+            "format": "int32"
           },
           "errors": {
             "type": "object",
@@ -31091,6 +31627,18 @@
               "nullable": true
             },
             "description": "The errors encountered during sync keyed by ERP key",
+            "nullable": true
+          },
+          "skips": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "description": "The records that were skipped during sync keyed by ERP key",
             "nullable": true
           }
         },
@@ -31441,13 +31989,6 @@
       "TransactionModelTransactionSummaryTotalModelSummaryFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransactionModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -31461,6 +32002,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionModel"
+            },
             "nullable": true
           },
           "summary": {
@@ -31908,7 +32456,8 @@
             "type": "string",
             "description": "The name of the user who last modified the user account",
             "nullable": true,
-            "readOnly": true
+            "readOnly": true,
+            "deprecated": true
           },
           "b2CUserId": {
             "type": "string",
@@ -32685,13 +33234,6 @@
       "WebhookModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/WebhookModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -32705,6 +33247,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WebhookModel"
+            },
             "nullable": true
           }
         },

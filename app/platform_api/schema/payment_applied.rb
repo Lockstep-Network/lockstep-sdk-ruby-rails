@@ -41,6 +41,13 @@ end
   # @type: string
   field :erp_key
 
+  # Possible statuses for a record that supports ERP write.
+  field :erp_write_status
+
+  # The name of the ErpWriteStatus for this payment application
+  # @type: string
+  field :erp_write_status_name
+
   # The entry number of this payment application.  This is often a journal entry number, confirmation code,
   # or other identifying field for this payment application.
   # @type: integer
@@ -84,6 +91,11 @@ end
   # @type: string
   # @format: uuid
   field :app_enrollment_id
+
+  # The date on which this record was last modified in source ERP.
+  # @type: string
+  # @format: date-time
+  field :source_modified_date, Types::Params::DateTime
 
   # The payment associated with this applied payment
   field :payment

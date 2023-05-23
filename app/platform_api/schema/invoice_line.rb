@@ -133,6 +133,18 @@ end
   # @format: uuid
   field :app_enrollment_id
 
+  # Possible statuses for a record that supports ERP write.
+  field :erp_write_status
+
+  # The name of the ErpWriteStatus for this Invoice
+  # @type: string
+  field :erp_write_status_name
+
+  # The date on which this record was last modified in source ERP.
+  # @type: string
+  # @format: date-time
+  field :source_modified_date, Types::Params::DateTime
+
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 

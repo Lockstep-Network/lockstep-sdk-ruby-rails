@@ -15,7 +15,7 @@ end
   # originating financial system for this record.
   # Example: If you store your company records in a database, whatever the primary key for the company table is
   # in the database should be the ErpKey.
-  # Example: If you use a financial system such as Quickbooks or Xero, look for the primary ID number of the
+  # Example: If you use a financial system such as QuickBooks or Xero, look for the primary ID number of the
   # company record within that financial system.
   # @type: string
   field :financial_account_erp_key
@@ -50,6 +50,9 @@ end
   # @type: number
   # @format: double
   field :balance
+
+  # The balance type of this period. If left null, the balance type will be determined by the balance.
+  field :balance_type
 
 
 

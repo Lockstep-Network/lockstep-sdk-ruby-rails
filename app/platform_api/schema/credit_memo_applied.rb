@@ -50,6 +50,13 @@ end
   # @type: string
   field :erp_key
 
+  # Possible statuses for a record that supports ERP write.
+  field :erp_write_status
+
+  # The name of the ErpWriteStatus for this credit memo application
+  # @type: string
+  field :erp_write_status_name
+
   # Reference number for the applied credit memo.
   # @type: integer
   # @format: int32
@@ -92,6 +99,11 @@ end
   # @type: string
   # @format: uuid
   field :app_enrollment_id
+
+  # The date on which this record was last modified in source ERP.
+  # @type: string
+  # @format: date-time
+  field :source_modified_date, Types::Params::DateTime
 
   # The credit memo invoice associated with this applied credit memo
   field :credit_memo_invoice
