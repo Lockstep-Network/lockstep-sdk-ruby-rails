@@ -36,6 +36,13 @@ end
   # @type: string
   field :erp_key
 
+  # Possible statuses for a record that supports ERP write.
+  field :erp_write_status
+
+  # The name of the ErpWriteStatus for this Payment
+  # @type: string
+  field :erp_write_status_name
+
   # The type of payment, AR Payment or AP Payment.
   #             
   # Recognized PaymentType values are:
@@ -93,6 +100,10 @@ end
   # For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies).
   # @type: string
   field :currency_code
+
+  # The Bank account id for the company to which this payment belongs.
+  # @type: string
+  field :bank_account_id
 
   # Reference code for the payment for the given Erp system.
   # @type: string
@@ -153,6 +164,11 @@ end
   # "UNAUTHORISED" "PENDING" "PAID" "PAID_OFFLINE" "FAILED" "CANCELLED" "REJECTED" "REFUNDED" "PARTIALLY" "PARTIALLY_REFUNDED"
   # @type: string
   field :service_fabric_status
+
+  # The date on which this record was last modified in source ERP.
+  # @type: string
+  # @format: date-time
+  field :source_modified_date, Types::Params::DateTime
 
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}

@@ -63,6 +63,13 @@ end
   # @format: double
   field :balance
 
+  # Financial Account Balance Types
+  field :balance_type
+
+  # The name of the BalanceType for this record.
+  # @type: string
+  field :balance_type_name
+
   # The date on which this financial account balance history record was created.
   # @type: string
   # @format: date-time

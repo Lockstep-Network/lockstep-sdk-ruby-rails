@@ -3,7 +3,7 @@ class Lockstep::Connection < Lockstep::ApiRecord
   self.id_ref = 'company_id'
   load_schema(Schema::Company)
 
-  enum company_type: %w[Customer Vendor Group Company]
+  enum company_type: ['Customer', 'Vendor', 'Group', 'Company', 'Third Party'].freeze
 
   has_many :contacts, class_name: 'Lockstep::Contact', included: true
   belongs_to :created_user, class_name: 'Lockstep::User', foreign_key: :created_user_id, primary_key: :user_id

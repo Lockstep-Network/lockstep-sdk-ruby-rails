@@ -678,7 +678,8 @@ module Lockstep
       @attributes.merge!(results)
       @attributes.merge!(@unsaved_attributes)
 
-      merge_relations
+      # commenting for now as its a duplicate call
+      # merge_relations
       @unsaved_attributes = {}
 
       create_setters_and_getters!

@@ -10,7 +10,11 @@ end
   # @format: int32
   field :timeframe
 
-  # Amount of payments collected based in the timeframe
+  # The base currency code of the group.
+  # @type: string
+  field :base_currency_code
+
+  # Amount of payments collected based in the timeframe in the group's base currency
   # @type: number
   # @format: double
   field :payments_collected
@@ -20,7 +24,7 @@ end
   # @format: int32
   field :payments_collected_count
 
-  # Amount of invoices billed based in the timeframe
+  # Amount of invoices billed based in the timeframe in the group's base currency
   # @type: number
   # @format: double
   field :invoices_billed

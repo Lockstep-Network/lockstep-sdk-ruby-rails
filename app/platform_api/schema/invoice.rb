@@ -226,6 +226,18 @@ end
   # @format: double
   field :base_currency_outstanding_balance_amount
 
+  # Possible statuses for a record that supports ERP write.
+  field :erp_write_status
+
+  # The name of the ErpWriteStatus for this Invoice
+  # @type: string
+  field :erp_write_status_name
+
+  # The date on which this record was last modified in source ERP.
+  # @type: string
+  # @format: date-time
+  field :source_modified_date, Types::Params::DateTime
+
   # The Company associated to this invoice.
   # To retrieve this item, specify `Company` in the "Include" parameter for your query.
   field :company
