@@ -126,6 +126,10 @@ end
   # @format: double
   field :base_currency_unapplied_amount
 
+  # Bank account id for the payment.
+  # @type: string
+  field :bank_account_id
+
 
 
 end

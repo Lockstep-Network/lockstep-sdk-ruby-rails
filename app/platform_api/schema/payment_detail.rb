@@ -43,6 +43,13 @@ end
   # @type: string
   field :email
 
+  # Possible statuses for a record that supports ERP write.
+  field :erp_write_status
+
+  # The name of the ErpWriteStatus for this payment
+  # @type: string
+  field :erp_write_status_name
+
   # The currency code of the payment.
   # @type: string
   field :currency_code

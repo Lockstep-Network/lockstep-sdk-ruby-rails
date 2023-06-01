@@ -34,6 +34,10 @@ end
   # @type: object
   field :errors
 
+  # The records that were skipped during sync keyed by ERP key
+  # @type: object
+  field :skips
+
 
 
 end
