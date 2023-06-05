@@ -572,13 +572,6 @@ module Lockstep
       obj
     end
 
-    # Replaced with a batch destroy_all method.
-    # def self.destroy_all(all)
-    #   all.each do |object|
-    #     object.destroy
-    #   end
-    # end
-
     def self.class_attributes
       @class_attributes ||= {}
     end
@@ -820,6 +813,10 @@ module Lockstep
         return true
       end
       false
+    end
+
+    def self.destroy_all(ids_to_delete = [])
+      resp = resource.delete('', body: { 'idsToDelete' => ids_to_delete })
     end
 
     def reload
