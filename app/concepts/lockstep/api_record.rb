@@ -96,13 +96,13 @@ module Lockstep
           val
         end
       end
-      return if respond_to? "#{fname}="
+      unless respond_to? "#{fname}="
+        class_eval do
+          define_method("#{fname}=") do |val|
+            set_attribute(fname.to_s, val)
 
-      class_eval do
-        define_method("#{fname}=") do |val|
-          set_attribute(fname.to_s, val)
-
-          val
+            val
+          end
         end
       end
     end
@@ -200,19 +200,19 @@ module Lockstep
 
     def self.to_date_object(date)
       date = date.to_time if date.respond_to?(:to_time)
-      return unless date && (date.is_a?(Date) || date.is_a?(DateTime) || date.is_a?(Time))
-
-      date.getutc.iso8601(fraction_digits = 3)
+      if date && (date.is_a?(Date) || date.is_a?(DateTime) || date.is_a?(Time))
+       date.getutc.iso8601(fraction_digits = 3)
+      end
     end
 
     # Creates setter methods for model fields
     def create_setters!(k, _v)
-      return if respond_to? "#{k}="
+      unless respond_to? "#{k}="
+        self.class.send(:define_method, "#{k}=") do |val|
+          set_attribute(k.to_s, val)
 
-      self.class.send(:define_method, "#{k}=") do |val|
-        set_attribute(k.to_s, val)
-
-        val
+          val
+        end
       end
     end
 
@@ -248,10 +248,10 @@ module Lockstep
 
     # Creates getter methods for model fields
     def create_getters!(k, _v)
-      return if respond_to? k.to_s
-
-      self.class.send(:define_method, k.to_s) do
-        get_attribute(k.to_s)
+      unless respond_to? k.to_s
+        self.class.send(:define_method, k.to_s) do
+          get_attribute(k.to_s)
+        end
       end
     end
 
@@ -695,11 +695,11 @@ module Lockstep
       # KK 11-17-2012 The response after creation does not return full description of
       # the object nor the relations it contains. Make another request here.
       # TODO: @@has_many_relations structure has been changed from array to hash, need to evaluate the impact here
-      return unless has_many_relations.keys.map { |relation| relation.to_s.to_sym }
-
-      # TODO: make this a little smarter by checking if there are any Pointer objects in the objects attributes.
-      # @attributes = self.class.to_s.constantize.where(:objectId => @attributes[self.id_ref]).first.attributes
-      @attributes = self.class.to_s.constantize.where(id_ref => @attributes[id_ref]).first.attributes
+      if has_many_relations.keys.map { |relation| relation.to_s.to_sym }
+        # TODO: make this a little smarter by checking if there are any Pointer objects in the objects attributes.
+        # @attributes = self.class.to_s.constantize.where(:objectId => @attributes[self.id_ref]).first.attributes
+        @attributes = self.class.to_s.constantize.where(id_ref => @attributes[id_ref]).first.attributes
+      end
     end
 
     def post_result(resp)
@@ -853,11 +853,12 @@ module Lockstep
     end
 
     def attributes=(value)
-      return unless value.is_a?(Hash) && value.present?
-
-      value.each do |k, v|
-        send "#{k}=", v
+      if value.is_a?(Hash) && value.present?
+        value.each do |k, v|
+          send "#{k}=", v
+        end
       end
+      @attributes
     end
 
     def get_attribute(k)
@@ -877,9 +878,9 @@ module Lockstep
           result = attrs[k]['url']
         when 'Relation'
           objects_related_to_self = klass_name.constantize.where('$relatedTo' => {
-                                                                   'object' => { '__type' => 'Pointer',
-                                                                                 'className' => self.class.to_s, id_ref => id }, 'key' => k
-                                                                 }).all
+            'object' => { '__type' => 'Pointer',
+                          'className' => self.class.to_s, id_ref => id }, 'key' => k
+          }).all
           attrs[k] = Lockstep::RelationArray.new self, objects_related_to_self, k, klass_name
           @unsaved_attributes[k] = Lockstep::RelationArray.new self, objects_related_to_self, k, klass_name
           result = @unsaved_attributes[k]
@@ -1126,10 +1127,9 @@ module Lockstep
       define_singleton_method :record do
         resp = resource.get('')
 
-        return [] if %w[404].include?(resp.code.to_s)
-        # TODO: handle non 200 response code. Throwing an exception for now
-        raise StandardError, "#{resp.code} error while fetching: #{resp.body}" unless %w[201
-                                                                                         200].include?(resp.code.to_s)
+        return [] if %w(404).include?(resp.code.to_s)
+        # TODO handle non 200 response code. Throwing an exception for now
+        raise StandardError.new("#{resp.code} error while fetching: #{resp.body}") unless %w(201 200).include?(resp.code.to_s)
 
         result = JSON.parse(resp.body)
         r = result.transform_keys { |key| key.underscore }

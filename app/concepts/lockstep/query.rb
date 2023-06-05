@@ -13,7 +13,7 @@ class Lockstep::Query
   #   both the where conditions in the above scenario is modifying the same object causing stack-overflow
   def clone
     c = Lockstep::Query.new(@klass)
-    c.criteria.deep_merge!(criteria.deep_dup)
+    c.criteria.deep_merge!(self.criteria.deep_dup)
     c
   end
 
@@ -24,12 +24,12 @@ class Lockstep::Query
   end
 
   def criteria
-    @criteria ||= { conditions: [] }
+    @criteria ||= { :conditions => [] }
   end
 
   def or(query)
     with_clone do
-      criteria[:conditions] << { type: 'or', query: query }
+      criteria[:conditions] << { type: "or", query: query }
     end
   end
 
@@ -41,7 +41,7 @@ class Lockstep::Query
 
   def where(args)
     if args.is_a?(Hash)
-      args.each do |_k, v|
+      args.each do |k, v|
         return none if v.is_a?(Array) and v.blank?
       end
     end
@@ -60,12 +60,11 @@ class Lockstep::Query
   def convert_arg(arg)
     return arg.to_pointer if arg.is_a?(Lockstep::ApiRecord)
     return Lockstep::ApiRecord.to_date_object(arg) if arg.is_a?(Time) || arg.is_a?(Date)
-
     if arg.is_a?(Hash)
       arg.keys.each do |key|
         @klass.valid_attribute?(key, raise_exception: true)
       end
-      return arg.update(arg) { |_key, inner_arg| convert_arg(inner_arg) }
+      return arg.update(arg) { |key, inner_arg| convert_arg(inner_arg) }
     end
 
     arg
@@ -166,18 +165,18 @@ class Lockstep::Query
   # end
 
   def build_filter
-    filter = ''
+    filter = ""
     criteria[:conditions].each do |condition|
       if condition.is_a?(Hash)
-        if condition[:type] == 'or'
-          filter = build_filter_condition(filter, 'OR', condition[:query].build_filter)
+        if condition[:type] == "or"
+          filter = build_filter_condition(filter, "OR", condition[:query].build_filter)
         else
           condition.each do |key, value|
-            filter = build_filter_condition(filter, 'AND', build_filter_query(key, value))
+            filter = build_filter_condition(filter, "AND", build_filter_query(key, value))
           end
         end
       elsif condition.is_a?(String)
-        filter = build_filter_condition(filter, 'AND', condition)
+        filter = build_filter_condition(filter, "AND", condition)
       end
     end
     filter
@@ -193,39 +192,39 @@ class Lockstep::Query
   end
 
   PREDICATES = {
-    _not_eq: 'NE',
-    _eq: 'EQ',
-    _gteq: 'GE',
-    _gt: 'GT',
-    _lteq: 'LE',
-    _lt: 'LT',
-    _in: 'IN',
-    _contains: 'CONTAINS',
-    _starts_with: 'STARTSWITH',
-    _ends_with: 'ENDSWITH',
-    _is: 'IS'
+    _not_eq: "NE",
+    _eq: "EQ",
+    _gteq: "GE",
+    _gt: "GT",
+    _lteq: "LE",
+    _lt: "LT",
+    _in: "IN",
+    _contains: "CONTAINS",
+    _starts_with: "STARTSWITH",
+    _ends_with: "ENDSWITH",
+    _is: "IS",
   }.with_indifferent_access
 
   def build_filter_query(key, value)
     key = key.to_s unless key.is_a?(String)
-    predicate = 'eq' # default
+    predicate = "eq" # default
     PREDICATES.each do |k, p|
-      next unless key.ends_with?(k)
-
-      key = key.gsub(k, '')
-      predicate = p
-      break
+      if key.ends_with?(k)
+        key = key.gsub(k, "")
+        predicate = p
+        break
+      end
     end
 
     # Build value
     if value.is_a?(Array)
-      value = "(#{value.map { |v| v.is_a?(String) ? "'#{v}'" : v }.join(',')})"
-      predicate = 'in' if predicate == 'eq'
-    elsif value.is_a?(String) and !['NULL', 'NOT NULL'].include?(value)
+      value = "(#{value.map { |v| v.is_a?(String) ? "'#{v}'" : v }.join(",")})"
+      predicate = "in" if predicate == "eq"
+    elsif value.is_a?(String) and !["NULL", "NOT NULL"].include?(value)
       value = "'#{value}'"
     elsif value.nil?
-      predicate = 'IS' if predicate == 'eq'
-      value = 'NULL'
+      predicate = "IS" if predicate == "eq"
+      value = "NULL"
     end
 
     "#{key.camelize(:lower)} #{predicate} #{value}"
@@ -233,21 +232,20 @@ class Lockstep::Query
 
   def build_params
     params = {}
-    params.merge!({ filter: build_filter }) if criteria[:conditions]
+    params.merge!({ :filter => build_filter }) if criteria[:conditions]
     # Lockstep Platform API does not support a page size of 1
-    params.merge!({ pageSize: (criteria[:limit] == 1 ? 2 : criteria[:limit]) }) if criteria[:limit]
-    params.merge!({ pageNumber: criteria[:page_number] }) if criteria[:page_number]
-    params.merge!({ include: criteria[:include].join(',') }) if criteria[:include]
-    params.merge!({ order: criteria[:order].join(',') }) if criteria[:order]
-    params.merge!({ pageSize: 2 }) if criteria[:count]
+    params.merge!({ :pageSize => (criteria[:limit] == 1 ? 2 : criteria[:limit]) }) if criteria[:limit]
+    params.merge!({ :pageNumber => criteria[:page_number] }) if criteria[:page_number]
+    params.merge!({ :include => criteria[:include].join(",") }) if criteria[:include]
+    params.merge!({ :order => criteria[:order].join(",") }) if criteria[:order]
+    params.merge!({ :pageSize => 2 }) if criteria[:count]
     params.merge!(criteria[:additional_query_params]) if criteria[:additional_query_params]
-    params.reject! { |_k, v| v.blank? }
+    params.reject! { |k, v| v.blank? }
     params
   end
 
   def execute
     return [] if criteria[:none]
-
     # This code automatically adds all related objects
     #
     # if @klass.has_many_relations
@@ -263,33 +261,31 @@ class Lockstep::Query
   end
 
   def get_results(params = {})
-    resp = @klass.resource.get(@klass.query_path, params: params)
+    resp = @klass.resource.get(@klass.query_path, :params => params)
 
-    return [] if %w[404].include?(resp.code.to_s)
-    # TODO: handle non 200 response code. Throwing an exception for now
-    raise StandardError, "#{resp.code} error while fetching: #{resp.body}" unless %w[201
-                                                                                     200].include?(resp.code.to_s)
+    return [] if %w(404).include?(resp.code.to_s)
+    # TODO handle non 200 response code. Throwing an exception for now
+    raise StandardError.new("#{resp.code} error while fetching: #{resp.body}") unless %w(201 200).include?(resp.code.to_s)
 
     parsed_response = JSON.parse(resp.body)
 
     if criteria[:count]
-      raise StandardError, "Count is not supported for #{@klass}" if parsed_response.is_a?(Array)
+      raise StandardError.new("Count is not supported for #{@klass}") if parsed_response.is_a?(Array)
 
-      results = parsed_response['totalCount']
-      results.to_i
+      results = parsed_response["totalCount"]
+      return results.to_i
     else
-      results = parsed_response.is_a?(Array) ? parsed_response : parsed_response['records']
+      results = parsed_response.is_a?(Array) ? parsed_response : parsed_response["records"]
       return [] if results.blank?
-
       results = results[0..(criteria[:limit] - 1)] if criteria[:limit]
-      records = get_relation_objects(results.map do |r|
+      records = get_relation_objects results.map { |r|
         # Convert camelcase to snake-case
         r = r.transform_keys { |key| key.underscore }
         @klass.model_name.to_s.constantize.new(r, false)
-      end)
+      }
 
       if criteria[:with_count]
-        [records, parsed_response['totalCount']]
+        [records, parsed_response["totalCount"]]
       else
         records
       end
@@ -307,11 +303,9 @@ class Lockstep::Query
           next unless included_objects.include?(relation.to_s.downcase)
 
           if !item.attributes.has_key?(relation.to_s)
-            item.attributes[relation.to_s] =
-              Lockstep::RelationArray.new(@klass, [], relation, relation_config[:class_name])
+            item.attributes[relation.to_s] = Lockstep::RelationArray.new(@klass, [], relation, relation_config[:class_name])
           elsif !item.attributes[relation].is_a?(Lockstep::RelationArray)
-            item.attributes[relation.to_s] =
-              Lockstep::RelationArray.new(@klass, item.attributes[relation], relation, relation_config[:class_name])
+            item.attributes[relation.to_s] = Lockstep::RelationArray.new(@klass, item.attributes[relation], relation, relation_config[:class_name])
           end
         end
       end
@@ -382,17 +376,15 @@ class Lockstep::Query
   # @return [Lockstep::ApiRecord] an object that subclasses Lockstep::ApiRecord.
   def find(id)
     raise Lockstep::Exceptions::RecordNotFound, "Couldn't find #{name} without an ID" if id.blank?
-
     record = where(@klass.id_ref => id).first
     raise Lockstep::Exceptions::RecordNotFound, "Couldn't find #{name} with id: #{id}" if record.blank?
-
     record
   end
 
   def method_missing(meth, *args, &block)
     method_name = method_name.to_s
-    if method_name.start_with?('find_by_')
-      attrib = method_name.gsub(/^find_by_/, '')
+    if method_name.start_with?("find_by_")
+      attrib = method_name.gsub(/^find_by_/, "")
       finder_name = "find_all_by_#{attrib}"
 
       define_singleton_method(finder_name) do |target_value|
@@ -400,8 +392,8 @@ class Lockstep::Query
       end
 
       send(finder_name, args[0])
-    elsif method_name.start_with?('find_all_by_')
-      attrib = method_name.gsub(/^find_all_by_/, '')
+    elsif method_name.start_with?("find_all_by_")
+      attrib = method_name.gsub(/^find_all_by_/, "")
       finder_name = "find_all_by_#{attrib}"
 
       define_singleton_method(finder_name) do |target_value|
@@ -412,7 +404,7 @@ class Lockstep::Query
     end
 
     if @klass.scopes[meth].present?
-      instance_exec(*args, &@klass.scopes[meth])
+      instance_exec *args, &@klass.scopes[meth]
     elsif Array.method_defined?(meth)
       all.send(meth, *args, &block)
     else
@@ -435,8 +427,7 @@ class Lockstep::Query
   private
 
   def turn_relation_hash_into_object(relation, hash)
-    return nil if hash.nil?
-
+    return nil if hash == nil
     relation_klass = relation[:class_name].to_s.constantize
     relation_object = relation_klass.new
     hash.each do |key, value|
@@ -452,20 +443,18 @@ class Lockstep::Query
 
       if value.is_a?(Array) and class_name_in_a_hash
         value.each do |object_in_array|
-          fresh_object = turn_relation_hash_into_object(relation_klass.has_many_relations[key][:class_name],
-                                                        object_in_array)
+          fresh_object = turn_relation_hash_into_object(relation_klass.has_many_relations[key][:class_name], object_in_array)
           value[value.index(object_in_array)] = fresh_object
         end
         # Convert key from camelcase to snake-case
         relation_object.attributes[key.underscore] = value
       elsif value.is_a?(Hash) and relation_klass.belongs_to_relations[key].present?
         # Convert key from camelcase to snake-case
-        relation_object.attributes[key.underscore] =
-          turn_relation_hash_into_object(relation_klass.belongs_to_relations[key][:class_name], value)
-      elsif key.to_s != '__type' and key.to_s != 'className'
-        relation_object.attributes[key.underscore] = value
+        relation_object.attributes[key.underscore] = turn_relation_hash_into_object(relation_klass.belongs_to_relations[key][:class_name], value)
+      else
+        # Convert key from camelcase to snake-case
+        relation_object.attributes[key.underscore] = value if key.to_s != "__type" and key.to_s != "className"
       end
-      # Convert key from camelcase to snake-case
     end
 
     relation_object
