@@ -817,6 +817,12 @@ module Lockstep
 
     def self.destroy_all(ids_to_delete = [])
       resp = resource.delete('', body: { 'idsToDelete' => ids_to_delete })
+      if resp.code.to_s == '200'
+        @attributes = {}
+        @unsaved_attributes = {}
+        return true
+      end
+      false
     end
 
     def reload
