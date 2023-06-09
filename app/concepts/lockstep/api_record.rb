@@ -815,14 +815,15 @@ module Lockstep
       false
     end
 
-    def self.destroy_all(ids_to_delete = [])
-      resp = resource.delete('', body: { 'idsToDelete' => ids_to_delete })
-      if resp.code.to_s == '200'
-        @attributes = {}
-        @unsaved_attributes = {}
-        return true
+    def self.destroy_all(id: [])
+      id.each_slice(100) do |sliced_ids|
+        resp = resource.delete('', body: { 'idsToDelete' => sliced_ids })
+        return false unless resp.code.to_s == '200'
       end
-      false
+      
+      @attributes = {}
+      @unsaved_attributes = {}
+      return true
     end
 
     def reload
