@@ -819,6 +819,7 @@ module Lockstep
       id.each_slice(100) do |sliced_ids|
         resp = resource.delete('', body: { 'idsToDelete' => sliced_ids })
         return false unless resp.code.to_s == '200'
+        # TODO: Since this could fail for certain IDs return deleted_ids in batch
       end
       
       @attributes = {}
