@@ -166,6 +166,14 @@ if you wish, you can always write raw [Searchlight](https://developer.lockstep.i
 Lockstep::Connection.where("isActive is true OR default_currency_code in ('USD', 'INR')").execute
 ```
 
+### Destroy and Destroy all
+You can destroy a single object by calling destroy method on one object
+Lockstep::Connection.find(company_id: "17544da8-7be8-4ee2-8c62-cbd81428c68b").destroy
+
+You can also destroy multiple objects at once by calling it on the model class and passing an array of relevant ids
+
+Lockstep::Connection.destroy_all(id: ["17544da8-7be8-4ee2-8c62-cbd81428c68b"])
+
 ### Count
 You can fetch the count of available records by calling `count`
 
