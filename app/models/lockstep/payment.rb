@@ -7,14 +7,15 @@ class Lockstep::Payment < Lockstep::ApiRecord
 
   # Overriding create to support erp-write in path params
   def create
-    if attributes_for_saving.has_key?(:erp_write)
-      attributes_for_saving.delete(:erp_write)
-      path_params = 'erp-write'
+    if attributes_for_saving.key?("erp_write")
+      attributes_for_saving.delete("erp_write")
+      attrs = attributes_for_saving.transform_keys { |key| key.camelize(:lower) }
+      resp = resource.post('erp-write', body: attrs)
+      result = post_result(resp)
     else
-      path_params = ''
+      attrs = attributes_for_saving.transform_keys { |key| key.camelize(:lower) }
+      resp = resource.post('', body: [attrs])
+      result = post_result(resp)
     end
-    attrs = attributes_for_saving.transform_keys { |key| key.camelize(:lower) }
-    resp = resource.post(path_params, body: [attrs])
-    result = post_result(resp)
   end
 end
