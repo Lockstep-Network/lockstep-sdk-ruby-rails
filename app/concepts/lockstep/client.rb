@@ -159,8 +159,8 @@ module Lockstep
       request(:put, path, body, params)
     end
 
-    def delete(path)
-      request(:delete, path, {}, {})
+    def delete(path, body: {})
+      request(:delete, path, body, {})
     end
 
     def post_magic_link(path, body: {}, params: {})
