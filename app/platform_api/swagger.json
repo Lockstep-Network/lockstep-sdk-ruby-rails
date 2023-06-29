@@ -7485,6 +7485,165 @@
         ]
       }
     },
+    "/api/v1/financial-institution-accounts/{id}": {
+      "get": {
+        "tags": [
+          "FinancialInstitutionAccounts"
+        ],
+        "summary": "Retrieve Financial Institution Accounts",
+        "description": "Retrieves the financial institution account specified by this unique identifier.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_FinancialInstitutionAccounts_RetrieveInstitution",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of this institution account; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FinancialInstitutionAccountModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FinancialInstitutionAccountModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/financial-institution-accounts/query": {
+      "get": {
+        "tags": [
+          "FinancialInstitutionAccounts"
+        ],
+        "summary": "Query Financial Institution Accounts",
+        "description": "\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_FinancialInstitutionAccounts_QueryInstitutions",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nNo collections are currently available but may be offered in the future.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FinancialInstitutionAccountModelFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FinancialInstitutionAccountModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
     "/api/v1/FinancialYearSettings/{id}": {
       "get": {
         "tags": [
@@ -9911,7 +10070,7 @@
           "MagicLinks"
         ],
         "summary": "Retrieve Magic Link",
-        "description": "Retrieves the Magic Link specified by this unique identifier, optionally including nested data sets.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Retrieves the Magic Link specified by this unique identifier, optionally including nested data sets.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_MagicLinks_RetrieveMagicLink",
         "parameters": [
           {
@@ -10059,7 +10218,7 @@
           "MagicLinks"
         ],
         "summary": "Query Magic Links",
-        "description": "Queries Magic Links for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Queries Magic Links for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_MagicLinks_QueryMagicLinks",
         "parameters": [
           {
@@ -11641,6 +11800,100 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PaymentDetailModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/Payments/erp-write": {
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "summary": "Write payments to connected ERP",
+        "description": "Schedule an ERP post request for payments.\r\n\r\nThe payments must be associated with an active app enrollment and have a valid `AppEnrollmentId`.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_Payments_ErpWritePayments",
+        "requestBody": {
+          "description": "The payments to submit to the connected ERP",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InsertPaymentRequestModelErpWriteSyncSubmitModel"
+                  }
+                ],
+                "description": "Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a request to write back a collection\r\n            of requests to the connected AppEnrollment."
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InsertPaymentRequestModelErpWriteSyncSubmitModel"
+                  }
+                ],
+                "description": "Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a request to write back a collection\r\n            of requests to the connected AppEnrollment."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/InsertPaymentRequestModelErpWriteSyncSubmitModel"
+                  }
+                ],
+                "description": "Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a request to write back a collection\r\n            of requests to the connected AppEnrollment."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentModelErpWriteResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentModelErpWriteResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -20809,6 +21062,13 @@
       "AccountingProfileContactResultModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingProfileContactResultModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -20822,13 +21082,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccountingProfileContactResultModel"
-            },
             "nullable": true
           }
         },
@@ -22527,6 +22780,13 @@
       "AttachmentLinkModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachmentLinkModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22540,13 +22800,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AttachmentLinkModel"
-            },
             "nullable": true
           }
         },
@@ -23225,21 +23478,21 @@
             "nullable": true
           },
           "address1": {
-            "maxLength": 80,
+            "maxLength": 170,
             "minLength": 0,
             "type": "string",
             "description": "Address info",
             "nullable": true
           },
           "address2": {
-            "maxLength": 80,
+            "maxLength": 170,
             "minLength": 0,
             "type": "string",
             "description": "Address info",
             "nullable": true
           },
           "address3": {
-            "maxLength": 80,
+            "maxLength": 170,
             "minLength": 0,
             "type": "string",
             "description": "Address info",
@@ -24449,13 +24702,6 @@
       "CreditMemoAppliedModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CreditMemoAppliedModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24469,6 +24715,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditMemoAppliedModel"
+            },
             "nullable": true
           }
         },
@@ -24857,13 +25110,6 @@
       "CustomFieldDefinitionModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomFieldDefinitionModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24877,6 +25123,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldDefinitionModel"
+            },
             "nullable": true
           }
         },
@@ -25057,13 +25310,6 @@
       "CustomFieldValueModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomFieldValueModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -25077,6 +25323,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldValueModel"
+            },
             "nullable": true
           }
         },
@@ -26068,7 +26321,7 @@
           },
           "classification": {
             "type": "string",
-            "description": "The classification for the Financial Account. Possible values are Asset, Equity,\r\nExpense, Liability or Income."
+            "description": "The classification for the Financial Account. Possible values are Asset, Equity,\r\nExpense, Liability, Income, CreditCard, Checking, or Savings."
           },
           "category": {
             "type": "string",
@@ -26083,6 +26336,126 @@
         },
         "additionalProperties": false,
         "description": "The FinancialAccountSyncModel represents information coming into Lockstep from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe FinancialAccountSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep\r\nplatform.\r\n            \r\nOnce imported, this record will be available in the Lockstep API as a [FinancialAccountModel](https://developer.lockstep.io/docs/financialaccountmodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
+      },
+      "FinancialInstitutionAccountModel": {
+        "type": "object",
+        "properties": {
+          "financialInstitutionAccountId": {
+            "type": "string",
+            "description": "The unique identifier for the Financial Institution Account.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "groupKey": {
+            "type": "string",
+            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "bankAccountId": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string",
+            "description": "An alternate account id for the Financial Institution Account.",
+            "nullable": true
+          },
+          "erpKey": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string",
+            "description": "The External Id for the Financial Institution Account.",
+            "nullable": true
+          },
+          "appEnrollmentId": {
+            "type": "string",
+            "description": "The App Enrollment Id this Financial Institution is associated with.",
+            "format": "uuid",
+            "nullable": true,
+            "readOnly": true
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "description": "The name of the Financial Institution Account.",
+            "nullable": true
+          },
+          "status": {
+            "maxLength": 8,
+            "minLength": 0,
+            "type": "string",
+            "description": "The status of the Financial Institution Account. Possible values are active,\r\ninactive, deleted or archived.",
+            "nullable": true
+          },
+          "description": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string",
+            "description": "The description for the Financial Institution Account.",
+            "nullable": true
+          },
+          "accountType": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string",
+            "description": "The classification for the Financial Institution Account. Possible values are Asset, Equity,\r\nExpense, Liability or Income.",
+            "nullable": true
+          },
+          "created": {
+            "type": "string",
+            "description": "The date the Financial Institution Account was created.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "createdUserId": {
+            "type": "string",
+            "description": "The user that has created the Financial Institution Account.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The date the Financial Institution Account was modified.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "modifiedUserId": {
+            "type": "string",
+            "description": "The user that has modified the Financial Institution Account.",
+            "format": "uuid",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An Financial Institution Account represents an account used for monetary transactions. E.g. - checking, savings,  or credit card accounts."
+      },
+      "FinancialInstitutionAccountModelFetchResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FinancialInstitutionAccountModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "FinancialReportCellModel": {
         "type": "object",
@@ -26388,6 +26761,205 @@
         },
         "additionalProperties": false,
         "description": "Represents an account for an entire group"
+      },
+      "InsertPaymentAppliedRequestModel": {
+        "type": "object",
+        "properties": {
+          "paymentAppliedId": {
+            "type": "string",
+            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Lockstep platform.\r\n            \r\nFor the ID of this record in its originating financial system, see `ErpKey`.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "invoiceId": {
+            "type": "string",
+            "description": "The Invoice this payment is applied to.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "paymentId": {
+            "type": "string",
+            "description": "The Payment this application applies from.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "erpKey": {
+            "type": "string",
+            "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this company record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
+            "nullable": true
+          },
+          "invoiceErpKey": {
+            "type": "string",
+            "description": "The ERP key of the Invoice this payment is applied to.",
+            "nullable": true
+          },
+          "applyToInvoiceDate": {
+            "type": "string",
+            "description": "The date this payment was applied to this invoice.",
+            "format": "date-time"
+          },
+          "paymentAppliedAmount": {
+            "type": "number",
+            "description": "The total amount that was applied to this Invoice from the Payment.",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A request to insert a payment application"
+      },
+      "InsertPaymentRequestModel": {
+        "type": "object",
+        "properties": {
+          "appEnrollmentId": {
+            "type": "string",
+            "description": "The AppEnrollmentId of the application to write this record to.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "paymentId": {
+            "type": "string",
+            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Lockstep platform.\r\n            \r\nFor the ID of this record in its originating financial system, see `ErpKey`.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "companyId": {
+            "type": "string",
+            "description": "The ID of the company to which this payment belongs.",
+            "format": "uuid"
+          },
+          "companyErpKey": {
+            "type": "string",
+            "description": "The ERP key for the company to which this payment belongs.",
+            "nullable": true
+          },
+          "companyExternalReference": {
+            "type": "string",
+            "description": "A additional reference that may be used in the ERP",
+            "nullable": true
+          },
+          "erpKey": {
+            "type": "string",
+            "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this company record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
+            "nullable": true
+          },
+          "paymentType": {
+            "type": "string",
+            "description": "The type of payment, AR Payment or AP Payment.\r\n            \r\nRecognized PaymentType values are:\r\n* `AR Payment` - A payment made by a Customer to the Company\r\n* `AP Payment` - A payment made by the Company to a Vendor",
+            "nullable": true
+          },
+          "tenderType": {
+            "type": "string",
+            "description": "Cash, check, credit card, wire transfer.\r\n            \r\nRecognized TenderType values are:\r\n* `Cash` - A cash payment or other direct transfer.\r\n* `Check` - A check payment.\r\n* `Credit Card` - A payment made via a credit card.\r\n* `Wire Transfer` - A payment made via wire transfer from another financial institution.\r\n* `Other` - A payment made via another method not listed above.",
+            "nullable": true
+          },
+          "memoText": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Memo or reference text (ex. memo field on a check).",
+            "nullable": true
+          },
+          "paymentDate": {
+            "type": "string",
+            "description": "The date when this payment was received.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "postDate": {
+            "type": "string",
+            "description": "The date when a payment was posted to a ledger.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "paymentAmount": {
+            "type": "number",
+            "description": "Total amount of this payment in it's received currency.",
+            "format": "double"
+          },
+          "unappliedAmount": {
+            "type": "number",
+            "description": "Unapplied balance of this payment in it's received currency.  If this amount is nonzero, the field `IsOpen` will be true.",
+            "format": "double"
+          },
+          "currencyCode": {
+            "type": "string",
+            "description": "The ISO 4217 currency code for this payment.\r\n            \r\nFor a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies).",
+            "nullable": true
+          },
+          "referenceCode": {
+            "type": "string",
+            "description": "Reference code for the payment for the given Erp system.",
+            "nullable": true
+          },
+          "isVoided": {
+            "type": "boolean",
+            "description": "Is the payment voided?"
+          },
+          "inDispute": {
+            "type": "boolean",
+            "description": "Is the payment in dispute?"
+          },
+          "currencyRate": {
+            "type": "number",
+            "description": "The Currency Rate used to get from the account's base currency to the payment amount.",
+            "format": "double"
+          },
+          "baseCurrencyPaymentAmount": {
+            "type": "number",
+            "description": "Total amount of this payment in the group's base currency.",
+            "format": "double"
+          },
+          "baseCurrencyUnappliedAmount": {
+            "type": "number",
+            "description": "Unapplied balance of this payment in the group's base currency.  If this amount is nonzero, the field `IsOpen` will be true.",
+            "format": "double"
+          },
+          "bankAccountId": {
+            "type": "string",
+            "description": "The Bank account id for the company to which this payment belongs.",
+            "nullable": true
+          },
+          "groupKey": {
+            "type": "string",
+            "description": "The GroupKey this request belongs to.",
+            "format": "uuid"
+          },
+          "applications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsertPaymentAppliedRequestModel"
+            },
+            "description": "All applications this payment is associated with.\r\nTo retrieve this collection, specify `Applications` in the \"Include\" parameter for your query.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A request to insert a new Payment"
+      },
+      "InsertPaymentRequestModelErpWriteSyncSubmitModel": {
+        "required": [
+          "appEnrollmentId",
+          "requests"
+        ],
+        "type": "object",
+        "properties": {
+          "appEnrollmentId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The connected App Enrollment id.",
+            "format": "uuid"
+          },
+          "requests": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InsertPaymentRequestModel"
+            },
+            "description": "An array of requests to write back."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a request to write back a collection\r\n            of requests to the connected AppEnrollment."
       },
       "InstructedAmount": {
         "type": "object",
@@ -29416,6 +29988,46 @@
         "additionalProperties": false,
         "description": "A Payment represents money sent from one company to another.  A single payment may contain payments for\r\none or more invoices; it is also possible for payments to be made in advance of an invoice, for example,\r\nas a deposit.  The creator of the Payment is identified by the `CustomerId` field, and the recipient of\r\nthe Payment is identified by the `CompanyId` field.  Most Payments are uniquely identified both by a\r\nLockstep Platform ID number and a customer ERP \"key\" that was generated by the system that originated\r\nthe Payment.  Payments that have not been fully applied have a nonzero `UnappliedAmount` value, which\r\nrepresents a deposit that has been paid and not yet applied to an Invoice."
       },
+      "PaymentModelErpWriteResult": {
+        "type": "object",
+        "properties": {
+          "appEnrollmentId": {
+            "type": "string",
+            "description": "The id of the connected AppEnrollmentModel",
+            "format": "uuid"
+          },
+          "erpKey": {
+            "type": "string",
+            "description": "The ErpKey for the object written to the Erp if created",
+            "nullable": true
+          },
+          "groupKey": {
+            "type": "string",
+            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
+            "format": "uuid"
+          },
+          "message": {
+            "type": "string",
+            "description": "An optional message to return with the result",
+            "nullable": true
+          },
+          "syncRequestId": {
+            "type": "string",
+            "description": "The id of the SyncRequestModel the requests were added to",
+            "format": "uuid"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentModel"
+            },
+            "description": "Results from the ERP write operation",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains results of a write back request"
+      },
       "PaymentModelFetchResult": {
         "type": "object",
         "properties": {
@@ -30036,6 +30648,13 @@
       "PublicCompanyProfileModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicCompanyProfileModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -30049,13 +30668,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PublicCompanyProfileModel"
-            },
             "nullable": true
           }
         },
@@ -31989,6 +32601,13 @@
       "TransactionModelTransactionSummaryTotalModelSummaryFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -32002,13 +32621,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransactionModel"
-            },
             "nullable": true
           },
           "summary": {
@@ -32309,13 +32921,6 @@
       "TranscriptionValidationRequestModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TranscriptionValidationRequestModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -32329,6 +32934,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranscriptionValidationRequestModel"
+            },
             "nullable": true
           }
         },
@@ -32587,6 +33199,11 @@
             "minLength": 0,
             "type": "string",
             "description": "The default currency code used by this user entity.  This value can be overridden\r\nfor invoices in a different currency code.\r\n            \r\nFor a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/definitions/currencies data set",
+            "nullable": true
+          },
+          "locale": {
+            "type": "string",
+            "description": "The IETF language tag for the user's preferred locale.",
             "nullable": true
           },
           "notes": {
