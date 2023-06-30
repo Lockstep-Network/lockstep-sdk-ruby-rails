@@ -132,3 +132,4 @@ end
   has_many :applications, {:class_name=>"Schema::InsertPaymentAppliedRequest", :included=>true}
 
 end
+

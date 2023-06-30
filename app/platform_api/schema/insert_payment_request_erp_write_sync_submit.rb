@@ -14,3 +14,4 @@ end
   has_many :requests, {:class_name=>"Schema::InsertPaymentRequest", :included=>true}
 
 end
+

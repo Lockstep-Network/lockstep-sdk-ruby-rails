@@ -24,3 +24,4 @@ end
   has_many :records, {:class_name=>"Schema::FinancialInstitutionAccount", :included=>true}
 
 end
+

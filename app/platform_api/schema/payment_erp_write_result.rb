@@ -35,3 +35,4 @@ end
   has_many :results, {:class_name=>"Schema::Payment", :included=>true}
 
 end
+
