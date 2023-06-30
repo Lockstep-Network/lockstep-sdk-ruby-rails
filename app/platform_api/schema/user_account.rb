@@ -142,6 +142,10 @@ end
   # @type: string
   field :default_currency_code
 
+  # The IETF language tag for the user's preferred locale.
+  # @type: string
+  field :locale
+
   # Accounting role definition for this User.
   # To retrieve this collection, specify `AccountingRole` in the "Include" parameter for your query.
   field :accounting_role_code_definition
@@ -154,3 +158,4 @@ end
   has_many :custom_field_values, {:class_name=>"Schema::CustomFieldValue", :included=>true}
 
 end
+
