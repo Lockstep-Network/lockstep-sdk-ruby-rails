@@ -158,4 +158,3 @@ end
   has_many :custom_field_values, {:class_name=>"Schema::CustomFieldValue", :included=>true}
 
 end
-
