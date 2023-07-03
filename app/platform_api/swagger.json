@@ -21062,13 +21062,6 @@
       "AccountingProfileContactResultModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccountingProfileContactResultModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -21082,6 +21075,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingProfileContactResultModel"
+            },
             "nullable": true
           }
         },
@@ -24702,6 +24702,13 @@
       "CreditMemoAppliedModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditMemoAppliedModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24715,13 +24722,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CreditMemoAppliedModel"
-            },
             "nullable": true
           }
         },
@@ -28838,6 +28838,13 @@
       "MagicLinkModelFetchResult": {
         "type": "object",
         "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MagicLinkModel"
+            },
+            "nullable": true
+          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -28851,13 +28858,6 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
-            "nullable": true
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MagicLinkModel"
-            },
             "nullable": true
           }
         },
@@ -30648,13 +30648,6 @@
       "PublicCompanyProfileModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PublicCompanyProfileModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -30668,6 +30661,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicCompanyProfileModel"
+            },
             "nullable": true
           }
         },
@@ -34002,4 +34002,3 @@
     }
   }
 }
-
