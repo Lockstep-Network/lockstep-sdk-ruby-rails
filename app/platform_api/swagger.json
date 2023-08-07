@@ -9744,7 +9744,7 @@
           "Invoices"
         ],
         "summary": "Retrieve invoice PDF",
-        "description": "Retrieves a PDF file for this invoice if it is of one of the supported invoice types and has been synced using an app enrollment to one of the supported apps.\r\n\r\nSage Intacct supports AR Invoices.\r\n\r\nQuickBooks Online supports AR Invoices, and AR Credit Memos.\r\n\r\nXero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Retrieves a PDF file for this invoice if it is of one of the supported invoice types and has been synced using an app enrollment to one of the supported apps.\r\n\r\nSage Intacct supports AR Invoices.\r\n\r\nQuickBooks Online supports AR Invoices, and AR Credit Memos.\r\n\r\nXero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.\r\n\r\nSage 50 supports AR Invoices and AR Credit Memos.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Invoices_RetrieveInvoicePdf",
         "parameters": [
           {
@@ -10365,6 +10365,125 @@
           },
           "403": {
             "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Update Note",
+        "description": "Updates the Note with the unique ID specified.\r\n\r\nA note is a customizable text string that can be attached to various account attributes within Lockstep. You can use notes for internal communication, correspondence with clients, or personal reminders. The Note Model represents a note and a number of different metadata attributes related to the creation, storage, and ownership of the note.\r\n\r\nSee [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_Notes_UpdateNote",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Note id to be updated",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of changes to apply to this Note",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoteModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoteModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -20792,13 +20911,6 @@
       "AccountingProfileContactModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccountingProfileContactModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -20812,6 +20924,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingProfileContactModel"
+            },
             "nullable": true
           }
         },
@@ -21062,13 +21181,6 @@
       "AccountingProfileContactResultModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccountingProfileContactResultModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -21082,6 +21194,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingProfileContactResultModel"
+            },
             "nullable": true
           }
         },
@@ -21250,13 +21369,6 @@
       "AccountingProfileModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccountingProfileModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -21270,6 +21382,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingProfileModel"
+            },
             "nullable": true
           }
         },
@@ -21835,13 +21954,6 @@
       "ApiKeyModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApiKeyModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -21855,6 +21967,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiKeyModel"
+            },
             "nullable": true
           }
         },
@@ -21945,13 +22064,6 @@
       "AppEnrollmentCustomFieldModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AppEnrollmentCustomFieldModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -21965,6 +22077,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AppEnrollmentCustomFieldModel"
+            },
             "nullable": true
           }
         },
@@ -22106,13 +22225,6 @@
       "AppEnrollmentModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AppEnrollmentModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22126,6 +22238,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AppEnrollmentModel"
+            },
             "nullable": true
           }
         },
@@ -22307,13 +22426,6 @@
       "ApplicationModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApplicationModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22327,6 +22439,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationModel"
+            },
             "nullable": true
           }
         },
@@ -22677,13 +22796,6 @@
       "AtRiskInvoiceSummaryModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AtRiskInvoiceSummaryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22697,6 +22809,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AtRiskInvoiceSummaryModel"
+            },
             "nullable": true
           }
         },
@@ -22780,13 +22899,6 @@
       "AttachmentLinkModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AttachmentLinkModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22800,6 +22912,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachmentLinkModel"
+            },
             "nullable": true
           }
         },
@@ -22897,13 +23016,6 @@
       "AttachmentModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AttachmentModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22917,6 +23029,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachmentModel"
+            },
             "nullable": true
           }
         },
@@ -23194,13 +23313,6 @@
       "CodeDefinitionModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CodeDefinitionModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -23214,6 +23326,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeDefinitionModel"
+            },
             "nullable": true
           }
         },
@@ -23432,7 +23551,7 @@
             "maxLength": 20,
             "minLength": 0,
             "type": "string",
-            "description": "This field indicates the type of company.  It can be one of a limited number of values:\r\nCompany, Customer, Group, Vendor, or Third Party.  A company that represents both a customer and a vendor\r\nis identified as a CustomerVendor.\r\n            \r\n* `Company` - This record represents a company that is part of the organization of the account holder.\r\n* `Customer` - This record represents a business entity that purchases things from the account holder.\r\n* `Group` - Only one record of type `GROUP` exists in each account.  Contains your account profile.\r\n* `Vendor` - This record represents a business entity that sells things to the account holder.\r\n* `Third Party` - This record represents a business entity that is neither a customer nor vendor.\r\n* `CustomerVendor` - Both a customer and a vendor.",
+            "description": "This field indicates the type of company.  It can be one of a limited number of values:\r\nCompany, Customer, Group, Vendor, or Third Party.  A company that represents both a customer and a vendor\r\nis identified as a CustomerVendor.\r\n            \r\n* `Company` - This record represents a company that is part of the organization of the account holder.\r\n* `Customer` - This record represents a business entity that purchases things from the account holder.\r\n* `Group` - Only one record of type `GROUP` exists in each account.  Contains your account profile.\r\n* `Vendor` - This record represents a business entity that sells things to the account holder.\r\n* `Third Party` - This record represents a business entity that is neither a customer nor vendor.\r\n* `CustomerVendor` - Both a customer and a vendor.\r\n* `CompanyProfile` - Profile for a Company, each Company should have at most 1 profile, used only for Profile Management.",
             "nullable": true
           },
           "parentCompanyId": {
@@ -23730,6 +23849,13 @@
             "description": "A unique identification number assigned to the company by the national registration office.",
             "nullable": true
           },
+          "profileReferenceId": {
+            "type": "string",
+            "description": "An optional reference to a real company, making this a profile.",
+            "format": "uuid",
+            "nullable": true,
+            "readOnly": true
+          },
           "notes": {
             "type": "array",
             "items": {
@@ -23799,13 +23925,6 @@
       "CompanyModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CompanyModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -23819,6 +23938,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyModel"
+            },
             "nullable": true
           }
         },
@@ -24282,13 +24408,6 @@
       "ContactModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ContactModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24302,6 +24421,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactModel"
+            },
             "nullable": true
           }
         },
@@ -24515,13 +24641,6 @@
       "CountryModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CountryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24535,6 +24654,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CountryModel"
+            },
             "nullable": true
           }
         },
@@ -24966,13 +25092,6 @@
       "CurrencyModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CurrencyModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24986,6 +25105,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CurrencyModel"
+            },
             "nullable": true
           }
         },
@@ -25479,13 +25605,6 @@
       "CustomerSummaryModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomerSummaryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -25499,6 +25618,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerSummaryModel"
+            },
             "nullable": true
           }
         },
@@ -26250,13 +26376,6 @@
       "FinancialAccountModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FinancialAccountModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -26270,6 +26389,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FinancialAccountModel"
+            },
             "nullable": true
           }
         },
@@ -27397,13 +27523,6 @@
       "InvoiceLineModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceLineModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -27417,6 +27536,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceLineModel"
+            },
             "nullable": true
           }
         },
@@ -28026,12 +28152,6 @@
       "InvoiceModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": { },
-            "description": " For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).",
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -28045,6 +28165,12 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": { },
+            "description": " For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).",
             "nullable": true
           }
         },
@@ -28295,13 +28421,6 @@
       "InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceSummaryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -28315,6 +28434,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceSummaryModel"
+            },
             "nullable": true
           },
           "summary": {
@@ -28941,13 +29067,15 @@
             "maxLength": 40,
             "minLength": 1,
             "type": "string",
-            "description": "A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and\r\n`ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of\r\n`Invoice` and an `ObjectKey` value of `12345`.\r\n            \r\nThe `TableKey` value contains the name of the table within the Lockstep Platform to which this metadata\r\nis connected.\r\n            \r\nFor more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object)."
+            "description": "A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and\r\n`ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of\r\n`Invoice` and an `ObjectKey` value of `12345`.\r\n            \r\nThe `TableKey` value contains the name of the table within the Lockstep Platform to which this metadata\r\nis connected.\r\n            \r\nFor more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
+            "readOnly": true
           },
           "objectKey": {
             "minLength": 1,
             "type": "string",
             "description": "A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and\r\n`ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of\r\n`Invoice` and an `ObjectKey` value of `12345`.\r\n            \r\nThe `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this\r\nmetadata is connected.\r\n            \r\nFor more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
-            "format": "uuid"
+            "format": "uuid",
+            "readOnly": true
           },
           "noteText": {
             "maxLength": 1000,
@@ -28978,6 +29106,18 @@
             "format": "uuid",
             "readOnly": true
           },
+          "modified": {
+            "type": "string",
+            "description": "The date this note was last modified",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "modifiedUserId": {
+            "type": "string",
+            "description": "The ID of the user who last modified this note",
+            "format": "uuid",
+            "readOnly": true
+          },
           "createdUserName": {
             "type": "string",
             "description": "The name of the user who created the note",
@@ -29004,13 +29144,6 @@
       "NoteModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NoteModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -29024,6 +29157,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoteModel"
+            },
             "nullable": true
           }
         },
@@ -29389,13 +29529,6 @@
       "PaymentAppliedModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentAppliedModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -29409,6 +29542,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentAppliedModel"
+            },
             "nullable": true
           }
         },
@@ -29691,13 +29831,6 @@
       "PaymentDetailModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentDetailModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -29711,6 +29844,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentDetailModel"
+            },
             "nullable": true
           }
         },
@@ -30031,13 +30171,6 @@
       "PaymentModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -30051,6 +30184,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentModel"
+            },
             "nullable": true
           }
         },
@@ -30387,13 +30527,6 @@
       "PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentSummaryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -30407,6 +30540,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentSummaryModel"
+            },
             "nullable": true
           },
           "summary": {
@@ -30648,13 +30788,6 @@
       "PublicCompanyProfileModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PublicCompanyProfileModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -30668,6 +30801,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicCompanyProfileModel"
+            },
             "nullable": true
           }
         },
@@ -32364,13 +32504,6 @@
       "SyncRequestModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SyncRequestModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -32384,6 +32517,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SyncRequestModel"
+            },
             "nullable": true
           }
         },
@@ -32601,13 +32741,6 @@
       "TransactionModelTransactionSummaryTotalModelSummaryFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransactionModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -32621,6 +32754,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionModel"
+            },
             "nullable": true
           },
           "summary": {
@@ -33250,13 +33390,6 @@
       "UserAccountModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserAccountModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -33270,6 +33403,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserAccountModel"
+            },
             "nullable": true
           }
         },
@@ -33379,13 +33519,6 @@
       "UserRoleModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserRoleModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -33399,6 +33532,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRoleModel"
+            },
             "nullable": true
           }
         },
@@ -33565,13 +33705,6 @@
       "VendorSummaryModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/VendorSummaryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -33585,6 +33718,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VendorSummaryModel"
+            },
             "nullable": true
           }
         },
@@ -34002,4 +34142,3 @@
     }
   }
 }
-

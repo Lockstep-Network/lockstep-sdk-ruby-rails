@@ -37,6 +37,7 @@ end
   # * `Vendor` - This record represents a business entity that sells things to the account holder.
   # * `Third Party` - This record represents a business entity that is neither a customer nor vendor.
   # * `CustomerVendor` - Both a customer and a vendor.
+  # * `CompanyProfile` - Profile for a Company, each Company should have at most 1 profile, used only for Profile Management.
   # @type: string
   field :company_type
 
@@ -242,6 +243,11 @@ end
   # A unique identification number assigned to the company by the national registration office.
   # @type: string
   field :company_registration_number
+
+  # An optional reference to a real company, making this a profile.
+  # @type: string
+  # @format: uuid
+  field :profile_reference_id
 
   # All invoices attached to this company.
   #             
