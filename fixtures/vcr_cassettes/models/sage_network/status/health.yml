@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://lockstep-app-store-api-dev-v2.azurewebsites.net/api/v2/status/health
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - lockstep-app-store-api-dev-v2.azurewebsites.net
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 08 Aug 2023 12:07:04 GMT
+      Server:
+      - Microsoft-IIS/10.0
+      Set-Cookie:
+      - ARRAffinity=989bcfa8d74b12948887a6564d7e85c111e38f4e1f003e80460203d8d387ce79;Path=/;HttpOnly;Secure;Domain=lockstep-app-store-api-dev-v2.azurewebsites.net
+      - ARRAffinitySameSite=989bcfa8d74b12948887a6564d7e85c111e38f4e1f003e80460203d8d387ce79;Path=/;HttpOnly;SameSite=None;Secure;Domain=lockstep-app-store-api-dev-v2.azurewebsites.net
+      Transfer-Encoding:
+      - chunked
+      Api-Supported-Versions:
+      - '2'
+      X-Powered-By:
+      - ASP.NET
+    body:
+      encoding: UTF-8
+      string: '{"status":"Unhealthy","totalDuration":"00:00:00.0352655","details":{"Application":{"status":"Healthy","duration":"00:00:00.0000077","data":{}},"Application
+        Database":{"status":"Healthy","duration":"00:00:00.0324843","data":{}},"Ledger
+        API":{"status":"Unhealthy","duration":"00:00:00.0000137","description":"Not
+        authenticated","data":{}}}}'
+  recorded_at: Tue, 08 Aug 2023 12:07:05 GMT
+recorded_with: VCR 6.1.0

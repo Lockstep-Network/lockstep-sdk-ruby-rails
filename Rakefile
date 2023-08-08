@@ -27,5 +27,6 @@ Rake::TestTask.new(:test) do |t|
 end
 
 load "lib/tasks/update_api_schema.rake"
+load "lib/tasks/update_sage_network_schema.rake"
 
 task default: :test

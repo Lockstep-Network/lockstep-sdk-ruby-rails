@@ -1,0 +1,11 @@
+default: &default
+  base_url: 'https://lockstep-app-store-api-dev-v2.azurewebsites.net'
+
+development:
+  <<: *default
+
+staging:
+  <<: *default
+
+test:
+  <<: *default

@@ -1,0 +1,2783 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Sage Network Platform API",
+    "description": "Sage Network Platform API v2",
+    "version": "2"
+  },
+  "paths": {
+    "/api/v2/ap-bills/{id}": {
+      "get": {
+        "tags": [
+          "ApBills"
+        ],
+        "operationId": "v2_ApBills_Read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApBill"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApBill"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v2/ap-bills": {
+      "post": {
+        "tags": [
+          "ApBills"
+        ],
+        "operationId": "v2_ApBills_Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ApBillUpsertRequest"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ApBillUpsertRequest"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ApBillUpsertRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApBill"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApBill"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v2/contacts/{id}": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "v2_Contacts_Read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "v2_Contacts_UpdateOne",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "v2_Contacts_Delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v2/contacts": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "v2_Contacts_ReadMany",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "style": "form",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "v2_Contacts_Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ContactDto"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ContactDto"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ContactDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "v2_Contacts_UpdateMany",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/StringObjectDictionaryUpdateRequest"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/StringObjectDictionaryUpdateRequest"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/StringObjectDictionaryUpdateRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Contacts"
+        ],
+        "operationId": "v2_Contacts_Delete",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v2/customers": {
+      "post": {
+        "tags": [
+          "Customers"
+        ],
+        "operationId": "v2_Customers_Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomerUpsertRequest"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomerUpsertRequest"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomerUpsertRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "operationId": "v2_Customers_ReadMany",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "style": "form",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Customers"
+        ],
+        "operationId": "v2_Customers_UpdateMany",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomerUpsertRequestUpdateRequest"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomerUpsertRequestUpdateRequest"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomerUpsertRequestUpdateRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Customers"
+        ],
+        "operationId": "v2_Customers_DeleteBatch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v2/customers/{id}": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "operationId": "v2_Customers_Read",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Customers"
+        ],
+        "operationId": "v2_Customers_UpdateOne",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerUpsertRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerUpsertRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerUpsertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Customers"
+        ],
+        "operationId": "v2_Customers_Delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Customer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v2/directory/companies": {
+      "get": {
+        "tags": [
+          "Directory"
+        ],
+        "summary": "Returns a French legal entity or establishment mapped to a company object found in the directory service.",
+        "operationId": "v2_Companies_QueryBySirenSiret",
+        "parameters": [
+          {
+            "name": "siren",
+            "in": "query",
+            "description": "",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "siret",
+            "in": "query",
+            "description": "",
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Company"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Company"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/external-connectors/query": {
+      "get": {
+        "tags": [
+          "ExternalConnectors"
+        ],
+        "summary": "Returns list of available external connectors. Optionally filtered by category.",
+        "operationId": "v2_ExternalConnectors_Query",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "External connector's category to search for. If no external connector of the requested\r\n            category exists the returned list is empty.",
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalConnector"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalConnector"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/external-connectors/{id}/tokens": {
+      "get": {
+        "tags": [
+          "ExternalConnectors"
+        ],
+        "summary": "Get list of tokens for a given external connector",
+        "operationId": "v2_ExternalConnectors_GetExternalConnectorTokensById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "External connector identifier",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalConnectorToken"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalConnectorToken"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ExternalConnectors"
+        ],
+        "summary": "Start the user authentication process with external connector",
+        "operationId": "v2_ExternalConnectors_StartExternalConnectorAuth",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "External connector identifier",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "External connector auth request information",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Command"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Command"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Command"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExternalConnectorAuth"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExternalConnectorAuth"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/provisioning/user": {
+      "post": {
+        "tags": [
+          "Provisioning"
+        ],
+        "summary": "Provisions the current user if they haven't been provisioned yet.",
+        "operationId": "v2_Provisioning_ProvisionUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProvisioningRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProvisioningRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProvisioningRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProvisioningResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProvisioningResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v2/status/app-info": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "operationId": "v2_Status_AppInfo",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppInfoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/status/ping": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "operationId": "v2_Status_Ping",
+        "parameters": [
+          {
+            "name": "delay",
+            "in": "query",
+            "style": "form",
+            "schema": {
+              "maximum": 30,
+              "minimum": 0,
+              "type": "number",
+              "format": "double",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/status/health": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "operationId": "v2_Status_Health",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/userinfo": {
+      "get": {
+        "tags": [
+          "UserInfo"
+        ],
+        "summary": "Returns information about the authenticated user.",
+        "operationId": "v2_UserInfo_UserInfo",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfoResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApBill": {
+        "type": "object",
+        "properties": {
+          "billNumber": {
+            "type": "string",
+            "description": "Vendor-assigned identifier for the bill.",
+            "nullable": true
+          },
+          "postingDate": {
+            "type": "string",
+            "description": "GL Posting date of the bill.",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "description": "The creation date of the bill.",
+            "nullable": true
+          },
+          "dueDate": {
+            "type": "string",
+            "description": "Due date for the bill.",
+            "nullable": true
+          },
+          "totalBaseAmount": {
+            "type": "integer",
+            "description": "The total amount of the bill in the base currency.",
+            "format": "int32"
+          },
+          "totalBaseAmountDue": {
+            "type": "integer",
+            "description": "The total amount of the bill due in the base currency.",
+            "format": "int32"
+          },
+          "totalTnxAmount": {
+            "type": "integer",
+            "description": "The total amount of the bill in the transaction currency.",
+            "format": "int32"
+          },
+          "totalTxnAmountDue": {
+            "type": "integer",
+            "description": "The total amount of the bill due in the transaction currency.",
+            "format": "int32"
+          },
+          "vendor": {
+            "$ref": "#/components/schemas/Vendor"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "billLines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApBillLine"
+            },
+            "description": "Line items of the bill",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "description": "The unique identifier for the entity.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApBillLine": {
+        "type": "object",
+        "properties": {
+          "glAccount": {
+            "$ref": "#/components/schemas/GlAccount"
+          },
+          "txnAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "dimensions": {
+            "$ref": "#/components/schemas/Dimensions"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApBillUpsertRequest": {
+        "type": "object",
+        "properties": {
+          "billNumber": {
+            "type": "string",
+            "description": "Vendor-assigned identifier for the bill.",
+            "nullable": true
+          },
+          "postingDate": {
+            "type": "string",
+            "description": "GL Posting date of the bill.",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "description": "The creation date of the bill.",
+            "nullable": true
+          },
+          "dueDate": {
+            "type": "string",
+            "description": "Due date for the bill.",
+            "nullable": true
+          },
+          "totalBaseAmount": {
+            "type": "integer",
+            "description": "The total amount of the bill in the base currency.",
+            "format": "int32"
+          },
+          "totalBaseAmountDue": {
+            "type": "integer",
+            "description": "The total amount of the bill due in the base currency.",
+            "format": "int32"
+          },
+          "totalTnxAmount": {
+            "type": "integer",
+            "description": "The total amount of the bill in the transaction currency.",
+            "format": "int32"
+          },
+          "totalTxnAmountDue": {
+            "type": "integer",
+            "description": "The total amount of the bill due in the transaction currency.",
+            "format": "int32"
+          },
+          "vendor": {
+            "$ref": "#/components/schemas/Vendor"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "billLines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApBillLine"
+            },
+            "description": "Line items of the bill",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AppInfoResponse": {
+        "type": "object",
+        "properties": {
+          "environment": {
+            "$ref": "#/components/schemas/PlatformEnvironment"
+          },
+          "runtimeEnvironment": {
+            "type": "string",
+            "description": "The environment of the runtime for the API."
+          },
+          "version": {
+            "type": "string",
+            "description": "The version number of the API."
+          },
+          "versionHash": {
+            "type": "string",
+            "description": "The hash for this version number."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about the application."
+      },
+      "Command": {
+        "required": [
+          "redirectUrl",
+          "scopes"
+        ],
+        "type": "object",
+        "properties": {
+          "externalConnectorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "scopes": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "redirectUrl": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "connectionContextId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Company": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of this record. Will only be available for directory companies.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "siren": {
+            "type": "string",
+            "description": "Siren number of this record. Will only be available if for directory French legal entities and establishments.",
+            "nullable": true
+          },
+          "siret": {
+            "type": "string",
+            "description": "Siret number of this record. Will only be available if for directory French legal establishments.",
+            "nullable": true
+          },
+          "companyType": {
+            "type": "string",
+            "description": "This field indicates the type of company.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the directory company entity.",
+            "nullable": true
+          },
+          "address1": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "address2": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "address3": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "Phone number",
+            "nullable": true
+          },
+          "emailAddress": {
+            "type": "string",
+            "description": "Email address",
+            "nullable": true
+          },
+          "createdDateTime": {
+            "type": "string",
+            "description": "The date this directory company entity was created",
+            "format": "date-time"
+          },
+          "modifiedDateTime": {
+            "type": "string",
+            "description": "The date this directory company entity was modified",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Company represents a company, a French legal entity, or a French establishment within the Sage directory service.\r\nSage directory service objects (company, French legal entity or French establishment) are mapped to a single Platform\r\ncompany object\r\n            \r\nSee [Companies, French Legal Entities, and French Establishment](https://confluence.sage.com/display/DNBU/Platform+Company+Mapping) for more information."
+      },
+      "CompanyStatus": {
+        "enum": [
+          "Active",
+          "Inactive"
+        ],
+        "type": "string"
+      },
+      "CompanyType": {
+        "enum": [
+          "Customer",
+          "Vendor"
+        ],
+        "type": "string"
+      },
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique identifier for the entity.",
+            "format": "int32"
+          },
+          "companyId": {
+            "type": "integer",
+            "description": "The ID of the company that this contact belongs to.",
+            "format": "int32",
+            "nullable": true
+          },
+          "companyType": {
+            "$ref": "#/components/schemas/CompanyType"
+          },
+          "prefix": {
+            "type": "string",
+            "description": "The prefix/title of this contact.",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "description": "The first name of this contact.",
+            "nullable": true
+          },
+          "middleName": {
+            "type": "string",
+            "description": "The middle name of this contact.",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "description": "The last name of this contact.",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ContactStatus"
+          },
+          "phone": {
+            "type": "string",
+            "description": "The phone number of this contact.",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "description": "The fax number of this contact.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of this contact.",
+            "nullable": true
+          },
+          "websiteUrl": {
+            "type": "string",
+            "description": "The website URL of this contact.",
+            "nullable": true
+          },
+          "pictureUrl": {
+            "type": "string",
+            "description": "The picture URL of this contact.",
+            "nullable": true
+          },
+          "mailingAddress": {
+            "$ref": "#/components/schemas/MailAddress"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Contact contains information about a person or role within a Company."
+      },
+      "ContactDto": {
+        "type": "object",
+        "properties": {
+          "ia::status": {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          },
+          "ia::error": {
+            "$ref": "#/components/schemas/IntacctResultError"
+          },
+          "key": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "prefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "middleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "printAs": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone1": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "email1": {
+            "type": "string",
+            "nullable": true
+          },
+          "URL1": {
+            "type": "string",
+            "nullable": true
+          },
+          "URL2": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ContactDtoStatus"
+          },
+          "showInContactList": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "mailingAddress": {
+            "$ref": "#/components/schemas/MailAddressDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContactDtoStatus": {
+        "enum": [
+          "Active",
+          "Inactive"
+        ],
+        "type": "string"
+      },
+      "ContactStatus": {
+        "enum": [
+          "Active",
+          "Inactive"
+        ],
+        "type": "string"
+      },
+      "Currency": {
+        "type": "object",
+        "properties": {
+          "baseCurrency": {
+            "type": "string",
+            "description": "Base currency for your company.",
+            "nullable": true
+          },
+          "txnCurrency": {
+            "type": "string",
+            "description": "The transaction currency to use for this bill. If this currency is different from the base currency, provide an exchange rate.",
+            "nullable": true
+          },
+          "exchangeRate": {
+            "$ref": "#/components/schemas/ExchangeRate"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Customer": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The name of the customer."
+          },
+          "status": {
+            "$ref": "#/components/schemas/CompanyStatus"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the customer.",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "The id of the parent customer.",
+            "format": "int32",
+            "nullable": true
+          },
+          "primaryContactId": {
+            "type": "integer",
+            "description": "The id of the primary contact.",
+            "format": "int32",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "description": "The 3 letter ISO code of the currency used by the customer.",
+            "nullable": true
+          },
+          "taxId": {
+            "type": "string",
+            "description": "The federal tax id of the customer.",
+            "nullable": true
+          },
+          "preferredDeliveryMethod": {
+            "type": "string",
+            "description": "The preferred delivery method for the customer.",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "description": "The phone number of the customer.",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "description": "The fax number of the customer.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of the customer.",
+            "nullable": true
+          },
+          "website": {
+            "type": "string",
+            "description": "The website of the customer.",
+            "nullable": true
+          },
+          "mailingAddress": {
+            "$ref": "#/components/schemas/MailAddress"
+          },
+          "id": {
+            "type": "integer",
+            "description": "The unique identifier for the entity.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Customers are companies who purchases products from your company."
+      },
+      "CustomerUpsertRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the customer.",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/CompanyStatus"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the customer.",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "description": "The id of the parent customer.",
+            "format": "int32",
+            "nullable": true
+          },
+          "primaryContactId": {
+            "type": "integer",
+            "description": "The id of the primary contact.",
+            "format": "int32",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "description": "The 3 letter ISO code of the currency used by the customer.",
+            "nullable": true
+          },
+          "taxId": {
+            "type": "string",
+            "description": "The federal tax id of the customer.",
+            "nullable": true
+          },
+          "preferredDeliveryMethod": {
+            "type": "string",
+            "description": "The preferred delivery method for the customer.",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "description": "The phone number of the customer.",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "description": "The fax number of the customer.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of the customer.",
+            "nullable": true
+          },
+          "website": {
+            "type": "string",
+            "description": "The website of the customer.",
+            "nullable": true
+          },
+          "mailingAddress": {
+            "$ref": "#/components/schemas/MailAddress"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustomerUpsertRequestUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The id of the resource to update.",
+            "format": "int32"
+          },
+          "updates": {
+            "$ref": "#/components/schemas/CustomerUpsertRequest"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A request to update a resource."
+      },
+      "Dimensions": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExchangeRate": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Exchange rate date for this transaction. Can be the current date, the date the transaction was issued, or the date the transaction will be paid",
+            "nullable": true
+          },
+          "typeId": {
+            "type": "string",
+            "description": "Exchange rate used to calculate the base amount from the transaction amount.",
+            "nullable": true
+          },
+          "rate": {
+            "type": "number",
+            "description": "Exchange rate type used to calculate the base amount from the transaction amount.",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExternalConnector": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "External Connector ID",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "External connector name",
+            "nullable": true
+          },
+          "onboardingUrl": {
+            "type": "string",
+            "description": "URL to start onboarding with the given external connector",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Information about the external connector.",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Categories external connector is associated with",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExternalConnectorAuth": {
+        "type": "object",
+        "properties": {
+          "authenticationUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExternalConnectorToken": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of the token reference.",
+            "nullable": true
+          },
+          "authenticatedAt": {
+            "type": "string",
+            "description": "When the user was authenticated.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "An array of scopes requested from 3rd-party external connector.",
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "description": "When the token expires. This can be earlier if the token is revoked.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "externalConnectorId": {
+            "type": "string",
+            "description": "External Connector ID",
+            "nullable": true
+          },
+          "connectionContextId": {
+            "type": "string",
+            "description": "Connection context ID set by the product when starting onboarding with a external connector",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GlAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "User-assigned number for the GL account.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HealthResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The overall status of the API: Healthy, Unhealthy, or Degraded."
+          },
+          "totalDuration": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/HealthResponseEntry"
+            },
+            "description": "Health information for individual components of the API.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Health information for the API."
+      },
+      "HealthResponseEntry": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status of this component: Healthy, Unhealthy, or Degraded."
+          },
+          "duration": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed information about the health check.",
+            "nullable": true
+          },
+          "error": {
+            "type": "string",
+            "description": "The error that occured.",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": { },
+            "description": "Additional data about the health check.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Health information for a single component."
+      },
+      "HttpStatusCode": {
+        "enum": [
+          "Continue",
+          "SwitchingProtocols",
+          "Processing",
+          "EarlyHints",
+          "OK",
+          "Created",
+          "Accepted",
+          "NonAuthoritativeInformation",
+          "NoContent",
+          "ResetContent",
+          "PartialContent",
+          "MultiStatus",
+          "AlreadyReported",
+          "IMUsed",
+          "MultipleChoices",
+          "MovedPermanently",
+          "Found",
+          "SeeOther",
+          "NotModified",
+          "UseProxy",
+          "Unused",
+          "TemporaryRedirect",
+          "PermanentRedirect",
+          "BadRequest",
+          "Unauthorized",
+          "PaymentRequired",
+          "Forbidden",
+          "NotFound",
+          "MethodNotAllowed",
+          "NotAcceptable",
+          "ProxyAuthenticationRequired",
+          "RequestTimeout",
+          "Conflict",
+          "Gone",
+          "LengthRequired",
+          "PreconditionFailed",
+          "RequestEntityTooLarge",
+          "RequestUriTooLong",
+          "UnsupportedMediaType",
+          "RequestedRangeNotSatisfiable",
+          "ExpectationFailed",
+          "MisdirectedRequest",
+          "UnprocessableEntity",
+          "Locked",
+          "FailedDependency",
+          "UpgradeRequired",
+          "PreconditionRequired",
+          "TooManyRequests",
+          "RequestHeaderFieldsTooLarge",
+          "UnavailableForLegalReasons",
+          "InternalServerError",
+          "NotImplemented",
+          "BadGateway",
+          "ServiceUnavailable",
+          "GatewayTimeout",
+          "HttpVersionNotSupported",
+          "VariantAlsoNegotiates",
+          "InsufficientStorage",
+          "LoopDetected",
+          "NotExtended",
+          "NetworkAuthenticationRequired"
+        ],
+        "type": "string"
+      },
+      "IntacctResultError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "supportId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The location id",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MailAddress": {
+        "type": "object",
+        "properties": {
+          "address1": {
+            "type": "string",
+            "description": "The first line of the address.",
+            "nullable": true
+          },
+          "address2": {
+            "type": "string",
+            "description": "The second line of the address.",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "description": "The city of the address.",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "The postal code/zip of the address.",
+            "nullable": true
+          },
+          "stateRegion": {
+            "type": "string",
+            "description": "The state/region/province of the address.",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "description": "The country of this address.",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "The ISO 3166-1 alpha-2 country code of the address.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Mailing Address contains information about a physical address."
+      },
+      "MailAddressDto": {
+        "type": "object",
+        "properties": {
+          "addressLine1": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressLine2": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "isoCountryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "postCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PlatformEnvironment": {
+        "enum": [
+          "Unknown",
+          "Local",
+          "Dev",
+          "QA",
+          "PreProd",
+          "Sandbox",
+          "Prod"
+        ],
+        "type": "string"
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "StringObjectDictionaryUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The id of the resource to update.",
+            "format": "int32"
+          },
+          "updates": {
+            "type": "object",
+            "additionalProperties": { },
+            "description": "The updates to apply to the resource."
+          }
+        },
+        "additionalProperties": false,
+        "description": "A request to update a resource."
+      },
+      "TimeSpan": {
+        "type": "object",
+        "properties": {
+          "ticks": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "days": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "milliseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "microseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "nanoseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "seconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "totalDays": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalHours": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMilliseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMicroseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalNanoseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMinutes": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalSeconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserInfoResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserInfoUser"
+          },
+          "activeTenant": {
+            "$ref": "#/components/schemas/UserInfoTenant"
+          },
+          "tenants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserInfoTenant"
+            },
+            "description": "Information about the authenticated user's membership in all tenants."
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserInfoTenant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The identifier of this tenant.",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of this tenant."
+          },
+          "userRole": {
+            "type": "string",
+            "description": "The user's role in this tenant."
+          },
+          "userStatus": {
+            "$ref": "#/components/schemas/UserStatus"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains information about the authenticated user's membership in a tenant."
+      },
+      "UserInfoUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The identifier of this user.",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the user."
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of the user."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains information about the authenticated user."
+      },
+      "UserProvisioningRequest": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "description": "The user's name. Leave empty/null to use the name from the auth service or the default value.",
+            "default": "",
+            "nullable": true
+          },
+          "tenantName": {
+            "type": "string",
+            "description": "The tenant's name. Leave empty/null to use the default value.",
+            "default": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about a user to provision."
+      },
+      "UserProvisioningResponse": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "email": {
+            "type": "string",
+            "readOnly": true
+          },
+          "userName": {
+            "type": "string",
+            "readOnly": true
+          },
+          "userRole": {
+            "type": "string",
+            "readOnly": true
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "tenantName": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserStatus": {
+        "enum": [
+          "Active",
+          "Inactive"
+        ],
+        "type": "string"
+      },
+      "Vendor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier for the entity.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://login.dev.lockstep.io/login.dev.lockstep.io/B2C_1A_PLATFORMSIGNUP_SIGNIN/oauth2/v2.0/authorize",
+            "scopes": {
+              "https://login.dev.lockstep.io/platform-api/api.call": "api.call"
+            }
+          }
+        }
+      }
+    }
+  }
+}
