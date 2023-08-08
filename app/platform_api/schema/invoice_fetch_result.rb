@@ -23,6 +23,5 @@ end
   #  For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).
   # @type: array
   field :records
-
-
+  
 end
