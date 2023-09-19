@@ -69,6 +69,16 @@ end
   # @format: uuid
   field :created_user_id
 
+  # The date this note was last modified
+  # @type: string
+  # @format: date-time
+  field :modified, Types::Params::DateTime
+
+  # The ID of the user who last modified this note
+  # @type: string
+  # @format: uuid
+  field :modified_user_id
+
   # The name of the user who created the note
   # @type: string
   field :created_user_name
@@ -86,6 +96,7 @@ end
   field :recipient_name
 
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
+  belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
 
 end

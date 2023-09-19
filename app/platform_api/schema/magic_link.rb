@@ -81,6 +81,14 @@ end
   # To retrieve this item, specify `User` in the "Include" parameter for your query.
   field :user
 
+  # The number of visits to this Magic Link
+  # @type: integer
+  # @format: int32
+  field :visits
+
+  # Possible statuses for a Magic Link.
+  field :status
+
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}

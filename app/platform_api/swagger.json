@@ -1058,7 +1058,7 @@
           {
             "name": "include",
             "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Notes, Attachments, CustomFields",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Notes, Attachments, CustomFields, Enrollments",
             "schema": {
               "type": "string",
               "default": ""
@@ -1391,7 +1391,7 @@
           {
             "name": "include",
             "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Notes, Attachments, CustomFields",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Notes, Attachments, CustomFields, Enrollments",
             "schema": {
               "type": "string"
             }
@@ -3430,6 +3430,109 @@
         ]
       }
     },
+    "/api/v1/Companies/views/magic-link-summary": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "summary": "Query Magic Link Summary",
+        "description": "See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_Companies_QueryCompanyMagicLinkSummary",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query.\r\nSee [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nNo collections are currently available but may be offered in the future",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for the results, in the [Searchlight order\r\nsyntax](https://github.com/tspence/csharp-searchlight).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 250, maximum of 500)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyMagicLinkSummaryModelFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyMagicLinkSummaryModelFetchResult"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
     "/api/v1/Companies/views/details/{id}": {
       "get": {
         "tags": [
@@ -3507,7 +3610,7 @@
           "Companies"
         ],
         "summary": "Set Company Logo",
-        "description": "Sets the logo for specified company. The logo will be stored in the Lockstep Platform and will be **publicly accessible**.\r\n\r\n.jpg, .jpeg, .png, and .webp are supported. 2MB maximum. If no logo is uploaded, the existing logo will be deleted.\r\n\r\nA Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.\r\n\r\nOptional view box meta data for the provided logo may be supplied using the following query parameters. Please note that you must supply either all of the values or none of the values. <ul><li>min_x</li><li>min_y</li><li>width</li><li>height</li></ul>\r\n\r\nSee [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Sets the logo for specified company. The logo will be stored in the Lockstep Platform and will be **publicly accessible**.\r\n\r\n.jpg, .jpeg, .png, and .webp are supported. 2MB maximum. If no logo is uploaded, the existing logo will be deleted.\r\n\r\nA Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.\r\n\r\nOptional view box meta data for the provided logo may be supplied using the following query parameters. Please note that you must supply either all of the values or none of the values. <ul><li>min_x</li><li>min_y</li><li>width</li><li>height</li></ul>\r\n\r\nSee [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Companies_SetCompanyLogo",
         "parameters": [
           {
@@ -3619,7 +3722,7 @@
           "Companies"
         ],
         "summary": "Update logo view box settings",
-        "description": "Update view box meta data for the given Company id.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Update view box meta data for the given Company id.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Companies_UpdateViewBox",
         "parameters": [
           {
@@ -9473,8 +9576,20 @@
         "description": "Creates one or more Invoices within this account and returns the records as created.\r\n\r\nAn Invoice represents a bill sent from one company to another.  The creator of the invoice is identified by the `CompanyId` field, and the recipient of the invoice is identified by the `CustomerId` field.  Most invoices are uniquely identified both by a Lockstep Platform ID number and a customer ERP \"key\" that was generated by the system that originated the invoice.  Invoices have a total amount and a due date, and when some payments have been made on the Invoice the `TotalAmount` and the `OutstandingBalanceAmount` may be different.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Invoices_CreateInvoices",
         "requestBody": {
-          "description": "The Invoices to create",
+          "description": "Upload a UBL file or provide an InvoiceModel array",
           "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ublFile": {
+                    "type": "string",
+                    "description": "Upload a UBL .xml file",
+                    "format": "binary"
+                  }
+                }
+              }
+            },
             "application/json": {
               "schema": {
                 "type": "array",
@@ -9482,24 +9597,9 @@
                   "$ref": "#/components/schemas/InvoiceModel"
                 }
               }
-            },
-            "text/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/InvoiceModel"
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/InvoiceModel"
-                }
-              }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -9744,7 +9844,7 @@
           "Invoices"
         ],
         "summary": "Retrieve invoice PDF",
-        "description": "Retrieves a PDF file for this invoice if it is of one of the supported invoice types and has been synced using an app enrollment to one of the supported apps.\r\n\r\nSage Intacct supports AR Invoices.\r\n\r\nQuickBooks Online supports AR Invoices, and AR Credit Memos.\r\n\r\nXero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Retrieves a PDF file for this invoice if it is of one of the supported invoice types and has been synced using an app enrollment to one of the supported apps.\r\n\r\nSage Intacct supports AR Invoices.\r\n\r\nQuickBooks Online supports AR Invoices, and AR Credit Memos.\r\n\r\nXero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.\r\n\r\nSage 50 supports AR Invoices and AR Credit Memos.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Invoices_RetrieveInvoicePdf",
         "parameters": [
           {
@@ -10002,6 +10102,173 @@
         ]
       }
     },
+    "/api/v1/journal-entries/{id}": {
+      "get": {
+        "tags": [
+          "JournalEntries"
+        ],
+        "summary": "Retrieve Journal Entry",
+        "description": "Retrieves the Journal Entry specified by this unique identifier, optionally including nested data sets.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_JournalEntries_RetrieveJournalEntry",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of this journal entry; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Lines, Attachments",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalEntryModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalEntryModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/journal-entries/query": {
+      "get": {
+        "tags": [
+          "JournalEntries"
+        ],
+        "summary": "Query Journal Entries",
+        "description": "Queries Journal Entries for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_JournalEntries_QueryJournalEntries",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Lines, Attachments",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalEntryModelFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalEntryModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
     "/api/v1/Leads": {
       "post": {
         "tags": [
@@ -10212,6 +10479,77 @@
         ]
       }
     },
+    "/api/v1/useraccounts/magic-links/{id}/bounced": {
+      "delete": {
+        "tags": [
+          "MagicLinks"
+        ],
+        "summary": "Revoke Bounced Magic Link",
+        "description": "Revokes the bounced magic link with the specified id so it cannot be used to call the API.\r\n\r\nRevocation will be received by all servers within five minutes of revocation. API calls made using this magic link after the revocation will fail. A revoked magic link cannot be un-revoked.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_MagicLinks_RevokeBouncedMagicLink",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of this magic link",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionResultModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
     "/api/v1/useraccounts/magic-links/query": {
       "get": {
         "tags": [
@@ -10276,6 +10614,70 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MagicLinkModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/useraccounts/magic-links/summary": {
+      "get": {
+        "tags": [
+          "MagicLinks"
+        ],
+        "summary": "Magic Link Summary",
+        "description": "Gets a summary of all magic links created during the specified date range, returns no content if there are no magic links for the specified date range\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_MagicLinks_GetMagicLinkSummary",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "The date that the summary starts from (default one year ago from today)",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "The date that the summary ends at (default today)",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MagicLinkSummaryModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MagicLinkSummaryModel"
                 }
               }
             }
@@ -10365,6 +10767,125 @@
           },
           "403": {
             "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Update Note",
+        "description": "Updates the Note with the unique ID specified.\r\n\r\nA note is a customizable text string that can be attached to various account attributes within Lockstep. You can use notes for internal communication, correspondence with clients, or personal reminders. The Note Model represents a note and a number of different metadata attributes related to the creation, storage, and ownership of the note.\r\n\r\nSee [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_Notes_UpdateNote",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Note id to be updated",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A list of changes to apply to this Note",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { }
+              }
+            }
+          }
+        },
+        "responses": {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoteModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoteModel"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -16642,6 +17163,360 @@
         }
       }
     },
+    "/api/v1/service-fabric/directory/companies": {
+      "get": {
+        "tags": [
+          "Service-Fabric/Directory"
+        ],
+        "summary": "Retrieve Directory Company",
+        "description": "Returns a company model mapped from a directory service object.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_DirectoryCompanies_GetDirectoryCompanyById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/DirectoryDataSet"
+                }
+              ],
+              "description": "Different dataset types to retrieve information from the Directory Service",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DirectoryCompany"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DirectoryCompany"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/service-fabric/external-connectors/query": {
+      "get": {
+        "tags": [
+          "Service-Fabric/External-Connectors"
+        ],
+        "summary": "Retrieve External Connectors",
+        "description": "Returns list of available external connectors. Optionally filtered by category.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_ExternalConnectors_Query",
+        "parameters": [
+          {
+            "name": "Category",
+            "in": "query",
+            "description": "Provider's category to search for. If no provider of the requested category exists the returned list is empty.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalConnector"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalConnector"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": { }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/service-fabric/external-connectors/{id}/tokens": {
+      "get": {
+        "tags": [
+          "Service-Fabric/External-Connectors"
+        ],
+        "summary": "Retrieve External Connector Tokens",
+        "description": "Get list of tokens for a given external connector.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_ExternalConnectors_GetExternalConnectorTokensById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "External connector identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalConnectorToken"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalConnectorToken"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Service-Fabric/External-Connectors"
+        ],
+        "summary": "Start External Connector Authentication",
+        "description": "Start the user authentication process with external connector\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_ExternalConnectors_StartExternalConnectorAuth",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "External connector identifier",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "External connector auth request information",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ExternalConnectorAuthRequest"
+                  }
+                ],
+                "description": "An ExternalConnectorAuthRequest represents the information how an external connector authentication url should be\r\ngenerated and the access the customer should have with the external connector."
+              }
+            },
+            "text/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ExternalConnectorAuthRequest"
+                  }
+                ],
+                "description": "An ExternalConnectorAuthRequest represents the information how an external connector authentication url should be\r\ngenerated and the access the customer should have with the external connector."
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ExternalConnectorAuthRequest"
+                  }
+                ],
+                "description": "An ExternalConnectorAuthRequest represents the information how an external connector authentication url should be\r\ngenerated and the access the customer should have with the external connector."
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExternalConnectorAuth"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExternalConnectorAuth"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
     "/api/v1/Status": {
       "get": {
         "tags": [
@@ -18495,7 +19370,7 @@
           "UserAccounts"
         ],
         "summary": "Update User",
-        "description": "Updates a User that matches the specified id with the requested information.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nA User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Updates a User that matches the specified id with the requested information. The following limitations are applied when updating a user:\r\n\r\n<list type=\"bullet\"><item>Only Group Owners and Admins can change other users.</item><item>When updating another user, only the role and status can be updated.</item><item>A user can only change their own status when their current status is Onboarding.</item><item>A user can never change their own role.</item><item>Nobody can change the owner's role or status. See the \"/transfer-owner\" route for changing the owner.</item><item>A user can change their own personal information.</item></list>\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nA User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_UserAccounts_UpdateUser",
         "parameters": [
           {
@@ -19102,7 +19977,7 @@
           "UserAccounts"
         ],
         "summary": "Change User Group",
-        "description": "Change the active GroupKey of the calling user.\r\n\r\nA User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Change the active GroupKey of the calling user.\r\n\r\nA User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.",
         "operationId": "v1_UserAccounts_ChangeUserGroup",
         "parameters": [
           {
@@ -19188,7 +20063,7 @@
           "UserAccounts"
         ],
         "summary": "Get User Data",
-        "description": "Retrieves the user data for the current user. This allows for retrieving extended user data such as UTM parameters.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Retrieves the user data for the current user. This allows for retrieving extended user data such as UTM parameters.",
         "operationId": "v1_UserAccounts_GetUserData",
         "parameters": [
           {
@@ -19276,7 +20151,7 @@
           "UserAccounts"
         ],
         "summary": "Set Support Access",
-        "description": "Set support access for the calling user.\r\n\r\nSupport access allows Lockstep to access the user's account to troubleshoot issues. Access is granted for a limited time, can be revoked at any time, and requires a code to verify the access.\r\n\r\nEvery call to this API will regenerate the support access code.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Set support access for the calling user.\r\n\r\nSupport access allows Lockstep to access the user's account to troubleshoot issues. Access is granted for a limited time, can be revoked at any time, and requires a code to verify the access.\r\n\r\nEvery call to this API will regenerate the support access code.",
         "operationId": "v1_UserAccounts_SetSupportAccess",
         "requestBody": {
           "description": "",
@@ -20792,13 +21667,6 @@
       "AccountingProfileContactModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccountingProfileContactModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -20812,6 +21680,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingProfileContactModel"
+            },
             "nullable": true
           }
         },
@@ -21250,13 +22125,6 @@
       "AccountingProfileModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AccountingProfileModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -21270,6 +22138,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountingProfileModel"
+            },
             "nullable": true
           }
         },
@@ -21457,7 +22332,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Represents the result of an action.\r\n\r\nIn the Lockstep API, an Action is returned when an API call does not produce any data\r\nbut does produce messages that can be useful in understanding what work was performed.\r\nYou may use the messages text to display user visible error messages or the results of\r\nvarious operations."
+        "description": "Represents the result of an action.\r\n            \r\nIn the Lockstep API, an Action is returned when an API call does not produce any data\r\nbut does produce messages that can be useful in understanding what work was performed.\r\nYou may use the messages text to display user visible error messages or the results of\r\nvarious operations."
       },
       "Address": {
         "type": "object",
@@ -21835,13 +22710,6 @@
       "ApiKeyModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApiKeyModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -21855,6 +22723,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiKeyModel"
+            },
             "nullable": true
           }
         },
@@ -21945,13 +22820,6 @@
       "AppEnrollmentCustomFieldModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AppEnrollmentCustomFieldModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -21965,6 +22833,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AppEnrollmentCustomFieldModel"
+            },
             "nullable": true
           }
         },
@@ -22106,13 +22981,6 @@
       "AppEnrollmentModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AppEnrollmentModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22126,6 +22994,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AppEnrollmentModel"
+            },
             "nullable": true
           }
         },
@@ -22299,6 +23174,15 @@
             "description": "A collection of custom fields linked to this record.  To retrieve this collection, specify\r\n`CustomFieldValues` in the `include` parameter when retrieving data.\r\n            \r\nTo create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)\r\nendpoint with the `TableKey` to `Application` and the `ObjectKey` set to the `ApplicationId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
             "nullable": true,
             "readOnly": true
+          },
+          "enrollments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AppEnrollmentModel"
+            },
+            "description": "A collection of app enrollments linked to this record.  To retrieve this collection, specify\r\n`Enrollments` in the `include` parameter when retrieving data.\r\n            \r\nTo create an app enrollment, use the [Create App Enrollment](https://developer.lockstep.io/reference/v1_appenrollments_createappenrollments)\r\nendpoint with the `AppId` set to the `ApplicationId` for this record and associated auth connection info for the record.\r\n            \r\nFor more information on extensibility, see [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments).",
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false,
@@ -22307,13 +23191,6 @@
       "ApplicationModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApplicationModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22327,6 +23204,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationModel"
+            },
             "nullable": true
           }
         },
@@ -22677,13 +23561,6 @@
       "AtRiskInvoiceSummaryModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AtRiskInvoiceSummaryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22697,6 +23574,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AtRiskInvoiceSummaryModel"
+            },
             "nullable": true
           }
         },
@@ -22780,13 +23664,6 @@
       "AttachmentLinkModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AttachmentLinkModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22800,6 +23677,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachmentLinkModel"
+            },
             "nullable": true
           }
         },
@@ -22897,13 +23781,6 @@
       "AttachmentModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AttachmentModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -22917,6 +23794,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachmentModel"
+            },
             "nullable": true
           }
         },
@@ -23194,13 +24078,6 @@
       "CodeDefinitionModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CodeDefinitionModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -23214,6 +24091,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CodeDefinitionModel"
+            },
             "nullable": true
           }
         },
@@ -23403,6 +24287,120 @@
         "additionalProperties": false,
         "description": "Company payment collected information"
       },
+      "CompanyMagicLinkSummaryModel": {
+        "required": [
+          "companyName"
+        ],
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "string",
+            "description": "The unique id for this company",
+            "format": "uuid"
+          },
+          "companyName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "description": "The short name of the company."
+          },
+          "companyType": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "This field indicates the type of company.  It can be one of a limited number of values:\r\nCompany, Customer, Group, Vendor, or Third Party.  A company that represents both a customer and a vendor\r\nis identified as a CustomerVendor.\r\n            \r\n* `Company` - This record represents a company that is part of the organization of the account holder.\r\n* `Customer` - This record represents a business entity that purchases things from the account holder.\r\n* `Group` - Only one record of type `GROUP` exists in each account.  Contains your account profile.\r\n* `Vendor` - This record represents a business entity that sells things to the account holder.\r\n* `Third Party` - This record represents a business entity that is neither a customer nor vendor.\r\n* `CustomerVendor` - Both a customer and a vendor.\r\n* `CompanyProfile` - Profile for a Company, each Company should have at most 1 profile, used only for Profile Management.",
+            "nullable": true
+          },
+          "groupKey": {
+            "type": "string",
+            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
+            "format": "uuid"
+          },
+          "primaryContactName": {
+            "type": "string",
+            "description": "The name of the primary contact for this company",
+            "nullable": true
+          },
+          "primaryContactEmailAddress": {
+            "type": "string",
+            "description": "The email of the primary contact for this company",
+            "nullable": true
+          },
+          "outstandingAmount": {
+            "type": "integer",
+            "description": "The total outstanding amount for this company",
+            "format": "int32"
+          },
+          "totalOpenInvoices": {
+            "type": "integer",
+            "description": "The total number of open invoices for this company",
+            "format": "int32"
+          },
+          "pastDue": {
+            "type": "integer",
+            "description": "The total number of invoices that are past due for this company",
+            "format": "int32"
+          },
+          "totalVisits": {
+            "type": "integer",
+            "description": "Total number of visits for all magic links sent for this company",
+            "format": "int32"
+          },
+          "linksSent": {
+            "type": "integer",
+            "description": "Total number of sent links for this company",
+            "format": "int32"
+          },
+          "latestMagicLinkDate": {
+            "type": "string",
+            "description": "Created date of the most recent magic link made for this company",
+            "format": "date-time"
+          },
+          "latestMagicLinkId": {
+            "type": "string",
+            "description": "Id of the most recent magic link made for this company",
+            "format": "uuid"
+          },
+          "latestMagicLinkStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MagicLinkStatus"
+              }
+            ],
+            "description": "Possible statuses for a Magic Link."
+          }
+        },
+        "additionalProperties": false,
+        "description": "A summary of companies combined with their most recent magic links"
+      },
+      "CompanyMagicLinkSummaryModelFetchResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyMagicLinkSummaryModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CompanyModel": {
         "required": [
           "companyName"
@@ -23432,7 +24430,7 @@
             "maxLength": 20,
             "minLength": 0,
             "type": "string",
-            "description": "This field indicates the type of company.  It can be one of a limited number of values:\r\nCompany, Customer, Group, Vendor, or Third Party.  A company that represents both a customer and a vendor\r\nis identified as a CustomerVendor.\r\n            \r\n* `Company` - This record represents a company that is part of the organization of the account holder.\r\n* `Customer` - This record represents a business entity that purchases things from the account holder.\r\n* `Group` - Only one record of type `GROUP` exists in each account.  Contains your account profile.\r\n* `Vendor` - This record represents a business entity that sells things to the account holder.\r\n* `Third Party` - This record represents a business entity that is neither a customer nor vendor.\r\n* `CustomerVendor` - Both a customer and a vendor.",
+            "description": "This field indicates the type of company.  It can be one of a limited number of values:\r\nCompany, Customer, Group, Vendor, or Third Party.  A company that represents both a customer and a vendor\r\nis identified as a CustomerVendor.\r\n            \r\n* `Company` - This record represents a company that is part of the organization of the account holder.\r\n* `Customer` - This record represents a business entity that purchases things from the account holder.\r\n* `Group` - Only one record of type `GROUP` exists in each account.  Contains your account profile.\r\n* `Vendor` - This record represents a business entity that sells things to the account holder.\r\n* `Third Party` - This record represents a business entity that is neither a customer nor vendor.\r\n* `CustomerVendor` - Both a customer and a vendor.\r\n* `CompanyProfile` - Profile for a Company, each Company should have at most 1 profile, used only for Profile Management.",
             "nullable": true
           },
           "parentCompanyId": {
@@ -23730,6 +24728,13 @@
             "description": "A unique identification number assigned to the company by the national registration office.",
             "nullable": true
           },
+          "profileReferenceId": {
+            "type": "string",
+            "description": "An optional reference to a real company, making this a profile.",
+            "format": "uuid",
+            "nullable": true,
+            "readOnly": true
+          },
           "notes": {
             "type": "array",
             "items": {
@@ -23799,13 +24804,6 @@
       "CompanyModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CompanyModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -23819,6 +24817,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyModel"
+            },
             "nullable": true
           }
         },
@@ -24282,13 +25287,6 @@
       "ContactModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ContactModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24302,6 +25300,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactModel"
+            },
             "nullable": true
           }
         },
@@ -24515,13 +25520,6 @@
       "CountryModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CountryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24535,6 +25533,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CountryModel"
+            },
             "nullable": true
           }
         },
@@ -24702,13 +25707,6 @@
       "CreditMemoAppliedModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CreditMemoAppliedModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24722,6 +25720,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditMemoAppliedModel"
+            },
             "nullable": true
           }
         },
@@ -24966,13 +25971,6 @@
       "CurrencyModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CurrencyModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -24986,6 +25984,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CurrencyModel"
+            },
             "nullable": true
           }
         },
@@ -25479,13 +26484,6 @@
       "CustomerSummaryModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomerSummaryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -25499,6 +26497,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerSummaryModel"
+            },
             "nullable": true
           }
         },
@@ -25656,6 +26661,96 @@
         },
         "additionalProperties": false,
         "description": "Model containing information to create a new developer account."
+      },
+      "DirectoryCompany": {
+        "type": "object",
+        "properties": {
+          "dataSet": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DirectoryDataSet"
+              }
+            ],
+            "description": "The field indicates the dataset type used to generate the directory company."
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of this record based on the dataset.\r\n<remarks>\r\nExamples of this would be:\r\n    * DataSet = Siren, Identifier = string\r\n    * DataSet = Siret, Identifier = string\r\n</remarks>",
+            "nullable": true
+          },
+          "companyType": {
+            "type": "string",
+            "description": "This field indicates the type of company.",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the directory company entity.",
+            "nullable": true
+          },
+          "address1": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "address2": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "address3": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "Address info",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "Phone number",
+            "nullable": true
+          },
+          "emailAddress": {
+            "type": "string",
+            "description": "Email address",
+            "nullable": true
+          },
+          "createdDateTime": {
+            "type": "string",
+            "description": "The date this directory company entity was created",
+            "format": "date-time"
+          },
+          "modifiedDateTime": {
+            "type": "string",
+            "description": "The date this directory company entity was modified",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A DirectoryCompany represents a French legal entity, or French establishment within the Sage directory service.\r\nSage directory service objects (company, French legal entity or French establishment) are mapped to a single Platform\r\ncompany object\r\n            \r\nSee [Companies, French Legal Entities, and French Establishment](https://confluence.sage.com/display/DNBU/Platform+Company+Mapping) for more information."
+      },
+      "DirectoryDataSet": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "Different dataset types to retrieve information from the Directory Service",
+        "format": "int32"
       },
       "DpoSummaryGroupTotalModel": {
         "type": "object",
@@ -25898,6 +26993,118 @@
         "type": "integer",
         "description": "Possible statuses for a record that supports ERP write.",
         "format": "int32"
+      },
+      "ExternalConnector": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "External Connector ID",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "External connector name",
+            "nullable": true
+          },
+          "onboardingUrl": {
+            "type": "string",
+            "description": "URL to start onboarding with the given external connector",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Information about the external connector.",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Categories external connector is associated with",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An ExternalConnector represents a third-party provider available to customers within Sage Service Fabric. When a customer\r\nstarts and completes the authentication process with an external connector, they obtain an AppEnrollment which represents\r\nthe customer's instance of this ExternalConnector. The customer-specific AppEnrollment contains a customer's configuration data\r\nfor the ExternalConnector, which is not customer-specific."
+      },
+      "ExternalConnectorAuth": {
+        "type": "object",
+        "properties": {
+          "authenticationUrl": {
+            "type": "string",
+            "description": "The URL to open a browser with. This begins the user authentication process driven by a provider.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An ExternalConnectorAuth represents the authentication starting point of the Sage Connections Service workflow to connect\r\nthe customer to an external connector."
+      },
+      "ExternalConnectorAuthRequest": {
+        "type": "object",
+        "properties": {
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "An array of scopes requested from 3rd-party provider.",
+            "nullable": true
+          },
+          "redirectUrl": {
+            "type": "string",
+            "description": "The URL the browser is redirected to after a user grants, or denies, permissions for Sage software.",
+            "nullable": true
+          },
+          "connectionContextId": {
+            "type": "string",
+            "description": "Opaque value that a secret will be tagged with on the service side when created",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An ExternalConnectorAuthRequest represents the information how an external connector authentication url should be\r\ngenerated and the access the customer should have with the external connector."
+      },
+      "ExternalConnectorToken": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID of the token reference.",
+            "nullable": true
+          },
+          "authenticatedAt": {
+            "type": "string",
+            "description": "When the user was authenticated.",
+            "format": "date-time"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "An array of scopes requested from 3rd-party external connector.",
+            "nullable": true
+          },
+          "expiresAt": {
+            "type": "string",
+            "description": "When the token expires. This can be earlier if the token is revoked.",
+            "format": "date-time"
+          },
+          "externalConnectorId": {
+            "type": "string",
+            "description": "External Connector ID",
+            "nullable": true
+          },
+          "connectionContextId": {
+            "type": "string",
+            "description": "Connection context ID set by the product when starting onboarding with a external connector",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An ExternalConnectorToken represents the token information for a customer's valid, expired or revoked connection to\r\nan external connector."
       },
       "FeatureFlagsRequestModel": {
         "type": "object",
@@ -26250,13 +27457,6 @@
       "FinancialAccountModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FinancialAccountModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -26270,6 +27470,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FinancialAccountModel"
+            },
             "nullable": true
           }
         },
@@ -27397,13 +28604,6 @@
       "InvoiceLineModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceLineModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -27417,6 +28617,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceLineModel"
+            },
             "nullable": true
           }
         },
@@ -28026,12 +29233,6 @@
       "InvoiceModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": { },
-            "description": " For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).",
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -28045,6 +29246,12 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": { },
+            "description": " For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).",
             "nullable": true
           }
         },
@@ -28295,13 +29502,6 @@
       "InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceSummaryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -28315,6 +29515,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceSummaryModel"
+            },
             "nullable": true
           },
           "summary": {
@@ -28688,6 +29895,302 @@
         "additionalProperties": false,
         "description": "The InvoiceSyncModel represents information coming into Lockstep from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe InvoiceSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep\r\nplatform.\r\n            \r\nOnce imported, this record will be available in the Lockstep API as an [InvoiceModel](https://developer.lockstep.io/docs/invoicemodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
+      "JournalEntryLineModel": {
+        "type": "object",
+        "properties": {
+          "journalEntryLineId": {
+            "type": "string",
+            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Lockstep platform.\r\n            \r\nFor the ID of this record in its originating financial system, see `ErpKey`.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "journalEntryId": {
+            "type": "string",
+            "description": "The Journal Entry with which this line is associated.",
+            "format": "uuid"
+          },
+          "groupKey": {
+            "type": "string",
+            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "appEnrollmentId": {
+            "type": "string",
+            "description": "The AppEnrollmentId of the application that imported this record.  For accounts\r\nwith more than one financial system connected, this field identifies the originating\r\nfinancial system that produced this record.  This value is null if this record\r\nwas not loaded from an external ERP or financial system.",
+            "format": "uuid",
+            "nullable": true,
+            "readOnly": true
+          },
+          "erpKey": {
+            "type": "string",
+            "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this journal entry record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
+            "nullable": true
+          },
+          "financialAccountId": {
+            "type": "string",
+            "description": "The Financial Account with which this line is associated.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "The unique code/identifier assigned to each account in the chart of accounts.",
+            "nullable": true
+          },
+          "accountName": {
+            "type": "string",
+            "description": "The name of the account.",
+            "nullable": true
+          },
+          "debit": {
+            "type": "number",
+            "description": "Debit to account.",
+            "format": "double"
+          },
+          "credit": {
+            "type": "number",
+            "description": "Credit to account.",
+            "format": "double"
+          },
+          "currency": {
+            "maxLength": 3,
+            "minLength": 0,
+            "type": "string",
+            "description": "The transaction currency in which the entry is recorded, especially useful for multi-currency environments.",
+            "nullable": true
+          },
+          "baseDebit": {
+            "type": "number",
+            "description": "The base currency debit amount for the account.",
+            "format": "double"
+          },
+          "baseCredit": {
+            "type": "number",
+            "description": "The base currency credit amount for the account.",
+            "format": "double"
+          },
+          "baseCurrency": {
+            "maxLength": 3,
+            "minLength": 0,
+            "type": "string",
+            "description": "The base currency in which the entry is recorded, especially useful for multi-currency environments.",
+            "nullable": true
+          },
+          "sourceCreatedUser": {
+            "type": "string",
+            "description": "The ERP’s identifier for the user who recorded the journal entry line.",
+            "nullable": true
+          },
+          "memo": {
+            "type": "string",
+            "description": "A memo related to this line.",
+            "nullable": true
+          },
+          "created": {
+            "type": "string",
+            "description": "The date that the journal entry line was created.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "createdUserId": {
+            "type": "string",
+            "description": "The ID of the user who created the journal entry line.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The date that the journal entry line was last modified.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "modifiedUserId": {
+            "type": "string",
+            "description": "The ID of the user who last modified the journal entry line.",
+            "format": "uuid",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains information about a journal entry line"
+      },
+      "JournalEntryModel": {
+        "type": "object",
+        "properties": {
+          "journalEntryId": {
+            "type": "string",
+            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Lockstep platform.\r\n            \r\nFor the ID of this record in its originating financial system, see `ErpKey`.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "groupKey": {
+            "type": "string",
+            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "appEnrollmentId": {
+            "type": "string",
+            "description": "The AppEnrollmentId of the application that imported this record.  For accounts\r\nwith more than one financial system connected, this field identifies the originating\r\nfinancial system that produced this record.  This value is null if this record\r\nwas not loaded from an external ERP or financial system.",
+            "format": "uuid",
+            "nullable": true,
+            "readOnly": true
+          },
+          "erpKey": {
+            "type": "string",
+            "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this journal entry record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
+            "nullable": true
+          },
+          "journalId": {
+            "type": "string",
+            "description": "The ERP’s identifier for this journal entry, usually has meaning to the user.\r\nMay be the same value of the ERP Key.",
+            "nullable": true
+          },
+          "source": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JournalEntrySource"
+              }
+            ],
+            "description": "Possible sources for a Journal Entry.",
+            "readOnly": true
+          },
+          "postingDate": {
+            "type": "string",
+            "description": "The UTC date and time when this journal entry was posted.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JournalEntryStatus"
+              }
+            ],
+            "description": "Possible statuses for a Journal Entry.",
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "description": "A brief description explaining the purpose of the journal entry.",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "description": "An additional comment related to the entry.",
+            "nullable": true
+          },
+          "referenceNumber": {
+            "type": "string",
+            "description": "Any reference number or identifier associated with the entry, such as an invoice number or purchase order.",
+            "nullable": true
+          },
+          "sourcePostingDate": {
+            "type": "string",
+            "description": "The raw posting date from the source.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "created": {
+            "type": "string",
+            "description": "The date that the journal entry was created.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "createdUserId": {
+            "type": "string",
+            "description": "The ID of the user who created the journal entry.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The date that the journal entry was last modified.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "modifiedUserId": {
+            "type": "string",
+            "description": "The ID of the user who last modified the journal entry.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JournalEntryLineModel"
+            },
+            "description": "All lines attached to this journal entry.\r\nTo retrieve this collection, specify `Lines` in the \"Include\" parameter for your query.",
+            "nullable": true
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachmentModel"
+            },
+            "description": "A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in\r\nthe `include` parameter when retrieving data.\r\n            \r\nTo create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)\r\nendpoint with the `TableKey` to `Invoice` and the `ObjectKey` set to the `InvoiceId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains information about a journal entry"
+      },
+      "JournalEntryModelFetchResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JournalEntryModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JournalEntrySource": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "type": "integer",
+        "description": "Possible sources for a Journal Entry.",
+        "format": "int32"
+      },
+      "JournalEntryStatus": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "Possible statuses for a Journal Entry.",
+        "format": "int32"
+      },
       "LeadModel": {
         "required": [
           "name"
@@ -28830,6 +30333,21 @@
             "description": "The user associated with this magic link.\r\nTo retrieve this item, specify `User` in the \"Include\" parameter for your query.",
             "nullable": true,
             "readOnly": true
+          },
+          "visits": {
+            "type": "integer",
+            "description": "The number of visits to this Magic Link",
+            "format": "int32",
+            "readOnly": true
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MagicLinkStatus"
+              }
+            ],
+            "description": "Possible statuses for a Magic Link.",
+            "readOnly": true
           }
         },
         "additionalProperties": false,
@@ -28838,13 +30356,6 @@
       "MagicLinkModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MagicLinkModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -28859,9 +30370,28 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MagicLinkModel"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
+      },
+      "MagicLinkStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "description": "Possible statuses for a Magic Link.",
+        "format": "int32"
       },
       "MagicLinkStatusModel": {
         "type": "object",
@@ -28895,6 +30425,33 @@
         },
         "additionalProperties": false,
         "description": "Contains information about the user's magic link"
+      },
+      "MagicLinkSummaryModel": {
+        "type": "object",
+        "properties": {
+          "groupKey": {
+            "type": "string",
+            "description": "Group that the summary is for",
+            "format": "uuid"
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "Total number of magic links sent",
+            "format": "int32"
+          },
+          "totalBounced": {
+            "type": "integer",
+            "description": "Total number of magic links that failed to send",
+            "format": "int32"
+          },
+          "totalVisited": {
+            "type": "integer",
+            "description": "Total number of visits across all magic links",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A historic summary of all magic links sent in a given group"
       },
       "MatchAction": {
         "enum": [
@@ -28941,13 +30498,15 @@
             "maxLength": 40,
             "minLength": 1,
             "type": "string",
-            "description": "A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and\r\n`ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of\r\n`Invoice` and an `ObjectKey` value of `12345`.\r\n            \r\nThe `TableKey` value contains the name of the table within the Lockstep Platform to which this metadata\r\nis connected.\r\n            \r\nFor more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object)."
+            "description": "A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and\r\n`ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of\r\n`Invoice` and an `ObjectKey` value of `12345`.\r\n            \r\nThe `TableKey` value contains the name of the table within the Lockstep Platform to which this metadata\r\nis connected.\r\n            \r\nFor more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
+            "readOnly": true
           },
           "objectKey": {
             "minLength": 1,
             "type": "string",
             "description": "A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and\r\n`ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of\r\n`Invoice` and an `ObjectKey` value of `12345`.\r\n            \r\nThe `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this\r\nmetadata is connected.\r\n            \r\nFor more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
-            "format": "uuid"
+            "format": "uuid",
+            "readOnly": true
           },
           "noteText": {
             "maxLength": 1000,
@@ -28978,6 +30537,18 @@
             "format": "uuid",
             "readOnly": true
           },
+          "modified": {
+            "type": "string",
+            "description": "The date this note was last modified",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "modifiedUserId": {
+            "type": "string",
+            "description": "The ID of the user who last modified this note",
+            "format": "uuid",
+            "readOnly": true
+          },
           "createdUserName": {
             "type": "string",
             "description": "The name of the user who created the note",
@@ -29004,13 +30575,6 @@
       "NoteModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NoteModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -29024,6 +30588,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NoteModel"
+            },
             "nullable": true
           }
         },
@@ -29389,13 +30960,6 @@
       "PaymentAppliedModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentAppliedModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -29409,6 +30973,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentAppliedModel"
+            },
             "nullable": true
           }
         },
@@ -29691,13 +31262,6 @@
       "PaymentDetailModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentDetailModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -29711,6 +31275,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentDetailModel"
+            },
             "nullable": true
           }
         },
@@ -30031,13 +31602,6 @@
       "PaymentModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -30051,6 +31615,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentModel"
+            },
             "nullable": true
           }
         },
@@ -30387,13 +31958,6 @@
       "PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentSummaryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -30407,6 +31971,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentSummaryModel"
+            },
             "nullable": true
           },
           "summary": {
@@ -32364,13 +33935,6 @@
       "SyncRequestModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SyncRequestModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -32384,6 +33948,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SyncRequestModel"
+            },
             "nullable": true
           }
         },
@@ -32593,6 +34164,11 @@
           "supportsErpPdfRetrieval": {
             "type": "boolean",
             "description": "Specific transactions have support for pdf retrieval from their respective erp. When this flag is true, an additional\r\ncall to Invoices/{id}/pdf or Payments/{id}/pdf can be made to retrieve a pdf directly from the erp."
+          },
+          "transactionCustomerId": {
+            "type": "string",
+            "description": "The customer associated with this transaction",
+            "format": "uuid"
           }
         },
         "additionalProperties": false,
@@ -32601,13 +34177,6 @@
       "TransactionModelTransactionSummaryTotalModelSummaryFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TransactionModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -32621,6 +34190,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionModel"
+            },
             "nullable": true
           },
           "summary": {
@@ -33250,13 +34826,6 @@
       "UserAccountModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserAccountModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -33270,6 +34839,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserAccountModel"
+            },
             "nullable": true
           }
         },
@@ -33379,13 +34955,6 @@
       "UserRoleModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserRoleModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -33399,6 +34968,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRoleModel"
+            },
             "nullable": true
           }
         },
@@ -33565,13 +35141,6 @@
       "VendorSummaryModelFetchResult": {
         "type": "object",
         "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/VendorSummaryModel"
-            },
-            "nullable": true
-          },
           "totalCount": {
             "type": "integer",
             "format": "int32",
@@ -33585,6 +35154,13 @@
           "pageNumber": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VendorSummaryModel"
+            },
             "nullable": true
           }
         },
