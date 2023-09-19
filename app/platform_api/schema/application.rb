@@ -79,5 +79,6 @@ end
   has_many :attachments, {:class_name=>"Schema::Attachment", :included=>true}
   has_many :custom_field_definitions, {:class_name=>"Schema::CustomFieldDefinition", :included=>true}
   has_many :custom_field_values, {:class_name=>"Schema::CustomFieldValue", :included=>true}
+  has_many :enrollments, {:class_name=>"Schema::AppEnrollment", :included=>true}
 
 end
