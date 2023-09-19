@@ -1,4 +1,4 @@
 module LockstepRails
-  VERSION = '0.3.68'
+  VERSION = '0.3.69'
 end
 
