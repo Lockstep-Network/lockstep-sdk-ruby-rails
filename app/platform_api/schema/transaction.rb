@@ -107,6 +107,11 @@ end
   # @type: boolean
   field :supports_erp_pdf_retrieval
 
+  # The customer associated with this transaction
+  # @type: string
+  # @format: uuid
+  field :transaction_customer_id
+
 
 
 end

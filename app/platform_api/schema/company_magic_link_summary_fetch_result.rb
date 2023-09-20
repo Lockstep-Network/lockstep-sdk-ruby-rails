@@ -1,4 +1,4 @@
-class Schema::InvoiceFetchResult < Lockstep::ApiRecord
+class Schema::CompanyMagicLinkSummaryFetchResult < Lockstep::ApiRecord
 
 # ApiRecord will crash unless `id_ref` is defined
 def self.id_ref
@@ -20,10 +20,7 @@ end
   # @format: int32
   field :page_number
 
-  #  For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).
-  # @type: array
-  field :records
 
-
+  has_many :records, {:class_name=>"Schema::CompanyMagicLinkSummary", :included=>true}
 
 end
