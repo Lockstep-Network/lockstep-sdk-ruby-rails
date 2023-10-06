@@ -8,6 +8,11 @@ end
   # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
+  # The unique identifier of this object in the Sage Network platform.
+  # @type: string
+  # @format: uuid
+  field :network_id
+
   # This is the primary key of the Company record. For this field, you should use whatever the company's unique
   # identifying number is in the originating system. Search for a unique, non-changing number within the
   # originating financial system for this record.
@@ -49,6 +54,11 @@ end
   # @type: string
   field :parent_company_erp_key
 
+  # The network id of the parent Company.
+  # @type: string
+  # @format: uuid
+  field :parent_company_network_id
+
   # This flag indicates whether the company is currently active. An inactive company will be hidden from the
   # user interface but will still be available for querying.
   # @type: boolean
@@ -67,6 +77,11 @@ end
   # [Importing Contacts](https://developer.lockstep.io/docs/importing-contacts) record for the contact table.
   # @type: string
   field :primary_contact_erp_key
+
+  # The network id of the primary Contact.
+  # @type: string
+  # @format: uuid
+  field :primary_contact_network_id
 
   # The company's primary mailing address information
   # @type: string

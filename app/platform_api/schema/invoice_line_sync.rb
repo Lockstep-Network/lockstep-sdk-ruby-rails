@@ -8,6 +8,11 @@ end
   # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
+  # The unique identifier of this object in the Sage Network platform.
+  # @type: string
+  # @format: uuid
+  field :network_id
+
   # This is the primary key of the Invoice Line record. For this field, you should use whatever the contact's unique
   # identifying number is in the originating system. Search for a unique, non-changing number within the
   # originating financial system for this record.
@@ -24,6 +29,11 @@ end
   # [InvoiceSyncModel](https://developer.lockstep.io/docs/importing-invoices).
   # @type: string
   field :invoice_erp_key
+
+  # The network id of the parent Invoice.
+  # @type: string
+  # @format: uuid
+  field :invoice_network_id
 
   # The line number of this line, as defined in the originating ERP or accounting system.  You can sort on this number to
   # get the original view of lines within the invoice.

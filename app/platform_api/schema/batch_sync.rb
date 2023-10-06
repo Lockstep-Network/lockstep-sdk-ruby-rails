@@ -27,5 +27,7 @@ end
   has_many :financial_accounts, {:class_name=>"Schema::FinancialAccountSync", :included=>true}
   has_many :financial_account_balance_histories, {:class_name=>"Schema::FinancialAccountBalanceHistorySync", :included=>true}
   has_many :base_currencies, {:class_name=>"Schema::BaseCurrencySync", :included=>true}
+  has_many :journal_entries, {:class_name=>"Schema::JournalEntrySync", :included=>true}
+  has_many :journal_entry_lines, {:class_name=>"Schema::JournalEntryLineSync", :included=>true}
 
 end

@@ -8,6 +8,11 @@ end
   # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
+  # The unique identifier of this object in the Sage Network platform.
+  # @type: string
+  # @format: uuid
+  field :network_id
+
   # This is the primary key of the Payment record. For this field, you should use whatever the payment's unique
   # identifying number is in the originating system. Search for a unique, non-changing number within the
   # originating financial system for this record.
@@ -24,6 +29,11 @@ end
   # [CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).
   # @type: string
   field :company_erp_key
+
+  # The network id of the related Company.
+  # @type: string
+  # @format: uuid
+  field :company_network_id
 
   # The type of payment, AR Payment or AP Payment.
   #             

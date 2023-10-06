@@ -8,6 +8,11 @@ end
   # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
+  # The unique identifier of this object in the Sage Network platform.
+  # @type: string
+  # @format: uuid
+  field :network_id
+
   # This is the primary key of the Invoice record. For this field, you should use whatever the invoice's unique
   # identifying number is in the originating system. Search for a unique, non-changing number within the
   # originating financial system for this record.
@@ -29,6 +34,11 @@ end
   # @type: string
   field :company_erp_key
 
+  # The network id of the related Company.
+  # @type: string
+  # @format: uuid
+  field :company_network_id
+
   # The original primary key or unique ID of the company to which this invoice was sent.  This value should
   # match the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the
   # [CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).
@@ -38,6 +48,11 @@ end
   # was sent.
   # @type: string
   field :customer_erp_key
+
+  # The network id of the related Customer.
+  # @type: string
+  # @format: uuid
+  field :customer_network_id
 
   # The name of the salesperson that wrote this invoice.  This is just text, it is not a reference to the
   # "Contacts" table.  You will not receive an error if this field does not match a known contact person.

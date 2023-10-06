@@ -8,6 +8,11 @@ end
   # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
+  # The unique identifier of this object in the Sage Network platform.
+  # @type: string
+  # @format: uuid
+  field :network_id
+
   # This is the primary key of the Payment Application record. For this field, you should use whatever this
   # transaction's unique identifying number is in the originating system. Search for a unique, non-changing
   # number within the originating financial system for this record.
@@ -30,6 +35,11 @@ end
   # @type: string
   field :invoice_erp_key
 
+  # The network id of the related Invoice.
+  # @type: string
+  # @format: uuid
+  field :invoice_network_id
+
   # This field indicates which Payment was used to provide the funds for this payment application. In this
   # field, identify the original primary key or unique ID of the Payment that was used for this payment
   # application.
@@ -41,6 +51,11 @@ end
   # field on the [PaymentSyncModel](https://developer.lockstep.io/docs/importing-payments).
   # @type: string
   field :payment_erp_key
+
+  # The network id of the related Payment.
+  # @type: string
+  # @format: uuid
+  field :payment_network_id
 
   # The entry number of this payment application.  This is often a journal entry number, confirmation code,
   # or other identifying field for this payment application.
