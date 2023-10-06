@@ -1,0 +1,129 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.dev.lockstep.io/api//v1/workflow-statuses/
+    body:
+      encoding: UTF-8
+      string: '[{"name":"TestCase Step 1"}]'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Api-Key:
+      - "<API_KEY>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 06 Oct 2023 06:25:53 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-store, no-cache
+      Set-Cookie:
+      - ARRAffinity=5428fdfef2695530a7856a661eb8726621e654ee06ac8d9da53356d81a249a86;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=5428fdfef2695530a7856a661eb8726621e654ee06ac8d9da53356d81a249a86;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Api-Supported-Versions:
+      - '1.0'
+      Server-Duration:
+      - '145'
+      X-Content-Type-Options:
+      - nosniff
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20231006T062552Z-ed1pwhv8sp4xh1x7hr532y0cw800000002ng000000006ypf
+      X-Cache:
+      - TCP_MISS
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"id":"0f6070b1-7c6e-4570-a8ae-aa1bcd4fa811","name":"TestCase Step
+        1","isNotesRequired":false,"promoteToErp":false,"created":"2023-10-06T06:25:53.7473689Z","createdUserId":"42ee93c0-f8d2-43ab-8744-3953f1e0829d","modified":"2023-10-06T06:25:53.7473689Z","modifiedUserId":"42ee93c0-f8d2-43ab-8744-3953f1e0829d"}]'
+  recorded_at: Fri, 06 Oct 2023 06:25:53 GMT
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api//v1/workflow-statuses/query?filter=id%20eq%20%270f6070b1-7c6e-4570-a8ae-aa1bcd4fa811%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Api-Key:
+      - "<API_KEY>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 06 Oct 2023 06:25:55 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-store, no-cache
+      Set-Cookie:
+      - ARRAffinity=5428fdfef2695530a7856a661eb8726621e654ee06ac8d9da53356d81a249a86;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=5428fdfef2695530a7856a661eb8726621e654ee06ac8d9da53356d81a249a86;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Api-Supported-Versions:
+      - '1.0'
+      Server-Duration:
+      - '134'
+      X-Content-Type-Options:
+      - nosniff
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20231006T062554Z-5yarbe2em568f1smrz5ayw6h1000000002tg000000020um6
+      X-Cache:
+      - PRIVATE_NOSTORE
+    body:
+      encoding: UTF-8
+      string: '{"totalCount":1,"pageSize":250,"records":[{"id":"0f6070b1-7c6e-4570-a8ae-aa1bcd4fa811","name":"TestCase
+        Step 1","isNotesRequired":false,"promoteToErp":false,"created":"2023-10-06T06:25:53.75","createdUserId":"42ee93c0-f8d2-43ab-8744-3953f1e0829d","modified":"2023-10-06T06:25:53.75","modifiedUserId":"42ee93c0-f8d2-43ab-8744-3953f1e0829d"}]}'
+  recorded_at: Fri, 06 Oct 2023 06:25:55 GMT
+recorded_with: VCR 6.1.0
