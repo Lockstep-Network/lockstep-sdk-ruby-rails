@@ -7,5 +7,6 @@ class Lockstep::Invoice < Lockstep::ApiRecord
 
   belongs_to :connection, class_name: 'Lockstep::Connection', foreign_key: :customer_id
 
-  scope :received_einvoices, -> { where(invoice_type_code: 'AP E-Invoice').include_object(:customer, :lines) }
+  scope :einvoices, -> { include_object(:customer, :lines) }
+  scope :received_einvoices, -> { einvoices.where(invoice_type_code: 'AP E-Invoice') }
 end
