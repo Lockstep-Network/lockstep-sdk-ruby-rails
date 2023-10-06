@@ -124,6 +124,11 @@ BELONGS_TO_RELATIONS = {
     class_name: "Lockstep::User",
     primary_key: :user_id,
   },
+  parent_workflow_status: {
+    keys: %w[parentWorkflowStatusId],
+    class_name: "Lockstep::WorkflowStatus",
+    primary_key: :id
+  }
 }
 
 def build_belongs_to_relations(schema_name, properties)

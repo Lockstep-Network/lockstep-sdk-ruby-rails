@@ -1,0 +1,125 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api//v1/workflow-statuses/query?filter=id%20eq%20%27some-id%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Api-Key:
+      - "<API_KEY>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 06 Oct 2023 06:42:16 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-store, no-cache
+      Set-Cookie:
+      - ARRAffinity=5428fdfef2695530a7856a661eb8726621e654ee06ac8d9da53356d81a249a86;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=5428fdfef2695530a7856a661eb8726621e654ee06ac8d9da53356d81a249a86;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Api-Supported-Versions:
+      - '1.0'
+      Server-Duration:
+      - '147'
+      X-Content-Type-Options:
+      - nosniff
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20231006T064215Z-3cnr4tq0s96txb8dmv0wbfy7s000000001tg00000001zmgp
+      X-Cache:
+      - PRIVATE_NOSTORE
+    body:
+      encoding: UTF-8
+      string: '{"totalCount":1,"pageSize":250,"records":[{"id":"some-id","name":"test","isNotesRequired":false,"promoteToErp":false,"created":"2023-10-06T06:08:35.02","createdUserId":"42ee93c0-f8d2-43ab-8744-3953f1e0829d","modified":"2023-10-06T06:08:35.02","modifiedUserId":"42ee93c0-f8d2-43ab-8744-3953f1e0829d"}]}'
+  recorded_at: Fri, 06 Oct 2023 06:42:16 GMT
+- request:
+    method: get
+    uri: https://api.dev.lockstep.io/api//v1/workflow-statuses/query?filter=id%20IS%20NULL
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - api.dev.lockstep.io
+      Content-Type:
+      - application/*+json
+      Sdktype:
+      - Ruby
+      Sdkversion:
+      - 2022.4.32.0
+      Machinename:
+      - "<MACHINE_NAME>"
+      Api-Key:
+      - "<API_KEY>"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 06 Oct 2023 06:42:18 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-store, no-cache
+      Set-Cookie:
+      - ARRAffinity=5428fdfef2695530a7856a661eb8726621e654ee06ac8d9da53356d81a249a86;Path=/;HttpOnly;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      - ARRAffinitySameSite=5428fdfef2695530a7856a661eb8726621e654ee06ac8d9da53356d81a249a86;Path=/;HttpOnly;SameSite=None;Secure;Domain=Lockstep-App-Store-API-Dev.azurewebsites.net
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Api-Supported-Versions:
+      - '1.0'
+      Server-Duration:
+      - '6'
+      X-Content-Type-Options:
+      - nosniff
+      X-Powered-By:
+      - ASP.NET
+      X-Azure-Ref:
+      - 20231006T064217Z-mxkg95a53d487azwev8v86ugr000000002kg00000002wq30
+      X-Cache:
+      - PRIVATE_NOSTORE
+    body:
+      encoding: UTF-8
+      string: '{"totalCount":0,"pageSize":250,"records":[]}'
+  recorded_at: Fri, 06 Oct 2023 06:42:18 GMT
+recorded_with: VCR 6.1.0

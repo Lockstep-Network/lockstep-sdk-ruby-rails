@@ -9844,7 +9844,7 @@
           "Invoices"
         ],
         "summary": "Retrieve invoice PDF",
-        "description": "Retrieves a PDF file for this invoice if it is of one of the supported invoice types and has been synced using an app enrollment to one of the supported apps.\r\n\r\nSage Intacct supports AR Invoices.\r\n\r\nQuickBooks Online supports AR Invoices, and AR Credit Memos.\r\n\r\nXero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.\r\n\r\nSage 50 supports AR Invoices and AR Credit Memos.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Retrieves a PDF file for this invoice if it is of one of the supported invoice types and has been synced using an app enrollment to one of the supported apps.\r\n\r\nSage Intacct supports AR Invoices.\r\n\r\nQuickBooks Online supports AR Invoices, and AR Credit Memos.\r\n\r\nXero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.\r\n\r\nFor other ERPs, the supported types will depend on the synced data.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Invoices_RetrieveInvoicePdf",
         "parameters": [
           {
@@ -9887,6 +9887,77 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "head": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Check invoice PDF",
+        "description": "Checks for whether a PDF file for this invoice exists if it is of one of the supported invoice types and has been synced using an app enrollment to one of the supported apps.\r\n\r\nSage Intacct supports AR Invoices.\r\n\r\nQuickBooks Online supports AR Invoices, and AR Credit Memos.\r\n\r\nXero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.\r\n\r\nFor other ERPs, the supported types will depend on the synced data.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_Invoices_CheckInvoicePdf",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
                 }
               }
             }
@@ -10181,6 +10252,85 @@
         ]
       }
     },
+    "/api/v1/journal-entries": {
+      "post": {
+        "tags": [
+          "JournalEntries"
+        ],
+        "summary": "Create Journal Entries",
+        "description": "Creates one or more Journal Entries within this account and returns the records as created.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_JournalEntries_CreateJournalEntries",
+        "requestBody": {
+          "description": "The Journal Entries to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/JournalEntryModel"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/JournalEntryModel"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/JournalEntryModel"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JournalEntryModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JournalEntryModel"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
     "/api/v1/journal-entries/query": {
       "get": {
         "tags": [
@@ -10245,6 +10395,173 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/JournalEntryModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/journal-entry-lines/{id}": {
+      "get": {
+        "tags": [
+          "JournalEntryLines"
+        ],
+        "summary": "Retrieve Journal Entry Line",
+        "description": "Retrieves the Journal Entry Line specified by this unique identifier, optionally including nested data sets.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_JournalEntryLines_RetrieveJournalEntryLine",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Sage Network Platform ID number of this journal entry line; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: JournalEntry",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalEntryLineModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalEntryLineModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/journal-entry-lines/query": {
+      "get": {
+        "tags": [
+          "JournalEntryLines"
+        ],
+        "summary": "Query Journal Entry Lines",
+        "description": "Queries Journal Entry Lines for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_JournalEntryLines_QueryJournalEntryLines",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: JournalEntry",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalEntryLineModelFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JournalEntryLineModelFetchResult"
                 }
               }
             }
@@ -12043,7 +12360,7 @@
           "Payments"
         ],
         "summary": "Retrieve payment PDF",
-        "description": "Retrieves a PDF file for this payment if it has been synced using an app enrollment to one of the supported apps.\r\n\r\nQuickBooks Online supports AR Payments.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Retrieves a PDF file for this payment if it has been synced using an app enrollment to one of the supported apps.\r\n\r\nQuickBooks Online supports AR Payments.\r\n\r\nFor other ERPs, the supported types will depend on the synced data.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Payments_RetrievePaymentPdf",
         "parameters": [
           {
@@ -12086,6 +12403,77 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      },
+      "head": {
+        "tags": [
+          "Payments"
+        ],
+        "summary": "Check payment PDF",
+        "description": "Checks for whether a PDF file for this payment exists if it has been synced using an app enrollment to one of the supported apps.\r\n\r\nQuickBooks Online supports AR Payments.\r\n\r\nFor other ERPs, the supported types will depend on the synced data.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_Payments_CheckPaymentPdf",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Lockstep Platform ID number of this payment; NOT the customer's ERP key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
                 }
               }
             }
@@ -12351,7 +12739,7 @@
           "Payments"
         ],
         "summary": "Write payments to connected ERP",
-        "description": "Schedule an ERP post request for payments.\r\n\r\nThe payments must be associated with an active app enrollment and have a valid `AppEnrollmentId`.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "**This API endpoint is under maintenance and may not function properly.**  Schedule an ERP post request for payments.\r\n\r\nThe payments must be associated with an active app enrollment and have a valid `AppEnrollmentId`.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Payments_ErpWritePayments",
         "requestBody": {
           "description": "The payments to submit to the connected ERP",
@@ -12406,955 +12794,6 @@
           },
           "400": {
             "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/payments-acceptance/customers/{companyId}/{customerId}": {
-      "get": {
-        "tags": [
-          "Payments-Acceptance/Customers"
-        ],
-        "summary": "Retrieve Customer",
-        "description": "Retrieves the Customer specified by this unique identifier.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_RetrieveCustomer",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Company; NOT the Company's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "customerId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Customer; NOT the Customer's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfCustomerResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfCustomerResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/payments-acceptance/customers/{companyId}": {
-      "post": {
-        "tags": [
-          "Payments-Acceptance/Customers"
-        ],
-        "summary": "Create Customer",
-        "description": "Creates a Customer from the given models.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_CreateCustomer",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Company; NOT the Company's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The Customer to create in Service Fabric",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfCustomerRequest"
-                  }
-                ],
-                "description": "API version of CustomerRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfCustomerRequest"
-                  }
-                ],
-                "description": "API version of CustomerRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfCustomerRequest"
-                  }
-                ],
-                "description": "API version of CustomerRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfCustomerResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfCustomerResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": { }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": { }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/payments-acceptance/payments/{companyId}/{paymentId}": {
-      "get": {
-        "tags": [
-          "Payments-Acceptance/Payments"
-        ],
-        "summary": "Retrieve Payment",
-        "description": "Retrieves the Payment specified by the unique identifiers.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_RetrievePayment",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Company; NOT the Company's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "paymentId",
-            "in": "path",
-            "description": "The Payment ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfPaymentResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfPaymentResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/payments-acceptance/payments/{companyId}": {
-      "post": {
-        "tags": [
-          "Payments-Acceptance/Payments"
-        ],
-        "summary": "Create Payment",
-        "description": "Create and prepare Payment to be submitted\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_CreatePayment",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Company; NOT the Company's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The Payment request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfPaymentRequest"
-                  }
-                ],
-                "description": "API version of PaymentRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfPaymentRequest"
-                  }
-                ],
-                "description": "API version of PaymentRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfPaymentRequest"
-                  }
-                ],
-                "description": "API version of PaymentRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfPaymentResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfPaymentResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      },
-      "get": {
-        "tags": [
-          "Payments-Acceptance/Payments"
-        ],
-        "summary": "Query Payments",
-        "description": "Queries Payments for the current Company using the specified filtering rules requested.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_QueryPayments",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of a Company; NOT the Company's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "updateDateTimeSince",
-            "in": "query",
-            "description": "From date (inclusive) in ISO 8601 Date format.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "updateTimeUntil",
-            "in": "query",
-            "description": "To date (exclusive) in ISO 8601 Date format.",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "description": "Enum: \"UNAUTHORISED\" \"PENDING\" \"PAID\" \"PAID_OFFLINE\" \"FAILED\" \"CANCELLED\"\r\n            \"REJECTED\" \"REFUNDED\" \"PARTIALLY\" \"PARTIALLY_REFUNDED\"",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "customerId",
-            "in": "query",
-            "description": "The unique Lockstep Platform ID number of a Customer; NOT the Customer's Service Fabric ID",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "description": "Page size. For paginated results only.",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Page to be returned. For paginated results only.",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "description": "Field and direction for sorting. For paginated results only.",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfPaymentQueryResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfPaymentQueryResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/payments-acceptance/payments/{companyId}/{paymentId}/submissions": {
-      "get": {
-        "tags": [
-          "Payments-Acceptance/Payments"
-        ],
-        "summary": "Retrieve Payment Submissions for Payment",
-        "description": "Retrieves a list of the Payment Submissions for the Payment.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_RetrievePaymentSubmissions",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Company; NOT the Company's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "paymentId",
-            "in": "path",
-            "description": "The Payment ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SfSubmitPaymentInfo"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SfSubmitPaymentInfo"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/payments-acceptance/servicers/{companyId}": {
-      "get": {
-        "tags": [
-          "Payments-Acceptance/Servicers"
-        ],
-        "summary": "Retrieve Available Servicers",
-        "description": "Retrieves all the available Servicers for the current Company.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_RetrieveServicers",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Company; NOT the Company's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "country",
-            "in": "query",
-            "description": "The 3-letter country code",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "providers",
-            "in": "query",
-            "description": "The provider name: (GoCardless, Stripe, PayPal)",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "capabilities",
-            "in": "query",
-            "description": "The capabilities: (card, card-Moto)",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SfServicerResponse"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SfServicerResponse"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/payments-acceptance/servicers/auth-url/{companyId}": {
-      "post": {
-        "tags": [
-          "Payments-Acceptance/Servicers"
-        ],
-        "summary": "Create Servicer URL",
-        "description": "Create an onboarding URL for the specified Servicer.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_CreateServicerUrl",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Company; NOT the Company's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The Servicer Auth request body",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfServicersAuthRequest"
-                  }
-                ],
-                "description": "API version of ServicersAuthRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfServicersAuthRequest"
-                  }
-                ],
-                "description": "API version of ServicersAuthRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfServicersAuthRequest"
-                  }
-                ],
-                "description": "API version of ServicersAuthRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfServicersAuthResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfServicersAuthResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/payments-acceptance/accounts/{companyId}": {
-      "get": {
-        "tags": [
-          "Payments-Acceptance/Servicers"
-        ],
-        "summary": "Retrieve All Accounts",
-        "description": "Retrieves all the active Servicer Accounts that have been linked by this Company.\r\n\r\nAn Account is an object that links a Servicer to a Company.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_RetrieveAccounts",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Company; NOT the Company's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SfAccountResponse"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SfAccountResponse"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/payments-acceptance/accounts/{companyId}/{accountId}": {
-      "delete": {
-        "tags": [
-          "Payments-Acceptance/Servicers"
-        ],
-        "summary": "Deauthorise Account",
-        "description": "Disconnects the Servicer that has been linked to this Company.\r\n\r\nAn Account is an object that links a Servicer to a Company.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_DeauthoriseAccount",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Company; NOT the Company's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "accountId",
-            "in": "path",
-            "description": "The Account ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfAccountResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfAccountResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -16722,777 +16161,6 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DpoSummaryGroupTotalModel"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/service-fabric/enroll": {
-      "post": {
-        "tags": [
-          "Service-Fabric"
-        ],
-        "summary": "Enroll in Service Fabric",
-        "description": "Creates an Organisation from a given model.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_CreateOrganisation",
-        "requestBody": {
-          "description": "The Organisation and Company to create in Service Fabric",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfEnrollRequest"
-                  }
-                ],
-                "description": "Service Fabric Enroll Request"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfEnrollRequest"
-                  }
-                ],
-                "description": "Service Fabric Enroll Request"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfEnrollRequest"
-                  }
-                ],
-                "description": "Service Fabric Enroll Request"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfEnrollResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfEnrollResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": { }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": { }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/service-fabric/companies/{companyId}": {
-      "get": {
-        "tags": [
-          "Service-Fabric"
-        ],
-        "summary": "Retrieve Company",
-        "description": "Retrieves the Company specified by the unique identifiers.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_RetrieveCompany",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "path",
-            "description": "The unique Lockstep Platform ID number of this Company; NOT the Company's Service Fabric ID",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfCompanyResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfCompanyResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/service-fabric/companies": {
-      "get": {
-        "tags": [
-          "Service-Fabric"
-        ],
-        "summary": "Retrieve All Companies in Organisation",
-        "description": "Retrieves the Companies specified by the unique identifier of the Organisation.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_RetrieveAllCompanies",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SfCompanyResponse"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SfCompanyResponse"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Service-Fabric"
-        ],
-        "summary": "Create Companies",
-        "description": "Creates a Company from a given model.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ServiceFabric_CreateCompany",
-        "requestBody": {
-          "description": "The Company to create in Service Fabric",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfCompanyRequest"
-                  }
-                ],
-                "description": "API version of CompanyRequest"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfCompanyRequest"
-                  }
-                ],
-                "description": "API version of CompanyRequest"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/SfCompanyRequest"
-                  }
-                ],
-                "description": "API version of CompanyRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfCompanyResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SfCompanyResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": { }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": { }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/service-fabric/events/payments/{groupKey}": {
-      "post": {
-        "tags": [
-          "Service-Fabric"
-        ],
-        "summary": "Payments Hook",
-        "description": "Receives SF webhooks",
-        "operationId": "v1_ServiceFabric_ReceivePaymentWebhook",
-        "parameters": [
-          {
-            "name": "clientState",
-            "in": "header",
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "groupKey",
-            "in": "path",
-            "description": "The GroupKey of the group receiving these notifications",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "The SF payload",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/SfNotification"
-                }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/SfNotification"
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/SfNotification"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "No Content",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActionResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActionResult"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/service-fabric/directory/companies": {
-      "get": {
-        "tags": [
-          "Service-Fabric/Directory"
-        ],
-        "summary": "Retrieve Directory Company",
-        "description": "Returns a company model mapped from a directory service object.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_DirectoryCompanies_GetDirectoryCompanyById",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "dataset",
-            "in": "query",
-            "description": "",
-            "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/DirectoryDataSet"
-                }
-              ],
-              "description": "Different dataset types to retrieve information from the Directory Service",
-              "default": 0
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DirectoryCompany"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DirectoryCompany"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/service-fabric/external-connectors/query": {
-      "get": {
-        "tags": [
-          "Service-Fabric/External-Connectors"
-        ],
-        "summary": "Retrieve External Connectors",
-        "description": "Returns list of available external connectors. Optionally filtered by category.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ExternalConnectors_Query",
-        "parameters": [
-          {
-            "name": "Category",
-            "in": "query",
-            "description": "Provider's category to search for. If no provider of the requested category exists the returned list is empty.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ExternalConnector"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ExternalConnector"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": { }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": { }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/service-fabric/external-connectors/{id}/tokens": {
-      "get": {
-        "tags": [
-          "Service-Fabric/External-Connectors"
-        ],
-        "summary": "Retrieve External Connector Tokens",
-        "description": "Get list of tokens for a given external connector.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ExternalConnectors_GetExternalConnectorTokensById",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "External connector identifier",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ExternalConnectorToken"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ExternalConnectorToken"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Service-Fabric/External-Connectors"
-        ],
-        "summary": "Start External Connector Authentication",
-        "description": "Start the user authentication process with external connector\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_ExternalConnectors_StartExternalConnectorAuth",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "External connector identifier",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "External connector auth request information",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/ExternalConnectorAuthRequest"
-                  }
-                ],
-                "description": "An ExternalConnectorAuthRequest represents the information how an external connector authentication url should be\r\ngenerated and the access the customer should have with the external connector."
-              }
-            },
-            "text/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/ExternalConnectorAuthRequest"
-                  }
-                ],
-                "description": "An ExternalConnectorAuthRequest represents the information how an external connector authentication url should be\r\ngenerated and the access the customer should have with the external connector."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/ExternalConnectorAuthRequest"
-                  }
-                ],
-                "description": "An ExternalConnectorAuthRequest represents the information how an external connector authentication url should be\r\ngenerated and the access the customer should have with the external connector."
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExternalConnectorAuth"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExternalConnectorAuth"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -21591,22 +20259,255 @@
           }
         ]
       }
+    },
+    "/api/v1/workflow-statuses/{id}": {
+      "get": {
+        "tags": [
+          "WorkflowStatuses"
+        ],
+        "summary": "Retrieve Workflow Status",
+        "description": "Retrieves the Workflow Status specified by this unique identifier.\r\n\r\nA Workflow Status represents the state for a specific workflow for an entity. A Workflow Status may be generic for common use cases or specific to a set of predefined statuses.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_WorkflowStatuses_RetrieveWorkflowStatus",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID number of the Workflow Status to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowStatusModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowStatusModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/workflow-statuses": {
+      "post": {
+        "tags": [
+          "WorkflowStatuses"
+        ],
+        "summary": "Create Workflow Statuses",
+        "description": "Creates one or more Workflow Statuses from a given model.\r\n\r\nA Workflow Status represents the state for a specific workflow for an entity. A Workflow Status may be generic for common use cases or specific to a set of predefined statuses.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_WorkflowStatuses_CreateWorkflowStatuses",
+        "requestBody": {
+          "description": "The Workflow Statuses to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WorkflowStatusModel"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WorkflowStatusModel"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WorkflowStatusModel"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowStatusModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowStatusModel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowStatusModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowStatusModel"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
+    "/api/v1/workflow-statuses/query": {
+      "get": {
+        "tags": [
+          "WorkflowStatuses"
+        ],
+        "summary": "Query Workflow Statuses",
+        "description": "Queries Workflow Statuses using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Accounting Data Services Developer website.\r\n\r\nA Workflow Status represents the state for a specific workflow for an entity. A Workflow Status may be generic for common use cases or specific to a set of predefined statuses.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_WorkflowStatuses_QueryWorkflowStatuses",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowStatusModelFetchResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowStatusModelFetchResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
     }
   },
   "components": {
     "schemas": {
-      "AccountAuthorisation": {
-        "type": "object",
-        "properties": {
-          "activationLink": {
-            "type": "string",
-            "description": "A URL that can be used to complete account activation at the servicer.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Optional information that can be used to complete account activation at the servicer."
-      },
       "AccountingProfileContactModel": {
         "type": "object",
         "properties": {
@@ -22315,10 +21216,6 @@
         "additionalProperties": false,
         "description": "An Accounting Profile is a child of a Company Profile, and collectively,\r\nthey comprise the identity and necessary information for an accounting  team\r\nto work with trading partners, financial institutions, auditors, and others.\r\nYou can use Accounting Profiles to define an accounting function by what\r\nthe function does and how to interface with the function."
       },
-      "ActionResult": {
-        "type": "object",
-        "additionalProperties": false
-      },
       "ActionResultModel": {
         "type": "object",
         "properties": {
@@ -22333,48 +21230,6 @@
         },
         "additionalProperties": false,
         "description": "Represents the result of an action.\r\n            \r\nIn the Lockstep API, an Action is returned when an API call does not produce any data\r\nbut does produce messages that can be useful in understanding what work was performed.\r\nYou may use the messages text to display user visible error messages or the results of\r\nvarious operations."
-      },
-      "Address": {
-        "type": "object",
-        "properties": {
-          "addressLine1": {
-            "type": "string",
-            "description": "Address line 1.",
-            "nullable": true
-          },
-          "addressLine2": {
-            "type": "string",
-            "description": "Address line 2.",
-            "nullable": true
-          },
-          "addressLine3": {
-            "type": "string",
-            "description": "Address line 3.",
-            "nullable": true
-          },
-          "addressLine4": {
-            "type": "string",
-            "description": "Address line 4.",
-            "nullable": true
-          },
-          "countrySubdivision": {
-            "type": "string",
-            "description": "Subdivision of a country. For example, state, county, or region.",
-            "nullable": true
-          },
-          "postalCode": {
-            "type": "string",
-            "description": "Postal/zip code.",
-            "nullable": true
-          },
-          "country": {
-            "type": "string",
-            "description": "Country in the ISO 3166-1 Alpha-3 format.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Address object."
       },
       "AgingModel": {
         "type": "object",
@@ -22397,25 +21252,6 @@
         },
         "additionalProperties": false,
         "description": "Represents an aging record"
-      },
-      "Amount": {
-        "type": "object",
-        "properties": {
-          "netAmount": {
-            "type": "number",
-            "description": "Net amount of the payment after fees have been deducted by the servicer(s) involved.",
-            "format": "double",
-            "nullable": true
-          },
-          "fee": {
-            "type": "number",
-            "description": "Total fee amount applied to this payment by the servicer(s) involved.",
-            "format": "double",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Amount of the payment."
       },
       "ApAgingHeaderInfoModel": {
         "type": "object",
@@ -23929,6 +22765,22 @@
             },
             "description": "A list of BaseCurrency records to merge with your Lockstep Platform data",
             "nullable": true
+          },
+          "journalEntries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JournalEntrySyncModel"
+            },
+            "description": "A list of JournalEntry records to merge with your Lockstep Platform data",
+            "nullable": true
+          },
+          "journalEntryLines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JournalEntryLineSyncModel"
+            },
+            "description": "A list of JournalEntryLine records to merge with your Lockstep Platform data",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -24324,6 +23176,11 @@
           "primaryContactEmailAddress": {
             "type": "string",
             "description": "The email of the primary contact for this company",
+            "nullable": true
+          },
+          "pointOfContact": {
+            "type": "string",
+            "description": "The point of contact for this company",
             "nullable": true
           },
           "outstandingAmount": {
@@ -24846,6 +23703,12 @@
             ],
             "description": "Indicates what action to take when an existing object has been found during the sync process."
           },
+          "networkId": {
+            "type": "string",
+            "description": "The unique identifier of this object in the Sage Network platform.",
+            "format": "uuid",
+            "nullable": true
+          },
           "erpKey": {
             "type": "string",
             "description": "This is the primary key of the Company record. For this field, you should use whatever the company's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\n            \r\nExample: If you store your company records in a database, whatever the primary key for the company table is\r\nin the database should be the `ErpKey`.\r\n            \r\nExample: If you use a financial system such as QuickBooks or Xero, look for the primary ID number of the\r\ncompany record within that financial system.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns)."
@@ -24861,6 +23724,12 @@
           "parentCompanyErpKey": {
             "type": "string",
             "description": "If this company has a parent company, identify the parent company's `ErpKey` value here. This value should\r\nbe the original primary key or unique ID of the parent company to this company belongs. This value should\r\nmatch the original ErpKey field on the parent company.\r\n            \r\nIf this company is not a child company, leave this field null.",
+            "nullable": true
+          },
+          "parentCompanyNetworkId": {
+            "type": "string",
+            "description": "The network id of the parent Company.",
+            "format": "uuid",
             "nullable": true
           },
           "isActive": {
@@ -24880,6 +23749,12 @@
           "primaryContactErpKey": {
             "type": "string",
             "description": "The `ErpKey` of the primary contact for this company.  This value should match the `ErpKey` value of the\r\n[Importing Contacts](https://developer.lockstep.io/docs/importing-contacts) record for the contact table.",
+            "nullable": true
+          },
+          "primaryContactNetworkId": {
+            "type": "string",
+            "description": "The network id of the primary Contact.",
+            "format": "uuid",
             "nullable": true
           },
           "address1": {
@@ -25328,6 +24203,12 @@
             ],
             "description": "Indicates what action to take when an existing object has been found during the sync process."
           },
+          "networkId": {
+            "type": "string",
+            "description": "The unique identifier of this object in the Sage Network platform.",
+            "format": "uuid",
+            "nullable": true
+          },
           "erpKey": {
             "type": "string",
             "description": "This is the primary key of the Contact record. For this field, you should use whatever the contact's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\n            \r\nExample: If you store your contact records in a database, whatever the primary key for the contact table is\r\nin the database should be the \"ErpKey\".\r\n            \r\nAs some ERP systems don't maintain a unique key for Contacts, we also support syncing Contacts with ERP keys\r\nof the form {prefix}|{index}, for example ContactPrefix|1, ContactPrefix|2 and so on.\r\n            \r\nFor this reason, please ensure that your Contact ERP keys don't otherwise contain the '|' symbol or that it\r\nis replaced by an alternate symbol if they do.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns)."
@@ -25335,6 +24216,12 @@
           "companyErpKey": {
             "type": "string",
             "description": "The original primary key or unique ID of the company to which this contact belongs.  This value should\r\nmatch the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the\r\n[CompanySyncModel](https://developer.lockstep.io/docs/importing-companies)."
+          },
+          "companyNetworkId": {
+            "type": "string",
+            "description": "The network id of the related Company.",
+            "format": "uuid",
+            "nullable": true
           },
           "contactName": {
             "type": "string",
@@ -25902,37 +24789,6 @@
         },
         "additionalProperties": false,
         "description": "Contains information about a credit memo invoice"
-      },
-      "CreditorAccount": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "The name of the creditor account."
-          },
-          "servicerId": {
-            "type": "string",
-            "description": "The unique identifier of the provider used to execute this payment submission.",
-            "nullable": true
-          },
-          "servicerName": {
-            "type": "string",
-            "description": "The name of the payment servicing organisation (for example, Stripe and PayPal).",
-            "nullable": true
-          },
-          "companyId": {
-            "type": "string",
-            "description": "The unique identifier of the company.",
-            "nullable": true
-          },
-          "accountId": {
-            "type": "string",
-            "description": "The unique identifier of the creditor account in Payments Acceptance Service.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "A Service Fabric Creditor Account."
       },
       "CurrencyModel": {
         "type": "object",
@@ -26548,67 +25404,6 @@
         "additionalProperties": false,
         "description": "Represents the daily sales outstanding report"
       },
-      "DebtorAccount": {
-        "type": "object",
-        "properties": {
-          "customerId": {
-            "type": "string",
-            "description": "The unique identifier of an existing customer. Will be used to match to a reusable payment\r\nmethod if one exists. If specified, the other properties on this object will be ignored.\r\nTrying to create a payment with an unknown customer will result in a 400 status code response.",
-            "nullable": true
-          },
-          "accountId": {
-            "type": "string",
-            "description": "The merchant's unique identifier of the debtor who will receive the payment request.",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the debtor who will receive the payment request.",
-            "nullable": true
-          },
-          "emailAddress": {
-            "type": "string",
-            "description": "The email address of the debtor who will receive the payment request.",
-            "nullable": true
-          },
-          "debtorAgentAccount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DebtorAgentAccount"
-              }
-            ],
-            "description": "Debtor Agent Account object.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "A Service Fabric Debtor Account."
-      },
-      "DebtorAgentAccount": {
-        "type": "object",
-        "properties": {
-          "schemaName": {
-            "type": "string",
-            "description": "Name of the identification scheme."
-          },
-          "identification": {
-            "type": "string",
-            "description": "The unique identifier of the underlying debtor account to which a debit entry will be made as a result of the transaction."
-          },
-          "last4Digits": {
-            "type": "string",
-            "description": "Last 4 digits of real-world account.",
-            "nullable": true
-          },
-          "brand": {
-            "type": "string",
-            "description": "Real-world account brand name (for example, Visa, Mastercard, PayPal and so on)",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "A Service Fabric Debtor Agent Account."
-      },
       "DeleteResult": {
         "type": "object",
         "properties": {
@@ -26661,96 +25456,6 @@
         },
         "additionalProperties": false,
         "description": "Model containing information to create a new developer account."
-      },
-      "DirectoryCompany": {
-        "type": "object",
-        "properties": {
-          "dataSet": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DirectoryDataSet"
-              }
-            ],
-            "description": "The field indicates the dataset type used to generate the directory company."
-          },
-          "id": {
-            "type": "string",
-            "description": "Unique identifier of this record based on the dataset.\r\n<remarks>\r\nExamples of this would be:\r\n    * DataSet = Siren, Identifier = string\r\n    * DataSet = Siret, Identifier = string\r\n</remarks>",
-            "nullable": true
-          },
-          "companyType": {
-            "type": "string",
-            "description": "This field indicates the type of company.",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the directory company entity.",
-            "nullable": true
-          },
-          "address1": {
-            "type": "string",
-            "description": "Address info",
-            "nullable": true
-          },
-          "address2": {
-            "type": "string",
-            "description": "Address info",
-            "nullable": true
-          },
-          "address3": {
-            "type": "string",
-            "description": "Address info",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "description": "Address info",
-            "nullable": true
-          },
-          "country": {
-            "type": "string",
-            "description": "Address info",
-            "nullable": true
-          },
-          "postalCode": {
-            "type": "string",
-            "description": "Address info",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "description": "Phone number",
-            "nullable": true
-          },
-          "emailAddress": {
-            "type": "string",
-            "description": "Email address",
-            "nullable": true
-          },
-          "createdDateTime": {
-            "type": "string",
-            "description": "The date this directory company entity was created",
-            "format": "date-time"
-          },
-          "modifiedDateTime": {
-            "type": "string",
-            "description": "The date this directory company entity was modified",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A DirectoryCompany represents a French legal entity, or French establishment within the Sage directory service.\r\nSage directory service objects (company, French legal entity or French establishment) are mapped to a single Platform\r\ncompany object\r\n            \r\nSee [Companies, French Legal Entities, and French Establishment](https://confluence.sage.com/display/DNBU/Platform+Company+Mapping) for more information."
-      },
-      "DirectoryDataSet": {
-        "enum": [
-          0,
-          1,
-          2
-        ],
-        "type": "integer",
-        "description": "Different dataset types to retrieve information from the Directory Service",
-        "format": "int32"
       },
       "DpoSummaryGroupTotalModel": {
         "type": "object",
@@ -26993,118 +25698,6 @@
         "type": "integer",
         "description": "Possible statuses for a record that supports ERP write.",
         "format": "int32"
-      },
-      "ExternalConnector": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "External Connector ID",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "description": "External connector name",
-            "nullable": true
-          },
-          "onboardingUrl": {
-            "type": "string",
-            "description": "URL to start onboarding with the given external connector",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "description": "Information about the external connector.",
-            "nullable": true
-          },
-          "categories": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Categories external connector is associated with",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "An ExternalConnector represents a third-party provider available to customers within Sage Service Fabric. When a customer\r\nstarts and completes the authentication process with an external connector, they obtain an AppEnrollment which represents\r\nthe customer's instance of this ExternalConnector. The customer-specific AppEnrollment contains a customer's configuration data\r\nfor the ExternalConnector, which is not customer-specific."
-      },
-      "ExternalConnectorAuth": {
-        "type": "object",
-        "properties": {
-          "authenticationUrl": {
-            "type": "string",
-            "description": "The URL to open a browser with. This begins the user authentication process driven by a provider.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "An ExternalConnectorAuth represents the authentication starting point of the Sage Connections Service workflow to connect\r\nthe customer to an external connector."
-      },
-      "ExternalConnectorAuthRequest": {
-        "type": "object",
-        "properties": {
-          "scopes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "An array of scopes requested from 3rd-party provider.",
-            "nullable": true
-          },
-          "redirectUrl": {
-            "type": "string",
-            "description": "The URL the browser is redirected to after a user grants, or denies, permissions for Sage software.",
-            "nullable": true
-          },
-          "connectionContextId": {
-            "type": "string",
-            "description": "Opaque value that a secret will be tagged with on the service side when created",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "An ExternalConnectorAuthRequest represents the information how an external connector authentication url should be\r\ngenerated and the access the customer should have with the external connector."
-      },
-      "ExternalConnectorToken": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "ID of the token reference.",
-            "nullable": true
-          },
-          "authenticatedAt": {
-            "type": "string",
-            "description": "When the user was authenticated.",
-            "format": "date-time"
-          },
-          "scopes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "An array of scopes requested from 3rd-party external connector.",
-            "nullable": true
-          },
-          "expiresAt": {
-            "type": "string",
-            "description": "When the token expires. This can be earlier if the token is revoked.",
-            "format": "date-time"
-          },
-          "externalConnectorId": {
-            "type": "string",
-            "description": "External Connector ID",
-            "nullable": true
-          },
-          "connectionContextId": {
-            "type": "string",
-            "description": "Connection context ID set by the product when starting onboarding with a external connector",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "An ExternalConnectorToken represents the token information for a customer's valid, expired or revoked connection to\r\nan external connector."
       },
       "FeatureFlagsRequestModel": {
         "type": "object",
@@ -28168,42 +26761,6 @@
         "additionalProperties": false,
         "description": "Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a request to write back a collection\r\n            of requests to the connected AppEnrollment."
       },
-      "InstructedAmount": {
-        "type": "object",
-        "properties": {
-          "amount": {
-            "type": "number",
-            "description": "The amount of the charge, in minor units (e.g. $10.50 would be sent as 1050).",
-            "format": "double"
-          },
-          "currency": {
-            "type": "string",
-            "description": "The currency, in ISO 4217 format."
-          }
-        },
-        "additionalProperties": false,
-        "description": "An object that represents an amount of money in a specific currency."
-      },
-      "InstrumentStatus": {
-        "enum": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
-        "type": "integer",
-        "description": "InstrumentStatus enum",
-        "format": "int32"
-      },
-      "InstrumentType": {
-        "enum": [
-          1
-        ],
-        "type": "integer",
-        "description": "InstrumentType enum",
-        "format": "int32"
-      },
       "InviteDataModel": {
         "type": "object",
         "properties": {
@@ -28645,6 +27202,12 @@
             ],
             "description": "Indicates what action to take when an existing object has been found during the sync process."
           },
+          "networkId": {
+            "type": "string",
+            "description": "The unique identifier of this object in the Sage Network platform.",
+            "format": "uuid",
+            "nullable": true
+          },
           "erpKey": {
             "type": "string",
             "description": "This is the primary key of the Invoice Line record. For this field, you should use whatever the contact's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\n            \r\nExample: If you store your invoice line records in a database, whatever the primary key for the invoice\r\nline table is in the database should be the \"ErpKey\".\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns)."
@@ -28652,6 +27215,12 @@
           "invoiceErpKey": {
             "type": "string",
             "description": "The original primary key or unique ID of the invoice to which this line belongs.  This value should\r\nmatch the [Invoice ErpKey](https://developer.lockstep.io/docs/importing-invoices#erpkey) field on the\r\n[InvoiceSyncModel](https://developer.lockstep.io/docs/importing-invoices)."
+          },
+          "invoiceNetworkId": {
+            "type": "string",
+            "description": "The network id of the parent Invoice.",
+            "format": "uuid",
+            "nullable": true
           },
           "lineNumber": {
             "type": "string",
@@ -29577,6 +28146,12 @@
             ],
             "description": "Indicates what action to take when an existing object has been found during the sync process."
           },
+          "networkId": {
+            "type": "string",
+            "description": "The unique identifier of this object in the Sage Network platform.",
+            "format": "uuid",
+            "nullable": true
+          },
           "erpKey": {
             "type": "string",
             "description": "This is the primary key of the Invoice record. For this field, you should use whatever the invoice's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\n            \r\nExample: If you store your invoice records in a database, whatever the primary key for the invoice table is\r\nin the database should be the \"ErpKey\".\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns)."
@@ -29585,9 +28160,21 @@
             "type": "string",
             "description": "The original primary key or unique ID of the company to which this invoice belongs.  This value should\r\nmatch the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the\r\n[CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).\r\n            \r\nAn Invoice has two relationships: The Company and the Customer.  The field `CompanyErpKey` identifies the\r\ncompany that created the invoice, and the field `CustomerErpKey` is the customer to whom the invoice\r\nwas sent."
           },
+          "companyNetworkId": {
+            "type": "string",
+            "description": "The network id of the related Company.",
+            "format": "uuid",
+            "nullable": true
+          },
           "customerErpKey": {
             "type": "string",
             "description": "The original primary key or unique ID of the company to which this invoice was sent.  This value should\r\nmatch the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the\r\n[CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).\r\n            \r\nAn Invoice has two relationships: The Company and the Customer.  The field `CompanyErpKey` identifies the\r\ncompany that created the invoice, and the field `CustomerErpKey` is the customer to whom the invoice\r\nwas sent."
+          },
+          "customerNetworkId": {
+            "type": "string",
+            "description": "The network id of the related Customer.",
+            "format": "uuid",
+            "nullable": true
           },
           "salespersonName": {
             "type": "string",
@@ -29923,6 +28510,7 @@
             "readOnly": true
           },
           "erpKey": {
+            "maxLength": 100,
             "type": "string",
             "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this journal entry record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
             "nullable": true
@@ -29934,11 +28522,13 @@
             "nullable": true
           },
           "accountNumber": {
+            "maxLength": 100,
             "type": "string",
             "description": "The unique code/identifier assigned to each account in the chart of accounts.",
             "nullable": true
           },
           "accountName": {
+            "maxLength": 100,
             "type": "string",
             "description": "The name of the account.",
             "nullable": true
@@ -29953,7 +28543,7 @@
             "description": "Credit to account.",
             "format": "double"
           },
-          "currency": {
+          "currencyCode": {
             "maxLength": 3,
             "minLength": 0,
             "type": "string",
@@ -29970,7 +28560,7 @@
             "description": "The base currency credit amount for the account.",
             "format": "double"
           },
-          "baseCurrency": {
+          "baseCurrencyCode": {
             "maxLength": 3,
             "minLength": 0,
             "type": "string",
@@ -29978,11 +28568,13 @@
             "nullable": true
           },
           "sourceCreatedUser": {
+            "maxLength": 100,
             "type": "string",
             "description": "The ERP’s identifier for the user who recorded the journal entry line.",
             "nullable": true
           },
           "memo": {
+            "maxLength": 100,
             "type": "string",
             "description": "A memo related to this line.",
             "nullable": true
@@ -30010,12 +28602,158 @@
             "description": "The ID of the user who last modified the journal entry line.",
             "format": "uuid",
             "readOnly": true
+          },
+          "sourceModifiedDate": {
+            "type": "string",
+            "description": "The date on which this record was last modified in source ERP.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
+          "journalEntry": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JournalEntryModel"
+              }
+            ],
+            "description": "The journal entry for this journal entry line.\r\nTo retrieve this item, specify `JournalEntry` in the \"Include\" parameter for your query.",
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false,
         "description": "Contains information about a journal entry line"
       },
+      "JournalEntryLineModelFetchResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JournalEntryLineModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JournalEntryLineSyncModel": {
+        "required": [
+          "accountName",
+          "accountNumber",
+          "baseCredit",
+          "baseCurrencyCode",
+          "baseDebit",
+          "credit",
+          "currencyCode",
+          "debit",
+          "erpKey",
+          "journalEntryErpKey",
+          "sourceCreatedUser"
+        ],
+        "type": "object",
+        "properties": {
+          "onMatchAction": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MatchAction"
+              }
+            ],
+            "description": "Indicates what action to take when an existing object has been found during the sync process."
+          },
+          "erpKey": {
+            "type": "string",
+            "description": "This is the primary key of the Journal Entry Line record. For this field, you should use whatever the Journal Entry Line's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\n            \r\nExample: If you store your Journal Entry Line records in a database, whatever the primary key for the Journal Entry Line table is\r\nin the database should be the \"ErpKey\".\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns)."
+          },
+          "journalEntryErpKey": {
+            "type": "string",
+            "description": "The original primary key or unique ID of the journal entry to which this line belongs.  This value should\r\nmatch the Journal Entry ErpKey field on the JournalEntrySyncModel."
+          },
+          "financialAccountErpKey": {
+            "type": "string",
+            "description": "An optional Financial Account with which this line is associated. This value should\r\nmatch the Financial Account ErpKey field on the FinancialAccountSyncModel.",
+            "nullable": true
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "The unique code/identifier assigned to each account in the chart of accounts."
+          },
+          "accountName": {
+            "type": "string",
+            "description": "The name of the account."
+          },
+          "debit": {
+            "type": "number",
+            "description": "Debit to account.",
+            "format": "double"
+          },
+          "credit": {
+            "type": "number",
+            "description": "Credit to account.",
+            "format": "double"
+          },
+          "currencyCode": {
+            "type": "string",
+            "description": "The transaction currency in which the entry is recorded, especially useful for multi-currency environments."
+          },
+          "baseDebit": {
+            "type": "number",
+            "description": "The base currency debit amount for the account.",
+            "format": "double"
+          },
+          "baseCredit": {
+            "type": "number",
+            "description": "The base currency credit amount for the account.",
+            "format": "double"
+          },
+          "baseCurrencyCode": {
+            "type": "string",
+            "description": "The base currency in which the entry is recorded, especially useful for multi-currency environments."
+          },
+          "sourceCreatedUser": {
+            "type": "string",
+            "description": "The ERP’s identifier for the user who recorded the journal entry line."
+          },
+          "memo": {
+            "type": "string",
+            "description": "A memo related to this line.",
+            "nullable": true
+          },
+          "created": {
+            "type": "string",
+            "description": "If known, the date when this record was created according to the originating financial system\r\nin which this record is maintained.  If the originating financial system does not maintain a\r\ncreated-date, leave this field null.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "If known, the date when this record was most recently modified according to the originating\r\nfinancial system in which this record is maintained.  If the originating financial system does\r\nnot maintain a most-recently-modified-date, leave this field null.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The JournalEntryLineSyncModel represents information coming into Lockstep from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe JournalEntryLineSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep\r\nplatform.\r\n            \r\nOnce imported, this record will be available in the Lockstep API as a JournalEntryLineModel\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
+      },
       "JournalEntryModel": {
+        "required": [
+          "lines"
+        ],
         "type": "object",
         "properties": {
           "journalEntryId": {
@@ -30038,11 +28776,13 @@
             "readOnly": true
           },
           "erpKey": {
+            "maxLength": 100,
             "type": "string",
             "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this journal entry record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
             "nullable": true
           },
           "journalId": {
+            "maxLength": 100,
             "type": "string",
             "description": "The ERP’s identifier for this journal entry, usually has meaning to the user.\r\nMay be the same value of the ERP Key.",
             "nullable": true
@@ -30072,16 +28812,19 @@
             "readOnly": true
           },
           "description": {
+            "maxLength": 500,
             "type": "string",
             "description": "A brief description explaining the purpose of the journal entry.",
             "nullable": true
           },
           "comment": {
+            "maxLength": 250,
             "type": "string",
             "description": "An additional comment related to the entry.",
             "nullable": true
           },
           "referenceNumber": {
+            "maxLength": 100,
             "type": "string",
             "description": "Any reference number or identifier associated with the entry, such as an invoice number or purchase order.",
             "nullable": true
@@ -30116,13 +28859,20 @@
             "format": "uuid",
             "readOnly": true
           },
+          "sourceModifiedDate": {
+            "type": "string",
+            "description": "The date on which this record was last modified in source ERP.",
+            "format": "date-time",
+            "nullable": true,
+            "readOnly": true
+          },
           "lines": {
+            "minItems": 1,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/JournalEntryLineModel"
             },
-            "description": "All lines attached to this journal entry.\r\nTo retrieve this collection, specify `Lines` in the \"Include\" parameter for your query.",
-            "nullable": true
+            "description": "All lines attached to this journal entry.\r\nTo retrieve this collection, specify `Lines` in the \"Include\" parameter for your query."
           },
           "attachments": {
             "type": "array",
@@ -30190,6 +28940,82 @@
         "type": "integer",
         "description": "Possible statuses for a Journal Entry.",
         "format": "int32"
+      },
+      "JournalEntrySyncModel": {
+        "required": [
+          "erpKey",
+          "sourcePostingDate"
+        ],
+        "type": "object",
+        "properties": {
+          "onMatchAction": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MatchAction"
+              }
+            ],
+            "description": "Indicates what action to take when an existing object has been found during the sync process."
+          },
+          "erpKey": {
+            "type": "string",
+            "description": "This is the primary key of the Journal Entry record. For this field, you should use whatever the Journal Entry's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\n            \r\nExample: If you store your Journal Entry records in a database, whatever the primary key for the Journal Entry table is\r\nin the database should be the \"ErpKey\".\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns)."
+          },
+          "journalId": {
+            "type": "string",
+            "description": "The ERP’s identifier for this journal entry, usually has meaning to the user.\r\nMay be the same value of the ERP Key.",
+            "nullable": true
+          },
+          "source": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JournalEntrySource"
+              }
+            ],
+            "description": "Possible sources for a Journal Entry."
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JournalEntryStatus"
+              }
+            ],
+            "description": "Possible statuses for a Journal Entry."
+          },
+          "description": {
+            "type": "string",
+            "description": "A brief description explaining the purpose of the journal entry.",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "description": "An additional comment related to the entry.",
+            "nullable": true
+          },
+          "referenceNumber": {
+            "type": "string",
+            "description": "Any reference number or identifier associated with the entry, such as an invoice number or purchase order.",
+            "nullable": true
+          },
+          "sourcePostingDate": {
+            "type": "string",
+            "description": "The raw posting date from the source.",
+            "format": "date-time"
+          },
+          "created": {
+            "type": "string",
+            "description": "If known, the date when this record was created according to the originating financial system\r\nin which this record is maintained.  If the originating financial system does not maintain a\r\ncreated-date, leave this field null.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "If known, the date when this record was most recently modified according to the originating\r\nfinancial system in which this record is maintained.  If the originating financial system does\r\nnot maintain a most-recently-modified-date, leave this field null.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The JournalEntrySyncModel represents information coming into Lockstep from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe JournalEntrySyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep\r\nplatform.\r\n            \r\nOnce imported, this record will be available in the Lockstep API as a JournalEntryModel\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "LeadModel": {
         "required": [
@@ -30463,17 +29289,6 @@
         "description": "Enum defining which action to take for a model during the sync process.",
         "format": "int32"
       },
-      "Metadata": {
-        "type": "object",
-        "properties": {
-          "outlook": {
-            "type": "string",
-            "description": "Markup for emails that will cause an Actionable Message Card to be presented in Outlook clients for this payment."
-          }
-        },
-        "additionalProperties": false,
-        "description": "Base64 encoded strings that when decoded, can be added to html emails to provider markup in supported email clients."
-      },
       "NoteModel": {
         "required": [
           "noteText",
@@ -30599,43 +29414,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "NotificationData": {
-        "type": "object",
-        "properties": {
-          "subscriptionId": {
-            "type": "string",
-            "description": "The id of the subscription due to which this notification has been sent"
-          },
-          "applicationId": {
-            "type": "string",
-            "description": "The client application identifier",
-            "nullable": true
-          },
-          "externalId": {
-            "type": "string",
-            "description": "Application unique identifier for this company",
-            "format": "uuid",
-            "nullable": true
-          },
-          "networkId": {
-            "type": "string",
-            "description": "Unknown"
-          },
-          "expirationDateTime": {
-            "type": "string",
-            "description": "expirationDateTime if the subscription has one",
-            "format": "date-time",
-            "nullable": true
-          },
-          "serviceAttributes": {
-            "type": "object",
-            "additionalProperties": { },
-            "description": "Specific info about this event"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Notification details"
       },
       "PayablesComingDueHeaderModel": {
         "type": "object",
@@ -31004,6 +29782,12 @@
             ],
             "description": "Indicates what action to take when an existing object has been found during the sync process."
           },
+          "networkId": {
+            "type": "string",
+            "description": "The unique identifier of this object in the Sage Network platform.",
+            "format": "uuid",
+            "nullable": true
+          },
           "erpKey": {
             "type": "string",
             "description": "This is the primary key of the Payment Application record. For this field, you should use whatever this\r\ntransaction's unique identifying number is in the originating system. Search for a unique, non-changing\r\nnumber within the originating financial system for this record.\r\n            \r\nSince Payment Applications are often considered transactions, a typical value to look for will be\r\nthe transaction ID number, the payment confirmation number, or some other record of this payment.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns)."
@@ -31012,9 +29796,21 @@
             "type": "string",
             "description": "This field indicates which Invoice had its balance reduced by applying this payment.  In this field,\r\nidentify the original primary key or unique ID of the Invoice which had its balance reduced.\r\n            \r\nThis information lets you track how an invoice was paid. You can identify what proportion of an invoice's\r\nbalance was paid by which methods by joining this field to Invoices.\r\n            \r\nThis value should match the [Invoice ErpKey](https://developer.lockstep.io/docs/importing-invoices#erpkey)\r\nfield on the [InvoiceSyncModel](https://developer.lockstep.io/docs/importing-invoices)."
           },
+          "invoiceNetworkId": {
+            "type": "string",
+            "description": "The network id of the related Invoice.",
+            "format": "uuid",
+            "nullable": true
+          },
           "paymentErpKey": {
             "type": "string",
             "description": "This field indicates which Payment was used to provide the funds for this payment application. In this\r\nfield, identify the original primary key or unique ID of the Payment that was used for this payment\r\napplication.\r\n            \r\nThis information lets you track how an invoice was paid. You can identify what proportion of an payment's\r\nbalance was paid by which methods by joining this field to the Payment.\r\n            \r\nThis value should match the [Payment ErpKey](https://developer.lockstep.io/docs/importing-payments#erpkey)\r\nfield on the [PaymentSyncModel](https://developer.lockstep.io/docs/importing-payments)."
+          },
+          "paymentNetworkId": {
+            "type": "string",
+            "description": "The network id of the related Payment.",
+            "format": "uuid",
+            "nullable": true
           },
           "entryNumber": {
             "type": "integer",
@@ -31286,49 +30082,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "PaymentInstrument": {
-        "type": "object",
-        "properties": {
-          "instrumentId": {
-            "type": "string",
-            "description": "The WPB unique identifier for this instrument."
-          },
-          "servicerAccountId": {
-            "type": "string",
-            "description": "The servicer account that this instrument belongs to."
-          },
-          "instrumentStatus": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InstrumentStatus"
-              }
-            ],
-            "description": "Enum: \"CHARGEABLE\" \"PENDING\" \"CANCELLED\" \"EXPIRED\" \"FAILED\"\r\nThe status of this payment instrument. This should be used in conjunction with\r\nthe availableForCharges property to establish the UI state of the instrument.\r\nSome instruments (for example, GoCardless mandates) may be chargeable in a PENDING state, while others may not."
-          },
-          "availableForCharges": {
-            "type": "boolean",
-            "description": "Whether the payment instrument can be used for billing customers."
-          },
-          "instrumentType": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InstrumentType"
-              }
-            ],
-            "description": "Value: \"DIRECT_DEBIT_MANDATE\"\r\nThe type of this instrument. DIRECT_DEBIT_MANDATE is the only type currently defined."
-          },
-          "allowedCurrencies": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "An optional set of ISO 4217 currency codes that the instrument can accept.\r\nA null or empty value means there is no restriction.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "A Service Fabric Payment Instrument."
       },
       "PaymentModel": {
         "required": [
@@ -31627,170 +30380,6 @@
         },
         "additionalProperties": false
       },
-      "PaymentResponse": {
-        "type": "object",
-        "properties": {
-          "paymentId": {
-            "type": "string",
-            "description": "The unique identifier of the payment.",
-            "nullable": true
-          },
-          "createDateTime": {
-            "type": "string",
-            "description": "Date the orginal request was created in ISO 8601 date format.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "description": "The payment status\r\nValues: \"UNAUTHORISED\" \"PENDING\" \"PAID\" \"PAID_OFFLINE\" \"FAILED\" \"CANCELLED\" \"REJECTED\" \"REFUNDED\" \"PARTIALLY\" \"PARTIALLY_REFUNDED\"",
-            "nullable": true
-          },
-          "cancellable": {
-            "type": "boolean",
-            "description": "A boolean field indicating whether the payment is in a state that can be cancelled.\r\nAll PENDING payments can be cancelled, but other statuses are provider-dependent.",
-            "nullable": true
-          },
-          "updateDateTime": {
-            "type": "string",
-            "description": "Date the request was last updated in ISO 8601 date format.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "initiatedDateTime": {
-            "type": "string",
-            "description": "The date when the real-world payment request was initiated\r\n(for example, date upon which an invoice was created), ISO-8601 format.\r\nIf before 1st January, 1970, initiatedDateTime will be set to null.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "dueDate": {
-            "type": "string",
-            "description": "Date the payment is due in ISO 8601 date format. If before 1st January, 1970, dueDate will be set to null.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "offlineMethod": {
-            "type": "string",
-            "description": "The method that was used to pay an invoice outside of Payments Acceptance.\r\nValues: \"CASH\" \"CHEQUE\" \"DIRECT_CREDIT\" \"DIRECT_DEBIT\" \"CARD\" \"VOUCHER\" \"CREDIT_NOTE\" \"UNKNOWN\" \"OTHER\"",
-            "nullable": true
-          },
-          "otherOfflineMethod": {
-            "type": "string",
-            "description": "A free text field for describing offline payment methods not covered by the offlineMethod property.\r\nShould only be used with the OTHER offline method.",
-            "nullable": true
-          },
-          "endToEndIdentifier": {
-            "type": "string",
-            "description": "Unique identifier assigned by the payment initiator to unambiguously identify the payment.\r\nThe identifier is passed on, unchanged, throughout the entire end-to-end chain.",
-            "nullable": true
-          },
-          "instructedAmount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InstructedAmount"
-              }
-            ],
-            "description": "An object that represents an amount of money in a specific currency.",
-            "nullable": true
-          },
-          "fee": {
-            "type": "integer",
-            "description": "The fee levied by the payment provider for the payment, in minor units of the invoice currency.\r\nThis will only be available for paid or partially paid invoices.\r\nNot all providers will be able to provide fee information, so this field may be null even for paid invoices.\r\nWhere provided, this field will be non-negative.",
-            "format": "int32",
-            "nullable": true
-          },
-          "reportingAmount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ReportingAmount"
-              }
-            ],
-            "description": "Net amount and fees as converted into servicer account currency.",
-            "nullable": true
-          },
-          "paidToDate": {
-            "type": "integer",
-            "description": "Amount of the payment that has been paid until now.",
-            "format": "int32",
-            "nullable": true
-          },
-          "outstandingAmount": {
-            "type": "string",
-            "description": "Amount of the payment still outstanding (excluding fees/charges). Maximum value is instructed amount.",
-            "nullable": true
-          },
-          "refundedAmount": {
-            "type": "string",
-            "description": "Amount of the payment that has been refunded. Maximum value is instructed amount.",
-            "nullable": true
-          },
-          "debtorPaymentMethods": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Array of payment methods which the debtor can choose from in order to pay.\r\nPrimarily used to populate the PayNow options page (for example, card, PayPal, ACH).",
-            "nullable": true
-          },
-          "creditorAccount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CreditorAccount"
-              }
-            ],
-            "description": "Details about the creditor requesting the payment.",
-            "nullable": true
-          },
-          "debtorAccount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DebtorAccount"
-              }
-            ],
-            "description": "The details about the debtor receiving the payment request.",
-            "nullable": true
-          },
-          "remittanceInformation": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RemittanceInformation"
-              }
-            ],
-            "description": "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle,\r\nsuch as a commercial invoice.",
-            "nullable": true
-          },
-          "risk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RiskInformation"
-              }
-            ],
-            "description": "Information related to the risk of the payment.",
-            "nullable": true
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Metadata"
-              }
-            ],
-            "description": "Base64 encoded strings that when decoded, can be added to html emails to provider markup in supported email clients.",
-            "nullable": true
-          },
-          "partialPayment": {
-            "type": "boolean",
-            "description": "Flag of whether this is a partial payment",
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "description": "The type of the payment.\r\nValues: \"INVOICE\" \"STATEMENT\" \"PAY_ON_ACCOUNT\"",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "A Service Fabric Payment"
-      },
       "PaymentSummaryModel": {
         "type": "object",
         "properties": {
@@ -32040,6 +30629,12 @@
             ],
             "description": "Indicates what action to take when an existing object has been found during the sync process."
           },
+          "networkId": {
+            "type": "string",
+            "description": "The unique identifier of this object in the Sage Network platform.",
+            "format": "uuid",
+            "nullable": true
+          },
           "erpKey": {
             "type": "string",
             "description": "This is the primary key of the Payment record. For this field, you should use whatever the payment's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\n            \r\nExample: If you store your payment records in a database, whatever the primary key for the payment table is\r\nin the database should be the \"ErpKey\".\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns)."
@@ -32047,6 +30642,12 @@
           "companyErpKey": {
             "type": "string",
             "description": "The original primary key or unique ID of the company to which this payment belongs.  This value should\r\nmatch the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the\r\n[CompanySyncModel](https://developer.lockstep.io/docs/importing-companies)."
+          },
+          "companyNetworkId": {
+            "type": "string",
+            "description": "The network id of the related Company.",
+            "format": "uuid",
+            "nullable": true
           },
           "paymentType": {
             "type": "string",
@@ -32244,22 +30845,6 @@
         },
         "additionalProperties": false
       },
-      "RemittanceInformation": {
-        "type": "object",
-        "properties": {
-          "reference": {
-            "type": "string",
-            "description": "Reference, assigned by the creditor, to unambiguously refer to the payment transaction. For example, Invoice ID."
-          },
-          "description": {
-            "type": "string",
-            "description": "Unstructured text, describes the invoice.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Information supplied to enable the matching of an entry with the\r\nitems that the transfer is intended to settle, such as a commercial invoice."
-      },
       "ReportDepth": {
         "enum": [
           0,
@@ -32270,69 +30855,6 @@
         "type": "integer",
         "description": "The different depths of describing an account. See the Financial Account Model for possible values for each depth\r\nEnum values are:\r\n            \r\n0 - the classification of the account\r\n1 - the category of the account\r\n2 - the subcategory of the account\r\n3 - the account",
         "format": "int32"
-      },
-      "ReportingAmount": {
-        "type": "object",
-        "properties": {
-          "amount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Amount"
-              }
-            ],
-            "description": "Amount of the payment.",
-            "nullable": true
-          },
-          "currency": {
-            "type": "string",
-            "description": "The currency ISO-4217 code.",
-            "nullable": true
-          },
-          "conversionRate": {
-            "type": "number",
-            "description": "Rate used to convert instructedAmount to reportingAmount.",
-            "format": "double",
-            "nullable": true
-          },
-          "dateTime": {
-            "type": "string",
-            "description": "Reporting Date.",
-            "nullable": true
-          },
-          "fundsAvailableDateTime": {
-            "type": "string",
-            "description": "Date the funds will be made available.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Net amount and fees as converted into servicer account currency."
-      },
-      "RiskInformation": {
-        "type": "object",
-        "properties": {
-          "paymentContextCode": {
-            "type": "string",
-            "description": "Enum: \"person-to-person\" \"e-commerce-goods\" \"e-commerce-services\" \"bill-payment\" \"other\"\r\nPayment Context Code.",
-            "nullable": true
-          },
-          "merchantCategoryCode": {
-            "type": "string",
-            "description": "Category code confirming to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
-            "nullable": true
-          },
-          "deliveryAddress": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ],
-            "description": "Address of a Company, Provider or Customer",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Information related to the risk of the payment."
       },
       "RiskRateModel": {
         "type": "object",
@@ -32398,1124 +30920,6 @@
         },
         "additionalProperties": false,
         "description": "Represents a risk rate calculation for a single month"
-      },
-      "SettlementDiscount": {
-        "type": "object",
-        "properties": {
-          "discountAmount": {
-            "type": "number",
-            "description": "The absolute amount to be discounted if this discount is applied. Not required if discountPercentage is provided.",
-            "format": "double",
-            "nullable": true
-          },
-          "discountPercentage": {
-            "type": "number",
-            "description": "The relative amount to be discounted if this discount is applied. Not required if discountAmount is provided.",
-            "format": "double",
-            "nullable": true
-          },
-          "untilDateTime": {
-            "type": "string",
-            "description": "The date until the discount is valid.",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A Service Fabric Settlement Discount object."
-      },
-      "SettlementDiscountsInfo": {
-        "type": "object",
-        "properties": {
-          "discountScheme": {
-            "type": "string",
-            "description": "Value: \"beforeTax\"\r\nHow taxes are calculated.",
-            "nullable": true
-          },
-          "taxAmount": {
-            "type": "number",
-            "description": "Tax amount being paid in this payment.",
-            "format": "double",
-            "nullable": true
-          },
-          "settlementDiscounts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SettlementDiscount"
-            },
-            "description": "List of settlement discounts."
-          }
-        },
-        "additionalProperties": false,
-        "description": "An object that represents all the discounts available for a given payment."
-      },
-      "SfAccountResponse": {
-        "type": "object",
-        "properties": {
-          "accountId": {
-            "type": "string",
-            "description": "The unique identifier for account.",
-            "nullable": true
-          },
-          "companyId": {
-            "type": "string",
-            "description": "The unique identifier for company.",
-            "nullable": true
-          },
-          "servicerId": {
-            "type": "string",
-            "description": "The unique identifier for servicer."
-          },
-          "servicerName": {
-            "type": "string",
-            "description": "Servicer name for the given connected account.",
-            "nullable": true
-          },
-          "accountUsername": {
-            "type": "string",
-            "description": "User name of the account (typically an email address).",
-            "nullable": true
-          },
-          "currency": {
-            "type": "string",
-            "description": "ISO 4217 currency code."
-          },
-          "nickname": {
-            "type": "string",
-            "description": "Nickname of the account assigned by the account owner.",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "description": "Enum: \"PENDING\" \"ACTIVE\" \"CANCELLED\" \"AUTH_REQUIRED\" \"AWAITING_VERIFICATION\"",
-            "nullable": true
-          },
-          "syncStatus": {
-            "type": "string",
-            "description": "Enum: \"SYNC_IN_PROGRESS\" \"SYNC_COMPLETE\"\r\nIf the account supports synchronisation, for example, it is a GoCardless account and supports importing mandates,\r\nthen this field may be set to one of the two below.",
-            "nullable": true
-          },
-          "isEnabled": {
-            "type": "boolean",
-            "description": "Whether the connected account is enabled or not.",
-            "nullable": true
-          },
-          "publishableKey": {
-            "type": "string",
-            "description": "API key for the given connected account.",
-            "nullable": true
-          },
-          "capabilities": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Items Enum: \"card\" \"direct-debit\"\r\nAn array of payment types supported by the provider in the company's country.",
-            "nullable": true
-          },
-          "authorisation": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AccountAuthorisation"
-              }
-            ],
-            "description": "Optional information that can be used to complete account activation at the servicer.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of Account"
-      },
-      "SfCompanyRequest": {
-        "required": [
-          "externalId"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "maxLength": 100,
-            "type": "string",
-            "description": "Name for the company.",
-            "nullable": true
-          },
-          "externalId": {
-            "maxLength": 36,
-            "minLength": 1,
-            "type": "string",
-            "description": "Unique external ID of the company."
-          },
-          "taxNumber": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "Company tax number. The value you should use as a company tax number depends on your country.",
-            "nullable": true
-          },
-          "standardIndustrialCode": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "Standard Industrial Classification (SIC) code for the company.",
-            "nullable": true
-          },
-          "contactTelNo": {
-            "maxLength": 50,
-            "type": "string",
-            "description": "Contact telephone number of the company.",
-            "nullable": true
-          },
-          "contactEmail": {
-            "maxLength": 255,
-            "type": "string",
-            "description": "Contact email of the company.",
-            "format": "email",
-            "nullable": true
-          },
-          "address": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ],
-            "description": "Postal address.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of CompanyRequest"
-      },
-      "SfCompanyResponse": {
-        "type": "object",
-        "properties": {
-          "companyId": {
-            "type": "string",
-            "description": "Unique ID of the company."
-          },
-          "organisationId": {
-            "type": "string",
-            "description": "Unique ID of the organisation to which the company belongs."
-          },
-          "name": {
-            "type": "string",
-            "description": "Name for the company."
-          },
-          "logoUrl": {
-            "type": "string",
-            "description": "Access URL for the company logo image, if a logo image has been uploaded.",
-            "nullable": true
-          },
-          "address": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ],
-            "description": "Postal address.",
-            "nullable": true
-          },
-          "taxNumber": {
-            "type": "string",
-            "description": "Company tax number. The value you should use as a company tax number depends on your country.",
-            "nullable": true
-          },
-          "standardIndustrialCode": {
-            "type": "string",
-            "description": "Standard Industrial Classification (SIC) code for the company.",
-            "nullable": true
-          },
-          "externalId": {
-            "type": "string",
-            "description": "Unique external ID of the company.",
-            "nullable": true
-          },
-          "contactTelNo": {
-            "type": "string",
-            "description": "Contact telephone number of the company.",
-            "nullable": true
-          },
-          "contactEmail": {
-            "type": "string",
-            "description": "Contact email of the company.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of CompanyResponse"
-      },
-      "SfCustomerRequest": {
-        "required": [
-          "externalId"
-        ],
-        "type": "object",
-        "properties": {
-          "externalId": {
-            "maxLength": 36,
-            "minLength": 1,
-            "type": "string",
-            "description": "The external identifier of this customer."
-          },
-          "country": {
-            "maxLength": 3,
-            "minLength": 3,
-            "type": "string",
-            "description": "Country (based on 3-char ISO/DI-3166 country code)",
-            "nullable": true
-          },
-          "currency": {
-            "maxLength": 3,
-            "type": "string",
-            "description": "Currency of the customer account as an ISO 4217 currency code.",
-            "nullable": true
-          },
-          "firstName": {
-            "maxLength": 150,
-            "type": "string",
-            "description": "The first name of the customer.",
-            "nullable": true
-          },
-          "lastName": {
-            "maxLength": 150,
-            "type": "string",
-            "description": "The last name of the customer.",
-            "nullable": true
-          },
-          "companyName": {
-            "maxLength": 250,
-            "type": "string",
-            "description": "The name of the company if this customer is a company.",
-            "nullable": true
-          },
-          "emailAddress": {
-            "maxLength": 255,
-            "type": "string",
-            "description": "The email address of the customer. If an empty string, this will be mapped to null.",
-            "format": "email",
-            "nullable": true
-          },
-          "contactTelNo": {
-            "type": "string",
-            "description": "The telephone number of the customer.",
-            "nullable": true
-          },
-          "taxNumber": {
-            "maxLength": 30,
-            "type": "string",
-            "description": "The tax number for the customer; this may be a VAT number for a company,\r\nor some other form of ID number for an individual.",
-            "nullable": true
-          },
-          "address": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ],
-            "description": "Address of a Company, Provider or Customer.\r\nAll fields are optional; without address line 1, city or country some operations may not be supported.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of CustomerRequest"
-      },
-      "SfCustomerResponse": {
-        "type": "object",
-        "properties": {
-          "customerId": {
-            "type": "string",
-            "description": "The unique identifier of the customer.",
-            "nullable": true
-          },
-          "companyId": {
-            "type": "string",
-            "description": "The identifier of the company that this customer is a customer of.",
-            "nullable": true
-          },
-          "externalId": {
-            "type": "string",
-            "description": "The external identifier of this customer.",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "description": "Enum: \"ACTIVE\" \"DELETED\" \"NOT_ASSIGNED\" \"DELETED_MANUAL_MERGE\"\r\nThe status of the customer.",
-            "nullable": true
-          },
-          "autoMatched": {
-            "type": "boolean",
-            "description": "Status if the customer is automatched with provider.",
-            "nullable": true
-          },
-          "primaryCountry": {
-            "type": "string",
-            "description": "Country (based on 3-char ISO/DI-3166 country code)",
-            "nullable": true
-          },
-          "currency": {
-            "type": "string",
-            "description": "Currency of the customer account as an ISO 4217 currency code.",
-            "nullable": true
-          },
-          "firstName": {
-            "type": "string",
-            "description": "The first name of the customer.",
-            "nullable": true
-          },
-          "lastName": {
-            "type": "string",
-            "description": "The last name of the customer.",
-            "nullable": true
-          },
-          "companyName": {
-            "type": "string",
-            "description": "The name of the company if this customer is a company.",
-            "nullable": true
-          },
-          "emailAddress": {
-            "type": "string",
-            "description": "The email address of the customer.",
-            "nullable": true
-          },
-          "contactTelNo": {
-            "type": "string",
-            "description": "The telephone number of the customer.",
-            "nullable": true
-          },
-          "taxNumber": {
-            "type": "string",
-            "description": "The tax number for the customer. This may be a VAT number for a company,\r\nor some other form of ID number for an individual.",
-            "nullable": true
-          },
-          "createdDateTime": {
-            "type": "string",
-            "description": "Date the customer record was created. ISO 8601 date format.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "updatedDateTime": {
-            "type": "string",
-            "description": "Date the customer was last updated. ISO 8601 date format.\r\nCustomers may be updated by WPB or external servicers.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "address": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ],
-            "description": "Address of a Company, Provider or Customer. All fields are optional;\r\nwithout address line 1, city or country some operations may not be supported.",
-            "nullable": true
-          },
-          "paymentInstruments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentInstrument"
-            },
-            "description": "The set of reusable payment instruments that have been saved for this customer.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of CustomerResponse"
-      },
-      "SfEnrollRequest": {
-        "required": [
-          "companyRequest",
-          "organisationRequest"
-        ],
-        "type": "object",
-        "properties": {
-          "organisationRequest": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SfOrganisationRequest"
-              }
-            ],
-            "description": "Organisation request object."
-          },
-          "companyRequest": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SfCompanyRequest"
-              }
-            ],
-            "description": "Company request object."
-          }
-        },
-        "additionalProperties": false,
-        "description": "Service Fabric Enroll Request"
-      },
-      "SfEnrollResponse": {
-        "type": "object",
-        "properties": {
-          "organisationResponse": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SfOrganisationResponse"
-              }
-            ],
-            "description": "Organisation response object.",
-            "nullable": true
-          },
-          "companyResponse": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SfCompanyResponse"
-              }
-            ],
-            "description": "Company response object.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Service Fabric Enroll Response"
-      },
-      "SfNotification": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Notification ID",
-            "format": "uuid"
-          },
-          "source": {
-            "type": "string",
-            "description": "Source of the Notification"
-          },
-          "specVersion": {
-            "type": "string",
-            "description": "Version of Notification"
-          },
-          "type": {
-            "type": "string",
-            "description": "Describes event from Source"
-          },
-          "subject": {
-            "type": "string",
-            "description": "The ID of the type in question (ex. NewPayment type would have the subject be a PaymentId)",
-            "format": "uuid"
-          },
-          "dataContentType": {
-            "type": "string",
-            "description": "RFC 2046 format content type"
-          },
-          "data": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/NotificationData"
-              }
-            ],
-            "description": "Extra information about the event"
-          }
-        },
-        "additionalProperties": false,
-        "description": "An individual SF notification"
-      },
-      "SfOrganisationRequest": {
-        "required": [
-          "adminEmail",
-          "primaryCountry",
-          "sageCrmId"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "maxLength": 255,
-            "type": "string",
-            "description": "Optional name of Service Fabric org",
-            "nullable": true
-          },
-          "sageCrmId": {
-            "maxLength": 255,
-            "minLength": 1,
-            "type": "string",
-            "description": "This will be your GroupKey"
-          },
-          "primaryCountry": {
-            "maxLength": 3,
-            "minLength": 3,
-            "type": "string",
-            "description": "Your country in the ISO 3166-1 Alpha-3 format."
-          },
-          "adminEmail": {
-            "maxLength": 255,
-            "minLength": 1,
-            "type": "string",
-            "description": "Contact email of the app administrator.\r\nMake sure you specify a valid email - you'll need it later.",
-            "format": "email"
-          },
-          "defaultLanguage": {
-            "type": "string",
-            "description": "Default language of your organisation in the ISO 639-1 format.\r\nThis default value is used when a user specifies no language\r\nor if the specified language isn't supported."
-          },
-          "externalId": {
-            "type": "string",
-            "description": "This will be your GroupKey"
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of OrganisationRequest"
-      },
-      "SfOrganisationResponse": {
-        "type": "object",
-        "properties": {
-          "organisationId": {
-            "type": "string",
-            "description": "Unique ID of the organisation."
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the organisation.",
-            "nullable": true
-          },
-          "sageCrmId": {
-            "type": "string",
-            "description": "Equivalent to GroupKey."
-          },
-          "adminEmail": {
-            "type": "string",
-            "description": "Contact email of the app administrator."
-          },
-          "primaryCountry": {
-            "type": "string",
-            "description": "Your country in the ISO 3166-1 Alpha-3 format."
-          },
-          "defaultLanguage": {
-            "type": "string",
-            "description": "Default language of your organisation in the ISO 639-1 format.\r\nThis default value is used when a user specifies no language or if the specified language isn't supported.\r\nExample: EN"
-          },
-          "externalId": {
-            "type": "string",
-            "description": "External ID of your organisation. The ID can contain alphanumeric characters.",
-            "nullable": true
-          },
-          "signingKey": {
-            "type": "string",
-            "description": "Key for signing requests. This key is only returned for the first 10 minutes after the organisation was created.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of OrganisationResponse"
-      },
-      "SfPaymentQueryResponse": {
-        "type": "object",
-        "properties": {
-          "totalElements": {
-            "type": "integer",
-            "description": "The total of elements on the response (not in the current page).",
-            "format": "int32",
-            "nullable": true
-          },
-          "totalPages": {
-            "type": "integer",
-            "description": "The total of pages on the response.",
-            "format": "int32",
-            "nullable": true
-          },
-          "size": {
-            "type": "integer",
-            "description": "The size of the current page.",
-            "format": "int32",
-            "nullable": true
-          },
-          "payments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SfPaymentResponse"
-            },
-            "description": "List of payments.",
-            "nullable": true
-          },
-          "pageNumber": {
-            "type": "integer",
-            "description": "The page number between 0 and the totalPages property.",
-            "format": "int32",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of PaymentQueryResponse"
-      },
-      "SfPaymentRequest": {
-        "required": [
-          "creditorAccount",
-          "endToEndIdentifier",
-          "instructedAmount",
-          "remittanceInformation"
-        ],
-        "type": "object",
-        "properties": {
-          "endToEndIdentifier": {
-            "maxLength": 36,
-            "minLength": 1,
-            "type": "string",
-            "description": "A unique identifier assigned by the payment initiator to unambiguously identify the payment.\r\nThe identifier is passed on, unchanged, throughout the entire end-to-end chain."
-          },
-          "partialPayment": {
-            "type": "boolean",
-            "description": "A flag to enable or disable partial payments against this payment. False by default.",
-            "nullable": true
-          },
-          "initiatedDateTime": {
-            "type": "string",
-            "description": "The date when the real-world payment request was initiated\r\n(for example, date upon which an invoice was created), ISO-8601 format.\r\nIf before 1st January, 1970, initiatedDateTime will be set to null.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "dueDate": {
-            "type": "string",
-            "description": "Date the payment is due in ISO 8601 date format. If before 1st January, 1970, dueDate will be set to null.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "instructedAmount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InstructedAmount"
-              }
-            ],
-            "description": "An object that represents an amount of money in a specific currency."
-          },
-          "settlementDiscountsInfo": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SettlementDiscountsInfo"
-              }
-            ],
-            "description": "An object that represents all the discounts available for a given payment.",
-            "nullable": true
-          },
-          "debtorPaymentMethods": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Array of payment methods which the debtor can choose from in order to pay.\r\nPrimarily used to populate the PayNow options page (for example, card, PayPal, ACH).",
-            "nullable": true
-          },
-          "debtorAccount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DebtorAccount"
-              }
-            ],
-            "description": "The details about the debtor receiving the payment request.",
-            "nullable": true
-          },
-          "creditorAccount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CreditorAccount"
-              }
-            ],
-            "description": "The details about the creditor requesting the payment."
-          },
-          "remittanceInformation": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RemittanceInformation"
-              }
-            ],
-            "description": "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle,\r\nsuch as a commercial invoice."
-          },
-          "risk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RiskInformation"
-              }
-            ],
-            "description": "Information related to the risk of the payment.",
-            "nullable": true
-          },
-          "successRedirectUrl": {
-            "type": "string",
-            "description": "Success redirect url.",
-            "nullable": true
-          },
-          "failureRedirectUrl": {
-            "type": "string",
-            "description": "Failure redirect url.",
-            "nullable": true
-          },
-          "prepareData": {
-            "type": "object",
-            "additionalProperties": {
-              "nullable": true
-            },
-            "description": "An arbitrary dictionary of key-value data to be sent to the payment provider. May be null or empty.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of PaymentRequest"
-      },
-      "SfPaymentResponse": {
-        "type": "object",
-        "properties": {
-          "paymentId": {
-            "type": "string",
-            "description": "The unique identifier of the payment.",
-            "nullable": true
-          },
-          "createDateTime": {
-            "type": "string",
-            "description": "Date the orginal request was created in ISO 8601 date format.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "description": "The payment status\r\nValues: \"UNAUTHORISED\" \"PENDING\" \"PAID\" \"PAID_OFFLINE\" \"FAILED\" \"CANCELLED\" \"REJECTED\" \"REFUNDED\" \"PARTIALLY\" \"PARTIALLY_REFUNDED\"",
-            "nullable": true
-          },
-          "cancellable": {
-            "type": "boolean",
-            "description": "A boolean field indicating whether the payment is in a state that can be cancelled.\r\nAll PENDING payments can be cancelled, but other statuses are provider-dependent.",
-            "nullable": true
-          },
-          "updateDateTime": {
-            "type": "string",
-            "description": "Date the request was last updated in ISO 8601 date format.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "initiatedDateTime": {
-            "type": "string",
-            "description": "The date when the real-world payment request was initiated\r\n(for example, date upon which an invoice was created), ISO-8601 format.\r\nIf before 1st January, 1970, initiatedDateTime will be set to null.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "dueDate": {
-            "type": "string",
-            "description": "Date the payment is due in ISO 8601 date format. If before 1st January, 1970, dueDate will be set to null.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "offlineMethod": {
-            "type": "string",
-            "description": "The method that was used to pay an invoice outside of Payments Acceptance.\r\nValues: \"CASH\" \"CHEQUE\" \"DIRECT_CREDIT\" \"DIRECT_DEBIT\" \"CARD\" \"VOUCHER\" \"CREDIT_NOTE\" \"UNKNOWN\" \"OTHER\"",
-            "nullable": true
-          },
-          "otherOfflineMethod": {
-            "type": "string",
-            "description": "A free text field for describing offline payment methods not covered by the offlineMethod property.\r\nShould only be used with the OTHER offline method.",
-            "nullable": true
-          },
-          "endToEndIdentifier": {
-            "type": "string",
-            "description": "Unique identifier assigned by the payment initiator to unambiguously identify the payment.\r\nThe identifier is passed on, unchanged, throughout the entire end-to-end chain.",
-            "nullable": true
-          },
-          "instructedAmount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InstructedAmount"
-              }
-            ],
-            "description": "An object that represents an amount of money in a specific currency.",
-            "nullable": true
-          },
-          "fee": {
-            "type": "integer",
-            "description": "The fee levied by the payment provider for the payment, in minor units of the invoice currency.\r\nThis will only be available for paid or partially paid invoices.\r\nNot all providers will be able to provide fee information, so this field may be null even for paid invoices.\r\nWhere provided, this field will be non-negative.",
-            "format": "int32",
-            "nullable": true
-          },
-          "reportingAmount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ReportingAmount"
-              }
-            ],
-            "description": "Net amount and fees as converted into servicer account currency.",
-            "nullable": true
-          },
-          "paidToDate": {
-            "type": "integer",
-            "description": "Amount of the payment that has been paid until now.",
-            "format": "int32",
-            "nullable": true
-          },
-          "outstandingAmount": {
-            "type": "string",
-            "description": "Amount of the payment still outstanding (excluding fees/charges). Maximum value is instructed amount.",
-            "nullable": true
-          },
-          "refundedAmount": {
-            "type": "string",
-            "description": "Amount of the payment that has been refunded. Maximum value is instructed amount.",
-            "nullable": true
-          },
-          "debtorPaymentMethods": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Array of payment methods which the debtor can choose from in order to pay.\r\nPrimarily used to populate the PayNow options page (for example, card, PayPal, ACH).",
-            "nullable": true
-          },
-          "creditorAccount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CreditorAccount"
-              }
-            ],
-            "description": "Details about the creditor requesting the payment.",
-            "nullable": true
-          },
-          "debtorAccount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DebtorAccount"
-              }
-            ],
-            "description": "The details about the debtor receiving the payment request.",
-            "nullable": true
-          },
-          "remittanceInformation": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RemittanceInformation"
-              }
-            ],
-            "description": "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle,\r\nsuch as a commercial invoice.",
-            "nullable": true
-          },
-          "risk": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RiskInformation"
-              }
-            ],
-            "description": "Information related to the risk of the payment.",
-            "nullable": true
-          },
-          "metadata": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Metadata"
-              }
-            ],
-            "description": "Base64 encoded strings that when decoded, can be added to html emails to provider markup in supported email clients.",
-            "nullable": true
-          },
-          "partialPayment": {
-            "type": "boolean",
-            "description": "Flag of whether this is a partial payment",
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "description": "The type of the payment.\r\nValues: \"INVOICE\" \"STATEMENT\" \"PAY_ON_ACCOUNT\"",
-            "nullable": true
-          },
-          "paymentSessionId": {
-            "type": "string",
-            "description": "The payment session ID returned in the POST /payments/{paymentId}/prepare response.\r\nWhen the prepare response includes a paymentSessionId it is mandatory to include it as part of this payload.\r\nOtherwise, the request will fail with a 400 error.",
-            "nullable": true
-          },
-          "redirectUri": {
-            "type": "string",
-            "description": "The redirect uri for the payment.",
-            "nullable": true
-          },
-          "prepareData": {
-            "type": "object",
-            "additionalProperties": {
-              "nullable": true
-            },
-            "description": "An arbitrary dictionary of key-value data to be sent to the payment provider. May be null or empty.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of PaymentResponse"
-      },
-      "SfServicerResponse": {
-        "type": "object",
-        "properties": {
-          "servicerId": {
-            "type": "string",
-            "description": "The unique identifier for servicer.",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the servicer organisation.",
-            "nullable": true
-          },
-          "dashboardUrl": {
-            "type": "string",
-            "description": "URL for the dashboard of the servicer.",
-            "nullable": true
-          },
-          "capabilities": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Items Enum: \"card\" \"direct-debit\"\r\nAn array of payment types supported by the provider in the companys country.",
-            "nullable": true
-          },
-          "accountLinkingSupported": {
-            "type": "boolean",
-            "description": "Whether this provider supports an OAuth style flow for linking accounts.",
-            "nullable": true
-          },
-          "accountCreationSupported": {
-            "type": "boolean",
-            "description": "Whether this provider supports direct creation of an account without user intervention.",
-            "nullable": true
-          },
-          "paymentInstrumentsSupported": {
-            "type": "boolean",
-            "description": "Boolean field indicating whether the servicer supports reusable payment instruments\r\n(for example, card tokens and direct debit mandates).",
-            "nullable": true
-          },
-          "rank": {
-            "type": "integer",
-            "description": "An integer >= 0 indicating the ordering of the provider. Lower numbers mean a higher priority.",
-            "format": "int32",
-            "nullable": true
-          },
-          "operatingCountries": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Countries where this Servicer operates.",
-            "nullable": true
-          },
-          "oauthType": {
-            "type": "string",
-            "description": "Enum: \"AUTH_CODE\" \"CLIENT_REFERRAL\"\r\nRepresents an oauth type",
-            "nullable": true
-          },
-          "apiEndpoint": {
-            "type": "string",
-            "description": "Endpoint for the given connector API.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of Servicer"
-      },
-      "SfServicersAuthRequest": {
-        "required": [
-          "landingPageType",
-          "servicerId"
-        ],
-        "type": "object",
-        "properties": {
-          "servicerId": {
-            "maxLength": 36,
-            "minLength": 1,
-            "type": "string",
-            "description": "The unique identifier of the servicer to integrate with."
-          },
-          "landingPageType": {
-            "minLength": 1,
-            "type": "string",
-            "description": "Enum: \"signup\" \"login\"\r\nThe initial integration page to display. This may be ignored, depending on the integration."
-          },
-          "successRedirectUri": {
-            "type": "string",
-            "description": "An optional field specifing the URI that the browser will be redirected to at the end of the OAuth flow.\r\nIf not specified, the browser will be redirected to the Payments Acceptance Service marketplace UI.",
-            "nullable": true
-          },
-          "failureRedirectUri": {
-            "type": "string",
-            "description": "An optional field that the browser will be redirect to at the end of the OAuth flow.\r\nIf a success redirect URI is included but no failure URI, the browser will be redirected\r\nto the success URI in case of errors. A failureReason query parameters will be included\r\nin case of errors; see above for possible values. Including a failure URI but no\r\nsuccess URI will generate a 400 error.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of ServicersAuthRequest"
-      },
-      "SfServicersAuthResponse": {
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string",
-            "description": "A URL that can be used to complete this integration."
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of ServicersAuthResponse"
-      },
-      "SfSubmitPaymentInfo": {
-        "type": "object",
-        "properties": {
-          "paymentSubmissionId": {
-            "type": "string",
-            "description": "The unique identifier of the payment submission transaction."
-          },
-          "paymentId": {
-            "type": "string",
-            "description": "The unique identifier of the payment.",
-            "nullable": true
-          },
-          "createDateTime": {
-            "type": "string",
-            "description": "Date the original request was created in ISO 8601 date format.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "description": "Enum: \"SUCCEEDED\" \"PENDING\" \"DECLINED\" \"FAILED\" \"SUBMITTED\" \"PROCESSING\" \"DISPUTED\" \"CANCELLED\" \"UNKNOWN\"\r\nStatus of the payment submission.",
-            "nullable": true
-          },
-          "paymentMethodUsed": {
-            "type": "string",
-            "description": "Payment method used."
-          },
-          "failureReason": {
-            "type": "string",
-            "description": "Reason why the payment submission failed or was rejected."
-          },
-          "instructedAmount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/InstructedAmount"
-              }
-            ],
-            "description": "An object that represents an amount of money in a specific currency.",
-            "nullable": true
-          },
-          "fee": {
-            "type": "integer",
-            "description": "The fee levied by the payment provider for the payment submission, in minor units of the invoice currency.\r\nNot all providers will be able to provide fee information, so this field may be null even for successful payments.\r\nWhere provided, this field will be non-negative.",
-            "format": "int32",
-            "nullable": true
-          },
-          "reportingAmount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ReportingAmount"
-              }
-            ],
-            "description": "Net amount and fees as converted into servicer account currency.",
-            "nullable": true
-          },
-          "debtorAccount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/DebtorAccount"
-              }
-            ],
-            "description": "The details about the debtor receiving the payment request.",
-            "nullable": true
-          },
-          "creditorAccount": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CreditorAccount"
-              }
-            ],
-            "description": "The details about the creditor requesting the payment.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "API version of SubmitPaymentInfo"
       },
       "StateModel": {
         "type": "object",
@@ -35548,6 +32952,112 @@
           }
         },
         "additionalProperties": false
+      },
+      "WorkflowStatusModel": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Accounting Data Services platform.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string",
+            "description": "The name of the workflow status."
+          },
+          "description": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "The description explaining the use of the workflow status.",
+            "nullable": true
+          },
+          "parentWorkflowStatusId": {
+            "type": "string",
+            "description": "The prior workflow status ID.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "category": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The category of the workflow status.",
+            "nullable": true
+          },
+          "code": {
+            "maxLength": 100,
+            "type": "string",
+            "description": "The code of the workflow status.",
+            "nullable": true
+          },
+          "isNotesRequired": {
+            "type": "boolean",
+            "description": "Indicates whether notes are required or not."
+          },
+          "promoteToErp": {
+            "type": "boolean",
+            "description": "Indicates whether the status change should be reported to the ERP or not."
+          },
+          "created": {
+            "type": "string",
+            "description": "The date that the workflow status was created.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "createdUserId": {
+            "type": "string",
+            "description": "The ID of the user who created the workflow status.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "modified": {
+            "type": "string",
+            "description": "The date that the workflow status was last modified.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "modifiedUserId": {
+            "type": "string",
+            "description": "The ID of the user who last modified the workflow status.",
+            "format": "uuid",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Workflow Status represents the state for a specific workflow for an entity."
+      },
+      "WorkflowStatusModelFetchResult": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowStatusModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       }
     },
     "securitySchemes": {
@@ -35556,9 +33066,9 @@
         "description": "Azure B2C OAuth Authentication",
         "flows": {
           "implicit": {
-            "authorizationUrl": "https://login.dev.lockstep.io/login.dev.lockstep.io/B2C_1A_PLATFORMSIGNUP_SIGNIN/oauth2/v2.0/authorize",
+            "authorizationUrl": "https://login.sbx.lockstep.io/login.sbx.lockstep.io/B2C_1A_PLATFORMSIGNUP_SIGNIN/oauth2/v2.0/authorize",
             "scopes": {
-              "https://login.dev.lockstep.io/platform-api/api.call": "Call the Platform API"
+              "https://login.sbx.lockstep.io/platform-api/api.call": "Call the Platform API"
             }
           }
         }

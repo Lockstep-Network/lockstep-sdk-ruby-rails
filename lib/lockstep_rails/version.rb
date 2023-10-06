@@ -1,4 +1,5 @@
-module LockstepRails
-  VERSION = '0.3.69'
-end
+# frozen_string_literal: true
 
+module LockstepRails
+  VERSION = '0.3.70'
+end

@@ -13,15 +13,20 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
-gem 'lockstep_sdk'
 gem 'dry-types'
+gem 'lockstep_sdk'
 gem 'request_store'
 gem 'request_store-sidekiq'
 gem 'simplecov', require: false, group: :test
+
 group :development, :test do
+  gem 'pry'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'pry'
   gem 'vcr'
   gem 'webmock'
+end
+
+group :test do
+  gem 'dotenv', require: 'dotenv/load'
 end
