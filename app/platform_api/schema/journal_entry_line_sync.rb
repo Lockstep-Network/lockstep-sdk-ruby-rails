@@ -73,6 +73,10 @@ end
   # @type: string
   field :memo
 
+  # A JSON string representing the dimensions for this journal entry line.
+  # @type: object
+  field :dimensions
+
   # If known, the date when this record was created according to the originating financial system
   # in which this record is maintained.  If the originating financial system does not maintain a
   # created-date, leave this field null.

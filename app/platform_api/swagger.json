@@ -8232,31 +8232,17 @@
               "type": "string",
               "format": "uuid"
             }
-          }
-        ],
-        "requestBody": {
-          "description": "A list of changes to apply to this Group Account",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
+          },
+          {
+            "name": "updates",
+            "in": "query",
+            "description": "A list of changes to apply to this Group Account",
+            "schema": {
+              "type": "object",
+              "additionalProperties": { }
             }
           }
-        },
+        ],
         "responses": {
           "400": {
             "description": "Bad Request",
@@ -9334,7 +9320,7 @@
           {
             "name": "include",
             "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Addresses, Lines, Payments, Notes, Attachments, Company, Customer, CustomFields, CreditMemos",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Addresses, Lines, Payments, Notes, Attachments, Company, Customer, CustomFields, CreditMemos, WorkflowStatuses",
             "schema": {
               "type": "string"
             }
@@ -9567,6 +9553,83 @@
         ]
       }
     },
+    "/api/v1/Invoices/{id}/workflow-status-history": {
+      "get": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Retrieve Invoice Workflow Status Histories",
+        "description": "Retrieves the Invoice Workflow Status Histories specified by the unique identifier of the Invoice.\r\n\r\nAn Invoice Workflow Status History represents a prior Workflow Status that was assigned to an Invoice.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_Invoices_RetrieveInvoiceWorkflowStatusHistories",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique Accounting Data Service Platform ID number of the Invoice.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceWorkflowStatusHistoryModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvoiceWorkflowStatusHistoryModel"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
     "/api/v1/Invoices": {
       "post": {
         "tags": [
@@ -9575,6 +9638,17 @@
         "summary": "Create Invoices",
         "description": "Creates one or more Invoices within this account and returns the records as created.\r\n\r\nAn Invoice represents a bill sent from one company to another.  The creator of the invoice is identified by the `CompanyId` field, and the recipient of the invoice is identified by the `CustomerId` field.  Most invoices are uniquely identified both by a Lockstep Platform ID number and a customer ERP \"key\" that was generated by the system that originated the invoice.  Invoices have a total amount and a due date, and when some payments have been made on the Invoice the `TotalAmount` and the `OutstandingBalanceAmount` may be different.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Invoices_CreateInvoices",
+        "parameters": [
+          {
+            "name": "customerCompanyId",
+            "in": "query",
+            "description": "The ID of the customer company. Only to be used with the UBL file upload multipart/form-data option.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "requestBody": {
           "description": "Upload a UBL file or provide an InvoiceModel array",
           "content": {
@@ -9770,7 +9844,7 @@
           {
             "name": "include",
             "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Addresses, Lines, Payments, Notes, Attachments, Company, Customer, CustomFields, CreditMemos",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Addresses, Lines, Payments, Notes, Attachments, Company, Customer, CustomFields, CreditMemos, WorkflowStatuses",
             "schema": {
               "type": "string"
             }
@@ -11325,8 +11399,8 @@
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -12709,100 +12783,6 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PaymentDetailModelFetchResult"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "security": [
-          {
-            "oauth2": [ ]
-          },
-          {
-            "bearer_token": [ ]
-          },
-          {
-            "api_key": [ ]
-          }
-        ]
-      }
-    },
-    "/api/v1/Payments/erp-write": {
-      "post": {
-        "tags": [
-          "Payments"
-        ],
-        "summary": "Write payments to connected ERP",
-        "description": "**This API endpoint is under maintenance and may not function properly.**  Schedule an ERP post request for payments.\r\n\r\nThe payments must be associated with an active app enrollment and have a valid `AppEnrollmentId`.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Payments_ErpWritePayments",
-        "requestBody": {
-          "description": "The payments to submit to the connected ERP",
-          "content": {
-            "application/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/InsertPaymentRequestModelErpWriteSyncSubmitModel"
-                  }
-                ],
-                "description": "Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a request to write back a collection\r\n            of requests to the connected AppEnrollment."
-              }
-            },
-            "text/json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/InsertPaymentRequestModelErpWriteSyncSubmitModel"
-                  }
-                ],
-                "description": "Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a request to write back a collection\r\n            of requests to the connected AppEnrollment."
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/InsertPaymentRequestModelErpWriteSyncSubmitModel"
-                  }
-                ],
-                "description": "Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a request to write back a collection\r\n            of requests to the connected AppEnrollment."
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentModelErpWriteResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentModelErpWriteResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -16229,6 +16209,38 @@
         ]
       }
     },
+    "/api/v1/Status/auth": {
+      "get": {
+        "tags": [
+          "Status"
+        ],
+        "summary": "Check Authentication",
+        "description": "Verifies that the specified authentication token is valid and returns a successful code if it is.",
+        "operationId": "v1_Status_CheckAuthentication",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          },
+          {
+            "bearer_token": [ ]
+          },
+          {
+            "api_key": [ ]
+          }
+        ]
+      }
+    },
     "/api/v1/Sync": {
       "post": {
         "tags": [
@@ -18050,31 +18062,17 @@
               "type": "string",
               "format": "uuid"
             }
-          }
-        ],
-        "requestBody": {
-          "description": "A list of changes to apply to this User",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": { }
-              }
+          },
+          {
+            "name": "updates",
+            "in": "query",
+            "description": "A list of changes to apply to this User",
+            "schema": {
+              "type": "object",
+              "additionalProperties": { }
             }
           }
-        },
+        ],
         "responses": {
           "400": {
             "description": "Bad Request",
@@ -24463,19 +24461,21 @@
             "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this company record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
             "nullable": true
           },
-          "erpWriteStatus": {
+          "erpUpdateStatus": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ErpWriteStatuses"
+                "$ref": "#/components/schemas/ErpUpdateStatus"
               }
             ],
-            "description": "Possible statuses for a record that supports ERP write.",
-            "readOnly": true
+            "description": "Possible statuses for a record that supports ERP Update."
           },
-          "erpWriteStatusName": {
-            "type": "string",
-            "description": "The name of the ErpWriteStatus for this credit memo application",
-            "nullable": true,
+          "erpUpdateAction": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErpUpdateAction"
+              }
+            ],
+            "description": "Possible actions for a record that supports ERP Update.",
             "readOnly": true
           },
           "entryNumber": {
@@ -25686,6 +25686,29 @@
         },
         "additionalProperties": false
       },
+      "ErpUpdateAction": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "description": "Possible actions for a record that supports ERP Update.",
+        "format": "int32"
+      },
+      "ErpUpdateStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "description": "Possible statuses for a record that supports ERP Update.",
+        "format": "int32"
+      },
       "ErpWriteStatuses": {
         "enum": [
           0,
@@ -25981,7 +26004,7 @@
             "maxLength": 8,
             "minLength": 0,
             "type": "string",
-            "description": "The status of the Financial Account. Possible values are active,\r\ninactive, deleted or archived.",
+            "description": "The status of the Financial Account. Possible values are Active,\r\nInactive, Deleted or Archived.",
             "nullable": true
           },
           "cashflowType": {
@@ -26562,205 +26585,6 @@
         "additionalProperties": false,
         "description": "Represents an account for an entire group"
       },
-      "InsertPaymentAppliedRequestModel": {
-        "type": "object",
-        "properties": {
-          "paymentAppliedId": {
-            "type": "string",
-            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Lockstep platform.\r\n            \r\nFor the ID of this record in its originating financial system, see `ErpKey`.",
-            "format": "uuid",
-            "nullable": true
-          },
-          "invoiceId": {
-            "type": "string",
-            "description": "The Invoice this payment is applied to.",
-            "format": "uuid",
-            "nullable": true
-          },
-          "paymentId": {
-            "type": "string",
-            "description": "The Payment this application applies from.",
-            "format": "uuid",
-            "nullable": true
-          },
-          "erpKey": {
-            "type": "string",
-            "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this company record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
-            "nullable": true
-          },
-          "invoiceErpKey": {
-            "type": "string",
-            "description": "The ERP key of the Invoice this payment is applied to.",
-            "nullable": true
-          },
-          "applyToInvoiceDate": {
-            "type": "string",
-            "description": "The date this payment was applied to this invoice.",
-            "format": "date-time"
-          },
-          "paymentAppliedAmount": {
-            "type": "number",
-            "description": "The total amount that was applied to this Invoice from the Payment.",
-            "format": "double"
-          }
-        },
-        "additionalProperties": false,
-        "description": "A request to insert a payment application"
-      },
-      "InsertPaymentRequestModel": {
-        "type": "object",
-        "properties": {
-          "appEnrollmentId": {
-            "type": "string",
-            "description": "The AppEnrollmentId of the application to write this record to.",
-            "format": "uuid",
-            "nullable": true
-          },
-          "paymentId": {
-            "type": "string",
-            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Lockstep platform.\r\n            \r\nFor the ID of this record in its originating financial system, see `ErpKey`.",
-            "format": "uuid",
-            "nullable": true
-          },
-          "companyId": {
-            "type": "string",
-            "description": "The ID of the company to which this payment belongs.",
-            "format": "uuid"
-          },
-          "companyErpKey": {
-            "type": "string",
-            "description": "The ERP key for the company to which this payment belongs.",
-            "nullable": true
-          },
-          "companyExternalReference": {
-            "type": "string",
-            "description": "A additional reference that may be used in the ERP",
-            "nullable": true
-          },
-          "erpKey": {
-            "type": "string",
-            "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this company record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
-            "nullable": true
-          },
-          "paymentType": {
-            "type": "string",
-            "description": "The type of payment, AR Payment or AP Payment.\r\n            \r\nRecognized PaymentType values are:\r\n* `AR Payment` - A payment made by a Customer to the Company\r\n* `AP Payment` - A payment made by the Company to a Vendor",
-            "nullable": true
-          },
-          "tenderType": {
-            "type": "string",
-            "description": "Cash, check, credit card, wire transfer.\r\n            \r\nRecognized TenderType values are:\r\n* `Cash` - A cash payment or other direct transfer.\r\n* `Check` - A check payment.\r\n* `Credit Card` - A payment made via a credit card.\r\n* `Wire Transfer` - A payment made via wire transfer from another financial institution.\r\n* `Other` - A payment made via another method not listed above.",
-            "nullable": true
-          },
-          "memoText": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string",
-            "description": "Memo or reference text (ex. memo field on a check).",
-            "nullable": true
-          },
-          "paymentDate": {
-            "type": "string",
-            "description": "The date when this payment was received.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "postDate": {
-            "type": "string",
-            "description": "The date when a payment was posted to a ledger.",
-            "format": "date-time",
-            "nullable": true
-          },
-          "paymentAmount": {
-            "type": "number",
-            "description": "Total amount of this payment in it's received currency.",
-            "format": "double"
-          },
-          "unappliedAmount": {
-            "type": "number",
-            "description": "Unapplied balance of this payment in it's received currency.  If this amount is nonzero, the field `IsOpen` will be true.",
-            "format": "double"
-          },
-          "currencyCode": {
-            "type": "string",
-            "description": "The ISO 4217 currency code for this payment.\r\n            \r\nFor a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies).",
-            "nullable": true
-          },
-          "referenceCode": {
-            "type": "string",
-            "description": "Reference code for the payment for the given Erp system.",
-            "nullable": true
-          },
-          "isVoided": {
-            "type": "boolean",
-            "description": "Is the payment voided?"
-          },
-          "inDispute": {
-            "type": "boolean",
-            "description": "Is the payment in dispute?"
-          },
-          "currencyRate": {
-            "type": "number",
-            "description": "The Currency Rate used to get from the account's base currency to the payment amount.",
-            "format": "double"
-          },
-          "baseCurrencyPaymentAmount": {
-            "type": "number",
-            "description": "Total amount of this payment in the group's base currency.",
-            "format": "double"
-          },
-          "baseCurrencyUnappliedAmount": {
-            "type": "number",
-            "description": "Unapplied balance of this payment in the group's base currency.  If this amount is nonzero, the field `IsOpen` will be true.",
-            "format": "double"
-          },
-          "bankAccountId": {
-            "type": "string",
-            "description": "The Bank account id for the company to which this payment belongs.",
-            "nullable": true
-          },
-          "groupKey": {
-            "type": "string",
-            "description": "The GroupKey this request belongs to.",
-            "format": "uuid"
-          },
-          "applications": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InsertPaymentAppliedRequestModel"
-            },
-            "description": "All applications this payment is associated with.\r\nTo retrieve this collection, specify `Applications` in the \"Include\" parameter for your query.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "A request to insert a new Payment"
-      },
-      "InsertPaymentRequestModelErpWriteSyncSubmitModel": {
-        "required": [
-          "appEnrollmentId",
-          "requests"
-        ],
-        "type": "object",
-        "properties": {
-          "appEnrollmentId": {
-            "minLength": 1,
-            "type": "string",
-            "description": "The connected App Enrollment id.",
-            "format": "uuid"
-          },
-          "requests": {
-            "minItems": 1,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InsertPaymentRequestModel"
-            },
-            "description": "An array of requests to write back."
-          }
-        },
-        "additionalProperties": false,
-        "description": "Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a request to write back a collection\r\n            of requests to the connected AppEnrollment."
-      },
       "InviteDataModel": {
         "type": "object",
         "properties": {
@@ -27114,19 +26938,21 @@
             "nullable": true,
             "readOnly": true
           },
-          "erpWriteStatus": {
+          "erpUpdateStatus": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ErpWriteStatuses"
+                "$ref": "#/components/schemas/ErpUpdateStatus"
               }
             ],
-            "description": "Possible statuses for a record that supports ERP write.",
-            "readOnly": true
+            "description": "Possible statuses for a record that supports ERP Update."
           },
-          "erpWriteStatusName": {
-            "type": "string",
-            "description": "The name of the ErpWriteStatus for this Invoice",
-            "nullable": true,
+          "erpUpdateAction": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErpUpdateAction"
+              }
+            ],
+            "description": "Possible actions for a record that supports ERP Update.",
             "readOnly": true
           },
           "sourceModifiedDate": {
@@ -27506,6 +27332,18 @@
             "description": "A code identifying the status of this invoice.\r\n            \r\nRecognized Invoice status codes are:\r\n* `Open` - Represents an invoice that is considered open and needs more work to complete\r\n* `Closed` - Represents an invoice that is considered closed and resolved",
             "nullable": true
           },
+          "workflowStatusId": {
+            "type": "string",
+            "description": "The id of the work flow status associated with this invoice.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "workflowStatusNotes": {
+            "maxLength": 500,
+            "type": "string",
+            "description": "A description of the current workflow status of this invoice.",
+            "nullable": true
+          },
           "termsCode": {
             "maxLength": 50,
             "type": "string",
@@ -27673,19 +27511,21 @@
             "description": "The remaining balance value of this invoice in the group's base currency.",
             "format": "double"
           },
-          "erpWriteStatus": {
+          "erpUpdateStatus": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ErpWriteStatuses"
+                "$ref": "#/components/schemas/ErpUpdateStatus"
               }
             ],
-            "description": "Possible statuses for a record that supports ERP write.",
-            "readOnly": true
+            "description": "Possible statuses for a record that supports ERP Update."
           },
-          "erpWriteStatusName": {
-            "type": "string",
-            "description": "The name of the ErpWriteStatus for this Invoice",
-            "nullable": true,
+          "erpUpdateAction": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErpUpdateAction"
+              }
+            ],
+            "description": "Possible actions for a record that supports ERP Update.",
             "readOnly": true
           },
           "sourceModifiedDate": {
@@ -27694,6 +27534,14 @@
             "format": "date-time",
             "nullable": true,
             "readOnly": true
+          },
+          "workflowStatuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceWorkflowStatusHistoryModel"
+            },
+            "description": "All workflow status histories connected to this invoice.\r\nTo retrieve this collection, specify `WorkflowStatuses` in the \"Include\" parameter for your query.",
+            "nullable": true
           },
           "addresses": {
             "type": "array",
@@ -27794,6 +27642,10 @@
             "description": "A collection of custom fields linked to this record.  To retrieve this collection, specify\r\n`CustomFieldDefinitions` in the `include` parameter when retrieving data.\r\n            \r\nTo create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)\r\nendpoint with the `TableKey` to `Invoice` and the `ObjectKey` set to the `InvoiceId` for this record.  For\r\nmore information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).",
             "nullable": true,
             "readOnly": true
+          },
+          "isEInvoice": {
+            "type": "boolean",
+            "description": "Indicates if the invoice an E-Invoice or not"
           }
         },
         "additionalProperties": false,
@@ -28477,10 +28329,66 @@
             "description": "The remaining balance value of this invoice in the erp's base currency.",
             "format": "double",
             "nullable": true
+          },
+          "isEInvoice": {
+            "type": "boolean",
+            "description": "True if the invoice is an E-Invoice",
+            "nullable": true
+          },
+          "sendImmediately": {
+            "type": "boolean",
+            "description": "True if the E-Invoice should be sent to gov/other recipients immediately",
+            "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "The InvoiceSyncModel represents information coming into Lockstep from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe InvoiceSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep\r\nplatform.\r\n            \r\nOnce imported, this record will be available in the Lockstep API as an [InvoiceModel](https://developer.lockstep.io/docs/invoicemodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
+      },
+      "InvoiceWorkflowStatusHistoryModel": {
+        "type": "object",
+        "properties": {
+          "invoiceWorkflowStatusHistoryId": {
+            "type": "string",
+            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is\r\nadded to the Accounting Data Services platform.",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "invoiceId": {
+            "type": "string",
+            "description": "The invoice ID associated with the invoice workflow status history.",
+            "format": "uuid"
+          },
+          "workflowStatusId": {
+            "type": "string",
+            "description": "The workflow status ID associated with the invoice workflow status history.",
+            "format": "uuid"
+          },
+          "groupKey": {
+            "type": "string",
+            "description": "The GroupKey uniquely identifies a single Accounting Data Services Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "workflowStatusNotes": {
+            "type": "string",
+            "description": "The notes for the invoice workflow status history.",
+            "nullable": true
+          },
+          "created": {
+            "type": "string",
+            "description": "The date that the invoice workflow status history was created.",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "createdUserId": {
+            "type": "string",
+            "description": "The ID of the user who created the invoice workflow status history.",
+            "format": "uuid",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Invoice Workflow Status History represents prior workflow statuses of an E-Invoice."
       },
       "JournalEntryLineModel": {
         "type": "object",
@@ -28577,6 +28485,14 @@
             "maxLength": 100,
             "type": "string",
             "description": "A memo related to this line.",
+            "nullable": true
+          },
+          "dimensions": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            },
+            "description": "Dimensions for this journal entry line.",
             "nullable": true
           },
           "created": {
@@ -28732,6 +28648,12 @@
           "memo": {
             "type": "string",
             "description": "A memo related to this line.",
+            "nullable": true
+          },
+          "dimensions": {
+            "type": "object",
+            "additionalProperties": { },
+            "description": "A JSON string representing the dimensions for this journal entry line.",
             "nullable": true
           },
           "created": {
@@ -29643,19 +29565,21 @@
             "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this company record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
             "nullable": true
           },
-          "erpWriteStatus": {
+          "erpUpdateStatus": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ErpWriteStatuses"
+                "$ref": "#/components/schemas/ErpUpdateStatus"
               }
             ],
-            "description": "Possible statuses for a record that supports ERP write.",
-            "readOnly": true
+            "description": "Possible statuses for a record that supports ERP Update."
           },
-          "erpWriteStatusName": {
-            "type": "string",
-            "description": "The name of the ErpWriteStatus for this payment application",
-            "nullable": true,
+          "erpUpdateAction": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErpUpdateAction"
+              }
+            ],
+            "description": "Possible actions for a record that supports ERP Update.",
             "readOnly": true
           },
           "entryNumber": {
@@ -30117,19 +30041,21 @@
             "description": "The unique ID of this record as it was known in its originating financial system.\r\n            \r\nIf this company record was imported from a financial system, it will have the value `ErpKey`\r\nset to the original primary key number of the record as it was known in the originating financial\r\nsystem.  If this record was not imported, this value will be `null`.\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).",
             "nullable": true
           },
-          "erpWriteStatus": {
+          "erpUpdateStatus": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ErpWriteStatuses"
+                "$ref": "#/components/schemas/ErpUpdateStatus"
               }
             ],
-            "description": "Possible statuses for a record that supports ERP write.",
-            "readOnly": true
+            "description": "Possible statuses for a record that supports ERP Update."
           },
-          "erpWriteStatusName": {
-            "type": "string",
-            "description": "The name of the ErpWriteStatus for this Payment",
-            "nullable": true,
+          "erpUpdateAction": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErpUpdateAction"
+              }
+            ],
+            "description": "Possible actions for a record that supports ERP Update.",
             "readOnly": true
           },
           "paymentType": {
@@ -30269,8 +30195,7 @@
               "$ref": "#/components/schemas/PaymentAppliedModel"
             },
             "description": "All applications this payment is associated with.\r\nTo retrieve this collection, specify `Applications` in the \"Include\" parameter for your query.",
-            "nullable": true,
-            "readOnly": true
+            "nullable": true
           },
           "notes": {
             "type": "array",
@@ -30311,46 +30236,6 @@
         },
         "additionalProperties": false,
         "description": "A Payment represents money sent from one company to another.  A single payment may contain payments for\r\none or more invoices; it is also possible for payments to be made in advance of an invoice, for example,\r\nas a deposit.  The creator of the Payment is identified by the `CustomerId` field, and the recipient of\r\nthe Payment is identified by the `CompanyId` field.  Most Payments are uniquely identified both by a\r\nLockstep Platform ID number and a customer ERP \"key\" that was generated by the system that originated\r\nthe Payment.  Payments that have not been fully applied have a nonzero `UnappliedAmount` value, which\r\nrepresents a deposit that has been paid and not yet applied to an Invoice."
-      },
-      "PaymentModelErpWriteResult": {
-        "type": "object",
-        "properties": {
-          "appEnrollmentId": {
-            "type": "string",
-            "description": "The id of the connected AppEnrollmentModel",
-            "format": "uuid"
-          },
-          "erpKey": {
-            "type": "string",
-            "description": "The ErpKey for the object written to the Erp if created",
-            "nullable": true
-          },
-          "groupKey": {
-            "type": "string",
-            "description": "The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
-            "format": "uuid"
-          },
-          "message": {
-            "type": "string",
-            "description": "An optional message to return with the result",
-            "nullable": true
-          },
-          "syncRequestId": {
-            "type": "string",
-            "description": "The id of the SyncRequestModel the requests were added to",
-            "format": "uuid"
-          },
-          "results": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentModel"
-            },
-            "description": "Results from the ERP write operation",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Contains results of a write back request"
       },
       "PaymentModelFetchResult": {
         "type": "object",
@@ -31260,7 +31145,7 @@
             "maxLength": 20,
             "minLength": 0,
             "type": "string",
-            "description": "The status of processing for this SyncRequest.  When a SyncRequest is created, it is flagged as `Ready`.\r\nWhen it is picked up for execution, its status moves to `In Progress`.  When it is complete, its status\r\nwill move to `Success` or `Failed`.  If another API call cancels the SyncRequest, its status will move\r\nto `Cancelled`.\r\n            \r\n* Ready\r\n* In Progress\r\n* Cancelled\r\n* Failed\r\n* Success",
+            "description": "The status of processing for this SyncRequest.  When a SyncRequest is created, it is flagged as `Ready`.\r\nWhile it is in queue waiting to be picked up, its status moves to `Connector`.\r\nWhen it is picked up for execution, its status moves to `In Progress`.  When it is complete, its status\r\nwill move to `Success` or `Failed`.  If another API call cancels the SyncRequest, its status will move\r\nto `Cancelled`.\r\n            \r\n* Ready\r\n* Connector\r\n* In Progress\r\n* Cancelled\r\n* Failed\r\n* Success",
             "nullable": true,
             "readOnly": true
           },

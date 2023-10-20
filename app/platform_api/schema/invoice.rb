@@ -78,6 +78,15 @@ end
   # @type: string
   field :invoice_status_code
 
+  # The id of the work flow status associated with this invoice.
+  # @type: string
+  # @format: uuid
+  field :workflow_status_id
+
+  # A description of the current workflow status of this invoice.
+  # @type: string
+  field :workflow_status_notes
+
   # A code identifying the terms given to the purchaser.  This field is imported directly from the originating
   # financial system and does not follow a specified format.
   # @type: string
@@ -226,12 +235,11 @@ end
   # @format: double
   field :base_currency_outstanding_balance_amount
 
-  # Possible statuses for a record that supports ERP write.
-  field :erp_write_status
+  # Possible statuses for a record that supports ERP Update.
+  field :erp_update_status
 
-  # The name of the ErpWriteStatus for this Invoice
-  # @type: string
-  field :erp_write_status_name
+  # Possible actions for a record that supports ERP Update.
+  field :erp_update_action
 
   # The date on which this record was last modified in source ERP.
   # @type: string
@@ -250,6 +258,10 @@ end
   # To retrieve this item, specify `Customer` in the "Include" parameter for your query.
   field :customer_primary_contact
 
+  # Indicates if the invoice an E-Invoice or not
+  # @type: boolean
+  field :is_e_invoice
+
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :customer, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}
@@ -257,6 +269,7 @@ end
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
+  has_many :workflow_statuses, {:class_name=>"Schema::InvoiceWorkflowStatusHistory", :included=>true}
   has_many :addresses, {:class_name=>"Schema::InvoiceAddress", :included=>true}
   has_many :lines, {:class_name=>"Schema::InvoiceLine", :included=>true}
   has_many :payments, {:class_name=>"Schema::InvoicePaymentDetail", :included=>true}

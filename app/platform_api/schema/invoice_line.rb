@@ -133,12 +133,11 @@ end
   # @format: uuid
   field :app_enrollment_id
 
-  # Possible statuses for a record that supports ERP write.
-  field :erp_write_status
+  # Possible statuses for a record that supports ERP Update.
+  field :erp_update_status
 
-  # The name of the ErpWriteStatus for this Invoice
-  # @type: string
-  field :erp_write_status_name
+  # Possible actions for a record that supports ERP Update.
+  field :erp_update_action
 
   # The date on which this record was last modified in source ERP.
   # @type: string

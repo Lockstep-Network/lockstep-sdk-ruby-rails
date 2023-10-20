@@ -17,7 +17,7 @@ end
   # This field indicates the type of company.  It can be one of a limited number of values:
   # Company, Customer, Group, Vendor, or Third Party.  A company that represents both a customer and a vendor
   # is identified as a CustomerVendor.
-  #
+  #             
   # * `Company` - This record represents a company that is part of the organization of the account holder.
   # * `Customer` - This record represents a business entity that purchases things from the account holder.
   # * `Group` - Only one record of type `GROUP` exists in each account.  Contains your account profile.
@@ -30,7 +30,7 @@ end
 
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  #
+  #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid

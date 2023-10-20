@@ -323,6 +323,14 @@ end
   # @format: double
   field :base_currency_outstanding_balance_amount
 
+  # True if the invoice is an E-Invoice
+  # @type: boolean
+  field :is_e_invoice
+
+  # True if the E-Invoice should be sent to gov/other recipients immediately
+  # @type: boolean
+  field :send_immediately
+
 
 
 end

@@ -1,8 +1,9 @@
 class Schema::WorkflowStatus < Lockstep::ApiRecord
-  # ApiRecord will crash unless `id_ref` is defined
-  def self.id_ref
-    nil
-  end
+
+# ApiRecord will crash unless `id_ref` is defined
+def self.id_ref
+  nil
+end
 
   # The unique ID of this record, automatically assigned by Lockstep when this record is
   # added to the Accounting Data Services platform.
@@ -59,7 +60,9 @@ class Schema::WorkflowStatus < Lockstep::ApiRecord
   # @format: uuid
   field :modified_user_id
 
-  belongs_to :parent_workflow_status, { class_name: 'Lockstep::WorkflowStatus', primary_key: :id, foreign_key: 'parent_workflow_status_id' }
-  belongs_to :created_user, { class_name: 'Lockstep::User', primary_key: :user_id, foreign_key: 'created_user_id' }
-  belongs_to :modified_user, { class_name: 'Lockstep::User', primary_key: :user_id, foreign_key: 'modified_user_id' }
+  belongs_to :parent_workflow_status, {:class_name=>"Lockstep::WorkflowStatus", :primary_key=>:id, :foreign_key=>"parent_workflow_status_id"}
+  belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
+  belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
+
+
 end

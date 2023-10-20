@@ -41,12 +41,11 @@ end
   # @type: string
   field :erp_key
 
-  # Possible statuses for a record that supports ERP write.
-  field :erp_write_status
+  # Possible statuses for a record that supports ERP Update.
+  field :erp_update_status
 
-  # The name of the ErpWriteStatus for this payment application
-  # @type: string
-  field :erp_write_status_name
+  # Possible actions for a record that supports ERP Update.
+  field :erp_update_action
 
   # The entry number of this payment application.  This is often a journal entry number, confirmation code,
   # or other identifying field for this payment application.
