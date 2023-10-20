@@ -36,8 +36,8 @@ end
   # @type: string
   field :name
 
-  # The status of the Financial Account. Possible values are active,
-  # inactive, deleted or archived.
+  # The status of the Financial Account. Possible values are Active,
+  # Inactive, Deleted or Archived.
   # @type: string
   field :status
 

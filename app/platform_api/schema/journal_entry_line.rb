@@ -7,7 +7,7 @@ end
 
   # The unique ID of this record, automatically assigned by Lockstep when this record is
   # added to the Lockstep platform.
-  #
+  #             
   # For the ID of this record in its originating financial system, see `ErpKey`.
   # @type: string
   # @format: uuid
@@ -20,7 +20,7 @@ end
 
   # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  #
+  #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid
@@ -35,11 +35,11 @@ end
   field :app_enrollment_id
 
   # The unique ID of this record as it was known in its originating financial system.
-  #
+  #             
   # If this journal entry record was imported from a financial system, it will have the value `ErpKey`
   # set to the original primary key number of the record as it was known in the originating financial
   # system.  If this record was not imported, this value will be `null`.
-  #
+  #             
   # For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
   # @type: string
   field :erp_key
@@ -92,6 +92,10 @@ end
   # A memo related to this line.
   # @type: string
   field :memo
+
+  # Dimensions for this journal entry line.
+  # @type: object
+  field :dimensions
 
   # The date that the journal entry line was created.
   # @type: string

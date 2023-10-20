@@ -50,12 +50,11 @@ end
   # @type: string
   field :erp_key
 
-  # Possible statuses for a record that supports ERP write.
-  field :erp_write_status
+  # Possible statuses for a record that supports ERP Update.
+  field :erp_update_status
 
-  # The name of the ErpWriteStatus for this credit memo application
-  # @type: string
-  field :erp_write_status_name
+  # Possible actions for a record that supports ERP Update.
+  field :erp_update_action
 
   # Reference number for the applied credit memo.
   # @type: integer
