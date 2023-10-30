@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lockstep_rails (0.3.70)
+    lockstep_rails (0.3.72)
       rails
 
 GEM
@@ -121,14 +121,14 @@ GEM
     mini_mime (1.1.5)
     mini_portile2 (2.8.0)
     minitest (5.16.2)
-    net-imap (0.3.7)
+    net-imap (0.4.2)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.1)
       timeout
-    net-smtp (0.3.3)
+    net-smtp (0.4.0)
       net-protocol
     nio4r (2.5.9)
     nokogiri (1.13.7)
