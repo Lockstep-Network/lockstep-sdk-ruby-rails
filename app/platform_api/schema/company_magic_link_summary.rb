@@ -83,7 +83,7 @@ end
   # @format: uuid
   field :latest_magic_link_id
 
-  # Possible statuses for a Magic Link.
+  # Status of the most recent magic link made for this company
   field :latest_magic_link_status
 
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
