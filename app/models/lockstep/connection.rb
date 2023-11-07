@@ -16,6 +16,6 @@ class Lockstep::Connection < Lockstep::ApiRecord
   scope :customers, -> { where(company_type: 'Customer') }
   scope :vendors, -> { where(company_type: 'Vendor') }
   scope :internal_connections, -> { where(company_type: 'Company') }
-  scope :profile_companies, -> { where(company_type: 'CompanyProfile') }
+  scope :company_profiles, -> { where(company_type: 'CompanyProfile') }
   scope :company_type_null, -> { where(company_type: nil) }
 end
