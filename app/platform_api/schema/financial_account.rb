@@ -63,6 +63,10 @@ end
   # @type: string
   field :subcategory
 
+  # The system account type of the Financial Account.
+  # @type: string
+  field :system_account_type
+
   # The date the FinancialAccount was created.
   # @type: string
   # @format: date-time

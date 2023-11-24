@@ -40,6 +40,9 @@ end
   # @type: boolean
   field :promote_to_erp
 
+  # Possible sources for a Workflow Status.
+  field :status_source
+
   # The date that the workflow status was created.
   # @type: string
   # @format: date-time

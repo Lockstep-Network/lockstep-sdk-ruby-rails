@@ -97,6 +97,13 @@ end
   # @type: object
   field :dimensions
 
+  # The source object ERP key for this journal entry line.
+  # @type: string
+  field :source_object_erp_key
+
+  # The ID of the SourceObjectType for this journal entry line.
+  field :source_object_type
+
   # The date that the journal entry line was created.
   # @type: string
   # @format: date-time

@@ -8,6 +8,11 @@ end
   # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
+  # The unique identifier of this object in the Sage Network platform.
+  # @type: string
+  # @format: uuid
+  field :network_id
+
   # This is the primary key of the Credit Memo Application record. For this field, you should use whatever this
   # transaction's unique identifying number is in the originating system. Search for a unique, non-changing
   # number within the originating financial system for this record.
@@ -26,6 +31,11 @@ end
   # credit memo to reduce the balance of the invoice PO1000578.  The `InvoiceErpKey` is `PO1000578`.
   # @type: string
   field :invoice_erp_key
+
+  # The network id of the parent Invoice.
+  # @type: string
+  # @format: uuid
+  field :invoice_network_id
 
   # This field indicates which Invoice is the original credit memo that was used to make this payment
   # application event.  In this field, identify the original primary key or unique ID of the Invoice which

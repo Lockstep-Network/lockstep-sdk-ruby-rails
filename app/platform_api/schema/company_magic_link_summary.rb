@@ -49,8 +49,8 @@ end
   field :point_of_contact
 
   # The total outstanding amount for this company
-  # @type: integer
-  # @format: int32
+  # @type: number
+  # @format: double
   field :outstanding_amount
 
   # The total number of open invoices for this company

@@ -169,6 +169,10 @@ end
   # @format: date-time
   field :source_modified_date, Types::Params::DateTime
 
+  # Additional attributes that may be required by the source system.
+  # @type: object
+  field :erp_system_attributes
+
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}

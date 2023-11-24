@@ -262,6 +262,10 @@ end
   # @type: boolean
   field :is_e_invoice
 
+  # Additional attributes that may be required by the source system.
+  # @type: object
+  field :erp_system_attributes
+
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :customer, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}

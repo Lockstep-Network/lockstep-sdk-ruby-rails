@@ -84,6 +84,9 @@ end
   # @type: object
   field :details
 
+  # Inbound sync payload
+  field :payload
+
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
 
