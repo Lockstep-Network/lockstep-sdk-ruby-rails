@@ -48,6 +48,10 @@ end
   # @type: string
   field :subcategory
 
+  # The system account type of the Financial Account.
+  # @type: string
+  field :system_account_type
+
 
 
 end

@@ -21,6 +21,10 @@ end
   # @format: uuid
   field :workflow_status_id
 
+  # The workflow status name associated with the invoice workflow status history.
+  # @type: string
+  field :workflow_status_name
+
   # The GroupKey uniquely identifies a single Accounting Data Services Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             

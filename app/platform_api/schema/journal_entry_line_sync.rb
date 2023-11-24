@@ -77,6 +77,13 @@ end
   # @type: object
   field :dimensions
 
+  # The source object ERP key for this journal entry line.
+  # @type: string
+  field :source_object_erp_key
+
+  # The ID of the SourceObjectType for this journal entry line.
+  field :source_object_type
+
   # If known, the date when this record was created according to the originating financial system
   # in which this record is maintained.  If the originating financial system does not maintain a
   # created-date, leave this field null.

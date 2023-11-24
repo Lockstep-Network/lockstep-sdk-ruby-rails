@@ -104,6 +104,10 @@ end
   # @format: date-time
   field :source_modified_date, Types::Params::DateTime
 
+  # Additional attributes that may be required by the source system.
+  # @type: object
+  field :erp_system_attributes
+
   # The credit memo invoice associated with this applied credit memo
   field :credit_memo_invoice
 

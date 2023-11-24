@@ -102,6 +102,10 @@ end
   # The invoice associated with this applied payment.
   field :invoice
 
+  # Additional attributes that may be required by the source system.
+  # @type: object
+  field :erp_system_attributes
+
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
