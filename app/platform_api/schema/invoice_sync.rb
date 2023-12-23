@@ -294,6 +294,14 @@ end
   # @type: boolean
   field :in_dispute
 
+  # Is the invoice a draft? If not specified, we assume the invoice is not a draft.
+  # @type: boolean
+  field :is_draft
+
+  # Is the invoice on hold? If not specified, we assume the invoice is not on hold.
+  # @type: boolean
+  field :on_hold
+
   # Indicates the preferred delivery method for this invoice. Examples include Print, Email, Fax
   # @type: string
   field :preferred_delivery_method
@@ -330,6 +338,11 @@ end
   # True if the E-Invoice should be sent to gov/other recipients immediately
   # @type: boolean
   field :send_immediately
+
+  # Workflow status of the invoice.
+  # @type: string
+  # @format: uuid
+  field :workflow_status_id
 
 
 

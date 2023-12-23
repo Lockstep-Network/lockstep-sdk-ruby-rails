@@ -42,6 +42,10 @@ end
   # @type: string
   field :line_number
 
+  # The account number this line is associated with in the originating ERP or accounting system.
+  # @type: string
+  field :account_number
+
   # A code number identifying the product or service that is specified on this line.
   # @type: string
   field :product_code

@@ -202,6 +202,14 @@ end
   # @type: boolean
   field :in_dispute
 
+  # Is the invoice a draft?
+  # @type: boolean
+  field :is_draft
+
+  # Is the invoice on hold?
+  # @type: boolean
+  field :on_hold
+
   # Should the invoice be excluded from aging calculations?
   # @type: boolean
   field :exclude_from_aging

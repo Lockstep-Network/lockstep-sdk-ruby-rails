@@ -93,7 +93,7 @@ end
   # @type: boolean
   field :is_active
 
-  # A webpage URL for more information about this contact.
+  # A web page URL for more information about this contact.
   # @type: string
   field :webpage_url
 

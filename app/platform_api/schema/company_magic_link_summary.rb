@@ -86,6 +86,11 @@ end
   # Status of the most recent magic link made for this company
   field :latest_magic_link_status
 
+  # Expiration date of the most recent magic link made for this company
+  # @type: string
+  # @format: date-time
+  field :latest_magic_link_expiration_date, Types::Params::DateTime
+
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
 
