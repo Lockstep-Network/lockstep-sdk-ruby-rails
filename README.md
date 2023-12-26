@@ -61,6 +61,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 - Lockstep::InvoiceAtRiskSummary
 - Lockstep::InvoiceSummary
 - Lockstep::MagicLink
+- Lockstep::MagicLinkSummary
 - Lockstep::Note
 - Lockstep::Payments
 - Lockstep::PaymentApplied
