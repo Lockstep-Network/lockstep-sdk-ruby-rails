@@ -5,6 +5,12 @@ class Lockstep::MagicLinkSummary < Lockstep::ApiRecord
   load_schema(Schema::MagicLinkSummary)
 
   def self.with_date(from_date: nil, to_date: nil)
-  	additional_query_params({"from": from_date, "to": to_date})
+  	resp = resource.get('', params: { from: from_date, to: to_date })
+    raise Lockstep::Exceptions::BadRequestError, 'Endpoint not found' if resp.code == '404'
+    raise StandardError.new("#{resp.code} error while fetching: #{resp.body}") unless %w(201 200 204).include?(resp.code.to_s)
+
+    summary = JSON.parse(resp.body)
+
+    summary.deep_transform_keys!(&:underscore).deep_symbolize_keys!
   end
 end
