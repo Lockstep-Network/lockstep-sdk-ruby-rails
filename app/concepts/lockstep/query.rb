@@ -337,8 +337,7 @@ class Lockstep::Query
   end
 
   def count
-    criteria[:count] = true
-    execute
+    with_clone { criteria[:count] = true }.execute
   end
 
   # Find a Lockstep::ApiRecord object by ID
