@@ -112,6 +112,10 @@ end
   # @format: uuid
   field :transaction_customer_id
 
+  # The name of the customer associated with this transaction
+  # @type: string
+  field :transaction_customer_name
+
 
 
 end

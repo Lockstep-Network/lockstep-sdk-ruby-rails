@@ -51,6 +51,22 @@ end
   # @format: int32
   field :server_port
 
+  # The Client Id for the connection being created.
+  # @type: string
+  field :client_id
+
+  # The Secret for the connection being created.
+  # @type: string
+  field :client_secret
+
+  # The TenantId for the connection being created.
+  # @type: string
+  field :tenant
+
+  # The AuthToken for the connection being created.
+  # @type: string
+  field :auth_token
+
 
 
 end

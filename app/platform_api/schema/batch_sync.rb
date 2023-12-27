@@ -14,6 +14,21 @@ end
   # @type: boolean
   field :is_full_sync
 
+  # The optional current batch number for this batch sync.
+  # @type: integer
+  # @format: int32
+  field :current_batch
+
+  # The optional total number of batchs for this batch sync.
+  # @type: integer
+  # @format: int32
+  field :total_batches
+
+  # The optional existing parent sync request id for the batch sync.
+  # @type: string
+  # @format: uuid
+  field :parent_sync_request_id
+
 
   has_many :companies, {:class_name=>"Schema::CompanySync", :included=>true}
   has_many :contacts, {:class_name=>"Schema::ContactSync", :included=>true}

@@ -79,6 +79,9 @@ end
   # @type: string
   field :company_logo_url
 
+  # The scan status of the company's logo, if it exists
+  field :company_logo_status
+
   # The Lockstep `ContactId` of the primary contact for this company.
   # @type: string
   # @format: uuid

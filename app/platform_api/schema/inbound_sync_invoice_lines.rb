@@ -42,7 +42,7 @@ end
   # @type: string
   field :product_code
 
-  # The quantity of items for ths line.
+  # The quantity of items for this line.
   # @type: number
   # @format: double
   field :quantity

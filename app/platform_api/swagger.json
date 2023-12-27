@@ -3610,7 +3610,7 @@
           "Companies"
         ],
         "summary": "Set Company Logo",
-        "description": "Sets the logo for specified company. The logo will be stored in the Lockstep Platform and will be **publicly accessible**.\r\n\r\n.jpg, .jpeg, .png, and .webp are supported. 2MB maximum. If no logo is uploaded, the existing logo will be deleted.\r\n\r\nA Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.\r\n\r\nOptional view box meta data for the provided logo may be supplied using the following query parameters. Please note that you must supply either all of the values or none of the values. <ul><li>min_x</li><li>min_y</li><li>width</li><li>height</li></ul>\r\n\r\nSee [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Sets the logo for specified company. The logo will be stored in the Lockstep Platform and will be **publicly accessible**.\r\n\r\n.jpg, .jpeg, .png, and .webp are supported. 2MB maximum. If no logo is uploaded, the existing logo will be deleted. JFIF and EXIF are not supported. If you upload a JPEG and get an error, verify the file is not one of these formats.\r\n\r\nA Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.\r\n\r\nOptional view box meta data for the provided logo may be supplied using the following query parameters. Please note that you must supply either all of the values or none of the values. <ul><li>min_x</li><li>min_y</li><li>width</li><li>height</li></ul>\r\n\r\nSee [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_Companies_SetCompanyLogo",
         "parameters": [
           {
@@ -16092,6 +16092,35 @@
             }
           },
           {
+            "name": "parentSyncRequestId",
+            "in": "query",
+            "description": "The optional existing sync request id to associate with the batch data in the zip file.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "currentBatch",
+            "in": "query",
+            "description": "The optional current batch no associate with the batch data in the zip file.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "totalBatches",
+            "in": "query",
+            "description": "The optional total batches to associate with the total batch data in the zip file.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
             "name": "isFullSync",
             "in": "query",
             "description": "True if this is a full sync, false if this is a partial sync. Defaults to false.",
@@ -21599,6 +21628,42 @@
         },
         "additionalProperties": false
       },
+      "AttachmentErpUpdateModel": {
+        "required": [
+          "attachmentType",
+          "fileExt",
+          "fileName",
+          "invoiceNetworkId",
+          "networkId"
+        ],
+        "type": "object",
+        "properties": {
+          "networkId": {
+            "type": "string",
+            "description": "The unique ID of the attachment in the SN Platform.",
+            "format": "uuid"
+          },
+          "invoiceNetworkId": {
+            "type": "string",
+            "description": "The unique ID of the invoice in the SN Platform.",
+            "format": "uuid"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "The file name of this attachment."
+          },
+          "fileExt": {
+            "type": "string",
+            "description": "The file extension of this attachment."
+          },
+          "attachmentType": {
+            "type": "string",
+            "description": "A label indicating the type of the attachment"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains attachment meta data for ERP Update objects."
+      },
       "AttachmentLinkModel": {
         "type": "object",
         "properties": {
@@ -21813,6 +21878,26 @@
             "type": "boolean",
             "description": "True if this is a full sync, false if this is a partial sync. Defaults to false.",
             "default": false
+          },
+          "currentBatch": {
+            "type": "integer",
+            "description": "The optional current batch number for this batch sync.",
+            "format": "int32",
+            "default": 1,
+            "nullable": true
+          },
+          "totalBatches": {
+            "type": "integer",
+            "description": "The optional total number of batchs for this batch sync.",
+            "format": "int32",
+            "default": 1,
+            "nullable": true
+          },
+          "parentSyncRequestId": {
+            "type": "string",
+            "description": "The optional existing parent sync request id for the batch sync.",
+            "format": "uuid",
+            "nullable": true
           },
           "companies": {
             "type": "array",
@@ -22340,6 +22425,12 @@
             ],
             "description": "Status of the most recent magic link made for this company",
             "nullable": true
+          },
+          "latestMagicLinkExpirationDate": {
+            "type": "string",
+            "description": "Expiration date of the most recent magic link made for this company",
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -22438,8 +22529,16 @@
             "minLength": 0,
             "type": "string",
             "description": "The URL of this company's logo, if known.",
-            "nullable": true,
-            "readOnly": true
+            "nullable": true
+          },
+          "companyLogoStatus": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ScanStatus"
+              }
+            ],
+            "description": "The scan status of the company's logo, if it exists",
+            "nullable": true
           },
           "primaryContactId": {
             "type": "string",
@@ -23042,6 +23141,30 @@
             "type": "integer",
             "description": "The port number of the server a connection is being created for.",
             "format": "int32",
+            "default": null,
+            "nullable": true
+          },
+          "clientId": {
+            "type": "string",
+            "description": "The Client Id for the connection being created.",
+            "default": null,
+            "nullable": true
+          },
+          "clientSecret": {
+            "type": "string",
+            "description": "The Secret for the connection being created.",
+            "default": null,
+            "nullable": true
+          },
+          "tenant": {
+            "type": "string",
+            "description": "The TenantId for the connection being created.",
+            "default": null,
+            "nullable": true
+          },
+          "authToken": {
+            "type": "string",
+            "description": "The AuthToken for the connection being created.",
             "default": null,
             "nullable": true
           }
@@ -24569,33 +24692,6 @@
         "additionalProperties": false,
         "description": "Model containing information to create a new developer account."
       },
-      "EInvoiceAttachmentModel": {
-        "type": "object",
-        "properties": {
-          "attachmentId": {
-            "type": "string",
-            "description": "The unique ID of this record, automatically assigned by Lockstep when this record is added to the platform.",
-            "nullable": true
-          },
-          "fileName": {
-            "type": "string",
-            "description": "An Attachment represents a file that was uploaded to the Platform.This field contains the original name of the file on disk, without its extension.",
-            "nullable": true
-          },
-          "fileExt": {
-            "type": "string",
-            "description": "An Attachment represents a file that was uploaded to the Platform.  This field contains the original extension name of the file on disk.",
-            "nullable": true
-          },
-          "attachmentType": {
-            "type": "string",
-            "description": "A text string describing the type of this Attachment.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "File Data model is child model for Invoice and InvoiceInboundSync model represents file name and file path.\r\nThis model is use for EInvoice request.\r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
-      },
       "EmailReplyGeneratorRequest": {
         "required": [
           "body",
@@ -25864,12 +25960,11 @@
             "description": "This flag Indicates if this invoice is E-invoice.\r\nWhen True, all fields other than erpKey, companyERPKey, and customerERPKey become optional.\r\nModel most also contain at least one e-invoice file type."
           },
           "attachments": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EInvoiceAttachmentModel"
-              }
-            ],
-            "description": "File Data model is child model for Invoice and InvoiceInboundSync model represents file name and file path.\r\nThis model is use for EInvoice request.\r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachmentErpUpdateModel"
+            },
+            "description": "Attachment data associated with this request.",
             "nullable": true
           },
           "customerNetworkId": {
@@ -25903,7 +25998,7 @@
           },
           "isDraft": {
             "type": "boolean",
-            "description": "Flags if this invoice request isto be posted as a draft"
+            "description": "Flags if this invoice request is to be posted as a draft"
           },
           "departmentErpKey": {
             "type": "string",
@@ -26236,7 +26331,7 @@
           },
           "quantity": {
             "type": "number",
-            "description": "The quantity of items for ths line.",
+            "description": "The quantity of items for this line.",
             "format": "double",
             "nullable": true
           },
@@ -26356,7 +26451,7 @@
           },
           "webpageUrl": {
             "type": "string",
-            "description": "A webpage URL for more information about this contact.",
+            "description": "A web page URL for more information about this contact.",
             "nullable": true
           },
           "pictureUrl": {
@@ -26714,6 +26809,11 @@
             "description": "The line number of this line, as defined in the originating ERP or accounting system.  You can sort on this number to\r\nget the original view of lines within the invoice.",
             "nullable": true
           },
+          "accountNumber": {
+            "type": "string",
+            "description": "The account number this line is associated with in the originating ERP or accounting system.",
+            "nullable": true
+          },
           "productCode": {
             "maxLength": 100,
             "type": "string",
@@ -26944,6 +27044,11 @@
           "lineNumber": {
             "type": "string",
             "description": "The line number of this line, as defined in the originating ERP or accounting system.  You can sort on this number to\r\nget the original view of lines within the invoice."
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "The account number this line is associated with in the originating ERP or accounting system.",
+            "nullable": true
           },
           "productCode": {
             "type": "string",
@@ -27371,6 +27476,14 @@
           "inDispute": {
             "type": "boolean",
             "description": "Is the invoice in dispute?"
+          },
+          "isDraft": {
+            "type": "boolean",
+            "description": "Is the invoice a draft?"
+          },
+          "onHold": {
+            "type": "boolean",
+            "description": "Is the invoice on hold?"
           },
           "excludeFromAging": {
             "type": "boolean",
@@ -28204,6 +28317,16 @@
             "description": "Is the invoice in dispute? If not specified, we assume the invoice is not in dispute.",
             "nullable": true
           },
+          "isDraft": {
+            "type": "boolean",
+            "description": "Is the invoice a draft? If not specified, we assume the invoice is not a draft.",
+            "nullable": true
+          },
+          "onHold": {
+            "type": "boolean",
+            "description": "Is the invoice on hold? If not specified, we assume the invoice is not on hold.",
+            "nullable": true
+          },
           "preferredDeliveryMethod": {
             "type": "string",
             "description": "Indicates the preferred delivery method for this invoice. Examples include Print, Email, Fax",
@@ -28246,6 +28369,12 @@
           "sendImmediately": {
             "type": "boolean",
             "description": "True if the E-Invoice should be sent to gov/other recipients immediately",
+            "nullable": true
+          },
+          "workflowStatusId": {
+            "type": "string",
+            "description": "Workflow status of the invoice.",
+            "format": "uuid",
             "nullable": true
           }
         },
@@ -30586,6 +30715,16 @@
         "description": "The different depths of describing an account. See the Financial Account Model for possible values for each depth\r\nEnum values are:\r\n            \r\n0 - the classification of the account\r\n1 - the category of the account\r\n2 - the subcategory of the account\r\n3 - the account",
         "format": "int32"
       },
+      "ScanStatus": {
+        "enum": [
+          "Upload Pending",
+          "Uploaded",
+          "Upload Failed"
+        ],
+        "type": "string",
+        "description": "The different statuses of an attachment being scanned for viruses.",
+        "format": ""
+      },
       "Source": {
         "type": "object",
         "properties": {
@@ -31065,6 +31204,27 @@
             ],
             "description": "Inbound sync payload",
             "nullable": true
+          },
+          "parentSyncRequestId": {
+            "type": "string",
+            "description": "The ParentSyncRequestId for this batch zip sync request",
+            "format": "uuid",
+            "nullable": true,
+            "readOnly": true
+          },
+          "currentBatch": {
+            "type": "integer",
+            "description": "The CurrentBatch of this batch zip sync request",
+            "format": "int32",
+            "nullable": true,
+            "readOnly": true
+          },
+          "totalBatches": {
+            "type": "integer",
+            "description": "The TotalBatches of this batch zip sync request",
+            "format": "int32",
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false,
@@ -31307,6 +31467,11 @@
             "type": "string",
             "description": "The customer associated with this transaction",
             "format": "uuid"
+          },
+          "transactionCustomerName": {
+            "type": "string",
+            "description": "The name of the customer associated with this transaction",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -32829,9 +32994,9 @@
         "description": "Azure B2C OAuth Authentication",
         "flows": {
           "implicit": {
-            "authorizationUrl": "https://login.sbx.lockstep.io/login.sbx.lockstep.io/B2C_1A_PLATFORMSIGNUP_SIGNIN/oauth2/v2.0/authorize",
+            "authorizationUrl": "https://login.eu.sbx.lockstep.io/login.eu.sbx.lockstep.io/B2C_1A_PLATFORMSIGNUP_SIGNIN/oauth2/v2.0/authorize",
             "scopes": {
-              "https://login.sbx.lockstep.io/platform-api/api.call": "Call the Platform API"
+              "https://login.eu.sbx.lockstep.io/platform-api/api.call": "Call the Platform API"
             }
           }
         }

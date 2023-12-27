@@ -34,11 +34,6 @@ end
   # @type: boolean
   field :is_e_invoice
 
-  # File Data model is child model for Invoice and InvoiceInboundSync model represents file name and file path.
-  # This model is use for EInvoice request.
-  # For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
-  field :attachments
-
   # The network id of the related Company.
   # @type: string
   # @format: uuid
@@ -63,7 +58,7 @@ end
   # @format: date-time
   field :created, Types::Params::DateTime
 
-  # Flags if this invoice request isto be posted as a draft
+  # Flags if this invoice request is to be posted as a draft
   # @type: boolean
   field :is_draft
 
@@ -142,6 +137,7 @@ end
   field :send_immediately
 
 
+  has_many :attachments, {:class_name=>"Schema::AttachmentErpUpdate", :included=>true}
   has_many :lines, {:class_name=>"Schema::InboundSyncInvoiceLines", :included=>true}
 
 end

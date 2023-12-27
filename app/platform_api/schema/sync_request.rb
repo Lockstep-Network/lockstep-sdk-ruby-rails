@@ -87,6 +87,21 @@ end
   # Inbound sync payload
   field :payload
 
+  # The ParentSyncRequestId for this batch zip sync request
+  # @type: string
+  # @format: uuid
+  field :parent_sync_request_id
+
+  # The CurrentBatch of this batch zip sync request
+  # @type: integer
+  # @format: int32
+  field :current_batch
+
+  # The TotalBatches of this batch zip sync request
+  # @type: integer
+  # @format: int32
+  field :total_batches
+
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
 
