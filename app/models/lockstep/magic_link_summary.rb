@@ -7,7 +7,7 @@ class Lockstep::MagicLinkSummary < Lockstep::ApiRecord
   def self.with_date(from_date: nil, to_date: nil)
   	resp = resource.get('', params: { from: from_date, to: to_date })
     raise Lockstep::Exceptions::BadRequestError, 'Endpoint not found' if resp.code == '404'
-    raise StandardError.new("#{resp.code} error while fetching: #{resp.body}") unless %w(201 200 204).include?(resp.code.to_s)
+    raise Lockstep::Exceptions::ApiResponseError.new("#{resp.code} error while fetching: #{resp.body}") unless %w(201 200).include?(resp.code.to_s)
 
     summary = JSON.parse(resp.body)
 
