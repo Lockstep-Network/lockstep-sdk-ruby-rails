@@ -37,6 +37,20 @@ module Lockstep
       RequestStore.store[:internal_service_key]
     end
 
+    def self.set_x_group_key(x_group_key)
+      RequestStore.store[:lockstep_x_group_key] = x_group_key
+      true
+    end
+
+    def self.x_group_key
+      RequestStore.store[:lockstep_x_group_key]
+    end
+
+    def self.set_m2m_token(token)
+      # this method can be ommitted and we can use directly `set_bearer_token`
+      set_bearer_token(token)
+    end
+
     ##
     # Construct a new Lockstep API client targeting the specified server.
     #
@@ -79,6 +93,10 @@ module Lockstep
 
     def api_key
       self.class.api_key
+    end
+
+    def x_group_key
+      self.class.x_group_key
     end
 
     ##
@@ -137,6 +155,10 @@ module Lockstep
       end
       if bearer_token != nil
         request["Authorization"] = 'Bearer ' + bearer_token
+      end
+
+      if x_group_key != nil
+        request["X-Group-Key"] = x_group_key
       end
 
       # Send the request
