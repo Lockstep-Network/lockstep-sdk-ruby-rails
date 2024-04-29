@@ -9,4 +9,9 @@ class Lockstep::Attachment < Lockstep::ApiRecord
     response = resource.get "#{id}/download-url"
     JSON.parse(response.body)['downloadLink']
   end
+
+  def download_file
+    response = resource.get "#{id}/download-file"
+    response.body
+  end
 end
