@@ -19,4 +19,9 @@ class Lockstep::Payment < Lockstep::ApiRecord
       result = post_result(resp)
     end
   end
+
+  def download_pdf
+    response = resource.get "#{id}/pdf"
+    response.body
+  end
 end

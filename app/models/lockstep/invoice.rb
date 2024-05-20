@@ -11,4 +11,9 @@ class Lockstep::Invoice < Lockstep::ApiRecord
   scope :einvoices, -> { where(is_e_invoice: true).include_object(:customer, :lines, :attachments) }
   scope :received_einvoices, -> { einvoices.where(invoice_type_code: 'AP Invoice') }
   scope :sent_einvoices, -> { einvoices.where(invoice_type_code: 'AR Invoice') }
+
+  def download_pdf
+    response = resource.get "#{id}/pdf"
+    response.body
+  end
 end
