@@ -116,6 +116,17 @@ end
   # @type: string
   field :transaction_customer_name
 
+  # Specific payment transactions have a status with Service Fabric.
+  #             
+  # Recognized values are:
+  # * PENDING
+  # * PAID
+  # * PAID_OFFLINE
+  # * PARTIALLY
+  # * PARTIALLY_REFUNDED
+  # @type: string
+  field :service_fabric_status
+
 
 
 end

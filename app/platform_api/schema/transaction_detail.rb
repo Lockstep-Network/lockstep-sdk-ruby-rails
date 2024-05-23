@@ -91,6 +91,17 @@ end
   # @type: boolean
   field :supports_erp_pdf_retrieval
 
+  # Specific payment transactions have a status with Service Fabric.
+  #             
+  # Recognized values are:
+  # * PENDING
+  # * PAID
+  # * PAID_OFFLINE
+  # * PARTIALLY
+  # * PARTIALLY_REFUNDED
+  # @type: string
+  field :service_fabric_status
+
 
 
 end

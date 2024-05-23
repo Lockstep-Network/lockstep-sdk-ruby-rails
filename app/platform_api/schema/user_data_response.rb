@@ -9,7 +9,7 @@ end
   # @type: object
   field :data
 
-  # The Lockstep Platform ID of the user
+  # The ADS Platform ID of the user
   # @type: string
   # @format: uuid
   field :user_id

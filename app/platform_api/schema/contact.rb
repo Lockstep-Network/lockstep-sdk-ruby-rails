@@ -5,8 +5,8 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by Lockstep when this record is
-  # added to the Lockstep platform.
+  # The unique ID of this record, automatically assigned by ADS when this record is
+  # added to the ADS Platform.
   #             
   # For the ID of this record in its originating financial system, see `ErpKey`.
   # @type: string
@@ -18,7 +18,7 @@ end
   # @format: uuid
   field :company_id
 
-  # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -76,6 +76,10 @@ end
   # The third line of the address.
   # @type: string
   field :address3
+
+  # The fourth line of the address.
+  # @type: string
+  field :address4
 
   # The city of the address.
   # @type: string

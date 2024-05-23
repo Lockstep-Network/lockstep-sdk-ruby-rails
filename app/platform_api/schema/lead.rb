@@ -5,8 +5,8 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by Lockstep when this record is
-  # added to the Lockstep platform.
+  # The unique ID of this record, automatically assigned by ADS when this record is
+  # added to the ADS Platform.
   # @type: string
   # @format: uuid
   field :lead_id

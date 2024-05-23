@@ -28,7 +28,7 @@ end
   # @type: string
   field :company_type
 
-  # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -52,6 +52,11 @@ end
   # @type: number
   # @format: double
   field :outstanding_amount
+
+  # The total amount past due for this company
+  # @type: number
+  # @format: double
+  field :amount_past_due
 
   # The total number of open invoices for this company
   # @type: integer
@@ -90,6 +95,25 @@ end
   # @type: string
   # @format: date-time
   field :latest_magic_link_expiration_date, Types::Params::DateTime
+
+  # The currency code associated with this company based on the related invoices and payments.
+  # `Multi` - Multiple currency codes are present.
+  # @type: string
+  field :currency_code
+
+  # The invite status of this company
+  # @type: string
+  field :invite_status
+
+  # The UTC date and time the invite status was last modified
+  # @type: string
+  # @format: date-time
+  field :invite_status_modified, Types::Params::DateTime
+
+  # The user id of the user who last modified the invite status
+  # @type: string
+  # @format: uuid
+  field :invite_status_modified_user_id
 
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}

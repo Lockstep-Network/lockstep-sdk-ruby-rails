@@ -35,7 +35,7 @@ end
   # `Customer`, `Group`, `Vendor`, or `Third Party`. A company that represents both a customer and a vendor is
   # identified as a `CustomerVendor`.
   #             
-  # When loading data into Lockstep, you should focus on the distinction between a company that is part of
+  # When loading data into ADS, you should focus on the distinction between a company that is part of
   # your own enterprise, or a company that is external to your enterprise.
   #             
   # For a company that is within your enterprise, you should set this value to be `Company`.
@@ -94,6 +94,10 @@ end
   # The company's primary mailing address information
   # @type: string
   field :address3
+
+  # The company's primary mailing address information
+  # @type: string
+  field :address4
 
   # The company's primary mailing address information
   # @type: string

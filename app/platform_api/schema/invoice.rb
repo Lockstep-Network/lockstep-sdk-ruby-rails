@@ -5,7 +5,7 @@ def self.id_ref
   nil
 end
 
-  # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -13,8 +13,8 @@ end
   # @format: uuid
   field :group_key
 
-  # The unique ID of this record, automatically assigned by Lockstep when this record is
-  # added to the Lockstep platform.
+  # The unique ID of this record, automatically assigned by ADS when this record is
+  # added to the ADS Platform.
   #             
   # For the ID of this record in its originating financial system, see `ErpKey`.
   # @type: string
@@ -280,7 +280,6 @@ end
   belongs_to :connection, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
-  belongs_to :customer_primary_contact, {:class_name=>"Lockstep::Contact", :included=>true}
 
   has_many :workflow_statuses, {:class_name=>"Schema::InvoiceWorkflowStatusHistory", :included=>true}
   has_many :addresses, {:class_name=>"Schema::InvoiceAddress", :included=>true}
