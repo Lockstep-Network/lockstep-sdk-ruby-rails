@@ -280,7 +280,6 @@ end
   belongs_to :connection, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
-  belongs_to :customer_primary_contact, {:class_name=>"Lockstep::Contact", :included=>true}
 
   has_many :workflow_statuses, {:class_name=>"Schema::InvoiceWorkflowStatusHistory", :included=>true}
   has_many :addresses, {:class_name=>"Schema::InvoiceAddress", :included=>true}
