@@ -5,13 +5,13 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by Lockstep when this record is
-  # added to the Lockstep platform.
+  # The unique ID of this record, automatically assigned by ADS when this record is
+  # added to the ADS Platform.
   # @type: string
   # @format: uuid
   field :attachment_id
 
-  # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -19,22 +19,22 @@ end
   # @format: uuid
   field :group_key
 
-  # An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+  # An Attachment is connected to an existing item within the ADS Platform by the fields `TableKey` and
   # `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
   # `Invoice` and an `ObjectKey` value of `12345`.
   #             
-  # The `TableKey` value contains the name of the table within the Lockstep Platform to which this Attachment
+  # The `TableKey` value contains the name of the table within the ADS Platform to which this Attachment
   # is connected.
   #             
   # For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
   # @type: string
   field :table_key
 
-  # An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+  # An Attachment is connected to an existing item within the ADS Platform by the fields `TableKey` and
   # `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
   # `Invoice` and an `ObjectKey` value of `12345`.
   #             
-  # The `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this
+  # The `ObjectKey` value contains the primary key of the record within the ADS Platform to which this
   # Attachment is connected.
   #             
   # For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
@@ -42,12 +42,12 @@ end
   # @format: uuid
   field :object_key
 
-  # An Attachment represents a file that was uploaded to the Lockstep Platform.  This field contains the original
+  # An Attachment represents a file that was uploaded to the ADS Platform.  This field contains the original
   # name of the file on disk, without its extension.
   # @type: string
   field :file_name
 
-  # An Attachment represents a file that was uploaded to the Lockstep Platform.  This field contains the original
+  # An Attachment represents a file that was uploaded to the ADS Platform.  This field contains the original
   # extension name of the file on disk.
   # @type: string
   field :file_ext

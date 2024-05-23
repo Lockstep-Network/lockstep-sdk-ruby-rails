@@ -26,5 +26,6 @@ end
 
   has_many :records, {:class_name=>"Schema::PaymentSummary", :included=>true}
   has_many :aging_summary, {:class_name=>"Schema::SummaryAgingTotals", :included=>true}
+  has_many :currency_summaries, {:class_name=>"Schema::TransactionCurrencySummary", :included=>true}
 
 end

@@ -5,8 +5,8 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by Lockstep when this record is
-  # added to the Lockstep platform.
+  # The unique ID of this record, automatically assigned by ADS when this record is
+  # added to the ADS Platform.
   # @type: string
   # @format: uuid
   field :accounting_profile_id
@@ -16,7 +16,7 @@ end
   # @format: uuid
   field :company_id
 
-  # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).

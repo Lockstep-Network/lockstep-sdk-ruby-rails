@@ -5,13 +5,13 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by Lockstep when this record is
-  # added to the Lockstep platform.
+  # The unique ID of this record, automatically assigned by ADS Platform when this record is
+  # added to the ADS Platform.
   # @type: string
   # @format: uuid
   field :sync_request_id
 
-  # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -83,9 +83,6 @@ end
   # Query requests.
   # @type: object
   field :details
-
-  # Inbound sync payload
-  field :payload
 
   # The ParentSyncRequestId for this batch zip sync request
   # @type: string

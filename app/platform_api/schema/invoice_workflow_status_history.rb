@@ -5,7 +5,7 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by Lockstep when this record is
+  # The unique ID of this record, automatically assigned by ADS Platform when this record is
   # added to the Accounting Data Services platform.
   # @type: string
   # @format: uuid

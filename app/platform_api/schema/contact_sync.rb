@@ -83,6 +83,10 @@ end
 
   # The mailing address information for this contact.
   # @type: string
+  field :address4
+
+  # The mailing address information for this contact.
+  # @type: string
   field :city
 
   # The mailing address information for this contact.

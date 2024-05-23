@@ -5,8 +5,8 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by Lockstep when this record is
-  # added to the Lockstep platform.
+  # The unique ID of this record, automatically assigned by ADS Platform when this record is
+  # added to the ADS Platform.
   # @type: string
   # @format: uuid
   field :webhook_rule_id
@@ -16,7 +16,7 @@ end
   # @format: uuid
   field :webhook_id
 
-  # The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -28,7 +28,7 @@ end
   # For example, a Webhook setup for when an Invoice is Created would have a `TableKey` value of
   # `Invoice` and an `EventType` value of `I` (Insert).
   #             
-  # The `TableKey` value contains the name of the table within the Lockstep Platform to which this metadata
+  # The `TableKey` value contains the name of the table within the ADS Platform to which this metadata
   # is connected.
   #             
   # For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).

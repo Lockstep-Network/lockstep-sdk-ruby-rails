@@ -5,7 +5,7 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by Lockstep when this record is
+  # The unique ID of this record, automatically assigned by ADS Platform when this record is
   # added to the Accounting Data Services platform.
   # @type: string
   # @format: uuid
@@ -67,5 +67,6 @@ end
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
+  has_many :children, {:class_name=>"Schema::WorkflowStatus", :included=>true}
 
 end
