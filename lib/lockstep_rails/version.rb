@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module LockstepRails
-  VERSION = '0.3.84'
+  VERSION = '0.3.85'
 end
