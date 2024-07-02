@@ -171,6 +171,10 @@ end
   # @type: string
   field :company_registration_number
 
+  # The set of identifiers for the Company.
+  # @type: string
+  field :company_identifiers
+
 
 
 end

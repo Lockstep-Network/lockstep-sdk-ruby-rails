@@ -266,6 +266,10 @@ end
   # To retrieve this item, specify `Customer` in the "Include" parameter for your query.
   field :customer_primary_contact
 
+  # Optional field to indicate if the invoice has a PDF attached to it.
+  # @type: boolean
+  field :has_pdf
+
   # Indicates if the invoice an E-Invoice or not
   # @type: boolean
   field :is_e_invoice

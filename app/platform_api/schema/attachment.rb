@@ -89,11 +89,28 @@ end
   # @format: uuid
   field :created_user_id
 
+  # The date the attachment was modified.
+  # @type: string
+  # @format: date-time
+  field :modified, Types::Params::DateTime
+
+  # The unique ID of the [UserAccount](https://developer.lockstep.io/docs/useraccountmodel) of the user
+  # who modified this Attachment.
+  # @type: string
+  # @format: uuid
+  field :modified_user_id
+
   # A text string describing the type of this Attachment.
   # @type: string
   field :attachment_type
 
+  # The different statuses of an attachment being scanned for viruses.
+  # @type: string
+  # @format: 
+  field :upload_status
+
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
+  belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
 
 end

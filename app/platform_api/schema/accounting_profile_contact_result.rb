@@ -65,6 +65,10 @@ end
   # @type: string
   field :fax
 
+  # The IETF language tag for the contact's locale.
+  # @type: string
+  field :locale
+
   # The first line of the address.
   # @type: string
   field :address1
