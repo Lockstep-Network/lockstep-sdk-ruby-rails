@@ -344,6 +344,14 @@ end
   # @format: uuid
   field :workflow_status_id
 
+  # Notes associated to workflow status
+  # @type: string
+  field :workflow_status_notes
+
+  # Workflow status code dictated by government standards
+  # @type: string
+  field :workflow_status_code
+
 
 
 end

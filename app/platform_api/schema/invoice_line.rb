@@ -84,6 +84,16 @@ end
   # @format: double
   field :total_amount
 
+  # The amount of sales tax for this line in the transaction's currency.
+  # @type: number
+  # @format: double
+  field :sales_tax_amount
+
+  # The amount of sales tax for this line in the base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_sales_tax_amount
+
   # If this line is tax exempt, this code indicates the reason for the exemption.
   # @type: string
   field :exemption_code
