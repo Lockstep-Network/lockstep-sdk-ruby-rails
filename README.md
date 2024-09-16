@@ -54,6 +54,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 - Lockstep::Attachment
 - Lockstep::Connection
 - Lockstep::Contact
+- Lockstep::CustomFieldValue
 - Lockstep::CustomerSummary
 - Lockstep::CompanyMagicLinkSummary
 - Lockstep::FeatureFlag
