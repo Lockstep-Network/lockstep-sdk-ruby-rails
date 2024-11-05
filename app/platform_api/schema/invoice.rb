@@ -7,7 +7,7 @@ end
 
   # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  #
+  #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid
@@ -15,7 +15,7 @@ end
 
   # The unique ID of this record, automatically assigned by ADS when this record is
   # added to the ADS Platform.
-  #
+  #             
   # For the ID of this record in its originating financial system, see `ErpKey`.
   # @type: string
   # @format: uuid
@@ -31,12 +31,16 @@ end
   # @format: uuid
   field :customer_id
 
+  # The name of the customer associated with this invoice.
+  # @type: string
+  field :customer_name
+
   # The unique ID of this record as it was known in its originating financial system.
-  #
+  #             
   # If this company record was imported from a financial system, it will have the value `ErpKey`
   # set to the original primary key number of the record as it was known in the originating financial
   # system.  If this record was not imported, this value will be `null`.
-  #
+  #             
   # For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
   # @type: string
   field :erp_key
@@ -61,7 +65,7 @@ end
   field :salesperson_name
 
   # A code identifying the type of this invoice.
-  #
+  #             
   # Recognized Invoice types are:
   # * `AR Invoice` - Represents an invoice sent by Company to the Customer
   # * `AP Invoice` - Represents an invoice sent by Vendor to the Company
@@ -71,7 +75,7 @@ end
   field :invoice_type_code
 
   # A code identifying the status of this invoice.
-  #
+  #             
   # Recognized Invoice status codes are:
   # * `Open` - Represents an invoice that is considered open and needs more work to complete
   # * `Closed` - Represents an invoice that is considered closed and resolved
@@ -87,6 +91,12 @@ end
   # @type: string
   field :workflow_status_notes
 
+  # The reason code for the current workflow status of this invoice.
+  #             
+  # Empty if workflow status does not require a reason code.
+  # @type: string
+  field :workflow_status_reason_code
+
   # A code identifying the terms given to the purchaser.  This field is imported directly from the originating
   # financial system and does not follow a specified format.
   # @type: string
@@ -99,11 +109,6 @@ end
   # The three-character ISO 4217 currency code used for this invoice.
   # @type: string
   field :currency_code
-
-  # The total value of this invoice with deductions, excluding taxes in it's tendered currency.
-  # @type: number
-  # @format: double
-  field :net_amount
 
   # The total value of this invoice, inclusive of all taxes and line items in it's tendered currency.
   # @type: number
@@ -124,6 +129,21 @@ end
   # @type: number
   # @format: double
   field :outstanding_balance_amount
+
+  # The shipping amount of this invoice in it's tendered currency.
+  # @type: number
+  # @format: double
+  field :shipping_amount
+
+  # The total value of this invoice with deductions, excluding taxes.
+  # @type: number
+  # @format: double
+  field :net_amount
+
+  # The shipping amount of this invoice in it's tendered currency.
+  # @type: number
+  # @format: double
+  field :base_currency_shipping_amount
 
   # The reporting date for this invoice.
   # @type: string
@@ -155,6 +175,11 @@ end
   # @type: string
   # @format: date-time
   field :imported_date, Types::Params::DateTime
+
+  # The date when the tax becomes applicable; used for tax reporting.
+  # @type: string
+  # @format: date
+  field :tax_point_date
 
   # The ID number of the invoice's origination address
   # @type: string
@@ -228,11 +253,6 @@ end
   # @format: double
   field :currency_rate
 
-  # The total value of this invoice with deductions, excluding taxes and in the invoice's base currency.
-  # @type: number
-  # @format: double
-  field :base_currency_net_amount
-
   # The total value of this invoice, inclusive of all taxes and line items in the group's base currency.
   # @type: number
   # @format: double
@@ -252,6 +272,11 @@ end
   # @type: number
   # @format: double
   field :base_currency_outstanding_balance_amount
+
+  # The total value of this invoice with deductions, excluding taxes and in the invoice's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_net_amount
 
   # Possible statuses for a record that supports ERP Update.
   field :erp_update_status
@@ -288,6 +313,14 @@ end
   # @type: object
   field :erp_system_attributes
 
+  # The source of the invoice (e.g ERP, Peppol, Email, Gov System)
+  # @type: string
+  field :document_source
+
+  # The jurisdiction or country from which the invoice originates (e.g., US, AU)
+  # @type: string
+  field :jurisdiction
+
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :customer, {:class_name=>"Lockstep::Connection", :primary_key=>:company_id, :foreign_key=>"customer_id"}
@@ -304,5 +337,6 @@ end
   has_many :credit_memos, {:class_name=>"Schema::CreditMemoInvoice", :included=>true}
   has_many :custom_field_values, {:class_name=>"Schema::CustomFieldValue", :included=>true}
   has_many :custom_field_definitions, {:class_name=>"Schema::CustomFieldDefinition", :included=>true}
+  has_many :tax_summary, {:class_name=>"Schema::TaxSummary", :included=>true}
 
 end

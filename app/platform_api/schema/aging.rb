@@ -5,20 +5,17 @@ def self.id_ref
   nil
 end
 
-  # Aging bucket of outstanding balance data (days past due date of invoice)
-  # @type: integer
-  # @format: int32
-  field :bucket
-
-  # Currency code of aging bucket
+  # The Group Key the aging data is calculated for.
   # @type: string
-  field :currency_code
+  # @format: uuid
+  field :group_key
 
-  # Outstanding balance for the given aging bucket
+  # The total AR outstanding amount in the group's base currency.
   # @type: number
   # @format: double
-  field :outstanding_balance
+  field :total
 
 
+  has_many :buckets, {:class_name=>"Schema::AgingBucketResult", :included=>true}
 
 end

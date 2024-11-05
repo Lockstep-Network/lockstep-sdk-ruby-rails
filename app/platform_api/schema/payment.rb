@@ -26,6 +26,10 @@ end
   # @format: uuid
   field :company_id
 
+  # The name of the company associated with this payment.
+  # @type: string
+  field :company_name
+
   # The unique ID of this record as it was known in its originating financial system.
   #             
   # If this company record was imported from a financial system, it will have the value `ErpKey`

@@ -127,6 +127,16 @@ end
   # @format: double
   field :outstanding_balance_amount
 
+  # The shipping amount of this invoice in it's tendered currency.
+  # @type: number
+  # @format: double
+  field :shipping_amount
+
+  # The total value of this invoice with deductions, excluding taxes.
+  # @type: number
+  # @format: double
+  field :net_amount
+
   # The reporting date for this invoice.
   # @type: string
   # @format: date-time
@@ -157,6 +167,11 @@ end
   # @type: string
   # @format: date-time
   field :imported_date, Types::Params::DateTime
+
+  # The date when the tax becomes applicable; used for tax reporting.
+  # @type: string
+  # @format: date-time
+  field :tax_point_date, Types::Params::DateTime
 
   # The origination address for this invoice
   # @type: string
@@ -331,6 +346,16 @@ end
   # @format: double
   field :base_currency_outstanding_balance_amount
 
+  # The shipping amount of this invoice in it's tendered currency.
+  # @type: number
+  # @format: double
+  field :base_currency_shipping_amount
+
+  # The total value of this invoice with deductions, excluding taxes and in the invoice's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_net_amount
+
   # True if the invoice is an E-Invoice
   # @type: boolean
   field :is_e_invoice
@@ -348,9 +373,27 @@ end
   # @type: string
   field :workflow_status_notes
 
+  # The reason code for the current workflow status of this invoice.
+  #             
+  # Empty if workflow status does not require a reason code.
+  # @type: string
+  field :workflow_status_reason_code
+
   # Workflow status code dictated by government standards
   # @type: string
   field :workflow_status_code
+
+  # A JSON string representing the tax information for this invoice
+  # @type: string
+  field :tax_summary
+
+  # The source of the invoice (e.g ERP, Peppol, Email, Gov System)
+  # @type: string
+  field :document_source
+
+  # The jurisdiction or country from which the invoice originates (e.g., US, AU)
+  # @type: string
+  field :jurisdiction
 
 
 

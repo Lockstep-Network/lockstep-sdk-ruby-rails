@@ -25,6 +25,11 @@ end
   # @type: string
   field :workflow_status_name
 
+  # The workflow transition ID associated with the invoice workflow status history.
+  # @type: string
+  # @format: uuid
+  field :workflow_transition_id
+
   # The GroupKey uniquely identifies a single Accounting Data Services Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
@@ -36,6 +41,12 @@ end
   # The notes for the invoice workflow status history.
   # @type: string
   field :workflow_status_notes
+
+  # The reason code for the invoice workflow status history.
+  #             
+  # Specific reason codes are defined by the workflow status.
+  # @type: string
+  field :workflow_status_reason_code
 
   # The date that the invoice workflow status history was created.
   # @type: string

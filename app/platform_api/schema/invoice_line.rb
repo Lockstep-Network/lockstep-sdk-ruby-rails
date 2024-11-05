@@ -54,6 +54,10 @@ end
   # @type: string
   field :description
 
+  # The location to where specific items from an invoice will go.
+  # @type: string
+  field :location
+
   # For lines measured in a unit other than "quantity", this code indicates the measurement system for the quantity field.
   # If the line is measured in quantity, this field is null.
   # @type: string
@@ -84,6 +88,15 @@ end
   # @format: double
   field :total_amount
 
+  # The tax code used for taxation on this line.
+  # @type: string
+  field :tax_code
+
+  # The taxation rate for this line.
+  # @type: number
+  # @format: double
+  field :tax_rate
+
   # The amount of sales tax for this line in the transaction's currency.
   # @type: number
   # @format: double
@@ -94,9 +107,23 @@ end
   # @format: double
   field :base_currency_sales_tax_amount
 
+  # The total value of this invoice line with deductions, excluding taxes.
+  # @type: number
+  # @format: double
+  field :net_amount
+
+  # The total value of this invoice line with deductions, excluding taxes and in the invoice's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_net_amount
+
   # If this line is tax exempt, this code indicates the reason for the exemption.
   # @type: string
   field :exemption_code
+
+  # Unique identifier for tax purposes, used for reference, validation, or compliance.
+  # @type: string
+  field :tax_uid
 
   # If null, the products specified on this line were delivered on the same date as all other lines.
   # If not null, this line was delivered or finalized on a different date than the overall invoice.

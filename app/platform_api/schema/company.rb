@@ -151,10 +151,6 @@ end
   # @format: uuid
   field :modified_user_id
 
-  # The name of the user who last modified this company
-  # @type: string
-  field :modified_user_name
-
   # Federal Tax ID
   # @type: string
   field :tax_id
@@ -276,6 +272,7 @@ end
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
+  has_many :company_identifiers, {:class_name=>"Schema::CompanyIdentifier", :included=>true}
   has_many :notes, {:class_name=>"Lockstep::Note", :included=>true, :foreign_key=>:object_key, :polymorphic=>{:table_key=>"Company"}}
   has_many :attachments, {:class_name=>"Schema::Attachment", :included=>true}
   has_many :contacts, {:class_name=>"Schema::Contact", :included=>true}
