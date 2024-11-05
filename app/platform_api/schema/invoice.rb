@@ -7,7 +7,7 @@ end
 
   # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-  #             
+  #
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
   # @type: string
   # @format: uuid
@@ -15,7 +15,7 @@ end
 
   # The unique ID of this record, automatically assigned by ADS when this record is
   # added to the ADS Platform.
-  #             
+  #
   # For the ID of this record in its originating financial system, see `ErpKey`.
   # @type: string
   # @format: uuid
@@ -32,11 +32,11 @@ end
   field :customer_id
 
   # The unique ID of this record as it was known in its originating financial system.
-  #             
+  #
   # If this company record was imported from a financial system, it will have the value `ErpKey`
   # set to the original primary key number of the record as it was known in the originating financial
   # system.  If this record was not imported, this value will be `null`.
-  #             
+  #
   # For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
   # @type: string
   field :erp_key
@@ -61,7 +61,7 @@ end
   field :salesperson_name
 
   # A code identifying the type of this invoice.
-  #             
+  #
   # Recognized Invoice types are:
   # * `AR Invoice` - Represents an invoice sent by Company to the Customer
   # * `AP Invoice` - Represents an invoice sent by Vendor to the Company
@@ -71,7 +71,7 @@ end
   field :invoice_type_code
 
   # A code identifying the status of this invoice.
-  #             
+  #
   # Recognized Invoice status codes are:
   # * `Open` - Represents an invoice that is considered open and needs more work to complete
   # * `Closed` - Represents an invoice that is considered closed and resolved
@@ -99,6 +99,11 @@ end
   # The three-character ISO 4217 currency code used for this invoice.
   # @type: string
   field :currency_code
+
+  # The total value of this invoice with deductions, excluding taxes in it's tendered currency.
+  # @type: number
+  # @format: double
+  field :net_amount
 
   # The total value of this invoice, inclusive of all taxes and line items in it's tendered currency.
   # @type: number
@@ -222,6 +227,11 @@ end
   # @type: number
   # @format: double
   field :currency_rate
+
+  # The total value of this invoice with deductions, excluding taxes and in the invoice's base currency.
+  # @type: number
+  # @format: double
+  field :base_currency_net_amount
 
   # The total value of this invoice, inclusive of all taxes and line items in the group's base currency.
   # @type: number
