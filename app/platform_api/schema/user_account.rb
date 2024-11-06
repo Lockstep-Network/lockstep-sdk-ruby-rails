@@ -54,10 +54,6 @@ end
   # @format: uuid
   field :modified_user_id
 
-  # The name of the user who last modified the user account
-  # @type: string
-  field :modified_user_name
-
   # The ID of the user in Azure B2C
   # @type: string
   # @format: uuid

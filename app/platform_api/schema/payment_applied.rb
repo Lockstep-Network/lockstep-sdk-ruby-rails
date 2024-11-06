@@ -26,7 +26,12 @@ end
   # @format: uuid
   field :invoice_id
 
-  # The Payment applied to the invoice.
+  # The refund Payment that funded the payment.
+  # @type: string
+  # @format: uuid
+  field :refund_id
+
+  # The Payment applied to the invoice or receiving funding from a refund.
   # @type: string
   # @format: uuid
   field :payment_id
@@ -101,6 +106,9 @@ end
 
   # The invoice associated with this applied payment.
   field :invoice
+
+  # The refund payment associated with this applied payment
+  field :refund
 
   # Additional attributes that may be required by the source system.
   # @type: object

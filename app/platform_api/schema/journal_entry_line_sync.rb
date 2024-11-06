@@ -51,6 +51,11 @@ end
   # @type: string
   field :currency_code
 
+  # The CurrencyRate of the connected Payment
+  # @type: number
+  # @format: double
+  field :currency_rate
+
   # The base currency debit amount for the account.
   # @type: number
   # @format: double

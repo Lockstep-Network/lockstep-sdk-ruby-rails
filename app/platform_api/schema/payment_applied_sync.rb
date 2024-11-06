@@ -40,9 +40,25 @@ end
   # @format: uuid
   field :invoice_network_id
 
-  # This field indicates which Payment was used to provide the funds for this payment application. In this
-  # field, identify the original primary key or unique ID of the Payment that was used for this payment
-  # application.
+  # This field indicates which Payment is being used to provide the funds for a the payment.  In this field,
+  # identify the original primary key or unique ID of the Payment which will be supplying the funds.
+  #             
+  # This information lets you track how a payment was funded. You can identify what proportion of an payment's
+  # balance was paid by which methods by joining this field to the Payment.
+  #             
+  # This value should match the [Payment ErpKey](https://developer.lockstep.io/docs/importing-payments#erpkey)
+  # field on the [PaymentSyncModel](https://developer.lockstep.io/docs/importing-payments).
+  # @type: string
+  field :refund_erp_key
+
+  # The network id of the related refund Payment.
+  # @type: string
+  # @format: uuid
+  field :refund_network_id
+
+  # This field indicates which Payment was used to provide the funds for this payment application, or the payment that
+  # is being funded in the case of a refund. In this field, identify the original primary key or unique ID of the
+  # Payment that was used for this payment or the Payment that is being refunded.
   #             
   # This information lets you track how an invoice was paid. You can identify what proportion of an payment's
   # balance was paid by which methods by joining this field to the Payment.

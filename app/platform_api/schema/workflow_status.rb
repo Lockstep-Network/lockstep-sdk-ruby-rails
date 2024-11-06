@@ -36,6 +36,10 @@ end
   # @type: boolean
   field :is_notes_required
 
+  # Indicates whether a reason is required or not.
+  # @type: boolean
+  field :is_reason_required
+
   # Indicates whether the status change should be reported to the ERP or not.
   # @type: boolean
   field :promote_to_erp
@@ -67,6 +71,7 @@ end
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 
+  has_many :parents, {:class_name=>"Schema::WorkflowStatus", :included=>true}
   has_many :children, {:class_name=>"Schema::WorkflowStatus", :included=>true}
 
 end

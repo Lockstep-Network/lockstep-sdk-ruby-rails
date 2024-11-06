@@ -115,6 +115,10 @@ end
   # @format: uuid
   field :invite_status_modified_user_id
 
+  # This flag indicates whether the company is currently active.
+  # @type: boolean
+  field :is_active
+
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
 

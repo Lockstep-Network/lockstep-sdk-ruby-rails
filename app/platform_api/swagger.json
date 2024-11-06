@@ -1465,7 +1465,7 @@
           "AttachmentLinks"
         ],
         "summary": "Retrieve Attachment Link",
-        "description": "Retrieves the Attachment Link with the provided Attachment Link identifier.\r\n\r\nAn Attachment Link is a link that associates one Attachment with one object within ADS Platform.\r\n\r\nSee [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Retrieves the Attachment Link with the provided Attachment Link identifier.\r\n\r\nAn Attachment Link is a link that associates one Attachment with one object within ADS Platform.\r\n\r\nThis route has been deprecated, use /Attachments\r\n\r\nSee [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_AttachmentLinks_RetrieveAttachmentLink",
         "parameters": [
           {
@@ -1536,6 +1536,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -1553,7 +1554,7 @@
           "AttachmentLinks"
         ],
         "summary": "Upload Attachment",
-        "description": "Creates one Attachment Link from the provided arguments.\r\n\r\nAn Attachment Link is a link that associates one Attachment with one object within ADS Platform.\r\n\r\nSee [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Creates one Attachment Link from the provided arguments.\r\n\r\nAn Attachment Link is a link that associates one Attachment with one object within ADS Platform.\r\n\r\nThis route has been deprecated, use /Attachments\r\n\r\nSee [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_AttachmentLinks_CreateAttachmentLink",
         "requestBody": {
           "content": {
@@ -1628,6 +1629,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -1645,7 +1647,7 @@
           "AttachmentLinks"
         ],
         "summary": "Delete Attachment Link",
-        "description": "Delete the specified link between an object and its attachment.\r\n\r\nAn Attachment Link is a link that associates one Attachment with one object within ADS Platform.\r\n\r\nSee [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Delete the specified link between an object and its attachment.\r\n\r\nAn Attachment Link is a link that associates one Attachment with one object within ADS Platform.\r\n\r\nThis route has been deprecated, use /Attachments\r\n\r\nSee [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_AttachmentLinks_DeleteAttachmentLink",
         "parameters": [
           {
@@ -1713,6 +1715,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -1732,7 +1735,7 @@
           "AttachmentLinks"
         ],
         "summary": "Query Attachment Links",
-        "description": "Queries Attachment Links for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.\r\n\r\nAn Attachment Link is a link that associates one Attachment with one object within ADS Platform.\r\n\r\nSee [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Queries Attachment Links for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.\r\n\r\nAn Attachment Link is a link that associates one Attachment with one object within ADS Platform.\r\n\r\nThis route has been deprecated, use /Attachments\r\n\r\nSee [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_AttachmentLinks_QueryAttachments",
         "parameters": [
           {
@@ -1801,6 +1804,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -2805,6 +2809,7 @@
             "description": "Unauthorized"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -2889,6 +2894,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -2983,6 +2989,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -3090,6 +3097,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -3712,6 +3720,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -3803,6 +3812,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -3990,6 +4000,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -4074,6 +4085,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -4170,6 +4182,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -4277,6 +4290,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -4365,449 +4379,6 @@
             "description": "Forbidden"
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/CreditMemoApplied/{id}": {
-      "get": {
-        "tags": [
-          "CreditMemoApplied"
-        ],
-        "summary": "Retrieve Credit Memo Application",
-        "description": "Retrieves the Credit Memo Application specified by this unique identifier, optionally including nested data sets.\r\n\r\nCredit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds. Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice, ADS Platform creates a Credit Memo Application record to track the amount from the Credit Memo that was applied as payment to the Invoice. You can examine Credit Memo Application records to track which Invoices were paid using this Credit.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_CreditMemoApplied_RetrieveCreditMemoApplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique ADS Platform ID number of this Credit Memo Application; NOT the customer's ERP key",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Attachments, CustomFields, Notes, Invoice, CreditMemoInvoice",
-            "schema": {
-              "type": "string",
-              "default": ""
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      },
-      "patch": {
-        "tags": [
-          "CreditMemoApplied"
-        ],
-        "summary": "Update Credit Memo Application",
-        "description": "Updates an existing Credit memo Application with the information supplied to this PATCH call.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nCredit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds. Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice, ADS Platform creates a Credit Memo Application record to track the amount from the Credit Memo that was applied as payment to the Invoice. You can examine Credit Memo Application records to track which Invoices were paid using this Credit.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_CreditMemoApplied_UpdateCreditMemoApplication",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique ADS Platform ID number of the Credit Memo Application to update; NOT the customer's ERP key",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "A list of changes to apply to this Credit Memo Application",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": {}
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": {}
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": {}
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "CreditMemoApplied"
-        ],
-        "summary": "Delete Credit Memo Application",
-        "description": "Deletes the Credit Memo Application referred to by this unique identifier.\r\n\r\nCredit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds. Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice, ADS Platform creates a Credit Memo Application record to track the amount from the Credit Memo that was applied as payment to the Invoice. You can examine Credit Memo Application records to track which Invoices were paid using this Credit.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_CreditMemoApplied_DeleteCreditMemoApplication",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique ADS Platform ID number of the Credit Memo Application to delete; NOT the customer's ERP key",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/CreditMemoApplied": {
-      "post": {
-        "tags": [
-          "CreditMemoApplied"
-        ],
-        "summary": "Create Credit Memo Applications",
-        "description": "Creates one or more Credit Memo Applications within this account and returns the records as created.\r\n\r\nCredit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds. Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice, ADS Platform creates a Credit Memo Application record to track the amount from the Credit Memo that was applied as payment to the Invoice. You can examine Credit Memo Application records to track which Invoices were paid using this Credit.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_CreditMemoApplied_CreateCreditMemoApplications",
-        "requestBody": {
-          "description": "The Credit Memo Applications to create",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
-                }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/CreditMemoAppliedModel"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CreditMemoAppliedModel"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CreditMemoAppliedModel"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/CreditMemoApplied/query": {
-      "get": {
-        "tags": [
-          "CreditMemoApplied"
-        ],
-        "summary": "Query Credit Memo Applications",
-        "description": "Queries Credit Memo Applications for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.\r\n\r\nCredit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds. Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice, ADS Platform creates a Credit Memo Application record to track the amount from the Credit Memo that was applied as payment to the Invoice. You can examine Credit Memo Application records to track which Invoices were paid using this Credit.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_CreditMemoApplied_QueryPaymentApplications",
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "query",
-            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Attachments, CustomFields, Notes",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreditMemoAppliedModelFetchResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreditMemoAppliedModelFetchResult"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -6592,7 +6163,7 @@
           "Definitions"
         ],
         "summary": "Query Financial Systems",
-        "description": "Queries a list of financial systems using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.\r\n\r\nADS Platform provides a list of financial systems that may be useful as a selection screen that allows customers to select from a list.  You can query these items by name or attributes and use this data source to help users complete a selection.",
+        "description": "Queries a list of financial systems using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.\r\n\r\nADS Platform provides a list of financial systems that may be useful as a selection screen that allows customers to select from a list.  You can query these items by name or attributes and use this data source to help users complete a selection.\r\n\r\nThis endpoint is deprecated and will be removed in a future release.",
         "operationId": "v1_Definitions_QueryFinancialSystems",
         "parameters": [
           {
@@ -6669,7 +6240,8 @@
               }
             }
           }
-        }
+        },
+        "deprecated": true
       }
     },
     "/api/v1/feature-flags": {
@@ -9665,12 +9237,22 @@
         "operationId": "v1_Invoices_CreateInvoices",
         "parameters": [
           {
-            "name": "customerCompanyId",
+            "name": "supplierErpKey",
             "in": "query",
-            "description": "The ID of the customer company. Only to be used with the UBL file upload multipart/form-data option.",
+            "description": "The ERP \"key\" of the supplier company generated by the system that originated the invoice. Only to be used with the UBL file upload multipart/form-data option.",
+            "deprecated": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vendorId",
+            "in": "query",
+            "description": "The ID of the vendor company. Only to be used with the UBL file upload multipart/form-data option.",
             "schema": {
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "nullable": true
             }
           }
         ],
@@ -10202,6 +9784,14 @@
               "type": "string",
               "format": "uuid"
             }
+          },
+          {
+            "name": "notificationType",
+            "in": "query",
+            "description": "The notification type. Defaults to invoice.available if not set.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -10237,6 +9827,21 @@
           },
           "400": {
             "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "424": {
+            "description": "Client Error",
             "content": {
               "application/json": {
                 "schema": {
@@ -10681,68 +10286,6 @@
             "api_key": []
           }
         ]
-      }
-    },
-    "/api/v1/Leads": {
-      "post": {
-        "tags": [
-          "Leads"
-        ],
-        "summary": "Create Leads",
-        "description": "Creates one or more Leads within the ADS Platform and returns the records as created.\r\n\r\nA Lead is a person who is interested in the ADS Platform but needs certain new features in order to use it. If you are interested in the ADS Platform, you can create a lead with your information and our team will prioritize the feature you need.",
-        "operationId": "v1_Leads_CreateLeads",
-        "requestBody": {
-          "description": "The Leads to create",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/LeadModel"
-                }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/LeadModel"
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/LeadModel"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/LeadModel"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/LeadModel"
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/api/v1/useraccounts/magic-links/{id}": {
@@ -11566,449 +11109,6 @@
         ]
       }
     },
-    "/api/v1/PaymentApplications/{id}": {
-      "get": {
-        "tags": [
-          "PaymentApplications"
-        ],
-        "summary": "Retrieve Payment Application",
-        "description": "Retrieves the Payment Application specified by this unique identifier, optionally including nested data sets.\r\n\r\nA Payment Application is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Application contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_PaymentApplications_RetrievePaymentApplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique ADS Platform ID number of this Payment Application; NOT the customer's ERP key",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Invoice, Payment",
-            "schema": {
-              "type": "string",
-              "default": ""
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentAppliedModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentAppliedModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      },
-      "patch": {
-        "tags": [
-          "PaymentApplications"
-        ],
-        "summary": "Update Payment Application",
-        "description": "Updates an existing Payment Application with the information supplied to this PATCH call.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nA Payment Application is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Application contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_PaymentApplications_UpdatePaymentApplication",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique ADS Platform ID number of the Payment Application to update; NOT the customer's ERP key",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "A list of changes to apply to this Payment Application",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": {}
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": {}
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "object",
-                "additionalProperties": {}
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentAppliedModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentAppliedModel"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "PaymentApplications"
-        ],
-        "summary": "Delete Payment Application",
-        "description": "Deletes the Payment Application referred to by this unique identifier.\r\n\r\nA Payment Application is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Application contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_PaymentApplications_DeletePaymentApplication",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The unique ADS Platform ID number of the Payment Application to delete; NOT the customer's ERP key",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ActionResultModel"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/PaymentApplications": {
-      "post": {
-        "tags": [
-          "PaymentApplications"
-        ],
-        "summary": "Create Payment Applications",
-        "description": "Creates one or more Payment Applications within this account and returns the records as created.\r\n\r\nA Payment Application is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Application contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_PaymentApplications_CreatePaymentApplications",
-        "requestBody": {
-          "description": "The Payment Applications to create",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PaymentAppliedModel"
-                }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PaymentAppliedModel"
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PaymentAppliedModel"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PaymentAppliedModel"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PaymentAppliedModel"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/PaymentApplications/query": {
-      "get": {
-        "tags": [
-          "PaymentApplications"
-        ],
-        "summary": "Query Payment Applications",
-        "description": "Queries Payment Applications for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.\r\n\r\nA Payment Application is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Application contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_PaymentApplications_QueryPaymentApplications",
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "query",
-            "description": "The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Invoice",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "description": "The sort order for this query.  See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "The page size for results (default 250, maximum of 500).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "description": "The page number for results (default 0).  See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentAppliedModelFetchResult"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentAppliedModelFetchResult"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
     "/api/v1/Payments/{id}": {
       "get": {
         "tags": [
@@ -12685,39 +11785,6 @@
             "description": "Forbidden"
           }
         },
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Payments/views/detail-header": {
-      "get": {
-        "tags": [
-          "Payments"
-        ],
-        "summary": "Retrieve Payment Detail Header",
-        "description": "Retrieves aggregated payment data from your account.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Payments_RetrieveDetailHeader",
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -13773,7 +12840,7 @@
           "PaymentsApplied"
         ],
         "summary": "Retrieve Payment Applied",
-        "description": "Retrieves the Payment Applied specified by this unique identifier, optionally including nested data sets.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Retrieves the Payment Applied specified by this unique identifier, optionally including nested data sets.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\r\n\r\nA Payment Applied can also be used to add funds to a Payment by way of a refund Payment. In this scenario the Payment Applied contains information about which Payment is being funded and which refund Payment supplied the funds.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_PaymentsApplied_RetrievePaymentApplied",
         "parameters": [
           {
@@ -13789,7 +12856,7 @@
           {
             "name": "include",
             "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Invoice, Payment",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Invoice, Payment, Refund",
             "schema": {
               "type": "string",
               "default": ""
@@ -13851,7 +12918,7 @@
           "PaymentsApplied"
         ],
         "summary": "Update Payment Applied",
-        "description": "Updates an existing Payment Applied with the information supplied to this PATCH call.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Updates an existing Payment Applied with the information supplied to this PATCH call.\r\n\r\nThe PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\r\n\r\nA Payment Applied can also be used to add funds to a Payment by way of a refund Payment. In this scenario the Payment Applied contains information about which Payment is being funded and which refund Payment supplied the funds.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_PaymentsApplied_UpdatePaymentApplied",
         "parameters": [
           {
@@ -13958,7 +13025,7 @@
           "PaymentsApplied"
         ],
         "summary": "Delete Payment Applied",
-        "description": "Deletes the Payment Applied referred to by this unique identifier.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Deletes the Payment Applied referred to by this unique identifier.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\r\n\r\nA Payment Applied can also be used to add funds to a Payment by way of a refund Payment. In this scenario the Payment Applied contains information about which Payment is being funded and which refund Payment supplied the funds.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_PaymentsApplied_DeletePaymentApplied",
         "parameters": [
           {
@@ -14029,7 +13096,7 @@
           "PaymentsApplied"
         ],
         "summary": "Create Payments Applied",
-        "description": "Creates one or more Payments Applied within this account and returns the records as created.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Creates one or more Payments Applied within this account and returns the records as created.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\r\n\r\nA Payment Applied can also be used to add funds to a Payment by way of a refund Payment. In this scenario the Payment Applied contains information about which Payment is being funded and which refund Payment supplied the funds.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_PaymentsApplied_CreatePaymentsApplied",
         "requestBody": {
           "description": "The Payments Applied to create",
@@ -14123,7 +13190,7 @@
           "PaymentsApplied"
         ],
         "summary": "Query Payments Applied",
-        "description": "Queries Payments Applied for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Queries Payments Applied for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.\r\n\r\nA Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.\r\n\r\nA Payment Applied can also be used to add funds to a Payment by way of a refund Payment. In this scenario the Payment Applied contains information about which Payment is being funded and which refund Payment supplied the funds.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_PaymentsApplied_QueryPaymentsApplied",
         "parameters": [
           {
@@ -14137,7 +13204,7 @@
           {
             "name": "include",
             "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Invoice",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Invoice, Payment, Refund",
             "schema": {
               "type": "string"
             }
@@ -15527,742 +14594,6 @@
         }
       }
     },
-    "/api/v1/Reports/cashflow": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Cash Flow",
-        "description": "Retrieves a current Cash Flow report for this account.\r\n\r\nThe Cash Flow report indicates the amount of payments retrieved and invoices billed within a given timeframe.  You can use this report to determine the overall balance of money coming into and out of your accounts receivable and accounts payable businesses.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveCashflowReport",
-        "parameters": [
-          {
-            "name": "timeframe",
-            "in": "query",
-            "description": "Number of days of data to include for the Cash Flow Report (default is 30 days from today)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/payables-summary": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Payables Summary Report",
-        "description": "Retrieves a current Payables Summary report for this account.\r\n\r\nThe Payables Summary report indicates the amount of payments sent and bills received within a given timeframe.  You can use this report to determine the overall balance of money coming into and out of your accounts receivable and accounts payable businesses.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrievePayablesSummaryReport",
-        "parameters": [
-          {
-            "name": "timeframe",
-            "in": "query",
-            "description": "Number of days of data to include for the Payables Summary Report (default is 30 days from today)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/dailysalesoutstanding": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Daily Sales Outstanding",
-        "description": "This route is obsolete, please use the /daily-sales-outstanding route instead.\r\n\r\nRetrieves a current Daily Sales Outstanding (DSO) report for this account.\r\n\r\nDaily Sales Outstanding, or DSO, is a metric that indicates the average number of days that it takes for an invoice to be fully paid.  You can use this report to identify whether a company is improving on its ability to collect on invoices.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveDailySalesReportObs",
-        "parameters": [
-          {
-            "name": "reportDate",
-            "in": "query",
-            "description": "Optional: Specify the specific report date to generate the from (default UTC now)",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/daily-sales-outstanding": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Daily Sales Outstanding",
-        "description": "Retrieves a current Daily Sales Outstanding (DSO) report for this account.\r\n\r\nDaily Sales Outstanding, or DSO, is a metric that indicates the average number of days that it takes for an invoice to be fully paid.  You can use this report to identify whether a company is improving on its ability to collect on invoices.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveDailySalesReport",
-        "parameters": [
-          {
-            "name": "reportDate",
-            "in": "query",
-            "description": "Optional: Specify the specific report date to generate the from (default UTC now)",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/daily-payable-outstanding": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Days Payable Outstanding",
-        "description": "Retrieves a current Days Payable Outstanding (DPO) report for this account.\r\n\r\nDays payable outstanding (DPO) is a financial ratio that indicates the average time (in days) that a company takes to pay its bills to its trade creditors, which may include suppliers, vendors, or financiers.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveDailyPayableReport",
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/payables-coming-due": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Payables Coming Due",
-        "description": "Retrieves payable amount due for 4 time buckets (Today, 7 Days from Today, 14 Days from Today, and 30 Days from Today).\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrievePayablesComingDueWidget",
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/payables-coming-due-summary": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Payables Coming Due Summary",
-        "description": "Payables coming due represents the amount of cash required to pay vendor bills based on the due dates of the bills. Each bucket represents total amount due within the time period based on open Payables as of today.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_QueryPayablesComingDue",
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "query",
-            "description": "The filter for this query.\r\nSee [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nNo collections are currently available but may be offered in the future",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "description": "The sort order for the results, in the [Searchlight order\r\nsyntax](https://github.com/tspence/csharp-searchlight).",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "The page size for results (default 250, maximum of 500)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "description": "The page number for results (default 0)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/payables-coming-due-header": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Payables Coming Due Header",
-        "description": "Retrieves total number of vendors, bills, the total amount outstanding, for a group.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrievePayablesComingDueHeader",
-        "parameters": [
-          {
-            "name": "reportDate",
-            "in": "query",
-            "description": "The date the outstanding values are calculated on. Should be either the current day,\r\n            7 days after the current day, 14 days after the current day, or 30 days after the current day.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/riskrates": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Risk Rates",
-        "description": "This route is obsolete, please use the /risk-rates route instead.\r\n\r\nRetrieves a current Risk Rate report for this account.\r\n\r\nRisk Rate is a metric that indicates the percentage of total AR balance left unpaid after 90 days.  You can use this report to identify the percentage of invoice value that is not being collected in a timely manner.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveRiskRates",
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/risk-rates": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Risk Rates",
-        "description": "Retrieves a current Risk Rate report for this account.\r\n\r\nRisk Rate is a metric that indicates the percentage of total AR balance left unpaid after 90 days.  You can use this report to identify the percentage of invoice value that is not being collected in a timely manner.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_GetRiskRates",
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/ar-header": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Accounts Receivable Header",
-        "description": "Retrieves AR header information up to the date specified.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveArHeaderInfo",
-        "parameters": [
-          {
-            "name": "reportDate",
-            "in": "query",
-            "description": "The date of the report.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date"
-            }
-          },
-          {
-            "name": "companyId",
-            "in": "query",
-            "description": "Include a company to get AR data for a specific company, leave as null to include all Companies.",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/ap-header": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Accounts Payable Header",
-        "description": "Retrieves AP header information up to the date specified.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveApHeaderInfo",
-        "parameters": [
-          {
-            "name": "reportDate",
-            "in": "query",
-            "description": "The date of the report.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date"
-            }
-          },
-          {
-            "name": "companyId",
-            "in": "query",
-            "description": "Include a company to get AP data for a specific company, leave as null to include all Companies.",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/aging": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Invoice aging report",
-        "description": "The Aging Report contains information about the total dollar value of invoices broken down by their age. Last default or specified bucket treated as a catch all bucket for values that fit in that bucket or beyond.\r\n\r\nYou can specify viewing parameters for the aging report such as currency code and date bucket configuration. You can also view aging data for an entire account or a specific company.\r\n\r\nThis information is recalculated when invoice data changes.  After each invoice data change occurs, ADS Platform queues up a calculation based on the current invoice data at that time.  This information is calculated and persisted for each customer so that the report will be available quickly.\r\n\r\nTo force a recalculation of aging data, specify the `recalculate` option.  Note that forcing a recalculation will slow your API response time.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveAgingReport",
-        "parameters": [
-          {
-            "name": "CompanyId",
-            "in": "query",
-            "description": "Company aging buckets are filtered by (all company aging returned if not company specified)",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "Recalculate",
-            "in": "query",
-            "description": "Force api to recalculate aging data, cached data may be returned when set to false",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "CurrencyCode",
-            "in": "query",
-            "description": "Currency aging buckets are converted to (all aging data returned without currency conversion if no currency is\r\nspecified)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "CurrencyProvider",
-            "in": "query",
-            "description": "Currency provider currency rates should be returned from to convert aging amounts to (default ADS Platform currency\r\nprovider used if no data provider specified)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Buckets",
-            "in": "query",
-            "description": "Customized buckets used for aging calculations (default buckets [0,30,60,90,120,180] will be used if buckets not\r\nspecified)",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "integer",
-                "format": "int32"
-              }
-            }
-          },
-          {
-            "name": "ApReport",
-            "in": "query",
-            "description": "A boolean to turn on AP Aging reports",
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/ar-aging-header": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Accounts Receivable Aging Header",
-        "description": "Retrieves AR Aging Header information report broken down by aging bucket.\r\n\r\nThe AR Aging Header report contains aggregated information about the `TotalInvoicesPastDue`, `TotalCustomers`, and their respective `PercentageOfTotalAr` grouped by their aging `ReportBucket`.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveArAgingHeaderInfo",
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/ap-aging-header": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Accounts Payable Aging Header",
-        "description": "Retrieves AP Aging Header information report broken down by aging bucket.\r\n\r\nThe AP Aging Header report contains aggregated information about the `TotalBillsPastDue`, `TotalVendors`, and their respective `PercentageOfTotalAp` grouped by their aging `ReportBucket`.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveApAgingHeaderInfo",
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/attachments-header": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Attachments Header Information",
-        "description": "Retrieves Attachment Header information for the requested companyId.\r\n\r\nThe Attachment Header report contains aggregated information about the `TotalAttachments`, `TotalArchived`, and `TotalActive` attachment classifications.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveAttachmentHeaderInfo",
-        "parameters": [
-          {
-            "name": "companyId",
-            "in": "query",
-            "description": "Include a specific company to get Attachment data for, leave as null to include all Companies.",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
     "/api/v1/Reports/trial-balance": {
       "get": {
         "tags": [
@@ -16718,107 +15049,19 @@
         ]
       }
     },
-    "/api/v1/Reports/daily-payable-outstanding-summary": {
+    "/api/v1/Reports/ar/aging": {
       "get": {
         "tags": [
           "Reports"
         ],
-        "summary": "Days Payable Outstanding Summary",
-        "description": "Retrieves a summary for each vendor that includes a count of their outstanding bills, the total amount outstanding, and their daily payable outstanding value.\r\n\r\nDays payable outstanding (DPO) is a financial ratio that indicates the average time (in days) that a company takes to pay its bills to its trade creditors, which may include suppliers, vendors, or financiers.\r\n\r\nMore information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveDailyPayableOutstandingSummary",
+        "summary": "AR Aging Report",
+        "description": "Generates an AR Aging Report.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "operationId": "v1_Reports_GenerateArAging",
         "parameters": [
           {
             "name": "reportDate",
             "in": "query",
-            "description": "The date the outstanding values are calculated on. Should be either the current day\r\n             or the end of a previous quarter.",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "description": "The filter for this query.\r\nSee [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nNo collections are currently available but may be offered in the future",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "description": "The sort order for the results, in the [Searchlight order\r\nsyntax](https://github.com/tspence/csharp-searchlight).",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "description": "The page size for results (default 250, maximum of 500)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "description": "The page number for results (default 0)",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        },
-        "deprecated": true,
-        "security": [
-          {
-            "oauth2": []
-          },
-          {
-            "bearer_token": []
-          },
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
-    "/api/v1/Reports/daily-payable-outstanding-summary-total": {
-      "get": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Days Payable Outstanding Summary Total",
-        "description": "Retrieves total number of vendors, bills, the total amount outstanding, and the daily payable outstanding value for a group.\r\n\r\nDays payable outstanding (DPO) is a financial ratio that indicates the average time (in days) that a company takes to pay its bills to its trade creditors, which may include suppliers, vendors, or financiers.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n* Member\n* Read-Only\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
-        "operationId": "v1_Reports_RetrieveDailyPayableOutstandingSummaryTotal",
-        "parameters": [
-          {
-            "name": "reportDate",
-            "in": "query",
-            "description": "The date the outstanding values are calculated on. Should be either the current day\r\n             or the end of a previous quarter.",
-            "required": true,
+            "description": "The date used for calculation of days overdue. Defaults to current UTC date.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -16827,7 +15070,19 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgingModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgingModel"
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -16836,7 +15091,6 @@
             "description": "Forbidden"
           }
         },
-        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -17629,6 +15883,17 @@
         "summary": "Ping",
         "description": "Verifies that your application can successfully call the ADS Platform API and returns a successful code regardless of your authentication status or permissions.\r\n\r\nThe Ping API can be used to verify that your app is working correctly.  The Ping API will always return 200 OK.  If you call this API and you receive a code other than 200 OK, you should check your network connectivity.  A response code of anything other than 200 means that a routing issue or proxy issue may prevent your application from reaching the ADS Platform API",
         "operationId": "v1_Status_RetrieveStatus",
+        "parameters": [
+          {
+            "name": "useCompanyInfo",
+            "in": "query",
+            "description": "When true, the API will use information from the 'Company'\r\n             instead of the 'Group' company",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -22012,7 +20277,7 @@
           {
             "name": "include",
             "in": "query",
-            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Children",
+            "description": "To fetch additional data on this object, specify the list of elements to retrieve.\r\n            \r\nAvailable collections: Children, Parents",
             "schema": {
               "type": "string",
               "default": ""
@@ -22076,7 +20341,7 @@
           "WorkflowStatuses"
         ],
         "summary": "Create Workflow Statuses",
-        "description": "Creates one or more Workflow Statuses from a given model.\r\n\r\nA Workflow Status represents the state for a specific workflow for an entity. A Workflow Status may be generic for common use cases or specific to a set of predefined statuses.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
+        "description": "Creates one or more Workflow Statuses from a given model.\r\n\r\nCustom WorkflowStatuses will not be supported in the future. Please use predefined WorkflowStatuses.\r\n\r\nA Workflow Status represents the state for a specific workflow for an entity. A Workflow Status may be generic for common use cases or specific to a set of predefined statuses.\n\n### Roles\n\nTo call this endpoint, you must have one of these roles:\n\n* Group Owner\n* Group Admin\n\n\nYou can view your roles with the [Status](https://developer.lockstep.io/reference/get_api-v1-status) API.",
         "operationId": "v1_WorkflowStatuses_CreateWorkflowStatuses",
         "requestBody": {
           "description": "The Workflow Statuses to create",
@@ -22151,6 +20416,7 @@
             "description": "Forbidden"
           }
         },
+        "deprecated": true,
         "security": [
           {
             "oauth2": []
@@ -22384,21 +20650,24 @@
             "minLength": 0,
             "type": "string",
             "description": "A friendly human-readable code that describes this Contact.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "title": {
             "maxLength": 50,
             "minLength": 0,
             "type": "string",
             "description": "The title of the contact.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "roleCode": {
             "maxLength": 20,
             "minLength": 0,
             "type": "string",
             "description": "The role code for the contact.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "emailAddress": {
             "maxLength": 200,
@@ -22414,77 +20683,88 @@
             "minLength": 0,
             "type": "string",
             "description": "The phone number of the contact.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "fax": {
             "maxLength": 20,
             "minLength": 0,
             "type": "string",
             "description": "The fax number of the contact.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "locale": {
             "maxLength": 48,
             "minLength": 0,
             "type": "string",
             "description": "The IETF language tag for the contact's locale.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "address1": {
             "maxLength": 80,
             "minLength": 0,
             "type": "string",
             "description": "The first line of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "address2": {
             "maxLength": 80,
             "minLength": 0,
             "type": "string",
             "description": "The second line of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "address3": {
             "maxLength": 80,
             "minLength": 0,
             "type": "string",
             "description": "The third line of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "address4": {
             "maxLength": 80,
             "minLength": 0,
             "type": "string",
             "description": "The fourth line of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "city": {
             "maxLength": 100,
             "minLength": 0,
             "type": "string",
             "description": "The city of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "stateRegion": {
-            "maxLength": 50,
+            "maxLength": 60,
             "minLength": 0,
             "type": "string",
             "description": "The state/region of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "postalCode": {
             "maxLength": 10,
             "minLength": 0,
             "type": "string",
             "description": "The postal/zip code of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "countryCode": {
             "maxLength": 2,
             "minLength": 2,
             "type": "string",
             "description": "The two character country code of the address. This will be validated by the /api/v1/definitions/countries data set",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "isActive": {
             "type": "boolean",
@@ -22498,7 +20778,8 @@
             "description": "The webpage url of the contact.",
             "format": "uri",
             "nullable": true,
-            "example": "https://example.com"
+            "example": "https://example.com",
+            "deprecated": true
           },
           "pictureUrl": {
             "maxLength": 512,
@@ -22507,7 +20788,8 @@
             "description": "The picture/avatar url of the contact.",
             "format": "uri",
             "nullable": true,
-            "example": "https://example.com/pictureUrl"
+            "example": "https://example.com/pictureUrl",
+            "deprecated": true
           },
           "created": {
             "type": "string",
@@ -23040,6 +21322,63 @@
         },
         "additionalProperties": false,
         "description": "Address object."
+      },
+      "AgingBucket": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "description": "The different buckets used for aging.",
+        "format": "int32"
+      },
+      "AgingBucketResult": {
+        "type": "object",
+        "properties": {
+          "bucket": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AgingBucket"
+              }
+            ],
+            "description": "The different buckets used for aging."
+          },
+          "value": {
+            "type": "number",
+            "description": "The outstanding amount for the given bucket in the group's base currency.",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The aging data for an individual bucket"
+      },
+      "AgingModel": {
+        "type": "object",
+        "properties": {
+          "groupKey": {
+            "type": "string",
+            "description": "The Group Key the aging data is calculated for.",
+            "format": "uuid"
+          },
+          "total": {
+            "type": "number",
+            "description": "The total AR outstanding amount in the group's base currency.",
+            "format": "double"
+          },
+          "buckets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgingBucketResult"
+            },
+            "description": "The outstanding amount in the group's base currency, grouped by days overdue.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A summary of AR Aging for a given Group Key. This aging data is presented\r\nin buckets of days overdue in the group's base currency."
       },
       "Amount": {
         "type": "object",
@@ -23878,7 +22217,7 @@
             "description": "The default currency code used by this business entity.\r\n            \r\nFor a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies)"
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The BaseCurrencySyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe BaseCurrencySyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be used to update the Group Account base currency code.\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "BatchSyncModel": {
@@ -23953,6 +22292,14 @@
               "$ref": "#/components/schemas/InvoiceLineSyncModel"
             },
             "description": "A list of InvoiceLine records to merge with your ADS Platform data",
+            "nullable": true
+          },
+          "invoiceWorkflowStatuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceWorkflowStatusSyncModel"
+            },
+            "description": "A list of InvoiceWorkflowStatus records to merge with your ADS Platform data",
             "nullable": true
           },
           "customFields": {
@@ -24352,6 +22699,37 @@
         "additionalProperties": false,
         "description": "Company payment collected information"
       },
+      "CompanyIdentifierModel": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The type of identifier."
+          },
+          "value": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The value of the identifier."
+          },
+          "jurisdiction": {
+            "type": "string",
+            "description": "The jurisdiction of the identifier.",
+            "nullable": true
+          },
+          "subjurisdiction": {
+            "type": "string",
+            "description": "The sub-jurisdiction of the identifier, ISO3166-1 or ISO3166-2 code.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A model representing a company identifier."
+      },
       "CompanyMagicLinkSummaryModel": {
         "required": [
           "companyName"
@@ -24474,6 +22852,10 @@
             "description": "The user id of the user who last modified the invite status",
             "format": "uuid",
             "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "This flag indicates whether the company is currently active."
           }
         },
         "additionalProperties": false,
@@ -24543,12 +22925,14 @@
             "type": "string",
             "description": "If this business entity is part of an organization, this value is non-null and it is set\r\nto the `CompanyId` value of the parent company of this business entity.\r\n            \r\nIf this value is null, this business entity is a standalone.",
             "format": "uuid",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "enterpriseId": {
             "type": "string",
             "description": "For convenience, this field indicates the top-level parent company.  This can be used\r\nto jump directly to the top parent in complex organizational hierarchies.",
-            "format": "uuid"
+            "format": "uuid",
+            "deprecated": true
           },
           "groupKey": {
             "type": "string",
@@ -24572,7 +22956,8 @@
             "minLength": 0,
             "type": "string",
             "description": "The URL of this company's logo, if known.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "companyLogoStatus": {
             "allOf": [
@@ -24581,7 +22966,8 @@
               }
             ],
             "description": "The scan status of the company's logo, if it exists",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "primaryContactId": {
             "type": "string",
@@ -24594,76 +22980,87 @@
             "minLength": 0,
             "type": "string",
             "description": "Address info",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "address2": {
             "maxLength": 170,
             "minLength": 0,
             "type": "string",
             "description": "Address info",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "address3": {
             "maxLength": 170,
             "minLength": 0,
             "type": "string",
             "description": "Address info",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "address4": {
             "maxLength": 170,
             "minLength": 0,
             "type": "string",
             "description": "Address info",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "city": {
             "maxLength": 100,
             "minLength": 0,
             "type": "string",
             "description": "Address info",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "stateRegion": {
-            "maxLength": 50,
+            "maxLength": 60,
             "minLength": 0,
             "type": "string",
             "description": "Address info",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "postalCode": {
             "maxLength": 10,
             "minLength": 0,
             "type": "string",
             "description": "Address info",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "country": {
             "maxLength": 100,
             "type": "string",
             "description": "Address info",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "timeZone": {
             "maxLength": 40,
             "minLength": 0,
             "type": "string",
             "description": "Time zone",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "phoneNumber": {
             "maxLength": 20,
             "minLength": 0,
             "type": "string",
             "description": "Phone number",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "faxNumber": {
             "maxLength": 20,
             "minLength": 0,
             "type": "string",
             "description": "Fax number",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "created": {
             "type": "string",
@@ -24689,26 +23086,21 @@
             "format": "uuid",
             "readOnly": true
           },
-          "modifiedUserName": {
-            "type": "string",
-            "description": "The name of the user who last modified this company",
-            "nullable": true,
-            "readOnly": true,
-            "deprecated": true
-          },
           "taxId": {
             "maxLength": 30,
             "minLength": 0,
             "type": "string",
             "description": "Federal Tax ID",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "dunsNumber": {
             "maxLength": 10,
             "minLength": 0,
             "type": "string",
             "description": "Dun & Bradstreet Number",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "apEmailAddress": {
             "maxLength": 254,
@@ -24733,34 +23125,39 @@
             "minLength": 0,
             "type": "string",
             "description": "Indicates the preferred invoice delivery method. Examples include Print, Email, Fax",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "domainName": {
             "maxLength": 254,
             "minLength": 0,
             "type": "string",
             "description": "For companies that use a custom domain name for their email system, this is\r\nthe domain name used by this company.  If this value is known, new emails that\r\ncome in from this domain will be connected to this company.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "companyClassificationCodeDefId": {
             "type": "string",
             "description": "Identifier for classification of this company.",
             "format": "uuid",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "description": {
             "maxLength": 254,
             "minLength": 0,
             "type": "string",
             "description": "Description of the company.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "website": {
             "maxLength": 512,
             "minLength": 0,
             "type": "string",
             "description": "Website URL for this company.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "appEnrollmentId": {
             "type": "string",
@@ -24782,46 +23179,53 @@
             "minLength": 0,
             "type": "string",
             "description": "The public url slug for the Company.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "primaryContactSet": {
             "type": "boolean",
             "description": "Indicates if the primary contact has been set by the user.",
-            "readOnly": true
+            "readOnly": true,
+            "deprecated": true
           },
           "stateTaxId": {
             "maxLength": 20,
             "minLength": 0,
             "type": "string",
             "description": "State Tax ID",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "stateOfIncorporation": {
             "maxLength": 20,
             "minLength": 0,
             "type": "string",
             "description": "The state where the company was registered.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "linkedInUrlSlug": {
             "maxLength": 100,
             "minLength": 0,
             "type": "string",
             "description": "Linkedin Url",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "isVerified": {
             "type": "boolean",
             "description": "This flag indicates whether the company is verified.",
             "default": false,
-            "readOnly": true
+            "readOnly": true,
+            "deprecated": true
           },
           "lastVerifiedDate": {
             "type": "string",
             "description": "The date this company was last verified.",
             "format": "date-time",
             "nullable": true,
-            "readOnly": true
+            "readOnly": true,
+            "deprecated": true
           },
           "viewBoxSettings": {
             "allOf": [
@@ -24831,7 +23235,8 @@
             ],
             "description": "View box settings for the company logo.",
             "nullable": true,
-            "readOnly": true
+            "readOnly": true,
+            "deprecated": true
           },
           "serviceFabricOrgId": {
             "type": "string",
@@ -24852,14 +23257,25 @@
             "minLength": 0,
             "type": "string",
             "description": "A unique identification number assigned to the company by the national registration office.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "profileReferenceId": {
             "type": "string",
             "description": "An optional reference to a real company, making this a profile.",
             "format": "uuid",
             "nullable": true,
-            "readOnly": true
+            "readOnly": true,
+            "deprecated": true
+          },
+          "companyIdentifiers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyIdentifierModel"
+            },
+            "description": "Company identifiers for this company.",
+            "nullable": true,
+            "deprecated": true
           },
           "notes": {
             "type": "array",
@@ -25136,7 +23552,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The CompanySyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe CompanySyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as a [CompanyModel](https://developer.lockstep.io/docs/companymodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "ConnectorInfoModel": {
@@ -25279,21 +23695,24 @@
             "minLength": 0,
             "type": "string",
             "description": "A friendly human-readable code that describes this Contact.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "title": {
             "maxLength": 50,
             "minLength": 0,
             "type": "string",
             "description": "The title of the contact.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "roleCode": {
             "maxLength": 20,
             "minLength": 0,
             "type": "string",
             "description": "The role code for the contact.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "emailAddress": {
             "maxLength": 200,
@@ -25309,77 +23728,88 @@
             "minLength": 0,
             "type": "string",
             "description": "The phone number of the contact.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "fax": {
             "maxLength": 20,
             "minLength": 0,
             "type": "string",
             "description": "The fax number of the contact.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "locale": {
             "maxLength": 48,
             "minLength": 0,
             "type": "string",
             "description": "The IETF language tag for the contact's locale.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "address1": {
             "maxLength": 80,
             "minLength": 0,
             "type": "string",
             "description": "The first line of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "address2": {
             "maxLength": 80,
             "minLength": 0,
             "type": "string",
             "description": "The second line of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "address3": {
             "maxLength": 80,
             "minLength": 0,
             "type": "string",
             "description": "The third line of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "address4": {
             "maxLength": 80,
             "minLength": 0,
             "type": "string",
             "description": "The fourth line of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "city": {
             "maxLength": 100,
             "minLength": 0,
             "type": "string",
             "description": "The city of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "stateRegion": {
-            "maxLength": 50,
+            "maxLength": 60,
             "minLength": 0,
             "type": "string",
             "description": "The state/region of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "postalCode": {
             "maxLength": 10,
             "minLength": 0,
             "type": "string",
             "description": "The postal/zip code of the address.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "countryCode": {
             "maxLength": 2,
             "minLength": 2,
             "type": "string",
             "description": "The two character country code of the address. This will be validated by the /api/v1/definitions/countries data set",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "isActive": {
             "type": "boolean",
@@ -25393,7 +23823,8 @@
             "description": "The webpage url of the contact.",
             "format": "uri",
             "nullable": true,
-            "example": "https://example.com"
+            "example": "https://example.com",
+            "deprecated": true
           },
           "pictureUrl": {
             "maxLength": 512,
@@ -25402,7 +23833,8 @@
             "description": "The picture/avatar url of the contact.",
             "format": "uri",
             "nullable": true,
-            "example": "https://example.com/pictureUrl"
+            "example": "https://example.com/pictureUrl",
+            "deprecated": true
           },
           "created": {
             "type": "string",
@@ -25646,7 +24078,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The ContactSyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe ContactSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as a [ContactModel](https://developer.lockstep.io/docs/contactmodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "CountryModel": {
@@ -26027,7 +24459,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The CreditMemoAppliedSyncModel represents information coming into ADS from an external financial system or\r\nother enterprise resource planning system.  To import data from an external system, convert your original data\r\ninto the CreditMemoAppliedSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as a [CreditMemoAppliedModel](https://developer.lockstep.io/docs/creditmemoappliedmodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "CreditMemoInvoiceModel": {
@@ -26434,7 +24866,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The CustomFieldSyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  [Custom Fields](https://developer.lockstep.io/docs/custom-fields#custom-fields)\r\nrepresent custom data extensions that you can use with the ADS Platform.  If you need to store extra\r\ninformation about an object that does not match ADS's official schema, you can store it in the Custom\r\nField system using CustomFieldSyncModel.\r\n            \r\nTo store a custom field for an object, create a CustomFieldSyncModel record containing the `TableKey` and\r\n`ErpKey` of the entity to which you will attach a custom field. Next specify the field's `CustomFieldLabel`\r\nand either a `StringValue` or `NumericValue`.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as a [CustomFieldValueModel](https://developer.lockstep.io/docs/customfieldvaluemodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "CustomFieldValueModel": {
@@ -27095,7 +25527,10 @@
           1,
           2,
           3,
-          4
+          4,
+          5,
+          6,
+          7
         ],
         "type": "integer",
         "description": "Possible statuses for a record that supports ERP Update.",
@@ -27494,7 +25929,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The FinancialAccountBalanceHistorySyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe FinancialAccountBalanceHistorySyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nIf the FinancialAccountBalanceHistorySyncModels are imported via a connector instead, please ensure that all records are passed in\r\non every sync. Records that are not passed in will be assumed to be deleted.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as a [FinancialAccountBalanceHistoryModel](https://developer.lockstep.io/docs/financialaccountbalancehistorymodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "FinancialAccountBalanceType": {
@@ -27718,7 +26153,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The FinancialAccountSyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe FinancialAccountSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as a [FinancialAccountModel](https://developer.lockstep.io/docs/financialaccountmodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "FinancialInstitutionAccountModel": {
@@ -28061,7 +26496,7 @@
             "description": "The end date of the financial year. Should be entered in MM-DD format."
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The FinancialYearSettingSyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe FinancialYearSettingSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as a [FinancialYearSettingModel](https://developer.lockstep.io/docs/financialyearsettingmodel).\r\nSync is supported for only one FinancialYearSetting per app enrollment and one FinancialYearSetting imported outside of\r\nan app enrollment - please submit only one model here.  If multiple models are submitted, only the latest one is considered for Sync.\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "GroupAccountModel": {
@@ -28526,6 +26961,13 @@
             "description": "Description of this invoice line.",
             "nullable": true
           },
+          "location": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "The location to where specific items from an invoice will go.",
+            "nullable": true
+          },
           "unitMeasureCode": {
             "maxLength": 50,
             "type": "string",
@@ -28561,6 +27003,19 @@
             "format": "double",
             "nullable": true
           },
+          "taxCode": {
+            "maxLength": 15,
+            "minLength": 0,
+            "type": "string",
+            "description": "The tax code used for taxation on this line.",
+            "nullable": true
+          },
+          "taxRate": {
+            "type": "number",
+            "description": "The taxation rate for this line.",
+            "format": "double",
+            "nullable": true
+          },
           "salesTaxAmount": {
             "type": "number",
             "description": "The amount of sales tax for this line in the transaction's currency.",
@@ -28573,11 +27028,33 @@
             "format": "double",
             "nullable": true
           },
+          "netAmount": {
+            "type": "number",
+            "description": "The total value of this invoice line with deductions, excluding taxes.",
+            "format": "double",
+            "nullable": true,
+            "readOnly": true
+          },
+          "baseCurrencyNetAmount": {
+            "type": "number",
+            "description": "The total value of this invoice line with deductions, excluding taxes and in the invoice's base currency.",
+            "format": "double",
+            "nullable": true,
+            "readOnly": true
+          },
           "exemptionCode": {
             "maxLength": 100,
             "type": "string",
             "description": "If this line is tax exempt, this code indicates the reason for the exemption.",
             "nullable": true
+          },
+          "taxUid": {
+            "maxLength": 120,
+            "minLength": 0,
+            "type": "string",
+            "description": "Unique identifier for tax purposes, used for reference, validation, or compliance.",
+            "nullable": true,
+            "readOnly": true
           },
           "reportingDate": {
             "type": "string",
@@ -28772,6 +27249,11 @@
             "description": "Description of this invoice line.",
             "nullable": true
           },
+          "location": {
+            "type": "string",
+            "description": "The location to where specific items from an invoice will go.",
+            "nullable": true
+          },
           "unitMeasureCode": {
             "type": "string",
             "description": "For lines measured in a unit other than \"quantity\", this code indicates the measurement system for the quantity field.\r\nIf the line is measured in quantity, this field is null.",
@@ -28807,6 +27289,17 @@
             "format": "double",
             "nullable": true
           },
+          "taxCode": {
+            "type": "string",
+            "description": "The tax code used for taxation on this line.",
+            "nullable": true
+          },
+          "taxRate": {
+            "type": "number",
+            "description": "The taxation rate for this line.",
+            "format": "double",
+            "nullable": true
+          },
           "salesTaxAmount": {
             "type": "number",
             "description": "The amount of sales tax for this line in the transaction's currency.",
@@ -28819,9 +27312,26 @@
             "format": "double",
             "nullable": true
           },
+          "netAmount": {
+            "type": "number",
+            "description": "The total value of this invoice line with deductions, excluding taxes.",
+            "format": "double",
+            "nullable": true
+          },
+          "baseCurrencyNetAmount": {
+            "type": "number",
+            "description": "The total value of this invoice line with deductions, excluding taxes and in the invoice's base currency.",
+            "format": "double",
+            "nullable": true
+          },
           "exemptionCode": {
             "type": "string",
             "description": "If this line is tax exempt, this code indicates the reason for the exemption.",
+            "nullable": true
+          },
+          "taxUid": {
+            "type": "string",
+            "description": "Unique identifier for tax purposes, used for reference, validation, or compliance.",
             "nullable": true
           },
           "reportingDate": {
@@ -28984,13 +27494,10 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The InvoiceLineSyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe InvoiceLineSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as an [InvoiceLineModel](https://developer.lockstep.io/docs/invoicelinemodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "InvoiceModel": {
-        "required": [
-          "customerId"
-        ],
         "type": "object",
         "properties": {
           "groupKey": {
@@ -29011,10 +27518,18 @@
             "format": "uuid"
           },
           "customerId": {
-            "minLength": 1,
             "type": "string",
             "description": "The ID number of the counterparty for the invoice, for example, a customer or vendor.",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
+          },
+          "customerName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "description": "The name of the customer associated with this invoice.",
+            "nullable": true,
+            "readOnly": true
           },
           "erpKey": {
             "maxLength": 100,
@@ -29070,6 +27585,12 @@
             "description": "A description of the current workflow status of this invoice.",
             "nullable": true
           },
+          "workflowStatusReasonCode": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "The reason code for the current workflow status of this invoice.\r\n            \r\nEmpty if workflow status does not require a reason code.",
+            "nullable": true
+          },
           "termsCode": {
             "maxLength": 50,
             "type": "string",
@@ -29108,6 +27629,23 @@
             "description": "The remaining balance value of this invoice in it's tendered currency.",
             "format": "double"
           },
+          "shippingAmount": {
+            "type": "number",
+            "description": "The shipping amount of this invoice in it's tendered currency.",
+            "format": "double"
+          },
+          "netAmount": {
+            "type": "number",
+            "description": "The total value of this invoice with deductions, excluding taxes.",
+            "format": "double",
+            "nullable": true,
+            "readOnly": true
+          },
+          "baseCurrencyShippingAmount": {
+            "type": "number",
+            "description": "The shipping amount of this invoice in it's tendered currency.",
+            "format": "double"
+          },
           "invoiceDate": {
             "type": "string",
             "description": "The reporting date for this invoice.",
@@ -29142,6 +27680,12 @@
             "type": "string",
             "description": "The date and time when this record was imported from the user's ERP or accounting system.",
             "format": "date-time",
+            "nullable": true
+          },
+          "taxPointDate": {
+            "type": "string",
+            "description": "The date when the tax becomes applicable; used for tax reporting.",
+            "format": "date",
             "nullable": true
           },
           "primaryOriginAddressId": {
@@ -29244,6 +27788,13 @@
             "type": "number",
             "description": "The remaining balance value of this invoice in the group's base currency.",
             "format": "double"
+          },
+          "baseCurrencyNetAmount": {
+            "type": "number",
+            "description": "The total value of this invoice with deductions, excluding taxes and in the invoice's base currency.",
+            "format": "double",
+            "nullable": true,
+            "readOnly": true
           },
           "erpUpdateStatus": {
             "allOf": [
@@ -29395,6 +27946,30 @@
             },
             "description": "Additional attributes that may be required by the source system.",
             "nullable": true
+          },
+          "taxSummary": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaxSummaryModel"
+            },
+            "description": "The tax information related to the invoice",
+            "nullable": true
+          },
+          "documentSource": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "The source of the invoice (e.g ERP, Peppol, Email, Gov System)",
+            "nullable": true,
+            "readOnly": true
+          },
+          "jurisdiction": {
+            "maxLength": 2,
+            "minLength": 2,
+            "type": "string",
+            "description": "The jurisdiction or country from which the invoice originates (e.g., US, AU)",
+            "nullable": true,
+            "readOnly": true
           }
         },
         "additionalProperties": false,
@@ -29855,6 +28430,18 @@
             "format": "double",
             "nullable": true
           },
+          "shippingAmount": {
+            "type": "number",
+            "description": "The shipping amount of this invoice in it's tendered currency.",
+            "format": "double",
+            "nullable": true
+          },
+          "netAmount": {
+            "type": "number",
+            "description": "The total value of this invoice with deductions, excluding taxes.",
+            "format": "double",
+            "nullable": true
+          },
           "invoiceDate": {
             "type": "string",
             "description": "The reporting date for this invoice.",
@@ -29888,6 +28475,12 @@
           "importedDate": {
             "type": "string",
             "description": "The date and time when this record was imported from the user's ERP or accounting system.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "taxPointDate": {
+            "type": "string",
+            "description": "The date when the tax becomes applicable; used for tax reporting.",
             "format": "date-time",
             "nullable": true
           },
@@ -30098,6 +28691,18 @@
             "format": "double",
             "nullable": true
           },
+          "baseCurrencyShippingAmount": {
+            "type": "number",
+            "description": "The shipping amount of this invoice in it's tendered currency.",
+            "format": "double",
+            "nullable": true
+          },
+          "baseCurrencyNetAmount": {
+            "type": "number",
+            "description": "The total value of this invoice with deductions, excluding taxes and in the invoice's base currency.",
+            "format": "double",
+            "nullable": true
+          },
           "isEInvoice": {
             "type": "boolean",
             "description": "True if the invoice is an E-Invoice",
@@ -30119,13 +28724,33 @@
             "description": "Notes associated to workflow status",
             "nullable": true
           },
+          "workflowStatusReasonCode": {
+            "type": "string",
+            "description": "The reason code for the current workflow status of this invoice.\r\n            \r\nEmpty if workflow status does not require a reason code.",
+            "nullable": true
+          },
           "workflowStatusCode": {
             "type": "string",
             "description": "Workflow status code dictated by government standards",
             "nullable": true
+          },
+          "taxSummary": {
+            "type": "string",
+            "description": "A JSON string representing the tax information for this invoice",
+            "nullable": true
+          },
+          "documentSource": {
+            "type": "string",
+            "description": "The source of the invoice (e.g ERP, Peppol, Email, Gov System)",
+            "nullable": true
+          },
+          "jurisdiction": {
+            "type": "string",
+            "description": "The jurisdiction or country from which the invoice originates (e.g., US, AU)",
+            "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The InvoiceSyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe InvoiceSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as an [InvoiceModel](https://developer.lockstep.io/docs/invoicemodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "InvoiceWorkflowStatusHistoryModel": {
@@ -30152,6 +28777,11 @@
             "description": "The workflow status name associated with the invoice workflow status history.",
             "nullable": true
           },
+          "workflowTransitionId": {
+            "type": "string",
+            "description": "The workflow transition ID associated with the invoice workflow status history.",
+            "format": "uuid"
+          },
           "groupKey": {
             "type": "string",
             "description": "The GroupKey uniquely identifies a single Accounting Data Services Platform account.  All records for this\r\naccount will share the same GroupKey value.  GroupKey values cannot be changed once created.\r\n            \r\nFor more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).",
@@ -30161,6 +28791,11 @@
           "workflowStatusNotes": {
             "type": "string",
             "description": "The notes for the invoice workflow status history.",
+            "nullable": true
+          },
+          "workflowStatusReasonCode": {
+            "type": "string",
+            "description": "The reason code for the invoice workflow status history.\r\n            \r\nSpecific reason codes are defined by the workflow status.",
             "nullable": true
           },
           "created": {
@@ -30178,6 +28813,42 @@
         },
         "additionalProperties": false,
         "description": "A Invoice Workflow Status History represents prior workflow statuses of an E-Invoice."
+      },
+      "InvoiceWorkflowStatusSyncModel": {
+        "required": [
+          "created",
+          "invoiceErpKey"
+        ],
+        "type": "object",
+        "properties": {
+          "invoiceErpKey": {
+            "type": "string",
+            "description": "This is the primary key of the Invoice record. For this field, you should use whatever the invoice's unique\r\nidentifying number is in the originating system. Search for a unique, non-changing number within the\r\noriginating financial system for this record.\r\n            \r\nExample: If you store your invoice records in a database, whatever the primary key for the invoice table is\r\nin the database should be the \"ErpKey\".\r\n            \r\nFor more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns)."
+          },
+          "workflowStatusId": {
+            "type": "string",
+            "description": "Workflow status of the invoice.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "notes": {
+            "type": "string",
+            "description": "Notes associated to workflow status",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "description": "Workflow status code dictated by government standards",
+            "nullable": true
+          },
+          "created": {
+            "type": "string",
+            "description": "The date when the workflow status was updated for the e-invoice",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The InvoiceWorkflowStatusSyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe InvoiceWorkflowStatusSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as an [InvoiceWorkflowStatusHistoryModel](https://developer.lockstep.io/docs/invoiceworkflowstatushistorymodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "JournalEntryLineModel": {
         "required": [
@@ -30436,6 +29107,12 @@
             "type": "string",
             "description": "The transaction currency in which the entry is recorded, especially useful for multi-currency environments."
           },
+          "currencyRate": {
+            "type": "number",
+            "description": "The CurrencyRate of the connected Payment",
+            "format": "double",
+            "nullable": true
+          },
           "baseDebit": {
             "type": "number",
             "description": "The base currency debit amount for the account.",
@@ -30492,7 +29169,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The JournalEntryLineSyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe JournalEntryLineSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as a JournalEntryLineModel\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "JournalEntryModel": {
@@ -30671,7 +29348,44 @@
           6,
           7,
           8,
-          9
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46
         ],
         "type": "integer",
         "description": "Possible sources for a Journal Entry.",
@@ -30761,7 +29475,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The JournalEntrySyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe JournalEntrySyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as a JournalEntryModel\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "JsonApiResourceHead": {
@@ -30780,50 +29494,6 @@
         },
         "additionalProperties": false,
         "description": "A Json API resource head."
-      },
-      "LeadModel": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "leadId": {
-            "type": "string",
-            "description": "The unique ID of this record, automatically assigned by ADS when this record is\r\nadded to the ADS Platform.",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "name": {
-            "maxLength": 100,
-            "minLength": 1,
-            "type": "string",
-            "description": "Name of lead"
-          },
-          "company": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string",
-            "description": "Name of company of lead",
-            "nullable": true
-          },
-          "email": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string",
-            "description": "Email of lead",
-            "format": "email",
-            "nullable": true
-          },
-          "erpSystem": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string",
-            "description": "Requested ERP of lead",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Represents leads for creating new ERP connectors"
       },
       "MagicLinkModel": {
         "type": "object",
@@ -31281,7 +29951,6 @@
       },
       "PaymentAppliedModel": {
         "required": [
-          "invoiceId",
           "paymentId"
         ],
         "type": "object",
@@ -31299,15 +29968,21 @@
             "readOnly": true
           },
           "invoiceId": {
-            "minLength": 1,
             "type": "string",
             "description": "The Invoice this payment is applied to.",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
+          },
+          "refundId": {
+            "type": "string",
+            "description": "The refund Payment that funded the payment.",
+            "format": "uuid",
+            "nullable": true
           },
           "paymentId": {
             "minLength": 1,
             "type": "string",
-            "description": "The Payment applied to the invoice.",
+            "description": "The Payment applied to the invoice or receiving funding from a refund.",
             "format": "uuid"
           },
           "erpKey": {
@@ -31406,6 +30081,16 @@
             "nullable": true,
             "readOnly": true
           },
+          "refund": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentModel"
+              }
+            ],
+            "description": "The refund payment associated with this applied payment",
+            "nullable": true,
+            "readOnly": true
+          },
           "erpSystemAttributes": {
             "type": "object",
             "additionalProperties": {
@@ -31452,7 +30137,6 @@
           "applyToInvoiceDate",
           "entryNumber",
           "erpKey",
-          "invoiceErpKey",
           "paymentAppliedAmount",
           "paymentErpKey"
         ],
@@ -31478,7 +30162,8 @@
           },
           "invoiceErpKey": {
             "type": "string",
-            "description": "This field indicates which Invoice had its balance reduced by applying this payment.  In this field,\r\nidentify the original primary key or unique ID of the Invoice which had its balance reduced.\r\n            \r\nThis information lets you track how an invoice was paid. You can identify what proportion of an invoice's\r\nbalance was paid by which methods by joining this field to Invoices.\r\n            \r\nThis value should match the [Invoice ErpKey](https://developer.lockstep.io/docs/importing-invoices#erpkey)\r\nfield on the [InvoiceSyncModel](https://developer.lockstep.io/docs/importing-invoices)."
+            "description": "This field indicates which Invoice had its balance reduced by applying this payment.  In this field,\r\nidentify the original primary key or unique ID of the Invoice which had its balance reduced.\r\n            \r\nThis information lets you track how an invoice was paid. You can identify what proportion of an invoice's\r\nbalance was paid by which methods by joining this field to Invoices.\r\n            \r\nThis value should match the [Invoice ErpKey](https://developer.lockstep.io/docs/importing-invoices#erpkey)\r\nfield on the [InvoiceSyncModel](https://developer.lockstep.io/docs/importing-invoices).",
+            "nullable": true
           },
           "invoiceNetworkId": {
             "type": "string",
@@ -31486,9 +30171,20 @@
             "format": "uuid",
             "nullable": true
           },
+          "refundErpKey": {
+            "type": "string",
+            "description": "This field indicates which Payment is being used to provide the funds for a the payment.  In this field,\r\nidentify the original primary key or unique ID of the Payment which will be supplying the funds.\r\n            \r\nThis information lets you track how a payment was funded. You can identify what proportion of an payment's\r\nbalance was paid by which methods by joining this field to the Payment.\r\n            \r\nThis value should match the [Payment ErpKey](https://developer.lockstep.io/docs/importing-payments#erpkey)\r\nfield on the [PaymentSyncModel](https://developer.lockstep.io/docs/importing-payments).",
+            "nullable": true
+          },
+          "refundNetworkId": {
+            "type": "string",
+            "description": "The network id of the related refund Payment.",
+            "format": "uuid",
+            "nullable": true
+          },
           "paymentErpKey": {
             "type": "string",
-            "description": "This field indicates which Payment was used to provide the funds for this payment application. In this\r\nfield, identify the original primary key or unique ID of the Payment that was used for this payment\r\napplication.\r\n            \r\nThis information lets you track how an invoice was paid. You can identify what proportion of an payment's\r\nbalance was paid by which methods by joining this field to the Payment.\r\n            \r\nThis value should match the [Payment ErpKey](https://developer.lockstep.io/docs/importing-payments#erpkey)\r\nfield on the [PaymentSyncModel](https://developer.lockstep.io/docs/importing-payments)."
+            "description": "This field indicates which Payment was used to provide the funds for this payment application, or the payment that\r\nis being funded in the case of a refund. In this field, identify the original primary key or unique ID of the\r\nPayment that was used for this payment or the Payment that is being refunded.\r\n            \r\nThis information lets you track how an invoice was paid. You can identify what proportion of an payment's\r\nbalance was paid by which methods by joining this field to the Payment.\r\n            \r\nThis value should match the [Payment ErpKey](https://developer.lockstep.io/docs/importing-payments#erpkey)\r\nfield on the [PaymentSyncModel](https://developer.lockstep.io/docs/importing-payments)."
           },
           "paymentNetworkId": {
             "type": "string",
@@ -31524,7 +30220,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The PaymentAppliedSyncModel represents information coming into ADS from an external financial system or\r\nother enterprise resource planning system.  To import data from an external system, convert your original data\r\ninto the PaymentAppliedSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as a [PaymentAppliedModel](https://developer.lockstep.io/docs/paymentappliedmodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "PaymentDetailModel": {
@@ -31801,6 +30497,14 @@
             "type": "string",
             "description": "The ID of the company to which this payment belongs.",
             "format": "uuid"
+          },
+          "companyName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "description": "The name of the company associated with this payment.",
+            "nullable": true,
+            "readOnly": true
           },
           "erpKey": {
             "maxLength": 255,
@@ -32577,7 +31281,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": {},
         "description": "The PaymentSyncModel represents information coming into ADS from an external financial system or other\r\nenterprise resource planning system.  To import data from an external system, convert your original data into\r\nthe PaymentSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).\r\nThis API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS\r\nPlatform.\r\n            \r\nOnce imported, this record will be available in the ADS Platform API as a [PaymentModel](https://developer.lockstep.io/docs/paymentmodel).\r\n            \r\nFor more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data)."
       },
       "ProblemDetails": {
@@ -34048,13 +32752,15 @@
           "accountName": {
             "type": "string",
             "description": "If authentication is successful, contains subscription account name of logged-in user.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "accountCompanyId": {
             "type": "string",
             "description": "If authentication is successful, contains subscription account company id of logged-in user.",
             "format": "uuid",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "userId": {
             "type": "string",
@@ -34115,17 +32821,20 @@
           "onboardingScheduled": {
             "type": "boolean",
             "description": "If authentication is successful, contains the onboarding session status of the logged-in user's group account.",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "baseCurrencyCode": {
             "type": "string",
             "description": "Base Currency of the group",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "countryCode": {
             "type": "string",
             "description": "Country code of the group",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "magicLinkId": {
             "type": "string",
@@ -34459,6 +33168,38 @@
         "additionalProperties": false,
         "description": "A SyncSubmitModel represents a task that loads data from a connector to load into the ADS Platform.  Data\r\ncontained in a sync will be merged with your existing data.  Each record will be matched with existing data\r\ninside the ADS Platform using the [Identity Column](https://developer.lockstep.io/docs/identity-columns)\r\nrules.  Any record that represents a new AppEnrollmentId+ErpKey will be inserted.  A record that matches an\r\nexisting AppEnrollmentId+ErpKey will be updated, but only if the data has changed.\r\n            \r\nA Sync process permits either a complete data file or a partial / delta data file.  ADS Platform recommends\r\nusing a sliding time window to avoid the risk of clock skew errors that might accidentally omit records.\r\nBest practice is to run a Sync process daily, and to export all data that has changed in the past 48 hours."
       },
+      "TaxSummaryModel": {
+        "type": "object",
+        "properties": {
+          "taxCode": {
+            "maxLength": 15,
+            "minLength": 0,
+            "type": "string",
+            "description": "The tax code for this invoice",
+            "nullable": true
+          },
+          "taxRate": {
+            "type": "number",
+            "description": "The tax rate for this invoice",
+            "format": "double",
+            "nullable": true
+          },
+          "taxTotal": {
+            "type": "number",
+            "description": "The tax total for this invoice",
+            "format": "double",
+            "nullable": true
+          },
+          "baseCurrencyTaxTotal": {
+            "type": "number",
+            "description": "The base currency tax total for this invoice",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents the tax information for this invoice"
+      },
       "TransactionCurrencySummaryModel": {
         "type": "object",
         "properties": {
@@ -34677,7 +33418,8 @@
           "transactionCustomerId": {
             "type": "string",
             "description": "The customer associated with this transaction",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
           },
           "transactionCustomerName": {
             "type": "string",
@@ -35165,13 +33907,6 @@
             "description": "The ID of the user who last modified the user account",
             "format": "uuid",
             "readOnly": true
-          },
-          "modifiedUserName": {
-            "type": "string",
-            "description": "The name of the user who last modified the user account",
-            "nullable": true,
-            "readOnly": true,
-            "deprecated": true
           },
           "b2CUserId": {
             "type": "string",
@@ -36026,6 +34761,7 @@
             "description": "A Webhook rule is setup to be fired based on `TableKey` and `EventType`.\r\nFor example, a Webhook setup for when an Invoice is Created would have a `TableKey` value of\r\n`Invoice` and an `EventType` value of `I` (Insert).\r\n            \r\nThe `EventType` value is one of the following:\r\n- I (Insert)\r\n- D (Delete)\r\n- U (Update)\r\n            \r\nFor more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object)."
           },
           "filter": {
+            "maxLength": 1000,
             "type": "string",
             "description": "An optional Searchlight filter for this webhook rule. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)",
             "nullable": true
@@ -36114,7 +34850,8 @@
             "type": "string",
             "description": "The prior workflow status ID.",
             "format": "uuid",
-            "nullable": true
+            "nullable": true,
+            "deprecated": true
           },
           "category": {
             "maxLength": 100,
@@ -36131,6 +34868,10 @@
           "isNotesRequired": {
             "type": "boolean",
             "description": "Indicates whether notes are required or not."
+          },
+          "isReasonRequired": {
+            "type": "boolean",
+            "description": "Indicates whether a reason is required or not."
           },
           "promoteToErp": {
             "type": "boolean",
@@ -36166,6 +34907,15 @@
             "type": "string",
             "description": "The ID of the user who last modified the workflow status.",
             "format": "uuid",
+            "readOnly": true
+          },
+          "parents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowStatusModel"
+            },
+            "description": "The parent workflow statuses for the workflow status.\r\n            \r\nTo retrieve this collection, specify `Parents` in the \"Include\" parameter for your query.",
+            "nullable": true,
             "readOnly": true
           },
           "children": {
@@ -36228,9 +34978,9 @@
         "description": "Azure B2C OAuth Authentication",
         "flows": {
           "implicit": {
-            "authorizationUrl": "https://login.eu.qa.lockstep.io/login.eu.qa.lockstep.io/B2C_1A_PLATFORMSIGNUP_SIGNIN/oauth2/v2.0/authorize",
+            "authorizationUrl": "https://login.eu.int.lockstep.io/login.eu.int.lockstep.io/B2C_1A_PLATFORMSIGNUP_SIGNIN/oauth2/v2.0/authorize",
             "scopes": {
-              "https://login.eu.qa.lockstep.io/platform-api/api.call": "Call the Platform API"
+              "https://login.eu.int.lockstep.io/platform-api/api.call": "Call the Platform API"
             }
           }
         }
