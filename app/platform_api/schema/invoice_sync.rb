@@ -8,7 +8,7 @@ end
   # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
-  # The unique identifier of this object in the Sage Network platform.
+  # The unique identifier of this object in the Accounting Data Service.
   # @type: string
   # @format: uuid
   field :network_id
@@ -162,6 +162,10 @@ end
   # @type: string
   # @format: date-time
   field :payment_due_date, Types::Params::DateTime
+
+  # The date when payment is planned in Connect.
+  # @type: string
+  field :planned_payment_date
 
   # The date and time when this record was imported from the user's ERP or accounting system.
   # @type: string

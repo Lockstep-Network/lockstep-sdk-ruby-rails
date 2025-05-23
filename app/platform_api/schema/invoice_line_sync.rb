@@ -8,7 +8,7 @@ end
   # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
-  # The unique identifier of this object in the Sage Network platform.
+  # The unique identifier of this object in the Accounting Data Service.
   # @type: string
   # @format: uuid
   field :network_id
@@ -128,120 +128,6 @@ end
   # @type: string
   # @format: date-time
   field :reporting_date, Types::Params::DateTime
-
-  # Origination address for this invoice line, if this line item was originated from a different address
-  # @type: string
-  field :origin_address_line1
-
-  # Origination address for this invoice line, if this line item was originated from a different address
-  # @type: string
-  field :origin_address_line2
-
-  # Origination address for this invoice line, if this line item was originated from a different address
-  # @type: string
-  field :origin_address_line3
-
-  # Origination address for this invoice line, if this line item was originated from a different address
-  # @type: string
-  field :origin_address_city
-
-  # Origination address for this invoice line, if this line item was originated from a different address
-  # @type: string
-  field :origin_address_region
-
-  # Origination address for this invoice line, if this line item was originated from a different address
-  # @type: string
-  field :origin_address_postal_code
-
-  # Origination address for this invoice line, if this line item was originated from a different address
-  # @type: string
-  field :origin_address_country
-
-  # Origination address for this invoice line, if this line item was originated from a different address
-  # @type: number
-  # @format: float
-  field :origin_address_latitude
-
-  # Origination address for this invoice line, if this line item was originated from a different address
-  # @type: number
-  # @format: float
-  field :origin_address_longitude
-
-  # Billing address for this invoice line, if this line item is to be billed to a different address
-  # @type: string
-  field :bill_to_address_line1
-
-  # Billing address for this invoice line, if this line item is to be billed to a different address
-  # @type: string
-  field :bill_to_address_line2
-
-  # Billing address for this invoice line, if this line item is to be billed to a different address
-  # @type: string
-  field :bill_to_address_line3
-
-  # Billing address for this invoice line, if this line item is to be billed to a different address
-  # @type: string
-  field :bill_to_address_city
-
-  # Billing address for this invoice line, if this line item is to be billed to a different address
-  # @type: string
-  field :bill_to_address_region
-
-  # Billing address for this invoice line, if this line item is to be billed to a different address
-  # @type: string
-  field :bill_to_address_postal_code
-
-  # Billing address for this invoice line, if this line item is to be billed to a different address
-  # @type: string
-  field :bill_to_address_country
-
-  # Billing address for this invoice line, if this line item is to be billed to a different address
-  # @type: number
-  # @format: float
-  field :bill_to_address_latitude
-
-  # Billing address for this invoice line, if this line item is to be billed to a different address
-  # @type: number
-  # @format: float
-  field :bill_to_address_longitude
-
-  # Shipping address for this invoice line, if this line item is to be shipped to a different address
-  # @type: string
-  field :ship_to_address_line1
-
-  # Shipping address for this invoice line, if this line item is to be shipped to a different address
-  # @type: string
-  field :ship_to_address_line2
-
-  # Shipping address for this invoice line, if this line item is to be shipped to a different address
-  # @type: string
-  field :ship_to_address_line3
-
-  # Shipping address for this invoice line, if this line item is to be shipped to a different address
-  # @type: string
-  field :ship_to_address_city
-
-  # Shipping address for this invoice line, if this line item is to be shipped to a different address
-  # @type: string
-  field :ship_to_address_region
-
-  # Shipping address for this invoice line, if this line item is to be shipped to a different address
-  # @type: string
-  field :ship_to_address_postal_code
-
-  # Shipping address for this invoice line, if this line item is to be shipped to a different address
-  # @type: string
-  field :ship_to_address_country
-
-  # Shipping address for this invoice line, if this line item is to be shipped to a different address
-  # @type: number
-  # @format: float
-  field :ship_to_address_latitude
-
-  # Shipping address for this invoice line, if this line item is to be shipped to a different address
-  # @type: number
-  # @format: float
-  field :ship_to_address_longitude
 
   # If known, the date when this record was created according to the originating financial system
   # in which this record is maintained.  If the originating financial system does not maintain a

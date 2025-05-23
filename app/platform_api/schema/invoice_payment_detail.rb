@@ -5,7 +5,7 @@ def self.id_ref
   nil
 end
 
-  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
+  # The GroupKey uniquely identifies a single Accounting Data Service account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -80,6 +80,12 @@ end
   # @type: number
   # @format: double
   field :base_currency_unapplied_amount
+
+  # Possible statuses for a record that supports ERP Update.
+  field :erp_update_status
+
+  # Possible actions for a record that supports ERP Update.
+  field :erp_update_action
 
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}

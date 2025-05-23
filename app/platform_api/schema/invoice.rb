@@ -5,7 +5,7 @@ def self.id_ref
   nil
 end
 
-  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
+  # The GroupKey uniquely identifies a single Accounting Data Service account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -14,7 +14,7 @@ end
   field :group_key
 
   # The unique ID of this record, automatically assigned by ADS when this record is
-  # added to the ADS Platform.
+  # added to the Accounting Data Service.
   #             
   # For the ID of this record in its originating financial system, see `ErpKey`.
   # @type: string
@@ -171,6 +171,11 @@ end
   # @format: date
   field :payment_due_date
 
+  # The date when payment is planned in Connect.
+  # @type: string
+  # @format: date
+  field :planned_payment_date
+
   # The date and time when this record was imported from the user's ERP or accounting system.
   # @type: string
   # @format: date-time
@@ -320,6 +325,16 @@ end
   # The jurisdiction or country from which the invoice originates (e.g., US, AU)
   # @type: string
   field :jurisdiction
+
+  # The ID of the sync task that created this Invoice.
+  # @type: string
+  # @format: uuid
+  field :created_sync_id
+
+  # The ID of the sync task that modified this Invoice.
+  # @type: string
+  # @format: uuid
+  field :modified_sync_id
 
   belongs_to :company, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}
   belongs_to :account, {:class_name=>"Lockstep::Account", :primary_key=>:company_id, :foreign_key=>"company_id"}

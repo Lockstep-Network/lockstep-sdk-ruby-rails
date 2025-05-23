@@ -5,13 +5,13 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by ADS Platform when this record is
-  # added to the ADS Platform.
+  # The unique ID of this record, automatically assigned by Accounting Data Service when this record is
+  # added to the Accounting Data Service.
   # @type: string
   # @format: uuid
   field :sync_request_id
 
-  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
+  # The GroupKey uniquely identifies a single Accounting Data Service account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -98,6 +98,10 @@ end
   # @type: integer
   # @format: int32
   field :total_batches
+
+  # An optional trace parent for the sync request
+  # @type: string
+  field :trace_parent
 
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}
 

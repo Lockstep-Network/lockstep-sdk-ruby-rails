@@ -6,14 +6,14 @@ def self.id_ref
 end
 
   # The unique ID of this record, automatically assigned by ADS when this record is
-  # added to the ADS Platform.
+  # added to the Accounting Data Service.
   #             
   # For the ID of this record in its originating financial system, see `ErpKey`.
   # @type: string
   # @format: uuid
   field :credit_memo_applied_id
 
-  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
+  # The GroupKey uniquely identifies a single Accounting Data Service account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -21,21 +21,21 @@ end
   # @format: uuid
   field :group_key
 
-  # The ADS Platform ID of the Invoice to which this credit memo was applied.  This Invoice's outstanding balance
+  # The Accounting Data Service ID of the Invoice to which this credit memo was applied.  This Invoice's outstanding balance
   # was reduced by the value of the field `CreditMemoAppliedAmount` on the date `ApplyToInvoiceDate`.
   #             
   # Example: Company ABC received a credit memo, CM000123 for $500.  Company ABC then chooses to apply this
-  # credit memo to reduce the balance of the invoice PO1000578.  The `InvoiceErpKey` is the ADS Platform
+  # credit memo to reduce the balance of the invoice PO1000578.  The `InvoiceErpKey` is the Accounting Data Service
   # ID number of Invoice `PO1000578`.
   # @type: string
   # @format: uuid
   field :invoice_id
 
-  # The ADS Platform ID of the Invoice of type "Credit Memo" that was consumed in this payment application event.
+  # The Accounting Data Service ID of the Invoice of type "Credit Memo" that was consumed in this payment application event.
   #             
   # Example: Company ABC received a credit memo, CM000123 for $500.  Company ABC then chooses to apply this
   # credit memo to reduce the balance of the invoice PO1000578.  The `CreditMemoInvoiceId` is the ADS
-  # Platform ID number of Invoice `CM000123`.
+  # Network Id number of Invoice `CM000123`.
   # @type: string
   # @format: uuid
   field :credit_memo_invoice_id

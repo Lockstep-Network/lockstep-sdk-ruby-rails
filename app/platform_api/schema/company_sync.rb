@@ -8,7 +8,7 @@ end
   # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
-  # The unique identifier of this object in the Sage Network platform.
+  # The unique identifier of this object in the Accounting Data Service.
   # @type: string
   # @format: uuid
   field :network_id
@@ -19,9 +19,6 @@ end
   #             
   # Example: If you store your company records in a database, whatever the primary key for the company table is
   # in the database should be the `ErpKey`.
-  #             
-  # Example: If you use a financial system such as QuickBooks or Xero, look for the primary ID number of the
-  # company record within that financial system.
   #             
   # For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
   # @type: string
@@ -145,16 +142,6 @@ end
   # @type: string
   field :duns_number
 
-  # If you know the AP (accounts payable) email address of this company, fill it in here. This is the email
-  # address where you would send questions to the company if the company owed you money.
-  # @type: string
-  field :ap_email_address
-
-  # If you know the AR (accounts receivable) email address of this company, fill it in here. This is the email
-  # address where you would send questions to the company if you owed this company money.
-  # @type: string
-  field :ar_email_address
-
   # Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
   # @type: string
   field :preferred_delivery_method
@@ -174,6 +161,10 @@ end
   # The set of identifiers for the Company.
   # @type: string
   field :company_identifiers
+
+  # A reference code for the Company.  This code is used to identify this company in external ERP systems.
+  # @type: string
+  field :reference_code
 
 
 

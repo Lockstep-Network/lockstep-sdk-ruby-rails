@@ -5,13 +5,13 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by ADS Platform when this record is
-  # added to the ADS Platform.
+  # The unique ID of this record, automatically assigned by Accounting Data Service when this record is
+  # added to the Accounting Data Service.
   # @type: string
   # @format: uuid
   field :webhook_id
 
-  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
+  # The GroupKey uniquely identifies a single Accounting Data Service account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -32,7 +32,7 @@ end
   field :status_message
 
   # An secret set during webhook creation that can be used to verify that the notification
-  # is coming from the ADS Platform API.
+  # is coming from the Accounting Data Service API.
   # @type: string
   field :client_secret
 
@@ -46,7 +46,7 @@ end
 
   # The URL where the notification will be sent via the method set in CallbackHttpMethod.
   #             
-  # When creating a webhook, the ADS Platform API will make a call to this url via the method
+  # When creating a webhook, the Accounting Data Service API will make a call to this url via the method
   # set in the CallbackHttpMethod property with a query parameter of "code" set to an encoded
   # string. To successfully create the webhook, the call must return a successful status code
   # with the query parameter's value as the plain text content.
