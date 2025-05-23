@@ -5,7 +5,7 @@ def self.id_ref
   nil
 end
 
-  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
+  # The GroupKey uniquely identifies a single Accounting Data Service account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -14,16 +14,16 @@ end
   field :group_key
 
   # The unique ID of an attachment record, automatically assigned by ADS when this record is
-  # added to the ADS Platform.
+  # added to the Accounting Data Service.
   # @type: string
   # @format: uuid
   field :attachment_id
 
-  # An Attachment is connected to an existing item within the ADS Platform by the fields `TableKey` and
+  # An Attachment is connected to an existing item within the Accounting Data Service by the fields `TableKey` and
   # `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
   # `Invoice` and an `ObjectKey` value of `12345`.
   #             
-  # The `ObjectKey` value contains the primary key of the record within the ADS Platform to which this
+  # The `ObjectKey` value contains the primary key of the record within the Accounting Data Service to which this
   # Attachment is connected.
   #             
   # For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
@@ -31,11 +31,11 @@ end
   # @format: uuid
   field :object_key
 
-  # An Attachment is connected to an existing item within the ADS Platform by the fields `TableKey` and
+  # An Attachment is connected to an existing item within the Accounting Data Service by the fields `TableKey` and
   # `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
   # `Invoice` and an `ObjectKey` value of `12345`.
   #             
-  # The `TableKey` value contains the name of the table within the ADS Platform to which this Attachment
+  # The `TableKey` value contains the name of the table within the Accounting Data Service to which this Attachment
   # is connected.
   #             
   # For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).

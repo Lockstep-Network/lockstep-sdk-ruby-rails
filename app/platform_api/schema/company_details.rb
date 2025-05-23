@@ -5,7 +5,7 @@ def self.id_ref
   nil
 end
 
-  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
+  # The GroupKey uniquely identifies a single Accounting Data Service account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).

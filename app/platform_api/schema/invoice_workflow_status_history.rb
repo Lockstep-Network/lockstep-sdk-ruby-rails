@@ -5,8 +5,8 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by ADS Platform when this record is
-  # added to the Accounting Data Services platform.
+  # The unique ID of this record, automatically assigned by Accounting Data Service when this record is
+  # added to the Accounting Data Services network.
   # @type: string
   # @format: uuid
   field :invoice_workflow_status_history_id
@@ -30,7 +30,7 @@ end
   # @format: uuid
   field :workflow_transition_id
 
-  # The GroupKey uniquely identifies a single Accounting Data Services Platform account.  All records for this
+  # The GroupKey uniquely identifies a single Accounting Data Services Network account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -57,6 +57,14 @@ end
   # @type: string
   # @format: uuid
   field :created_user_id
+
+  # The TraceId of the call made to create the invoice workflow status history.
+  # @type: string
+  field :trace_id
+
+  # The span id of the parent call to create the invoice workflow status history.
+  # @type: string
+  field :trace_parent
 
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
 

@@ -6,14 +6,14 @@ def self.id_ref
 end
 
   # The unique ID of this record, automatically assigned by ADS when this record is
-  # added to the ADS Platform.
+  # added to the Accounting Data Service.
   #             
   # For the ID of this record in its originating financial system, see `ErpKey`.
   # @type: string
   # @format: uuid
   field :invoice_line_id
 
-  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
+  # The GroupKey uniquely identifies a single Accounting Data Service account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -130,21 +130,6 @@ end
   # @type: string
   # @format: date
   field :reporting_date
-
-  # An optional ID number for the line's origin address.
-  # @type: string
-  # @format: uuid
-  field :override_origin_address_id
-
-  # An optional ID number for the line's bill to address.
-  # @type: string
-  # @format: uuid
-  field :override_bill_to_address_id
-
-  # An optional ID number for the line's ship to address.
-  # @type: string
-  # @format: uuid
-  field :override_ship_to_address_id
 
   # The date on which this line was created.
   # @type: string

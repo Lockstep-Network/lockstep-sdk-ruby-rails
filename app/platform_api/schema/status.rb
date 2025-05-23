@@ -91,10 +91,10 @@ end
   # Magic link information about the user
   field :magic_link
 
-  # Information allowing ADS Platform to offer direct support to the user
+  # Information allowing Accounting Data Service to offer direct support to the user
   field :support_access
 
-  # True if the user is being impersonated by the ADS Platform support team.
+  # True if the user is being impersonated by the Accounting Data Service support team.
   # @type: boolean
   field :is_impersonated
 

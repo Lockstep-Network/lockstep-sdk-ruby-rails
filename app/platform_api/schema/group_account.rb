@@ -5,7 +5,7 @@ def self.id_ref
   nil
 end
 
-  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
+  # The GroupKey uniquely identifies a single Accounting Data Service account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -62,6 +62,11 @@ end
   # The 2-letter ISO country code for the group
   # @type: string
   field :country_code
+
+  # Workflow status when ERP sync is started for e-Invoices
+  # @type: string
+  # @format: uuid
+  field :e_invoice_sync_workflow_status
 
   belongs_to :created_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"created_user_id"}
   belongs_to :modified_user, {:class_name=>"Lockstep::User", :primary_key=>:user_id, :foreign_key=>"modified_user_id"}

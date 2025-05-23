@@ -6,7 +6,7 @@ def self.id_ref
 end
 
   # The unique ID of this record, automatically assigned by ADS when this record is
-  # added to the ADS Platform.
+  # added to the Accounting Data Service.
   #             
   # For the ID of this record in its originating financial system, see `ErpKey`.
   # @type: string
@@ -55,7 +55,7 @@ end
   # @format: uuid
   field :enterprise_id
 
-  # The GroupKey uniquely identifies a single ADS Platform account.  All records for this
+  # The GroupKey uniquely identifies a single Accounting Data Service account.  All records for this
   # account will share the same GroupKey value.  GroupKey values cannot be changed once created.
   #             
   # For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -82,7 +82,7 @@ end
   # The scan status of the company's logo, if it exists
   field :company_logo_status
 
-  # The ADS Platform `ContactId` of the primary contact for this company.
+  # The Accounting Data Service `ContactId` of the primary contact for this company. This contact must belong to this company.
   # @type: string
   # @format: uuid
   field :primary_contact_id
@@ -158,16 +158,6 @@ end
   # Dun & Bradstreet Number
   # @type: string
   field :duns_number
-
-  # AP (Accounts Payable) Email Address
-  # @type: string
-  # @format: email
-  field :ap_email_address
-
-  # AR (Accounts Receivable) Email Address
-  # @type: string
-  # @format: email
-  field :ar_email_address
 
   # Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
   # @type: string
@@ -255,6 +245,10 @@ end
   # @type: string
   # @format: uuid
   field :profile_reference_id
+
+  # A reference code for this company.  This code is used to identify this company in external ERP systems.
+  # @type: string
+  field :reference_code
 
   # All invoices attached to this company.
   #             

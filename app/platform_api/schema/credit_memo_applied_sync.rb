@@ -8,7 +8,7 @@ end
   # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
-  # The unique identifier of this object in the Sage Network platform.
+  # The unique identifier of this object in the Accounting Data Service.
   # @type: string
   # @format: uuid
   field :network_id

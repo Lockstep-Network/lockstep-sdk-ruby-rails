@@ -5,8 +5,8 @@ def self.id_ref
   nil
 end
 
-  # The unique ID of this record, automatically assigned by ADS Platform when this record is
-  # added to the Accounting Data Services platform.
+  # The unique ID of this record, automatically assigned by Accounting Data Service when this record is
+  # added to the Accounting Data Services network.
   # @type: string
   # @format: uuid
   field :id

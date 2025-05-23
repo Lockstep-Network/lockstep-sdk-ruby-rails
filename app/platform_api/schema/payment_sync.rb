@@ -8,7 +8,7 @@ end
   # Indicates what action to take when an existing object has been found during the sync process.
   field :on_match_action
 
-  # The unique identifier of this object in the Sage Network platform.
+  # The unique identifier of this object in the Accounting Data Service.
   # @type: string
   # @format: uuid
   field :network_id
@@ -139,6 +139,14 @@ end
   # Bank account id for the payment.
   # @type: string
   field :bank_account_id
+
+  # The tax code of this payment.
+  # @type: string
+  field :tax_code
+
+  # The financial account code of this payment.
+  # @type: string
+  field :financial_account_code
 
 
 
