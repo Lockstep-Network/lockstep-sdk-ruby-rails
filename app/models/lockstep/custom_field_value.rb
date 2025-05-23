@@ -11,7 +11,7 @@ class Lockstep::CustomFieldValue < Lockstep::ApiRecord
 
     # Label with CustomerLocale to be updated from here
     resp = resource.patch("CustomerLocale/#{attributes[:record_key]}", body: attrs)
-    result = post_result(resp)
+    post_result(resp)
   end
 
 end
